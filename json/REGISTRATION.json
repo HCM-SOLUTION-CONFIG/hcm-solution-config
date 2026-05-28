@@ -8478,7 +8478,6 @@
           "order": 3,
           "module": "REGISTRATION",
           "heading": "APPONE_REGISTRATION_CAREGIVER_CONSENT_SCREEN_HEADING",
-          "project": "CMP-2026-03-30-000298",
           "summary": false,
           "version": 1,
           "onAction": [],
