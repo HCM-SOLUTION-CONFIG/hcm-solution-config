@@ -1201,7 +1201,7 @@
                     "type": "template",
                     "label": "ADMINISTERED_SUCCESS",
                     "format": "tag",
-                    "visible": "{{fn:isDelivered(item.task.last.status)}}==true && {{fn:checkEligibilityForAgeAndSideEffect(item.individual.0.dateOfBirth, item.task, contextData.0.currentRunningCycle)}}==true && {{fn:hasReferralForCurrentCycle(item.hFReferral)}}==false",
+                    "visible": "{{fn:hasSMCAdministered(item.task)}}==true && {{fn:checkEligibilityForAgeAndSideEffect(item.individual.0.dateOfBirth, item.task, contextData.0.currentRunningCycle)}}==true && {{fn:hasReferralForCurrentCycle(item.hFReferral)}}==false",
                     "fieldName": "administrationSuccess",
                     "properties": {
                       "tagType": "success",
@@ -1244,7 +1244,7 @@
                     "type": "template",
                     "label": "NOT_VISITED",
                     "format": "tag",
-                    "visible": "{{fn:checkEligibilityForAgeAndSideEffect(item.individual.0.dateOfBirth, item.task, contextData.0.currentRunningCycle)}}==true && {{fn:isDelivered(item.task.last.status)}}==false && {{fn:hasReferralForCurrentCycle(item.hFReferral)}}==false && {{fn:isRedoseCompleted(item.task)}}==false",
+                    "visible": "{{fn:checkEligibilityForAgeAndSideEffect(item.individual.0.dateOfBirth, item.task, contextData.0.currentRunningCycle)}}==true && {{fn:hasSMCAdministered(item.task)}}==false && {{fn:hasReferralForCurrentCycle(item.hFReferral)}}==false && {{fn:isRedoseCompleted(item.task)}}==false",
                     "fieldName": "notVisited",
                     "properties": {
                       "tagType": "info",
@@ -1739,7 +1739,7 @@
                             },
                             {
                               "key": "lastDeliveredTaskClientReferenceId",
-                              "value": "{{item.task.last.clientReferenceId}}"
+                              "value": "{{fn:getLastSMCDeliveryClientReferenceId(item.task)}}"
                             }
                           ],
                           "name": "REDOSE",
@@ -4319,7 +4319,9 @@
                   }
                 }
               ],
-              "condition": "{{fn:hasStockForRedose(item.task)}} == false"
+              "condition": {
+                "expression": "{{fn:hasStockForRedose(item.task)}} == false"
+              }
             },
             {
               "actions": [
@@ -4443,7 +4445,9 @@
                   }
                 }
               ],
-              "condition": "{{fn:hasStockForRedose(item.task)}} == true"
+              "condition": {
+                "expression": "{{fn:hasStockForRedose(item.task)}} == true"
+              }
             }
           ],
           "navigateTo": null,
