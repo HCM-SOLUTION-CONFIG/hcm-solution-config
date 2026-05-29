@@ -386,7 +386,7 @@
             {
               "actionType": "CUSTOM_DATA",
               "properties": {
-                "entities": "{{fn:createAttendanceLog(widgetData, contextData.0.AttendanceRegisterModel, 0)}}"
+                "entities": "{{fn:createAttendanceLog(widgetData, contextData.0.AttendanceRegisterModel, contextData.0.attendanceLog, 0)}}"
               }
             },
             {
@@ -455,7 +455,7 @@
                     {
                       "actionType": "CUSTOM_DATA",
                       "properties": {
-                        "entities": "{{fn:createAttendanceLog(widgetData, contextData.0.AttendanceRegisterModel, 1)}}"
+                        "entities": "{{fn:createAttendanceLog(widgetData, contextData.0.AttendanceRegisterModel, contextData.0.attendanceLog, 1)}}"
                       }
                     },
                     {
