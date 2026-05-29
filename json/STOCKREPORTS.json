@@ -540,15 +540,15 @@
               },
               {
                 "header": "STOCKREPORTS_REPORT_DETAILS_TABLE_HEADER_PRODUCT_LABEL",
-                "cellValue": "{{fn:getAdditionalFieldValue(item.additionalFields.fields, 'sku')}}"
+                "cellValue": "{{item.additionalFields.fields.sku}}"
               },
               {
                 "header": "STOCKREPORTS_REPORT_DETAILS_TABLE_HEADER_2_LABEL",
-                "cellValue": "{{fn:getAdditionalFieldValue(item.additionalFields.fields, 'mrnNumber')}}"
+                "cellValue": "{{item.additionalFields.fields.mrnNumber}}"
               },
               {
                 "header": "STOCKREPORTS_REPORT_DETAILS_TABLE_HEADER_3_LABEL",
-                "cellValue": "{{item.waybillNumber}}"
+                "cellValue": "{{item.additionalFields.fields.wayBillNumber}}"
               },
               {
                 "header": "STOCKREPORTS_REPORT_DETAILS_TABLE_HEADER_4_LABEL",
@@ -745,22 +745,7 @@
                 "header": "STOCKRECON_REPORT_DETAILS_TABLE_HEADER_4_LABEL",
                 "cellValue": "{{item.additionalFields.fields.stockReturned}}"
               },
-              {
-                "header": "STOCKRECON_REPORT_DETAILS_TABLE_HEADER_5_LABEL",
-                "cellValue": "{{item.additionalFields.fields.stockLost}}"
-              },
-              {
-                "header": "STOCKRECON_REPORT_DETAILS_TABLE_HEADER_6_LABEL",
-                "cellValue": "{{item.additionalFields.fields.stockDamaged}}"
-              },
-              {
-                "header": "STOCKRECON_REPORT_DETAILS_TABLE_HEADER_EXCESS_LABEL",
-                "cellValue": "{{item.additionalFields.fields.stockExcess}}"
-              },
-              {
-                "header": "STOCKRECON_REPORT_DETAILS_TABLE_HEADER_LESS_LABEL",
-                "cellValue": "{{item.additionalFields.fields.stockLess}}"
-              },
+             
               {
                 "header": "STOCKRECON_REPORT_DETAILS_TABLE_HEADER_7_LABEL",
                 "cellValue": "{{item.physicalCount}}"
