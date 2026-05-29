@@ -3158,7 +3158,7 @@
                   }
                 ],
                 "navigationMode": "popUntilAndPush",
-                "popUntilPageName": "householdOverview"
+                "popUntilPageName": "searchBeneficiary"
               }
             }
           ],
@@ -3486,7 +3486,7 @@
                   }
                 ],
                 "navigationMode": "popUntilAndPush",
-                "popUntilPageName": "householdOverview"
+                "popUntilPageName": "searchBeneficiary"
               }
             }
           ],
@@ -3894,7 +3894,7 @@
               }
             ],
             "navigationMode": "popUntilAndPush",
-            "popUntilPageName": "householdOverview"
+            "popUntilPageName": "searchBeneficiary"
           }
         }
       ],
@@ -4071,7 +4071,7 @@
                       }
                     ],
                     "navigationMode": "popUntilAndPush",
-                    "popUntilPageName": "householdOverview"
+                    "popUntilPageName": "searchBeneficiary"
                   }
                 }
               ],
@@ -4366,7 +4366,7 @@
               }
             ],
             "navigationMode": "popUntilAndPush",
-            "popUntilPageName": "householdOverview"
+            "popUntilPageName": "searchBeneficiary"
           }
         }
       ],
