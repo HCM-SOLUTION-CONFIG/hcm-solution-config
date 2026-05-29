@@ -6983,7 +6983,7 @@
               "tooltip": "APPONE_REGISTRATION_BENEFICIARYDETAILS_label_dobPicker_tooltip_addmember",
               "ageRange": {
                 "maxAge": 59,
-                "minAge": 3,
+                "minAge": 0,
                 "errorMessage": "AGE_VALIDATION_ADDMEMBER"
               },
               "helpText": "APPONE_REGISTRATION_BENEFICIARYDETAILS_label_dobPicker_helpText_addmember",
@@ -7004,7 +7004,7 @@
                 },
                 {
                   "type": "minAge",
-                  "value": 3,
+                  "value": 0,
                   "message": "AGE_VALIDATION_ADDMEMBER"
                 },
                 {
