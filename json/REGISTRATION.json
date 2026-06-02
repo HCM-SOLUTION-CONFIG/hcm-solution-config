@@ -2454,6 +2454,10 @@
                                 {
                                   "key": "isNotBeneficiary",
                                   "value": "true"
+                                },
+                                {
+                                  "key": "memberIndividuals",
+                                  "value": "{{item.individuals}}"
                                 }
                               ],
                               "name": "HOUSEHOLD",
@@ -8366,6 +8370,13 @@
             {
               "actionType": "FETCH_TRANSFORMER_CONFIG",
               "properties": {
+                "forceCreate": true,
+                "data": [
+                  {
+                    "key": "memberIndividuals",
+                    "value": "{{navigation.memberIndividuals}}"
+                  }
+                ],
                 "onError": [
                   {
                     "actionType": "SHOW_TOAST",
@@ -8374,10 +8385,7 @@
                     }
                   }
                 ],
-                "createEntities": [
-                  "ProjectBeneficiaryModel"
-                ],
-                "configName": "beneficiaryRegistration"
+                "configName": "householdMemberBeneficiaries"
               }
             },
             {
@@ -8388,10 +8396,24 @@
                   {
                     "actionType": "SHOW_TOAST",
                     "properties": {
-                      "message": "Failed to update closed household."
+                      "message": "Failed to create beneficiaries."
                     }
                   }
                 ]
+              }
+            },
+            {
+              "actionType": "FETCH_TRANSFORMER_CONFIG",
+              "properties": {
+                "onError": [
+                  {
+                    "actionType": "SHOW_TOAST",
+                    "properties": {
+                      "message": "Failed to fetch config."
+                    }
+                  }
+                ],
+                "configName": "beneficiaryRegistration"
               }
             },
             {
@@ -8402,7 +8424,7 @@
                   {
                     "actionType": "SHOW_TOAST",
                     "properties": {
-                      "message": "Failed to update closed household."
+                      "message": "Failed to update household."
                     }
                   }
                 ]
