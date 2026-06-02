@@ -1455,20 +1455,6 @@
           }
         },
         {
-          "actionType": "UPDATE_STOCK_BALANCE",
-          "properties": {
-            "entity": "STOCK",
-            "onError": [
-              {
-                "actionType": "SHOW_TOAST",
-                "properties": {
-                  "message": "INVENTORY_UPDATE_STOCK_BALANCE_FAILED_MESSAGE"
-                }
-              }
-            ]
-          }
-        },
-        {
           "actionType": "NAVIGATION",
           "properties": {
             "type": "TEMPLATE",
@@ -1996,20 +1982,6 @@
                 "actionType": "SHOW_TOAST",
                 "properties": {
                   "message": "INVENTORY_CREATE_STOCK_FAILED_MESSAGE"
-                }
-              }
-            ]
-          }
-        },
-        {
-          "actionType": "UPDATE_STOCK_BALANCE",
-          "properties": {
-            "entity": "STOCK",
-            "onError": [
-              {
-                "actionType": "SHOW_TOAST",
-                "properties": {
-                  "message": "INVENTORY_UPDATE_STOCK_BALANCE_FAILED_MESSAGE"
                 }
               }
             ]
@@ -2801,20 +2773,6 @@
               {
                 "key": "StockModel.additionalFields.fields.mrnNumber",
                 "value": "{{fn:generateUniqueMaterialNoteNumber()}}"
-              }
-            ]
-          }
-        },
-        {
-          "actionType": "UPDATE_STOCK_BALANCE",
-          "properties": {
-            "entity": "STOCK",
-            "onError": [
-              {
-                "actionType": "SHOW_TOAST",
-                "properties": {
-                  "message": "INVENTORY_UPDATE_STOCK_BALANCE_FAILED_MESSAGE"
-                }
               }
             ]
           }
