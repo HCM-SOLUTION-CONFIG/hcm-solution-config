@@ -1615,6 +1615,18 @@
                             {
                               "key": "lastDeliveredTaskClientReferenceId",
                               "value": "{{item.task.last.clientReferenceId}}"
+                            },
+                            {
+                              "key": "latitude",
+                              "value": "{{item.task.last.address.latitude}}"
+                            },
+                            {
+                              "key": "longitude",
+                              "value": "{{item.task.last.address.longitude}}"
+                            },
+                            {
+                              "key": "locationAccuracy",
+                              "value": "{{item.task.last.address.locationAccuracy}}"
                             }
                           ],
                           "name": "REDOSE",
@@ -3991,6 +4003,18 @@
                       {
                         "key": "lastDeliveredTaskClientReferenceId",
                         "value": "{{navigation.lastDeliveredTaskClientReferenceId}}"
+                      },
+                      {
+                        "key": "latitude",
+                        "value": "{{navigation.latitude}}"
+                      },
+                      {
+                        "key": "longitude",
+                        "value": "{{navigation.longitude}}"
+                      },
+                      {
+                        "key": "locationAccuracy",
+                        "value": "{{navigation.locationAccuracy}}"
                       }
                     ],
                     "onError": [
@@ -4272,6 +4296,18 @@
               {
                 "key": "lastDeliveredTaskClientReferenceId",
                 "value": "{{navigation.lastDeliveredTaskClientReferenceId}}"
+              },
+              {
+                "key": "latitude",
+                "value": "{{navigation.latitude}}"
+              },
+              {
+                "key": "longitude",
+                "value": "{{navigation.longitude}}"
+              },
+              {
+                "key": "locationAccuracy",
+                "value": "{{navigation.locationAccuracy}}"
               }
             ],
             "onError": [
