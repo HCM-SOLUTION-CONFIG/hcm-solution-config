@@ -2806,7 +2806,19 @@
       "screenType": "TEMPLATE",
       "description": "REGISTRATION_SEARCH_BENEFICIARY_DESC",
       "wrapperConfig": {
-        "filters": [],
+        "filters": [
+          {
+            "entity": "HouseholdMemberModel",
+            "condition": {
+              "field": "isDeleted",
+              "equals": false
+            },
+            "join": {
+              "sourceField": "householdClientReferenceId",
+              "targetField": "clientReferenceId"
+            }
+          }
+        ],
         "relations": [
           {
             "name": "members",
