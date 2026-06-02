@@ -2333,7 +2333,7 @@
                   {
                     "key": "givenName,familyName",
                     "value": "field.value",
-                    "operation": "containsName"
+                    "operation": "containsAll"
                   },
                   {
                     "key": "localityBoundaryCode",
@@ -2400,7 +2400,6 @@
           "child": {
             "type": "template",
             "format": "card",
-            "visible": "{{fn:length(item.projectBeneficiaries)}} > 0",
             "children": [
               {
                 "type": "template",
