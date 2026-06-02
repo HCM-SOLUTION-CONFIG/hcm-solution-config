@@ -2412,6 +2412,7 @@
           "child": {
             "type": "template",
             "format": "card",
+            "visible": "{{fn:length(item.headOfHousehold)}} > 0",
             "children": [
               {
                 "type": "template",
