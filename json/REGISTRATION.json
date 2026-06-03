@@ -1314,6 +1314,14 @@
                               "value": "{{fn:str(item.individual.0.gender)}}"
                             },
                             {
+                              "key": "height",
+                              "value": "{{fn:str(item.individual.0.additionalFields.fields.height)}}"
+                            },
+                            {
+                              "key": "weight",
+                              "value": "{{fn:str(item.individual.0.additionalFields.fields.weight)}}"
+                            },
+                            {
                               "key": "headName",
                               "value": "{{fn:str(contextData.0.headIndividual.IndividualModel.name)}}"
                             },
@@ -1617,6 +1625,14 @@
                               "value": "{{fn:str(item.individual.0.gender)}}"
                             },
                             {
+                              "key": "height",
+                              "value": "{{fn:str(item.individual.0.additionalFields.fields.height)}}"
+                            },
+                            {
+                              "key": "weight",
+                              "value": "{{fn:str(item.individual.0.additionalFields.fields.weight)}}"
+                            },
+                            {
                               "key": "headName",
                               "value": "{{fn:str(contextData.0.headIndividual.IndividualModel.name)}}"
                             },
@@ -1710,6 +1726,10 @@
                             "value": "{{contextData.0.household.HouseholdModel.clientReferenceId}}"
                           },
                           {
+                            "key": "isHead",
+                            "value": "false"
+                          },
+                          {
                             "key": "UNIQUE_BENEFICIARY_ID",
                             "value": "{{latestBeneficiaryId}}"
                           }
@@ -1783,6 +1803,10 @@
                                   {
                                     "key": "HouseholdClientReferenceId",
                                     "value": "{{contextData.0.household.HouseholdModel.clientReferenceId}}"
+                                  },
+                                  {
+                                    "key": "isHead",
+                                    "value": "false"
                                   },
                                   {
                                     "key": "UNIQUE_BENEFICIARY_ID",
@@ -3032,6 +3056,14 @@
                     "value": "{{navigation.gender}}"
                   },
                   {
+                    "key": "height",
+                    "value": "{{navigation.height}}"
+                  },
+                  {
+                    "key": "weight",
+                    "value": "{{navigation.weight}}"
+                  },
+                  {
                     "key": "headName",
                     "value": "{{navigation.headName}}"
                   },
@@ -3115,6 +3147,14 @@
                         "value": "{{navigation.gender}}"
                       },
                       {
+                        "key": "height",
+                        "value": "{{navigation.height}}"
+                      },
+                      {
+                        "key": "weight",
+                        "value": "{{navigation.weight}}"
+                      },
+                      {
                         "key": "headName",
                         "value": "{{navigation.headName}}"
                       },
@@ -3175,6 +3215,10 @@
                   {
                     "key": "HouseholdClientReferenceId",
                     "value": "{{navigation.HouseholdClientReferenceId}}"
+                  },
+                  {
+                    "key": "height",
+                    "value": "{{navigation.height}}"
                   }
                 ],
                 "name": "deliverySuccess",
@@ -3434,6 +3478,14 @@
                 "value": "{{navigation.headMobileNumber}}"
               },
               {
+                "key": "height",
+                "value": "{{navigation.height}}"
+              },
+              {
+                "key": "weight",
+                "value": "{{navigation.weight}}"
+              },
+              {
                 "key": "cycleIndex",
                 "value": "{{navigation.cycleIndex}}"
               },
@@ -3531,6 +3583,14 @@
                     "value": "{{navigation.headMobileNumber}}"
                   },
                   {
+                    "key": "height",
+                    "value": "{{navigation.height}}"
+                  },
+                  {
+                    "key": "weight",
+                    "value": "{{navigation.weight}}"
+                  },
+                  {
                     "key": "cycleIndex",
                     "value": "{{navigation.cycleIndex}}"
                   },
@@ -3583,6 +3643,14 @@
               {
                 "key": "HouseholdClientReferenceId",
                 "value": "{{navigation.HouseholdClientReferenceId}}"
+              },
+              {
+                "key": "height",
+                "value": "{{navigation.height}}"
+              },
+              {
+                "key": "weight",
+                "value": "{{navigation.weight}}"
               }
             ],
             "name": "deliverySuccess",
@@ -3692,6 +3760,14 @@
                       {
                         "key": "gender",
                         "value": "{{navigation.gender}}"
+                      },
+                      {
+                        "key": "height",
+                        "value": "{{navigation.height}}"
+                      },
+                      {
+                        "key": "weight",
+                        "value": "{{navigation.weight}}"
                       },
                       {
                         "key": "headName",
@@ -4001,6 +4077,14 @@
                 "value": "{{navigation.gender}}"
               },
               {
+                "key": "height",
+                "value": "{{navigation.height}}"
+              },
+              {
+                "key": "weight",
+                "value": "{{navigation.weight}}"
+              },
+              {
                 "key": "headName",
                 "value": "{{navigation.headName}}"
               },
@@ -4176,6 +4260,14 @@
                         "value": "{{navigation.gender}}"
                       },
                       {
+                        "key": "height",
+                        "value": "{{navigation.height}}"
+                      },
+                      {
+                        "key": "weight",
+                        "value": "{{navigation.weight}}"
+                      },
+                      {
                         "key": "headName",
                         "value": "{{navigation.headName}}"
                       },
@@ -4257,6 +4349,14 @@
                       {
                         "key": "headMobileNumber",
                         "value": "{{navigation.headMobileNumber}}"
+                      },
+                      {
+                        "key": "height",
+                        "value": "{{navigation.height}}"
+                      },
+                      {
+                        "key": "weight",
+                        "value": "{{navigation.weight}}"
                       },
                       {
                         "key": "cycleIndex",
@@ -4591,6 +4691,14 @@
                   {
                     "key": "headMobileNumber",
                     "value": "{{navigation.headMobileNumber}}"
+                  },
+                  {
+                    "key": "height",
+                    "value": "{{navigation.height}}"
+                  },
+                  {
+                    "key": "weight",
+                    "value": "{{navigation.weight}}"
                   }
                 ],
                 "name": "beneficiaryDetails",
@@ -4698,6 +4806,14 @@
                   {
                     "key": "headMobileNumber",
                     "value": "{{navigation.headMobileNumber}}"
+                  },
+                  {
+                    "key": "height",
+                    "value": "{{navigation.height}}"
+                  },
+                  {
+                    "key": "weight",
+                    "value": "{{navigation.weight}}"
                   }
                 ],
                 "name": "REFER_BENEFICIARY",
