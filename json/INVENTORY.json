@@ -1207,45 +1207,6 @@
             },
             {
               "type": "integer",
-              "label": "APPONE_INVENTORY_QUANTITY_EMPTY_BOTTLE_LABEL",
-              "order": 5,
-              "value": "",
-              "format": "text",
-              "hidden": false,
-              "tooltip": "",
-              "helpText": "",
-              "infoText": "",
-              "readOnly": false,
-              "fieldName": "quantityUnused",
-              "deleteFlag": false,
-              "innerLabel": "",
-              "visibilityCondition": {
-                "expression": [
-                  {
-                    "condition": "navigation.stockEntryType == 'RETURNED' && navigation.isDistributor",
-                    "type": "custom"
-                  }
-                ]
-              },
-              "systemDate": false,
-              "validations": [
-                {
-                  "type": "required",
-                  "value": true,
-                  "message": "QUANTITY_EMPTY_BOTTLE_REQUIRED_ERROR_MESSAGE"
-                },
-                {
-                  "type": "regex",
-                  "value": "^[0-9]+$",
-                  "message": "QUANTITY_VALID_NUMBER_ERROR_MESSAGE"
-                }
-              ],
-              "errorMessage": "",
-              "isMultiSelect": false,
-              "enums": null
-            },
-            {
-              "type": "integer",
               "label": "APPONE_INVENTORY_QUANTITY_PARTIAL_USED_LABEL",
               "order": 6,
               "value": "",
@@ -1300,6 +1261,12 @@
                   }
                 ]
               },
+              "autoFillCondition": [
+                {
+                  "value": "{{fn:calculateWastage(quantityReturned_$tabIndex, quantityPartialUsed_$tabIndex, currentEntity.id)}}",
+                  "expression": "navigation.stockEntryType == 'RETURNED' && navigation.isDistributor"
+                }
+              ],
               "systemDate": false,
               "validations": [
                 {
