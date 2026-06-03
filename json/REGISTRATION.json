@@ -5274,7 +5274,7 @@
               "visibilityCondition": {
                 "expression": [
                   {
-                    "condition": "navigation.isHead==false && calculateAgeInMonths(beneficiaryDetails.dobPicker)>=12 && calculateAgeInMonths(beneficiaryDetails.dobPicker)<=59"
+                    "condition": "calculateAgeInMonths(beneficiaryDetails.dobPicker)>=12 && calculateAgeInMonths(beneficiaryDetails.dobPicker)<=59"
                   }
                 ]
               },
