@@ -4,193 +4,6 @@
     {
       "body": [
         {
-          "type": "template",
-          "format": "card",
-          "children": [
-            {
-              "data": [
-                {
-                  "key": "COMPLAINT_VIEW_COMPLAINTS_NUMBER",
-                  "value": "{{contextData.0.PgrServiceModel.serviceRequestId}}",
-                  "defaultValue": "Sync data to generate complaint number"
-                },
-                {
-                  "key": "COMPLAINT_VIEW_COMPLAINTS_TYPE",
-                  "value": "{{contextData.0.PgrServiceModel.serviceCode}}",
-                  "defaultValue": "NA"
-                },
-                {
-                  "key": "COMPLAINT_VIEW_COMPLAINTS_DATE",
-                  "value": "{{fn:formatDate(contextData.0.PgrServiceModel.auditDetails.createdTime, 'date', dd MMM yyyy)}}",
-                  "defaultValue": "NA"
-                },
-                {
-                  "key": "COMPLAINT_VIEW_COMPLAINTS_AREA",
-                  "value": "{{contextData.0.PgrServiceModel.address.locality.code}}",
-                  "defaultValue": "NA"
-                },
-                {
-                  "key": "COMPLAINT_VIEW_COMPLAINANT_CONTACT",
-                  "value": "{{contextData.0.PgrServiceModel.user.mobileNumber}}",
-                  "defaultValue": "NA"
-                },
-                {
-                  "key": "COMPLAINT_VIEW_COMPLAINT_STATUS",
-                  "value": "{{contextData.0.PgrServiceModel.applicationStatus}}",
-                  "defaultValue": "NA"
-                },
-                {
-                  "key": "COMPLAINT_VIEW_COMPLAINT_DESCRIPTION",
-                  "value": "{{contextData.0.PgrServiceModel.description}}",
-                  "defaultValue": "NA"
-                }
-              ],
-              "type": "template",
-              "format": "labelPairList",
-              "fieldName": "complaintsLabelPair",
-              "mandatory": true
-            }
-          ],
-          "fieldName": "listOfComplaints",
-          "schemaCode": null
-        }
-      ],
-      "name": "complaintView",
-      "order": 4,
-      "footer": [
-        {
-          "type": "template",
-          "label": "COMPLAINT_VIEW_ACTION_LABEL",
-          "format": "button",
-          "onAction": [
-            {
-              "actionType": "NAVIGATION",
-              "properties": {
-                "name": "complaintInbox",
-                "type": "TEMPLATE"
-              }
-            }
-          ],
-          "fieldName": "close",
-          "mandatory": true,
-          "properties": {
-            "size": "large",
-            "type": "primary",
-            "mainAxisSize": "max",
-            "mainAxisAlignment": "center"
-          }
-        }
-      ],
-      "header": [
-        {
-          "label": "Back",
-          "format": "backLink",
-          "onAction": [
-            {
-              "actionType": "BACK_NAVIGATION",
-              "properties": {}
-            }
-          ],
-          "mandatory": true
-        }
-      ],
-      "heading": "COMPLAINT_VIEW_HEADING",
-      "navigateTo": null,
-      "screenType": "TEMPLATE",
-      "initActions": [
-        {
-          "actionType": "SEARCH_EVENT",
-          "properties": {
-            "data": [
-              {
-                "key": "clientReferenceId",
-                "value": "{{navigation.clientReferenceId}}",
-                "operation": "equals"
-              }
-            ],
-            "name": "pgrService",
-            "type": "SEARCH_EVENT"
-          }
-        }
-      ],
-      "wrapperConfig": {
-        "filters": [],
-        "relations": [],
-        "rootEntity": "PgrServiceModel",
-        "wrapperName": "ComplaintWrapper",
-        "searchConfig": {
-          "select": [
-            "pgrService"
-          ],
-          "primary": "pgrService"
-        }
-      },
-      "submitCondition": null,
-      "preventScreenCapture": false
-    },
-    {
-      "body": [
-        {
-          "type": "template",
-          "label": "COMPLAINT_ACKNOWLEDGEMENT_SUCCESS_PANEL_CARD_LABEL",
-          "format": "panelCard",
-          "heading": "COMPLAINT_ACKNOWLEDGEMENT_SUCCESS_PANEL_CARD_LABEL",
-          "fieldName": "complaintSuccess",
-          "mandatory": true,
-          "properties": {
-            "type": "success"
-          },
-          "description": "COMPLAINT_ACKNOWLEDGEMENT_SUCCESS_PANEL_CARD_DESCRIPTION",
-          "primaryAction": {
-            "type": "template",
-            "label": "COMPLAINT_ACKNOWLEDGEMENT_SUCCESS_PANEL_CARD_ACTION_LABEL",
-            "format": "button",
-            "hidden": false,
-            "onAction": [
-              {
-                "actionType": "NAVIGATION",
-                "properties": {
-                  "name": "complaintInbox",
-                  "type": "TEMPLATE"
-                }
-              }
-            ],
-            "fieldName": "backToComplaints",
-            "mandatory": true,
-            "properties": {
-              "type": "primary"
-            }
-          },
-          "primaryActionLabel": "COMPLAINT_ACKNOWLEDGEMENT_SUCCESS_PANEL_CARD_ACTION_LABEL"
-        }
-      ],
-      "name": "complaintAcknowledgement",
-      "order": 3,
-      "footer": [],
-      "header": [
-        {
-          "label": "Back",
-          "format": "backLink",
-          "onAction": [
-            {
-              "actionType": "BACK_NAVIGATION",
-              "properties": {
-                "name": "complaintInbox",
-                "type": "TEMPLATE"
-              }
-            }
-          ],
-          "mandatory": true
-        }
-      ],
-      "navigateTo": null,
-      "screenType": "TEMPLATE",
-      "submitCondition": null,
-      "preventScreenCapture": false
-    },
-    {
-      "body": [
-        {
           "format": "row",
           "children": [
             {
@@ -204,23 +17,6 @@
                 "type": "tertiary",
                 "suffixIcon": "Search",
                 "popupConfig": {
-                  "body": [
-                    {
-                      "type": "template",
-                      "label": "COMPLAINT_INBOX_SEARCH_COMPLAINT_NUMBER_LABEL",
-                      "format": "textInput",
-                      "fieldName": "complaintNumber"
-                    },
-                    {
-                      "type": "template",
-                      "label": "COMPLAINT_INBOX_SEARCH_MOBILE_NUMBER_LABEL",
-                      "format": "textInput",
-                      "fieldName": "mobileNumber"
-                    }
-                  ],
-                  "type": "default",
-                  "title": "COMPLAINT_INBOX_SEARCH_LABEL",
-                  "titleIcon": "Search",
                   "onOpenAction": [
                     {
                       "actionType": "CLEAR_STATE",
@@ -238,6 +34,23 @@
                       }
                     }
                   ],
+                  "body": [
+                    {
+                      "type": "template",
+                      "label": "COMPLAINT_INBOX_SEARCH_COMPLAINT_NUMBER_LABEL",
+                      "format": "textInput",
+                      "fieldName": "complaintNumber"
+                    },
+                    {
+                      "type": "template",
+                      "label": "COMPLAINT_INBOX_SEARCH_MOBILE_NUMBER_LABEL",
+                      "format": "textInput",
+                      "fieldName": "mobileNumber"
+                    }
+                  ],
+                  "type": "default",
+                  "title": "COMPLAINT_INBOX_SEARCH_LABEL",
+                  "titleIcon": "Search",
                   "footerActions": [
                     {
                       "type": "template",
@@ -336,6 +149,25 @@
                 "type": "tertiary",
                 "suffixIcon": "FilterAlt",
                 "popupConfig": {
+                  "onOpenAction": [
+                    {
+                      "actionType": "CLEAR_STATE",
+                      "properties": {
+                        "name": "pgrService",
+                        "filterKeys": [
+                          "name",
+                          "serviceCode",
+                          "localityBoundaryCode"
+                        ],
+                        "widgetKeys": [
+                          "assignTo",
+                          "complaintType",
+                          "locality"
+                        ],
+                        "triggerSearch": true
+                      }
+                    }
+                  ],
                   "body": [
                     {
                       "data": [
@@ -372,25 +204,6 @@
                   "type": "default",
                   "title": "COMPLAINT_INBOX_FILTER_LABEL",
                   "titleIcon": "FilterAlt",
-                  "onOpenAction": [
-                    {
-                      "actionType": "CLEAR_STATE",
-                      "properties": {
-                        "name": "pgrService",
-                        "filterKeys": [
-                          "name",
-                          "serviceCode",
-                          "localityBoundaryCode"
-                        ],
-                        "widgetKeys": [
-                          "assignTo",
-                          "complaintType",
-                          "locality"
-                        ],
-                        "triggerSearch": true
-                      }
-                    }
-                  ],
                   "footerActions": [
                     {
                       "type": "template",
@@ -587,8 +400,7 @@
           "properties": {
             "mainAxisSize": "max",
             "mainAxisAlignment": "spaceBetween"
-          },
-          "schemaCode": null
+          }
         },
         {
           "data": "ComplaintWrapper",
@@ -661,12 +473,10 @@
           "properties": {
             "spacing": "spacer4"
           },
-          "schemaCode": null,
           "visibilityCondition": "{{ context.ComplaintWrapper.empty }}"
         }
       ],
       "name": "complaintInbox",
-      "order": 1,
       "footer": [
         {
           "type": "template",
@@ -709,7 +519,6 @@
         }
       ],
       "heading": "COMPLAINT_INBOX_HEADING",
-      "navigateTo": null,
       "screenType": "TEMPLATE",
       "description": "COMPLAINT_INBOX_DESCRIPTION",
       "initActions": [
@@ -739,766 +548,30 @@
           ],
           "primary": "pgrService"
         }
-      },
-      "submitCondition": null,
-      "preventScreenCapture": false
+      }
     },
     {
       "name": "COMPLAINT_CREATE",
-      "order": 4,
       "pages": [
         {
-          "body": null,
-          "flow": "COMPLAINT_CREATE",
-          "page": "complaintDetails",
-          "type": "object",
-          "label": "COMPLAINT_DETAILS_HEADING",
-          "order": 4,
-          "footer": [
-            {
-              "label": "COMPLAINT_DETAILS_ACTION_LABEL",
-              "format": "button",
-              "onAction": [
-                {
-                  "actionType": "NAVIGATION",
-                  "properties": {
-                    "name": "ComplaintsAcknowledgement",
-                    "type": "template"
-                  }
-                }
-              ],
-              "properties": {
-                "size": "large",
-                "type": "primary",
-                "mainAxisSize": "max",
-                "mainAxisAlignment": "center"
-              }
-            }
-          ],
-          "module": "COMPLAINTS",
-          "heading": "COMPLAINT_DETAILS_HEADING",
-          "project": "CMP-2026-06-03-000299",
-          "summary": false,
-          "version": 1,
-          "onAction": [
-            {
-              "actionType": "FETCH_TRANSFORMER_CONFIG",
-              "properties": {
-                "onError": [
-                  {
-                    "actionType": "SHOW_TOAST",
-                    "properties": {
-                      "message": "Failed to fetch config."
-                    }
-                  }
-                ],
-                "configName": "complaintRegistration"
-              }
-            },
-            {
-              "actionType": "CREATE_EVENT",
-              "properties": {
-                "entity": "",
-                "onError": [
-                  {
-                    "actionType": "SHOW_TOAST",
-                    "properties": {
-                      "message": "Failed to create household."
-                    }
-                  }
-                ]
-              }
-            },
-            {
-              "actionType": "NAVIGATION",
-              "properties": {
-                "data": [
-                  {
-                    "key": "complaintClientReferenceId",
-                    "value": "{{contextData.entities.PgrServiceModel.clientReferenceId}}"
-                  }
-                ],
-                "name": "complaintAcknowledgement",
-                "type": "TEMPLATE",
-                "onError": [
-                  {
-                    "actionType": "SHOW_TOAST",
-                    "properties": {
-                      "message": "Navigation failed."
-                    }
-                  }
-                ],
-                "navigationMode": "popUntilAndPush",
-                "popUntilPageName": "complaintInbox"
-              }
-            }
-          ],
-          "navigateTo": {
-            "name": "ComplaintsAcknowledgement",
-            "type": "template"
-          },
-          "properties": [
-            {
-              "type": "string",
-              "enums": [
-                {
-                  "code": "COMPLAINTS_RAISED_FOR_MYSELF",
-                  "name": "COMPLAINTFLOW_RAISED_FOR_MYSELF"
-                },
-                {
-                  "code": "COMPLAINTS_RAISED_FOR_ANOTHER_USER",
-                  "name": "COMPLAINTFLOW_RAISED_FOR_ANOTHER_USER"
-                }
-              ],
-              "label": "COMPLAINT_DETAILS_complaintRaisedFor_LABEL",
-              "order": 2,
-              "value": "",
-              "format": "radio",
-              "hidden": false,
-              "isMdms": false,
-              "tooltip": "",
-              "helpText": "",
-              "infoText": "",
-              "readOnly": false,
-              "required": true,
-              "fieldName": "complaintRaisedFor",
-              "mandatory": true,
-              "deleteFlag": false,
-              "innerLabel": "",
-              "schemaCode": null,
-              "systemDate": false,
-              "validations": [
-                {
-                  "type": "required",
-                  "value": true,
-                  "message": "COMPLAINT_DETAILS_complaintRaisedFor_REQUIRED_ERROR"
-                }
-              ],
-              "errorMessage": "",
-              "isMultiSelect": false,
-              "dropDownOptions": [
-                {
-                  "code": "COMPLAINTS_RAISED_FOR_MYSELF",
-                  "name": "COMPLAINTFLOW_RAISED_FOR_MYSELF"
-                },
-                {
-                  "code": "COMPLAINTS_RAISED_FOR_ANOTHER_USER",
-                  "name": "COMPLAINTFLOW_RAISED_FOR_ANOTHER_USER"
-                }
-              ],
-              "required.message": "COMPLAINT_DETAILS_complaintRaisedFor_REQUIRED_ERROR"
-            },
-            {
-              "type": "string",
-              "label": "COMPLAINT_DETAILS_name_LABEL",
-              "order": 3,
-              "value": "",
-              "format": "text",
-              "hidden": false,
-              "isMdms": false,
-              "pattern": "^[a-zA-Z0-9 ]+$",
-              "tooltip": "",
-              "helpText": "",
-              "infoText": "",
-              "readOnly": false,
-              "required": true,
-              "fieldName": "name",
-              "mandatory": true,
-              "deleteFlag": false,
-              "innerLabel": "",
-              "schemaCode": null,
-              "systemDate": false,
-              "lengthRange": {
-                "maxLength": 63,
-                "minLength": 2,
-                "errorMessage": "COMPLAINT_DETAILS_name_LABEL_MAX_VALIDATION"
-              },
-              "validations": [
-                {
-                  "type": "required",
-                  "value": true,
-                  "message": "COMPLAINT_DETAILS_name_REQUIRED_ERROR"
-                },
-                {
-                  "type": "pattern",
-                  "value": "^[a-zA-Z0-9 ]+$",
-                  "message": "COMPLAINT_DETAILS_name_LABEL_PATTERN_VALIDATION"
-                },
-                {
-                  "type": "minLength",
-                  "value": 2,
-                  "message": "COMPLAINT_DETAILS_name_LABEL_MAX_VALIDATION"
-                },
-                {
-                  "type": "maxLength",
-                  "value": 63,
-                  "message": "COMPLAINT_DETAILS_name_LABEL_MAX_VALIDATION"
-                }
-              ],
-              "errorMessage": "",
-              "isMultiSelect": false,
-              "pattern.message": "COMPLAINT_DETAILS_name_LABEL_PATTERN_VALIDATION",
-              "required.message": "COMPLAINT_DETAILS_name_REQUIRED_ERROR",
-              "autoFillCondition": [
-                {
-                  "value": "{{loggedInUserName}}",
-                  "expression": "complaintDetails.complaintRaisedFor==COMPLAINTS_RAISED_FOR_MYSELF"
-                }
-              ]
-            },
-            {
-              "type": "string",
-              "label": "COMPLAINT_DETAILS_contactNumber_LABEL",
-              "order": 4,
-              "value": "",
-              "format": "mobileNumber",
-              "hidden": false,
-              "isMdms": false,
-              "pattern": "^\\d+",
-              "tooltip": "",
-              "helpText": "",
-              "infoText": "",
-              "readOnly": false,
-              "required": true,
-              "fieldName": "contactNumber",
-              "mandatory": true,
-              "deleteFlag": false,
-              "innerLabel": "",
-              "prefixText": "+234",
-              "schemaCode": null,
-              "systemDate": false,
-              "lengthRange": {
-                "maxLength": 11,
-                "minLength": 11,
-                "errorMessage": "MOBILE_LENGTH_10_DIGIT"
-              },
-              "validations": [
-                {
-                  "type": "required",
-                  "value": true,
-                  "message": "COMPLAINT_DETAILS_contactNumber_REQUIRED_ERROR"
-                },
-                {
-                  "type": "pattern",
-                  "value": "^\\d+",
-                  "message": "MB_ONLY_NUMBERS"
-                },
-                {
-                  "type": "minLength",
-                  "value": 11,
-                  "message": "MOBILE_LENGTH_10_DIGIT"
-                },
-                {
-                  "type": "maxLength",
-                  "value": 11,
-                  "message": "MOBILE_LENGTH_10_DIGIT"
-                }
-              ],
-              "errorMessage": "",
-              "isMultiSelect": false,
-              "pattern.message": "MB_ONLY_NUMBERS",
-              "required.message": "COMPLAINT_DETAILS_contactNumber_REQUIRED_ERROR",
-              "autoFillCondition": [
-                {
-                  "value": "{{loggedInUserMobileNumber}}",
-                  "expression": "complaintDetails.complaintRaisedFor==COMPLAINTS_RAISED_FOR_MYSELF"
-                }
-              ]
-            },
-            {
-              "type": "string",
-              "label": "COMPLAINT_DETAILS_supervisorName_LABEL",
-              "order": 5,
-              "value": "",
-              "format": "text",
-              "hidden": false,
-              "isMdms": false,
-              "pattern": "^[a-zA-Z0-9 ]+$",
-              "tooltip": "",
-              "helpText": "",
-              "infoText": "",
-              "readOnly": false,
-              "fieldName": "supervisorName",
-              "mandatory": false,
-              "deleteFlag": false,
-              "innerLabel": "",
-              "schemaCode": null,
-              "systemDate": false,
-              "lengthRange": {
-                "maxLength": 63,
-                "minLength": 2,
-                "errorMessage": "SUPERVISOR_DETAILS_name_LABEL_MAX_VALIDATION"
-              },
-              "validations": [
-                {
-                  "type": "pattern",
-                  "value": "^[a-zA-Z0-9 ]+$",
-                  "message": "COMPLAINT_DETAILS_name_LABEL_PATTERN_VALIDATION"
-                },
-                {
-                  "type": "minLength",
-                  "value": 2,
-                  "message": "SUPERVISOR_DETAILS_name_LABEL_MAX_VALIDATION"
-                },
-                {
-                  "type": "maxLength",
-                  "value": 63,
-                  "message": "SUPERVISOR_DETAILS_name_LABEL_MAX_VALIDATION"
-                }
-              ],
-              "errorMessage": "",
-              "isMultiSelect": false,
-              "pattern.message": "COMPLAINT_DETAILS_name_LABEL_PATTERN_VALIDATION"
-            },
-            {
-              "type": "string",
-              "label": "COMPLAINT_DETAILS_supervisorContactNumber_LABEL",
-              "order": 6,
-              "value": "",
-              "format": "mobileNumber",
-              "hidden": false,
-              "isMdms": false,
-              "pattern": "^\\d+",
-              "tooltip": "",
-              "helpText": "",
-              "infoText": "",
-              "readOnly": false,
-              "fieldName": "supervisorContactNumber",
-              "mandatory": false,
-              "deleteFlag": false,
-              "innerLabel": "",
-              "prefixText": "+234",
-              "schemaCode": null,
-              "systemDate": false,
-              "lengthRange": {
-                "maxLength": 11,
-                "minLength": 11,
-                "errorMessage": "MOBILE_LENGTH_10_DIGITS"
-              },
-              "validations": [
-                {
-                  "type": "pattern",
-                  "value": "^\\d+",
-                  "message": "MB_ONLY_NUMBERS"
-                },
-                {
-                  "type": "minLength",
-                  "value": 11,
-                  "message": "MOBILE_LENGTH_10_DIGITS"
-                },
-                {
-                  "type": "maxLength",
-                  "value": 11,
-                  "message": "MOBILE_LENGTH_10_DIGITS"
-                }
-              ],
-              "errorMessage": "",
-              "isMultiSelect": false,
-              "pattern.message": "MB_ONLY_NUMBERS"
-            },
-            {
-              "type": "string",
-              "label": "COMPLAINT_DETAILS_complaintDescription_LABEL",
-              "order": 7,
-              "value": "",
-              "format": "textArea",
-              "hidden": false,
-              "isMdms": false,
-              "tooltip": "",
-              "helpText": "",
-              "infoText": "",
-              "readOnly": false,
-              "required": true,
-              "fieldName": "complaintDescription",
-              "mandatory": true,
-              "deleteFlag": false,
-              "innerLabel": "",
-              "schemaCode": null,
-              "systemDate": false,
-              "validations": [
-                {
-                  "type": "required",
-                  "value": true,
-                  "message": "COMPLAINT_DETAILS_complaintDescription_REQUIRED_ERROR"
-                }
-              ],
-              "errorMessage": "",
-              "isMultiSelect": false,
-              "required.message": "COMPLAINT_DETAILS_complaintDescription_REQUIRED_ERROR"
-            }
-          ],
-          "actionLabel": "COMPLAINT_DETAILS_ACTION_LABEL",
-          "description": "COMPLAINT_DETAILS_DESCRIPTION",
-          "showTabView": false,
-          "submitCondition": null,
-          "preventScreenCapture": false,
-          "conditionalNavigateTo": null
-        },
-        {
-          "body": null,
-          "flow": "COMPLAINT_CREATE",
-          "page": "locationDetails",
-          "type": "object",
-          "label": "LOCATION_DETAILS_HEADING",
-          "order": 3,
-          "footer": [
-            {
-              "label": "LOCATION_DETAILS_ACTION_LABEL",
-              "format": "button",
-              "onAction": [],
-              "properties": {
-                "size": "large",
-                "type": "primary",
-                "mainAxisSize": "max",
-                "mainAxisAlignment": "center"
-              }
-            }
-          ],
-          "module": "COMPLAINTS",
-          "heading": "LOCATION_DETAILS_HEADING",
-          "project": "CMP-2026-06-03-000299",
-          "summary": false,
-          "version": 1,
-          "onAction": [
-            {
-              "actionType": "FETCH_TRANSFORMER_CONFIG",
-              "properties": {
-                "onError": [
-                  {
-                    "actionType": "SHOW_TOAST",
-                    "properties": {
-                      "message": "Failed to fetch config."
-                    }
-                  }
-                ],
-                "configName": "complaintRegistration"
-              }
-            },
-            {
-              "actionType": "CREATE_EVENT",
-              "properties": {
-                "entity": "",
-                "onError": [
-                  {
-                    "actionType": "SHOW_TOAST",
-                    "properties": {
-                      "message": "Failed to create household."
-                    }
-                  }
-                ]
-              }
-            },
-            {
-              "actionType": "NAVIGATION",
-              "properties": {
-                "data": [
-                  {
-                    "key": "complaintClientReferenceId",
-                    "value": "{{contextData.entities.PgrServiceModel.clientReferenceId}}"
-                  }
-                ],
-                "name": "complaintAcknowledgement",
-                "type": "TEMPLATE",
-                "onError": [
-                  {
-                    "actionType": "SHOW_TOAST",
-                    "properties": {
-                      "message": "Navigation failed."
-                    }
-                  }
-                ],
-                "navigationMode": "popUntilAndPush",
-                "popUntilPageName": "complaintInbox"
-              }
-            }
-          ],
-          "properties": [
-            {
-              "type": "string",
-              "label": "COMPLAINT_DETAILS_administrativeArea_LABEL",
-              "order": 1,
-              "value": "",
-              "format": "locality",
-              "hidden": false,
-              "isMdms": false,
-              "tooltip": "",
-              "helpText": "",
-              "infoText": "",
-              "readOnly": false,
-              "required": true,
-              "fieldName": "administrativeArea",
-              "mandatory": true,
-              "deleteFlag": false,
-              "innerLabel": "",
-              "schemaCode": null,
-              "systemDate": false,
-              "validations": [
-                {
-                  "type": "required",
-                  "value": true,
-                  "message": "COMPLAINT_DETAILS_administrativeArea_REQUIRED_ERROR"
-                }
-              ],
-              "errorMessage": "",
-              "isMultiSelect": false,
-              "required.message": "COMPLAINT_DETAILS_administrativeArea_REQUIRED_ERROR"
-            },
-            {
-              "type": "string",
-              "label": "LOCATION_DETAILS_addressLine1_LABEL",
-              "order": 1,
-              "value": "",
-              "format": "text",
-              "hidden": true,
-              "isMdms": false,
-              "tooltip": "",
-              "helpText": "",
-              "infoText": "",
-              "readOnly": false,
-              "fieldName": "addressLine1",
-              "mandatory": false,
-              "deleteFlag": false,
-              "innerLabel": "",
-              "schemaCode": null,
-              "systemDate": false,
-              "validations": [],
-              "errorMessage": "",
-              "isMultiSelect": false
-            },
-            {
-              "type": "string",
-              "label": "LOCATION_DETAILS_addressLine2_LABEL",
-              "order": 2,
-              "value": "",
-              "format": "text",
-              "hidden": true,
-              "isMdms": false,
-              "tooltip": "",
-              "helpText": "",
-              "infoText": "",
-              "readOnly": false,
-              "fieldName": "addressLine2",
-              "mandatory": false,
-              "deleteFlag": false,
-              "innerLabel": "",
-              "schemaCode": null,
-              "systemDate": false,
-              "validations": [],
-              "errorMessage": "",
-              "isMultiSelect": false
-            },
-            {
-              "type": "string",
-              "label": "LOCATION_DETAILS_landmark_LABEL",
-              "order": 3,
-              "value": "",
-              "format": "text",
-              "hidden": true,
-              "isMdms": false,
-              "tooltip": "",
-              "helpText": "",
-              "infoText": "",
-              "readOnly": false,
-              "fieldName": "landmark",
-              "mandatory": false,
-              "deleteFlag": false,
-              "innerLabel": "",
-              "schemaCode": null,
-              "systemDate": false,
-              "validations": [],
-              "errorMessage": "",
-              "isMultiSelect": false
-            },
-            {
-              "type": "integer",
-              "label": "LOCATION_DETAILS_pincode_LABEL",
-              "order": 4,
-              "value": "",
-              "format": "text",
-              "hidden": true,
-              "isMdms": false,
-              "tooltip": "",
-              "helpText": "",
-              "infoText": "",
-              "readOnly": false,
-              "fieldName": "pincode",
-              "mandatory": false,
-              "deleteFlag": false,
-              "innerLabel": "",
-              "schemaCode": null,
-              "systemDate": false,
-              "validations": [],
-              "errorMessage": "",
-              "isMultiSelect": false
-            },
-            {
-              "type": "string",
-              "enums": [
-                {
-                  "code": "PERMANENT",
-                  "name": "PERMANENT"
-                },
-                {
-                  "code": "CORRESPONDENCE",
-                  "name": "CORRESPONDENCE"
-                },
-                {
-                  "code": "OTHER",
-                  "name": "OTHER"
-                }
-              ],
-              "label": "LOCATION_DETAILS_typeOfAddress_LABEL",
-              "order": 5,
-              "value": "",
-              "format": "dropdown",
-              "hidden": true,
-              "isMdms": false,
-              "tooltip": "",
-              "helpText": "",
-              "infoText": "",
-              "readOnly": false,
-              "fieldName": "typeOfAddress",
-              "mandatory": false,
-              "deleteFlag": false,
-              "innerLabel": "",
-              "schemaCode": null,
-              "systemDate": false,
-              "validations": [],
-              "errorMessage": "",
-              "includeInForm": true,
-              "isMultiSelect": false,
-              "dropDownOptions": [
-                {
-                  "code": "PERMANENT",
-                  "name": "PERMANENT"
-                },
-                {
-                  "code": "CORRESPONDENCE",
-                  "name": "CORRESPONDENCE"
-                },
-                {
-                  "code": "OTHER",
-                  "name": "OTHER"
-                }
-              ],
-              "includeInSummary": false
-            }
-          ],
-          "actionLabel": "LOCATION_DETAILS_ACTION_LABEL",
-          "description": "LOCATION_DETAILS_DESCRIPTION",
-          "showTabView": false,
-          "submitCondition": null,
-          "preventScreenCapture": false
-        },
-        {
-          "body": null,
-          "flow": "COMPLAINT_CREATE",
           "page": "complaintType",
           "type": "object",
           "label": "COMPLAINT_TYPE_HEADING",
           "order": 1,
-          "footer": [
-            {
-              "label": "COMPLAINT_TYPE_ACTION_LABEL",
-              "format": "button",
-              "onAction": [],
-              "properties": {
-                "size": "large",
-                "type": "primary",
-                "mainAxisSize": "max",
-                "mainAxisAlignment": "center"
-              }
-            }
-          ],
-          "module": "COMPLAINTS",
-          "heading": "COMPLAINT_TYPE_HEADING",
-          "project": "CMP-2026-06-03-000299",
-          "summary": false,
-          "version": 1,
-          "onAction": [
-            {
-              "actionType": "FETCH_TRANSFORMER_CONFIG",
-              "properties": {
-                "onError": [
-                  {
-                    "actionType": "SHOW_TOAST",
-                    "properties": {
-                      "message": "Failed to fetch config."
-                    }
-                  }
-                ],
-                "configName": "complaintRegistration"
-              }
-            },
-            {
-              "actionType": "CREATE_EVENT",
-              "properties": {
-                "entity": "",
-                "onError": [
-                  {
-                    "actionType": "SHOW_TOAST",
-                    "properties": {
-                      "message": "Failed to create household."
-                    }
-                  }
-                ]
-              }
-            },
-            {
-              "actionType": "NAVIGATION",
-              "properties": {
-                "data": [
-                  {
-                    "key": "complaintClientReferenceId",
-                    "value": "{{contextData.entities.PgrServiceModel.clientReferenceId}}"
-                  }
-                ],
-                "name": "complaintAcknowledgement",
-                "type": "TEMPLATE",
-                "onError": [
-                  {
-                    "actionType": "SHOW_TOAST",
-                    "properties": {
-                      "message": "Navigation failed."
-                    }
-                  }
-                ],
-                "navigationMode": "popUntilAndPush",
-                "popUntilPageName": "complaintInbox"
-              }
-            }
-          ],
           "properties": [
             {
               "type": "string",
-              "enums": null,
               "label": "COMPLAINT_TYPE_complaintType_LABEL",
               "order": 1,
               "value": "",
               "format": "radio",
               "hidden": false,
-              "isMdms": true,
-              "tooltip": "",
-              "helpText": "",
               "infoText": "",
               "readOnly": false,
-              "required": true,
               "fieldName": "complaintType",
               "mandatory": true,
               "deleteFlag": false,
-              "innerLabel": "",
-              "schemaCode": "RAINMAKER-PGR.ServiceDefs",
-              "systemDate": false,
-              "validations": [
-                {
-                  "type": "required",
-                  "value": true,
-                  "message": "COMPLAINT_TYPE_complaintType_REQUIRED_ERROR"
-                }
-              ],
-              "errorMessage": "",
-              "isMultiSelect": false,
-              "dropDownOptions": [
+              "enums": [
                 {
                   "code": "Other",
                   "name": "Other"
@@ -1524,7 +597,18 @@
                   "name": "Technical Issues"
                 }
               ],
-              "required.message": "COMPLAINT_TYPE_complaintType_REQUIRED_ERROR"
+              "innerLabel": "",
+              "schemaCode": "RAINMAKER-PGR.ServiceDefs",
+              "systemDate": false,
+              "validations": [
+                {
+                  "type": "required",
+                  "value": true,
+                  "message": "COMPLAINT_TYPE_complaintType_REQUIRED_ERROR"
+                }
+              ],
+              "errorMessage": "",
+              "isMultiSelect": false
             },
             {
               "type": "string",
@@ -1533,17 +617,14 @@
               "value": "",
               "format": "text",
               "hidden": false,
-              "isMdms": false,
               "tooltip": "",
               "helpText": "",
               "infoText": "",
               "readOnly": false,
-              "required": true,
               "fieldName": "otherReason",
-              "mandatory": false,
               "deleteFlag": false,
               "innerLabel": "",
-              "schemaCode": null,
+              "schemaCode": "",
               "systemDate": false,
               "validations": [
                 {
@@ -1554,7 +635,6 @@
               ],
               "errorMessage": "",
               "isMultiSelect": false,
-              "required.message": "COMPLAINT_TYPE_otherReason_REQUIRED_ERROR",
               "visibilityCondition": {
                 "expression": [
                   {
@@ -1565,15 +645,402 @@
             }
           ],
           "actionLabel": "COMPLAINT_TYPE_ACTION_LABEL",
-          "description": "APPONE_COMPLAINTTYPE_DESCRIPTION",
-          "showTabView": false,
-          "submitCondition": null,
-          "preventScreenCapture": false
+          "description": "APPONE_COMPLAINTTYPE_DESCRIPTION"
+        },
+        {
+          "page": "locationDetails",
+          "type": "object",
+          "label": "LOCATION_DETAILS_HEADING",
+          "order": 3,
+          "properties": [
+            {
+              "type": "string",
+              "label": "COMPLAINT_DETAILS_administrativeArea_LABEL",
+              "order": 1,
+              "value": "",
+              "format": "locality",
+              "hidden": false,
+              "tooltip": "",
+              "helpText": "",
+              "infoText": "",
+              "readOnly": false,
+              "fieldName": "administrativeArea",
+              "mandatory": true,
+              "deleteFlag": false,
+              "innerLabel": "",
+              "systemDate": false,
+              "validations": [
+                {
+                  "type": "required",
+                  "value": true,
+                  "message": "COMPLAINT_DETAILS_administrativeArea_REQUIRED_ERROR"
+                }
+              ],
+              "errorMessage": "",
+              "isMultiSelect": false
+            },
+            {
+              "type": "string",
+              "label": "LOCATION_DETAILS_addressLine1_LABEL",
+              "order": 1,
+              "value": "",
+              "format": "text",
+              "hidden": true,
+              "tooltip": "",
+              "helpText": "",
+              "infoText": "",
+              "readOnly": false,
+              "fieldName": "addressLine1",
+              "deleteFlag": false,
+              "innerLabel": "",
+              "systemDate": false,
+              "validations": [],
+              "errorMessage": "",
+              "isMultiSelect": false
+            },
+            {
+              "type": "string",
+              "label": "LOCATION_DETAILS_addressLine2_LABEL",
+              "order": 2,
+              "value": "",
+              "format": "text",
+              "hidden": true,
+              "tooltip": "",
+              "helpText": "",
+              "infoText": "",
+              "readOnly": false,
+              "fieldName": "addressLine2",
+              "deleteFlag": false,
+              "innerLabel": "",
+              "systemDate": false,
+              "validations": [],
+              "errorMessage": "",
+              "isMultiSelect": false
+            },
+            {
+              "type": "string",
+              "label": "LOCATION_DETAILS_landmark_LABEL",
+              "order": 3,
+              "value": "",
+              "format": "text",
+              "hidden": true,
+              "tooltip": "",
+              "helpText": "",
+              "infoText": "",
+              "readOnly": false,
+              "fieldName": "landmark",
+              "deleteFlag": false,
+              "innerLabel": "",
+              "systemDate": false,
+              "validations": [],
+              "errorMessage": "",
+              "isMultiSelect": false
+            },
+            {
+              "type": "integer",
+              "label": "LOCATION_DETAILS_pincode_LABEL",
+              "order": 4,
+              "value": "",
+              "format": "text",
+              "hidden": true,
+              "tooltip": "",
+              "helpText": "",
+              "infoText": "",
+              "readOnly": false,
+              "fieldName": "pincode",
+              "deleteFlag": false,
+              "innerLabel": "",
+              "systemDate": false,
+              "validations": [],
+              "errorMessage": "",
+              "isMultiSelect": false
+            },
+            {
+              "type": "string",
+              "enums": [
+                {
+                  "code": "PERMANENT",
+                  "name": "PERMANENT"
+                },
+                {
+                  "code": "CORRESPONDENCE",
+                  "name": "CORRESPONDENCE"
+                },
+                {
+                  "code": "OTHER",
+                  "name": "OTHER"
+                }
+              ],
+              "label": "LOCATION_DETAILS_typeOfAddress_LABEL",
+              "order": 5,
+              "format": "dropdown",
+              "hidden": true,
+              "tooltip": "",
+              "helpText": "",
+              "infoText": "",
+              "readOnly": false,
+              "fieldName": "typeOfAddress",
+              "deleteFlag": false,
+              "innerLabel": "",
+              "systemDate": false,
+              "validations": [],
+              "errorMessage": "",
+              "includeInForm": true,
+              "isMultiSelect": false,
+              "includeInSummary": false
+            }
+          ],
+          "actionLabel": "LOCATION_DETAILS_ACTION_LABEL",
+          "description": "LOCATION_DETAILS_DESCRIPTION"
+        },
+        {
+          "page": "complaintDetails",
+          "type": "object",
+          "label": "COMPLAINT_DETAILS_HEADING",
+          "order": 4,
+          "navigateTo": {
+            "name": "ComplaintsAcknowledgement",
+            "type": "template"
+          },
+          "properties": [
+            {
+              "type": "string",
+              "enums": [
+                {
+                  "code": "COMPLAINTS_RAISED_FOR_MYSELF",
+                  "name": "COMPLAINTFLOW_RAISED_FOR_MYSELF"
+                },
+                {
+                  "code": "COMPLAINTS_RAISED_FOR_ANOTHER_USER",
+                  "name": "COMPLAINTFLOW_RAISED_FOR_ANOTHER_USER"
+                }
+              ],
+              "label": "COMPLAINT_DETAILS_complaintRaisedFor_LABEL",
+              "order": 2,
+              "value": "",
+              "format": "radio",
+              "hidden": false,
+              "tooltip": "",
+              "helpText": "",
+              "infoText": "",
+              "readOnly": false,
+              "fieldName": "complaintRaisedFor",
+              "mandatory": true,
+              "deleteFlag": false,
+              "innerLabel": "",
+              "systemDate": false,
+              "validations": [
+                {
+                  "type": "required",
+                  "value": true,
+                  "message": "COMPLAINT_DETAILS_complaintRaisedFor_REQUIRED_ERROR"
+                }
+              ],
+              "errorMessage": "",
+              "isMultiSelect": false
+            },
+            {
+              "type": "string",
+              "label": "COMPLAINT_DETAILS_name_LABEL",
+              "order": 3,
+              "value": "",
+              "format": "text",
+              "hidden": false,
+              "tooltip": "",
+              "helpText": "",
+              "infoText": "",
+              "readOnly": false,
+              "fieldName": "name",
+              "mandatory": true,
+              "deleteFlag": false,
+              "innerLabel": "",
+              "systemDate": false,
+              "validations": [
+                {
+                  "type": "required",
+                  "value": true,
+                  "message": "COMPLAINT_DETAILS_name_REQUIRED_ERROR"
+                },
+                {
+                  "type": "minLength",
+                  "value": 2,
+                  "message": "COMPLAINT_DETAILS_name_LABEL_MIN_VALIDATION"
+                },
+                {
+                  "type": "maxLength",
+                  "value": 63,
+                  "message": "COMPLAINT_DETAILS_name_LABEL_MAX_VALIDATION"
+                },
+                {
+                  "type": "pattern",
+                  "value": "^[a-zA-Z0-9 ]+$",
+                  "message": "COMPLAINT_DETAILS_name_LABEL_PATTERN_VALIDATION"
+                }
+              ],
+              "errorMessage": "",
+              "isMultiSelect": false,
+              "autoFillCondition": [
+                {
+                  "value": "{{loggedInUserName}}",
+                  "expression": "complaintDetails.complaintRaisedFor==COMPLAINTS_RAISED_FOR_MYSELF"
+                }
+              ]
+            },
+            {
+              "type": "string",
+              "label": "COMPLAINT_DETAILS_contactNumber_LABEL",
+              "order": 4,
+              "value": "",
+              "format": "mobileNumber",
+              "hidden": false,
+              "tooltip": "",
+              "pattern": "^\\d+",
+              "helpText": "",
+              "infoText": "",
+              "readOnly": false,
+              "fieldName": "contactNumber",
+              "mandatory": true,
+              "deleteFlag": false,
+              "innerLabel": "",
+              "prefixText": "+91",
+              "systemDate": false,
+              "validations": [
+                {
+                  "type": "required",
+                  "value": true,
+                  "message": "COMPLAINT_DETAILS_contactNumber_REQUIRED_ERROR"
+                },
+                {
+                  "type": "minLength",
+                  "value": 11,
+                  "message": "MOBILE_LENGTH_11_DIGIT"
+                },
+                {
+                  "type": "pattern",
+                  "value": "^\\d+$",
+                  "message": "MB_ONLY_NUMBERS"
+                },
+                {
+                  "type": "maxLength",
+                  "value": 11,
+                  "message": "MOBILE_LENGTH_11_DIGIT"
+                }
+              ],
+              "errorMessage": "",
+              "pattern.message": "MB_ONLY_NUMBERS",
+              "isMultiSelect": false,
+              "autoFillCondition": [
+                {
+                  "value": "{{loggedInUserMobileNumber}}",
+                  "expression": "complaintDetails.complaintRaisedFor==COMPLAINTS_RAISED_FOR_MYSELF"
+                }
+              ]
+            },
+            {
+              "type": "string",
+              "label": "COMPLAINT_DETAILS_supervisorName_LABEL",
+              "order": 5,
+              "value": "",
+              "format": "text",
+              "hidden": false,
+              "tooltip": "",
+              "helpText": "",
+              "infoText": "",
+              "readOnly": false,
+              "fieldName": "supervisorName",
+              "deleteFlag": false,
+              "innerLabel": "",
+              "systemDate": false,
+              "validations": [
+                {
+                  "type": "minLength",
+                  "value": 2,
+                  "message": "SUPERVISOR_name_LABEL_MIN_VALIDATION"
+                },
+                {
+                  "type": "maxLength",
+                  "value": 63,
+                  "message": "SUPERVISOR_DETAILS_name_LABEL_MAX_VALIDATION"
+                },
+                {
+                  "type": "pattern",
+                  "value": "^[a-zA-Z0-9 ]+$",
+                  "message": "SUPERVISOR_DETAILS_name_LABEL_PATTERN_VALIDATION"
+                }
+              ],
+              "errorMessage": "",
+              "isMultiSelect": false
+            },
+            {
+              "type": "string",
+              "label": "COMPLAINT_DETAILS_supervisorContactNumber_LABEL",
+              "order": 6,
+              "value": "",
+              "format": "mobileNumber",
+              "hidden": false,
+              "pattern": "^\\d+",
+              "tooltip": "",
+              "helpText": "",
+              "infoText": "",
+              "readOnly": false,
+              "fieldName": "supervisorContactNumber",
+              "deleteFlag": false,
+              "innerLabel": "",
+              "prefixText": "+91",
+              "systemDate": false,
+              "validations": [
+                {
+                  "type": "minLength",
+                  "value": 11,
+                  "message": "MOBILE_LENGTH_11_DIGITS"
+                },
+                {
+                  "type": "maxLength",
+                  "value": 11,
+                  "message": "MOBILE_LENGTH_11_DIGITS"
+                },
+                {
+                  "type": "pattern",
+                  "value": "^\\d+$",
+                  "message": "MB_ONLY_NUMBERS"
+                }
+              ],
+              "errorMessage": "",
+              "pattern.message": "MB_ONLY_NUMBERS",
+              "isMultiSelect": false
+            },
+            {
+              "type": "string",
+              "label": "COMPLAINT_DETAILS_complaintDescription_LABEL",
+              "order": 7,
+              "value": "",
+              "format": "textArea",
+              "hidden": false,
+              "tooltip": "",
+              "helpText": "",
+              "infoText": "",
+              "readOnly": false,
+              "fieldName": "complaintDescription",
+              "mandatory": true,
+              "deleteFlag": false,
+              "innerLabel": "",
+              "systemDate": false,
+              "validations": [
+                {
+                  "type": "required",
+                  "value": true,
+                  "message": "COMPLAINT_DETAILS_complaintDescription_REQUIRED_ERROR"
+                }
+              ],
+              "errorMessage": "",
+              "isMultiSelect": false
+            }
+          ],
+          "actionLabel": "COMPLAINT_DETAILS_ACTION_LABEL",
+          "description": "COMPLAINT_DETAILS_DESCRIPTION"
         }
       ],
-      "project": "CMP-2026-06-03-000299",
-      "summary": false,
-      "version": 2,
+      "version": 1,
       "disabled": false,
       "onAction": [
         {
@@ -1630,7 +1097,6 @@
       ],
       "isSelected": true,
       "screenType": "FORM",
-      "initActions": [],
       "wrapperConfig": {
         "filters": [],
         "relations": [],
@@ -1642,8 +1108,186 @@
           ],
           "primary": "pgrService"
         }
-      },
-      "scrollListener": {}
+      }
+    },
+    {
+      "body": [
+        {
+          "type": "template",
+          "label": "COMPLAINT_ACKNOWLEDGEMENT_SUCCESS_PANEL_CARD_LABEL",
+          "format": "panelCard",
+          "heading": "COMPLAINT_ACKNOWLEDGEMENT_SUCCESS_PANEL_CARD_LABEL",
+          "fieldName": "complaintSuccess",
+          "mandatory": true,
+          "properties": {
+            "type": "success"
+          },
+          "description": "COMPLAINT_ACKNOWLEDGEMENT_SUCCESS_PANEL_CARD_DESCRIPTION",
+          "primaryAction": {
+            "type": "template",
+            "label": "COMPLAINT_ACKNOWLEDGEMENT_SUCCESS_PANEL_CARD_ACTION_LABEL",
+            "format": "button",
+            "hidden": false,
+            "onAction": [
+              {
+                "actionType": "NAVIGATION",
+                "properties": {
+                  "name": "complaintInbox",
+                  "type": "TEMPLATE"
+                }
+              }
+            ],
+            "fieldName": "backToComplaints",
+            "mandatory": true,
+            "properties": {
+              "type": "primary"
+            }
+          }
+        }
+      ],
+      "name": "complaintAcknowledgement",
+      "header": [
+        {
+          "label": "Back",
+          "format": "backLink",
+          "onAction": [
+            {
+              "actionType": "BACK_NAVIGATION",
+              "properties": {
+                "name": "complaintInbox",
+                "type": "TEMPLATE"
+              }
+            }
+          ],
+          "mandatory": true
+        }
+      ],
+      "heading": "",
+      "screenType": "TEMPLATE",
+      "description": ""
+    },
+    {
+      "body": [
+        {
+          "type": "template",
+          "format": "card",
+          "children": [
+            {
+              "data": [
+                {
+                  "key": "COMPLAINT_VIEW_COMPLAINTS_NUMBER",
+                  "value": "{{contextData.0.PgrServiceModel.serviceRequestId}}",
+                  "defaultValue": "Sync data to generate complaint number"
+                },
+                {
+                  "key": "COMPLAINT_VIEW_COMPLAINTS_TYPE",
+                  "value": "{{contextData.0.PgrServiceModel.serviceCode}}",
+                  "defaultValue": "NA"
+                },
+                {
+                  "key": "COMPLAINT_VIEW_COMPLAINTS_DATE",
+                  "value": "{{fn:formatDate(contextData.0.PgrServiceModel.auditDetails.createdTime, 'date', dd MMM yyyy)}}",
+                  "defaultValue": "NA"
+                },
+                {
+                  "key": "COMPLAINT_VIEW_COMPLAINTS_AREA",
+                  "value": "{{contextData.0.PgrServiceModel.address.locality.code}}",
+                  "defaultValue": "NA"
+                },
+                {
+                  "key": "COMPLAINT_VIEW_COMPLAINANT_CONTACT",
+                  "value": "{{contextData.0.PgrServiceModel.user.mobileNumber}}",
+                  "defaultValue": "NA"
+                },
+                {
+                  "key": "COMPLAINT_VIEW_COMPLAINT_STATUS",
+                  "value": "{{contextData.0.PgrServiceModel.applicationStatus}}",
+                  "defaultValue": "NA"
+                },
+                {
+                  "key": "COMPLAINT_VIEW_COMPLAINT_DESCRIPTION",
+                  "value": "{{contextData.0.PgrServiceModel.description}}",
+                  "defaultValue": "NA"
+                }
+              ],
+              "type": "template",
+              "format": "labelPairList",
+              "fieldName": "complaintsLabelPair",
+              "mandatory": true
+            }
+          ],
+          "fieldName": "listOfComplaints"
+        }
+      ],
+      "name": "complaintView",
+      "footer": [
+        {
+          "type": "template",
+          "label": "COMPLAINT_VIEW_ACTION_LABEL",
+          "format": "button",
+          "onAction": [
+            {
+              "actionType": "NAVIGATION",
+              "properties": {
+                "name": "complaintInbox",
+                "type": "TEMPLATE"
+              }
+            }
+          ],
+          "fieldName": "close",
+          "mandatory": true,
+          "properties": {
+            "size": "large",
+            "type": "primary",
+            "mainAxisSize": "max",
+            "mainAxisAlignment": "center"
+          }
+        }
+      ],
+      "header": [
+        {
+          "label": "Back",
+          "format": "backLink",
+          "onAction": [
+            {
+              "actionType": "BACK_NAVIGATION",
+              "properties": {}
+            }
+          ],
+          "mandatory": true
+        }
+      ],
+      "heading": "COMPLAINT_VIEW_HEADING",
+      "screenType": "TEMPLATE",
+      "description": "",
+      "initActions": [
+        {
+          "actionType": "SEARCH_EVENT",
+          "properties": {
+            "data": [
+              {
+                "key": "clientReferenceId",
+                "value": "{{navigation.clientReferenceId}}",
+                "operation": "equals"
+              }
+            ],
+            "name": "pgrService",
+            "type": "SEARCH_EVENT"
+          }
+        }
+      ],
+      "wrapperConfig": {
+        "filters": [],
+        "relations": [],
+        "rootEntity": "PgrServiceModel",
+        "wrapperName": "ComplaintWrapper",
+        "searchConfig": {
+          "select": [
+            "pgrService"
+          ],
+          "primary": "pgrService"
+        }
+      }
     }
   ],
   "order": 4,

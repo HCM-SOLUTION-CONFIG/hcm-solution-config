@@ -648,7 +648,7 @@
                     "hierarchyMapping": {
                       "State": {
                         "forReceipt": [
-                          "Health Facility"
+                          "National Facility"
                         ],
                         "forIssue": [
                           "Health Facility"
@@ -2280,7 +2280,7 @@
                   "format": "textTemplate",
                   "type": "template",
                   "fieldName": "viewTransactionGroupedItemText",
-                  "value": "{{item.additionalFields.fields.sku}}: {{fn:mlToBottles(item.quantity)}}"
+                  "value": "{{item.additionalFields.fields.sku}}: {{item.quantity}}"
                 }
               },
               {
@@ -2426,7 +2426,7 @@
                   },
                   {
                     "key": "{{fn:getQuantityLabel(item.additionalFields.fields.sku)}}",
-                    "value": "{{fn:mlToBottles(item.quantity)}}"
+                    "value": "{{item.quantity}}"
                   },
                   {
                     "key": "INVENTORY_COMMENTS_LABEL",
@@ -2613,7 +2613,7 @@
                   "format": "textTemplate",
                   "type": "template",
                   "fieldName": "incomingTransactionsGroupedItemText",
-                  "value": "{{item.additionalFields.fields.sku}}: {{fn:mlToBottles(item.quantity)}}"
+                  "value": "{{item.additionalFields.fields.sku}}: {{item.quantity}}"
                 }
               },
               {
@@ -2669,7 +2669,7 @@
                         },
                         {
                           "key": "quantity",
-                          "value": "{{fn:mlToBottles(item.items[0].quantity)}}"
+                          "value": "{{item.items[0].quantity}}"
                         },
                         {
                           "key": "wayBillNumber",

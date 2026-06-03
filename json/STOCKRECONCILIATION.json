@@ -1,4 +1,4 @@
- {
+{
   "name": "STOCKRECONCILIATION",
   "initialPage": "stockReconciliationDetails",
   "order": 6,
@@ -10,7 +10,6 @@
     {
       "screenType": "FORM",
       "name": "stockReconciliationDetails",
-      "project": "LLIN-mz",
       "version": 1,
       "disabled": false,
       "isSelected": true,
@@ -39,17 +38,28 @@
           {
             "name": "facility",
             "entity": "FacilityModel",
-            "match": {"field": "id", "equalsFrom": "facilityId"}
+            "match": {
+              "field": "id",
+              "equalsFrom": "facilityId"
+            }
           },
           {
             "name": "productVariant",
             "entity": "ProductVariantModel",
-            "match": {"field": "id", "equalsFrom": "resource"}
+            "match": {
+              "field": "id",
+              "equalsFrom": "resource"
+            }
           }
         ],
         "searchConfig": {
           "primary": "projectFacility",
-          "select": ["projectFacility", "facility", "productVariant", "stock"]
+          "select": [
+            "projectFacility",
+            "facility",
+            "productVariant",
+            "stock"
+          ]
         }
       },
       "pages": [
@@ -63,15 +73,13 @@
           "properties": [
             {
               "type": "dynamic",
-              "label":
-                  "STOCKRECONCILIATION_STOCKRECONCILIATION_stockReconciliationCard_LABEL",
+              "label": "STOCKRECONCILIATION_STOCKRECONCILIATION_stockReconciliationCard_LABEL",
               "order": 1,
               "value": "",
               "format": "custom",
               "hidden": false,
               "tooltip": "",
-              "helpText":
-                  "STOCKRECONCILIATION_STOCKRECONCILIATION_stockReconciliationCard_HELP_TEXT",
+              "helpText": "STOCKRECONCILIATION_STOCKRECONCILIATION_stockReconciliationCard_HELP_TEXT",
               "infoText": "",
               "readOnly": false,
               "fieldName": "stockReconciliationCard",
@@ -83,8 +91,7 @@
                 {
                   "type": "required",
                   "value": true,
-                  "message":
-                      "STOCKRECONCILIATION_STOCKRECONCILIATION_stockReconciliationCard_REQUIRED_ERROR"
+                  "message": "STOCKRECONCILIATION_STOCKRECONCILIATION_stockReconciliationCard_REQUIRED_ERROR"
                 }
               ],
               "errorMessage": "",
@@ -93,15 +100,13 @@
             },
             {
               "type": "integer",
-              "label":
-                  "STOCKRECONCILIATION_STOCKRECONCILIATION_manualCount_LABEL",
+              "label": "STOCKRECONCILIATION_STOCKRECONCILIATION_manualCount_LABEL",
               "order": 2,
               "value": "",
               "format": "number",
               "hidden": false,
               "tooltip": "",
-              "helpText":
-                  "STOCKRECONCILIATION_STOCKRECONCILIATION_manualCount_HELP_TEXT",
+              "helpText": "STOCKRECONCILIATION_STOCKRECONCILIATION_manualCount_HELP_TEXT",
               "infoText": "",
               "readOnly": false,
               "fieldName": "manualCount",
@@ -113,14 +118,17 @@
                 {
                   "type": "required",
                   "value": true,
-                  "message":
-                      "STOCKRECONCILIATION_STOCKRECONCILIATION_manualCount_REQUIRED_ERROR"
+                  "message": "STOCKRECONCILIATION_STOCKRECONCILIATION_manualCount_REQUIRED_ERROR"
                 },
                 {
                   "type": "min",
                   "value": 0,
-                  "message":
-                      "STOCKRECONCILIATION_STOCKRECONCILIATION_manualCount_MIN_ERROR"
+                  "message": "STOCKRECONCILIATION_STOCKRECONCILIATION_manualCount_MIN_ERROR"
+                },
+                {
+                  "type": "max",
+                  "value": 1000000,
+                  "message": "STOCKRECONCILIATION_STOCKRECONCILIATION_manualCount_MAX_ERROR"
                 }
               ],
               "errorMessage": "",
@@ -154,8 +162,7 @@
               "format": "textArea",
               "hidden": false,
               "tooltip": "",
-              "helpText":
-                  "STOCKRECONCILIATION_STOCKRECONCILIATION_comments_HELP_TEXT",
+              "helpText": "STOCKRECONCILIATION_STOCKRECONCILIATION_comments_HELP_TEXT",
               "infoText": "",
               "readOnly": false,
               "fieldName": "comments",
@@ -167,8 +174,7 @@
                 {
                   "type": "required",
                   "value": true,
-                  "message":
-                      "STOCKRECONCILIATION_STOCKRECONCILIATION_comments_REQUIRED_ERROR"
+                  "message": "STOCKRECONCILIATION_STOCKRECONCILIATION_comments_REQUIRED_ERROR"
                 }
               ],
               "errorMessage": "",
@@ -177,8 +183,7 @@
               "visibilityCondition": {
                 "expression": [
                   {
-                    "condition":
-                        "stockRecon.manualCount != stockRecon.stockInHand && stockRecon.stockReconciliationCard != ''",
+                    "condition": "stockRecon.manualCount != stockRecon.stockInHand && stockRecon.stockReconciliationCard != ''",
                     "type": "custom"
                   }
                 ]
@@ -212,7 +217,9 @@
             "onError": [
               {
                 "actionType": "SHOW_TOAST",
-                "properties": {"message": "Failed to fetch config."}
+                "properties": {
+                  "message": "Failed to fetch config."
+                }
               }
             ]
           }
@@ -224,7 +231,9 @@
             "onError": [
               {
                 "actionType": "SHOW_TOAST",
-                "properties": {"message": "Failed to create stock."}
+                "properties": {
+                  "message": "Failed to create stock."
+                }
               }
             ]
           }
@@ -237,7 +246,9 @@
             "onError": [
               {
                 "actionType": "SHOW_TOAST",
-                "properties": {"message": "Navigation failed."}
+                "properties": {
+                  "message": "Navigation failed."
+                }
               }
             ],
             "data": []
@@ -258,16 +269,18 @@
           "type": "template",
           "format": "panelCard",
           "label": "STOCKRECONCILIATION_STOCKRECONCILIATIONSUCCESS_HEADING",
-          "description":
-              "STOCKRECONCILIATION_STOCKRECONCILIATIONSUCCESS_DESCRIPTION",
-          "properties": {"type": "success"},
+          "description": "STOCKRECONCILIATION_STOCKRECONCILIATIONSUCCESS_DESCRIPTION",
+          "properties": {
+            "type": "success"
+          },
           "primaryAction": {
-            "label":
-                "STOCKRECONCILIATION_STOCKRECONCILIATIONSUCCESS_PRIMARY_ACTION_LABEL",
+            "label": "STOCKRECONCILIATION_STOCKRECONCILIATIONSUCCESS_PRIMARY_ACTION_LABEL",
             "onAction": [
               {
                 "actionType": "NAVIGATION",
-                "properties": {"type": "HOME"}
+                "properties": {
+                  "type": "HOME"
+                }
               }
             ]
           }
