@@ -1440,6 +1440,10 @@
             "configName": "stock",
             "data": [
               {
+                "key": "quantityPartialML",
+                "value": "{{fn:calculatePartial(formData.stockProductDetails.quantityReturned, formData.stockProductDetails.quantityPartialUsed, formData.stockProductDetails.productVariantId)}}"
+              },
+              {
                 "key": "stockEntryType",
                 "value": "{{navigation.stockEntryType}}"
               },
