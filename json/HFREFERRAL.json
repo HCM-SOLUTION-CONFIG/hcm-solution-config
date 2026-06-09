@@ -926,11 +926,11 @@
           "flow": "REFERRAL_CREATE",
           "page": "RI",
           "type": "object",
-          "label": "HFREFERRAL_SIDEEFFECTFROMSICK_HEADING",
+          "label": "HFREFERRAL_RI_HEADING",
           "order": 4.4,
           "footer": [
             {
-              "label": "HFREFERRAL_SIDEEFFECTFROMSICK_ACTION_LABEL",
+              "label": "HFREFERRAL_RI_ACTION_LABEL",
               "format": "button",
               "onAction": [
                 {
@@ -1217,15 +1217,15 @@
               "enums": [
                  {
                   "code": "YES",
-                  "name": "RIQ1_YES"
+                  "name": "RIQ3_YES"
                 },
                 {
                   "code": "NO",
-                  "name": "RIQ1_NO"
+                  "name": "RIQ3_NO"
                 },
                 {
                   "code": "NOT_SELECTED",
-                  "name": "RIQ1_NOT_SELECTED"
+                  "name": "RIQ3_NOT_SELECTED"
                 }
               ],
               "label": "HFREFERRAL_RI_Q3_LABEL",
@@ -1409,7 +1409,6 @@
             }
           ],
           "actionLabel": "HFREFERRAL_RI_ACTION_LABEL",
-          "description": "HFREFERRAL_RI_DESCRIPTION",
           "showTabView": false,
           "submitCondition": null,
           "preventScreenCapture": false,
@@ -2270,6 +2269,32 @@
                   }
                 ],
                 "name": "sideEffectSick",
+                "type": "form"
+              }
+            },
+            {
+              "type": "custom",
+              "condition": "navigation.isEdit==true&&navigation.referralSymptom==RI",
+              "navigateTo": {
+                "data": [
+                  {
+                    "key": "clientReferenceId",
+                    "value": "{{navigation.clientReferenceId}}"
+                  },
+                  {
+                    "key": "referralSymptom",
+                    "value": "{{navigation.referralSymptom}}"
+                  },
+                  {
+                    "key": "isEdit",
+                    "value": "true"
+                  },
+                  {
+                    "key": "rowVersion",
+                    "value": "{{navigation.rowVersion}}"
+                  }
+                ],
+                "name": "RI",
                 "type": "form"
               }
             },
