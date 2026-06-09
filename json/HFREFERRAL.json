@@ -1098,6 +1098,24 @@
                 {
                   "code": "NO",
                   "name": "RIQ1_NO"
+                },
+                {
+                  "code": "NOT_SELECTED",
+                  "name": "RIQ1_NOT_SELECTED"
+                }
+              ],
+              "dropDownOptions": [
+                {
+                  "code": "YES",
+                  "name": "RIQ1_YES"
+                },
+                {
+                  "code": "NO",
+                  "name": "RIQ1_NO"
+                },
+                {
+                  "code": "NOT_SELECTED",
+                  "name": "RIQ1_NOT_SELECTED"
                 }
               ],
               "label": "HFREFERRAL_RI_Q1_LABEL",
@@ -1126,16 +1144,7 @@
               ],
               "errorMessage": "",
               "isMultiSelect": false,
-              "dropDownOptions": [
-                {
-                  "code": "YES",
-                  "name": "RIQ1_YES"
-                },
-                {
-                  "code": "NO",
-                  "name": "RIQ1_NO"
-                }
-              ],
+              
               "required.message": "HFREFERRAL_RIQ1_REQUIRED_ERROR"
             },
             {
@@ -1165,7 +1174,7 @@
               "infoText": "",
               "readOnly": false,
               "required": true,
-              "fieldName": "sickQ2",
+              "fieldName": "riQ2",
               "mandatory": true,
               "deleteFlag": false,
               "innerLabel": "",
@@ -1202,6 +1211,201 @@
                 }
               ],
               "required.message": "HFREFERRAL_RIQ2_REQUIRED_ERROR"
+            },
+            {
+              "type": "string",
+              "enums": [
+                 {
+                  "code": "YES",
+                  "name": "RIQ1_YES"
+                },
+                {
+                  "code": "NO",
+                  "name": "RIQ1_NO"
+                },
+                {
+                  "code": "NOT_SELECTED",
+                  "name": "RIQ1_NOT_SELECTED"
+                }
+              ],
+              "label": "HFREFERRAL_RI_Q3_LABEL",
+              "order": 3,
+              "value": "",
+              "format": "radio",
+              "hidden": false,
+              "isMdms": false,
+              "tooltip": "",
+              "helpText": "",
+              "infoText": "",
+              "readOnly": false,
+              "required": true,
+              "fieldName": "riQ3",
+              "mandatory": true,
+              "deleteFlag": false,
+              "innerLabel": "",
+              "schemaCode": "",
+              "systemDate": false,
+              "validations": [
+                {
+                  "type": "required",
+                  "value": true,
+                  "message": "HFREFERRAL_RIQ3_REQUIRED_ERROR"
+                }
+              ],
+              "errorMessage": "",
+              "visibilityCondition": {
+                "expression": [
+                  {
+                    "condition": "RI.riQ1==YES"
+                  }
+                ]
+              },
+              "isMultiSelect": false,
+              "dropDownOptions": [
+                {
+                  "code": "YES",
+                  "name": "RIQ1_YES"
+                },
+                {
+                  "code": "NO",
+                  "name": "RIQ1_NO"
+                },
+                {
+                  "code": "NOT_SELECTED",
+                  "name": "RIQ1_NOT_SELECTED"
+                }
+              ],
+              "required.message": "HFREFERRAL_RIQ3_REQUIRED_ERROR"
+            },
+            {
+              "type": "string",
+              "enums": [
+                {
+                  "code": "DOSE_ONE",
+                  "name": "RIQ1_DOSE_ONE"
+                },
+                {
+                  "code": "DOSE_TWO",
+                  "name": "RIQ1_DOSE_TWO"
+                },
+                {
+                  "code": "DOSE_THREE",
+                  "name": "RIQ1_DOSE_THREE"
+                }
+              ],
+              "label": "HFREFERRAL_RI_Q4_LABEL",
+              "order": 4,
+              "value": "",
+              "format": "radio",
+              "hidden": false,
+              "isMdms": false,
+              "tooltip": "",
+              "helpText": "",
+              "infoText": "",
+              "readOnly": false,
+              "required": true,
+              "fieldName": "riQ4",
+              "mandatory": true,
+              "deleteFlag": false,
+              "innerLabel": "",
+              "schemaCode": "",
+              "systemDate": false,
+              "validations": [
+                {
+                  "type": "required",
+                  "value": true,
+                  "message": "HFREFERRAL_RIQ4_REQUIRED_ERROR"
+                }
+              ],
+              "errorMessage": "",
+              "visibilityCondition": {
+                "expression": [
+                  {
+                    "condition": "RI.riQ1==NO"
+                  }
+                ]
+              },
+              "isMultiSelect": false,
+              "dropDownOptions": [
+               {
+                  "code": "DOSE_ONE",
+                  "name": "RIQ1_DOSE_ONE"
+                },
+                {
+                  "code": "DOSE_TWO",
+                  "name": "RIQ1_DOSE_TWO"
+                },
+                {
+                  "code": "DOSE_THREE",
+                  "name": "RIQ1_DOSE_THREE"
+                }
+              ],
+              "required.message": "HFREFERRAL_RIQ4_REQUIRED_ERROR"
+            },
+            {
+              "type": "string",
+              "enums": [
+                {
+                  "code": "DOSE_ONE",
+                  "name": "RIQ1_DOSE_ONE"
+                },
+                {
+                  "code": "DOSE_TWO",
+                  "name": "RIQ1_DOSE_TWO"
+                },
+                {
+                  "code": "DOSE_THREE",
+                  "name": "RIQ1_DOSE_THREE"
+                }
+              ],
+              "label": "HFREFERRAL_RI_Q5_LABEL",
+              "order": 5,
+              "value": "",
+              "format": "radio",
+              "hidden": false,
+              "isMdms": false,
+              "tooltip": "",
+              "helpText": "",
+              "infoText": "",
+              "readOnly": false,
+              "required": true,
+              "fieldName": "riQ5",
+              "mandatory": true,
+              "deleteFlag": false,
+              "innerLabel": "",
+              "schemaCode": "",
+              "systemDate": false,
+              "validations": [
+                {
+                  "type": "required",
+                  "value": true,
+                  "message": "HFREFERRAL_RIQ5_REQUIRED_ERROR"
+                }
+              ],
+              "errorMessage": "",
+              "visibilityCondition": {
+                "expression": [
+                  {
+                    "condition": "RI.riQ3==NO"
+                  }
+                ]
+              },
+              "isMultiSelect": false,
+              "dropDownOptions": [
+               {
+                  "code": "DOSE_ONE",
+                  "name": "RIQ1_DOSE_ONE"
+                },
+                {
+                  "code": "DOSE_TWO",
+                  "name": "RIQ1_DOSE_TWO"
+                },
+                {
+                  "code": "DOSE_THREE",
+                  "name": "RIQ1_DOSE_THREE"
+                }
+              ],
+              "required.message": "HFREFERRAL_RIQ5_REQUIRED_ERROR"
             }
           ],
           "actionLabel": "HFREFERRAL_RI_ACTION_LABEL",
