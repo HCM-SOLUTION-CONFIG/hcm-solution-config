@@ -1668,7 +1668,7 @@
               "onAction": [
                 {
                   "condition": {
-                    "expression": "{{fn:length(contextData.0.members)}} >= {{contextData.0.household.HouseholdModel.memberCount}}"
+                    "expression": "{{fn:length(contextData.0.members)}} > {{contextData.0.household.HouseholdModel.additionalFields.fields.childrenCount}}"
                   },
                   "actions": [
                     {
@@ -1696,6 +1696,22 @@
                           {
                             "key": "UNIQUE_BENEFICIARY_ID",
                             "value": "{{latestBeneficiaryId}}"
+                          },
+                          {
+                            "key": "memberCount",
+                            "value": "{{contextData.0.household.HouseholdModel.memberCount}}"
+                          },
+                          {
+                            "key": "cycleIndex",
+                            "value": "{{contextData.0.currentRunningCycle}}"
+                          },
+                          {
+                            "key": "headName",
+                            "value": "{{fn:str(contextData.0.headIndividual.IndividualModel.name)}}"
+                          },
+                          {
+                            "key": "headMobileNumber",
+                            "value": "{{fn:str(contextData.0.headIndividual.IndividualModel.mobileNumber)}}"
                           }
                         ],
                         "name": "ADD_MEMBER",
@@ -1743,7 +1759,7 @@
                         },
                         {
                           "condition": {
-                            "expression": "{{fn:length(contextData.0.members)}} >= {{contextData.0.household.HouseholdModel.memberCount}}"
+                            "expression": "{{fn:length(contextData.0.members)}} > {{contextData.0.household.HouseholdModel.additionalFields.fields.childrenCount}}"
                           },
                           "actions": [
                             {
@@ -1771,6 +1787,22 @@
                                   {
                                     "key": "UNIQUE_BENEFICIARY_ID",
                                     "value": "{{latestBeneficiaryId}}"
+                                  },
+                                  {
+                                    "key": "memberCount",
+                                    "value": "{{contextData.0.household.HouseholdModel.memberCount}}"
+                                  },
+                                  {
+                                    "key": "cycleIndex",
+                                    "value": "{{contextData.0.currentRunningCycle}}"
+                                  },
+                                  {
+                                    "key": "headName",
+                                    "value": "{{fn:str(contextData.0.headIndividual.IndividualModel.name)}}"
+                                  },
+                                  {
+                                    "key": "headMobileNumber",
+                                    "value": "{{fn:str(contextData.0.headIndividual.IndividualModel.mobileNumber)}}"
                                   }
                                 ],
                                 "name": "ADD_MEMBER",
@@ -5556,8 +5588,8 @@
                         "value": "{{contextData.0.cycleIndex}}"
                       }
                     ],
-                    "name": "ACKNOWLEDGEMENT",
-                    "type": "TEMPLATE"
+                    "name": "CHECKLIST",
+                    "type": "FORM"
                   }
                 }
               ],
@@ -5624,12 +5656,64 @@
               "properties": {
                 "data": [
                   {
+                    "key": "selectedIndividualClientReferenceId",
+                    "value": "{{contextData.entities.IndividualModel.clientReferenceId}}"
+                  },
+                  {
+                    "key": "selectedIndividualIdentifierId",
+                    "value": "{{contextData.entities.IndividualModel.identifiers.0.identifierId}}"
+                  },
+                  {
                     "key": "HouseholdClientReferenceId",
                     "value": "{{navigation.HouseholdClientReferenceId}}"
+                  },
+                  {
+                    "key": "memberCount",
+                    "value": "{{navigation.memberCount}}"
+                  },
+                  {
+                    "key": "ProjectBeneficiaryClientReferenceId",
+                    "value": "{{contextData.entities.ProjectBeneficiaryModel.clientReferenceId}}"
+                  },
+                  {
+                    "key": "selectedIndividualName",
+                    "value": "{{fn:str(contextData.entities.IndividualModel.name)}}"
+                  },
+                  {
+                    "key": "selectedIndividualGender",
+                    "value": "{{fn:str(contextData.entities.IndividualModel.gender)}}"
+                  },
+                  {
+                    "key": "selectedIndividualAgeInMonths",
+                    "value": "{{fn:formatDate(contextData.entities.IndividualModel.dateOfBirth, 'ageInMonths')}}"
+                  },
+                  {
+                    "key": "childName",
+                    "value": "{{fn:str(contextData.entities.IndividualModel.name)}}"
+                  },
+                  {
+                    "key": "ageInMonths",
+                    "value": "{{fn:formatDate(contextData.entities.IndividualModel.dateOfBirth, 'ageInMonths')}}"
+                  },
+                  {
+                    "key": "gender",
+                    "value": "{{fn:str(contextData.entities.IndividualModel.gender)}}"
+                  },
+                  {
+                    "key": "headName",
+                    "value": "{{navigation.headName}}"
+                  },
+                  {
+                    "key": "headMobileNumber",
+                    "value": "{{navigation.headMobileNumber}}"
+                  },
+                  {
+                    "key": "cycleIndex",
+                    "value": "{{navigation.cycleIndex}}"
                   }
                 ],
-                "name": "householdOverview",
-                "type": "TEMPLATE",
+                "name": "CHECKLIST",
+                "type": "FORM",
                 "onError": [
                   {
                     "actionType": "SHOW_TOAST",
@@ -7687,12 +7771,13 @@
               },
               "value": "0",
               "format": "numeric",
-              "hidden": true,
+              "hidden": false,
               "isMdms": false,
               "tooltip": "",
               "helpText": "",
               "infoText": "",
               "readOnly": false,
+              "required": true,
               "fieldName": "childrenCount",
               "mandatory": true,
               "deleteFlag": false,
