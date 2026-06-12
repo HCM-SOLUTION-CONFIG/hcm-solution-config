@@ -1973,7 +1973,7 @@
                     "type": "template",
                     "label": "{{fn:getInEligibleStatus(item.task)}}",
                     "format": "tag",
-                    "visible": "{{fn:checkEligibilityForAgeAndSideEffect(item.individual.0, item.task, contextData.0.currentRunningCycle)}}==false && {{fn:length(item.hFReferral)}}<=0 && {{fn:isHead(item.member)}}==false",
+                    "visible": "{{fn:checkEligibilityForAgeAndSideEffect(item.individual.0, item.task, contextData.0.currentRunningCycle)}}==false && {{fn:hasSMCReferral(item.hFReferral)}}==false && {{fn:isHead(item.member)}}==false",
                     "fieldName": "notEligible",
                     "properties": {
                       "tagType": "error",
@@ -2042,7 +2042,7 @@
                 "type": "template",
                 "label": "VAS_INELIGIBLE",
                 "format": "tag",
-                "visible": "{{fn:vasWithinTheAge(item.individual.0)}}==true && {{fn:hasVASIneligible(item.task.last.status, item.task.last.additionalFields.fields.flow)}}==true",
+                "visible": "{{fn:vasWithinTheAge(item.individual.0)}}==true && {{fn:hasVASIneligible(item.task)}}==true",
                 "fieldName": "vasIneligible",
                 "properties": {
                   "tagType": "error",
@@ -2283,7 +2283,7 @@
                    {
                     "type": "template",
                     "label": "VAS",
-                    "visible": "{{fn:isSMCFlowDone(item.task.last.status, item.hFReferral.last.additionalFields.fields.flow, item.task.last.additionalFields.fields.flow)}} == true && {{fn:isVASDelivered(item.task)}}==false && {{fn:hasVASReferralForCurrentCycle(item.hFReferral)}}==false && {{fn:hasVASIneligible(item.task.last.status, item.task.last.additionalFields.fields.flow)}}==false && {{fn:vasWithinTheAge(item.individual.0)}}==true && {{fn:isHead(item.member)}}==false",
+                    "visible": "{{fn:isSMCFlowDone(item.task, item.hFReferral)}} == true && {{fn:isVASDelivered(item.task)}}==false && {{fn:hasVASReferralForCurrentCycle(item.hFReferral)}}==false && {{fn:hasVASIneligible(item.task)}}==false && {{fn:vasWithinTheAge(item.individual.0)}}==true && {{fn:isHead(item.member)}}==false",
                     "format": "button",
                     "onAction": [
                       {
@@ -7446,22 +7446,6 @@
                         "value": "{{eligibilityChecklist.ec2}}"
                       },
                       {
-                        "key": "ec3",
-                        "value": "{{eligibilityChecklist.ec3}}"
-                      },
-                      {
-                        "key": "ec4",
-                        "value": "{{eligibilityChecklist.ec4}}"
-                      },
-                      {
-                        "key": "ec5",
-                        "value": "{{eligibilityChecklist.ec5}}"
-                      },
-                       {
-                "key": "referralReasons",
-                "value": "VAS"
-              },
-                      {
                         "key": "sourceFlow",
                         "value": "VASCHECKLIST"
                       }
@@ -8850,10 +8834,6 @@
               {
                 "key": "sourceFlow",
                 "value": "{{navigation.sourceFlow}}"
-              },
-              {
-                "key": "referralReasons",
-                "value": "{{navigation.referralReasons}}"
               },
               {
                 "key": "sourceFlow",
