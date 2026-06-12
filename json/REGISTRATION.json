@@ -1962,7 +1962,7 @@
                     "type": "template",
                     "label": "ADMINISTERED_SUCCESS",
                     "format": "tag",
-                    "visible": "{{fn:isDelivered(item.task.last.status, item.task.last.additionalFields.fields.flow)}}==true && {{fn:checkEligibilityForAgeAndSideEffect(item.individual.0, item.task, contextData.0.currentRunningCycle)}}==true && {{fn:hasSMCReferralForCurrentCycle(item.hFReferral)}}==false",
+                    "visible": "{{fn:isDelivered(item.task)}}==true && {{fn:checkEligibilityForAgeAndSideEffect(item.individual.0, item.task, contextData.0.currentRunningCycle)}}==true && {{fn:hasSMCReferralForCurrentCycle(item.hFReferral)}}==false",
                     "fieldName": "administrationSuccess",
                     "properties": {
                       "tagType": "success",
@@ -2008,7 +2008,7 @@
                     "type": "template",
                     "label": "NOT_VISITED",
                     "format": "tag",
-                    "visible": "{{fn:checkEligibilityForAgeAndSideEffect(item.individual.0, item.task, contextData.0.currentRunningCycle)}}==true && {{fn:isDelivered(item.task.last.status, item.task.last.additionalFields.fields.flow)}}==false && {{fn:hasSMCReferralForCurrentCycle(item.hFReferral)}}==false && {{fn:isRedoseCompleted(item.task)}}==false",
+                    "visible": "{{fn:checkEligibilityForAgeAndSideEffect(item.individual.0, item.task, contextData.0.currentRunningCycle)}}==true && {{fn:isDelivered(item.task)}}==false && {{fn:hasSMCReferralForCurrentCycle(item.hFReferral)}}==false && {{fn:isRedoseCompleted(item.task)}}==false",
                     "fieldName": "notVisited",
                     "properties": {
                       "tagType": "info",
@@ -2019,7 +2019,7 @@
                 "type": "template",
                 "label": "VAS_ADMINISTERED_SUCCESS",
                 "format": "tag",
-                "visible": "{{fn:isVASDelivered(item.task.last.status, item.task.last.additionalFields.fields.flow)}}==true",
+                "visible": "{{fn:isVASDelivered(item.task)}}==true",
                 "fieldName": "vasAdministrationSuccess",
                 "properties": {
                   "tagType": "success",
@@ -2042,7 +2042,7 @@
                 "type": "template",
                 "label": "VAS_INELIGIBLE",
                 "format": "tag",
-                "visible": "{{fn:vasWithinTheAge(item.individual.0)}}==false && {{fn:hasVASIneligible(item.task.last.status, item.task.last.additionalFields.fields.flow)}}==true",
+                "visible": "{{fn:vasWithinTheAge(item.individual.0)}}==true && {{fn:hasVASIneligible(item.task.last.status, item.task.last.additionalFields.fields.flow)}}==true",
                 "fieldName": "vasIneligible",
                 "properties": {
                   "tagType": "error",
@@ -2283,7 +2283,7 @@
                    {
                     "type": "template",
                     "label": "VAS",
-                    "visible": "{{fn:checkAllDoseDelivered(item.task)}} == true && {{fn:isVASDelivered(item.task.last.status, item.task.last.additionalFields.fields.flow)}}==false && {{fn:hasVASReferralForCurrentCycle(item.hFReferral)}}==false && {{fn:hasVASIneligible(item.task.last.status, item.task.last.additionalFields.fields.flow)}}==false && {{fn:vasWithinTheAge(item.individual.0)}}==true && {{fn:isHead(item.member)}}==false",
+                    "visible": "{{fn:isSMCFlowDone(item.task.last.status, item.hFReferral.last.additionalFields.fields.flow, item.task.last.additionalFields.fields.flow)}} == true && {{fn:isVASDelivered(item.task)}}==false && {{fn:hasVASReferralForCurrentCycle(item.hFReferral)}}==false && {{fn:hasVASIneligible(item.task.last.status, item.task.last.additionalFields.fields.flow)}}==false && {{fn:vasWithinTheAge(item.individual.0)}}==true && {{fn:isHead(item.member)}}==false",
                     "format": "button",
                     "onAction": [
                       {
