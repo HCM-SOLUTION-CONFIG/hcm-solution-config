@@ -2042,7 +2042,7 @@
                 "type": "template",
                 "label": "VAS_INELIGIBLE",
                 "format": "tag",
-                "visible": "{{fn:hasVASIneligible(item.task.last.status, item.task.last.additionalFields.fields.flow)}}==true",
+                "visible": "{{fn:vasWithinTheAge(item.individual.0)}}==false && {{fn:hasVASIneligible(item.task.last.status, item.task.last.additionalFields.fields.flow)}}==true",
                 "fieldName": "vasIneligible",
                 "properties": {
                   "tagType": "error",
@@ -2283,7 +2283,7 @@
                    {
                     "type": "template",
                     "label": "VAS",
-                    "visible": "{{fn:checkAllDoseDelivered(item.task)}} == true && {{fn:isVASDelivered(item.task.last.status, item.task.last.additionalFields.fields.flow)}}==false && {{fn:hasVASReferralForCurrentCycle(item.hFReferral)}}==false && {{fn:hasVASIneligible(item.task.last.status, item.task.last.additionalFields.fields.flow)}}==false && {{fn:isHead(item.member)}}==false",
+                    "visible": "{{fn:checkAllDoseDelivered(item.task)}} == true && {{fn:isVASDelivered(item.task.last.status, item.task.last.additionalFields.fields.flow)}}==false && {{fn:hasVASReferralForCurrentCycle(item.hFReferral)}}==false && {{fn:hasVASIneligible(item.task.last.status, item.task.last.additionalFields.fields.flow)}}==false && {{fn:vasWithinTheAge(item.individual.0)}}==true && {{fn:isHead(item.member)}}==false",
                     "format": "button",
                     "onAction": [
                       {
