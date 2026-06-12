@@ -5710,6 +5710,10 @@
                   {
                     "key": "cycleIndex",
                     "value": "{{navigation.cycleIndex}}"
+                  },
+                  {
+                    "key": "disableBack",
+                    "value": "true"
                   }
                 ],
                 "name": "CHECKLIST",
@@ -5762,8 +5766,8 @@
                 "value": "{{contextData.0.cycleIndex}}"
               }
             ],
-            "name": "ACKNOWLEDGEMENT",
-            "type": "TEMPLATE"
+            "name": "CHECKLIST",
+            "type": "FORM"
           },
           "properties": [
             {
@@ -6209,8 +6213,8 @@
                 "value": "{{contextData.0.cycleIndex}}"
               }
             ],
-            "name": "ACKNOWLEDGEMENT",
-            "type": "TEMPLATE",
+            "name": "CHECKLIST",
+            "type": "FORM",
             "onError": [
               {
                 "actionType": "SHOW_TOAST",
@@ -7799,6 +7803,11 @@
                   "type": "max",
                   "value": "100",
                   "message": "APPONE_REGISTRATION_HOUSEHOLDDETAILS_label_childrenCount_max_message"
+                },
+                {
+                  "type": "relativeMax",
+                  "value": "{{memberCount - 1}}",
+                  "message": "APPONE_REGISTRATION_HOUSEHOLDDETAILS_label_childrenCount_max_message"
                 }
               ],
               "errorMessage": "",
@@ -7865,6 +7874,11 @@
                   "type": "max",
                   "value": "30",
                   "message": "APPONE_REGISTRATION_HOUSEHOLDDETAILS_label_memberCount_max_message"
+                },
+                {
+                  "type": "relativeMin",
+                  "value": "{{childrenCount + 1}}",
+                  "message": "APPONE_REGISTRATION_HOUSEHOLDDETAILS_label_memberCount_min_message"
                 }
               ],
               "errorMessage": "",
