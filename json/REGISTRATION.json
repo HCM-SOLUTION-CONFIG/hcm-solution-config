@@ -225,7 +225,7 @@
           "mandatory": true
         }
       ],
-      "category": "DELIVERY",
+      "category": "VAS",
       "navigateTo": null,
       "screenType": "TEMPLATE",
       "submitCondition": null,
@@ -1314,7 +1314,7 @@
         }
       ],
       "heading": "VAS_BENEFICIARY_DETAILS_HEADING",
-      "category": "DELIVERY",
+      "category": "VAS",
       "navigateTo": null,
       "screenType": "TEMPLATE",
       "description": "VAS_BENEFICIARY_DETAILS_DESC",
@@ -5412,7 +5412,7 @@
       ],
       "summary": false,
       "version": 3,
-      "category": "VASDELIVERY",
+      "category": "VAS",
       "disabled": false,
       "onAction": [
         {
@@ -7308,7 +7308,7 @@
       ],
       "summary": false,
       "version": 3,
-      "category": "DELIVERY",
+      "category": "VAS",
       "disabled": false,
       "onAction": [
             {
