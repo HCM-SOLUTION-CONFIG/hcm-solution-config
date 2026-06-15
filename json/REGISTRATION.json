@@ -3145,6 +3145,7 @@
       ],
       "isSelected": true,
       "screenType": "FORM",
+      "category": "REGISTRATION",
       "initActions": [],
       "wrapperConfig": {},
       "scrollListener": {}
@@ -10926,6 +10927,7 @@
         }
       ],
       "heading": "",
+      "category": "REGISTRATION",
       "screenType": "TEMPLATE",
       "description": "",
       "body": [
