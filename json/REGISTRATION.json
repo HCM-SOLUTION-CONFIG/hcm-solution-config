@@ -122,15 +122,15 @@
       "body": [
         {
           "type": "template",
-          "label": "VAS_DELIVERY_SUCCESSFUL_PANEL_CARD_HEADING",
+          "label": "ORS_DELIVERY_SUCCESSFUL_PANEL_CARD_HEADING",
           "format": "panelCard",
-          "heading": "VAS_DELIVERY_SUCCESSFUL_PANEL_CARD_HEADING",
+          "heading": "ORS_DELIVERY_SUCCESSFUL_PANEL_CARD_HEADING",
           "fieldName": "successCard",
           "mandatory": true,
           "properties": {
             "type": "success"
           },
-          "description": "VAS_DELIVERY_SUCCESSFUL_PANEL_CARD_DESC",
+          "description": "ORS_DELIVERY_SUCCESSFUL_PANEL_CARD_DESC",
           "primaryAction": {
             "type": "template",
             "label": "VIEW_HOUSEHOLD_DETAILS",
@@ -185,7 +185,7 @@
           "secondaryActionLabel": "GO_BACK"
         }
       ],
-      "name": "vasDeliverySuccess",
+      "name": "orsDeliverySuccess",
       "order": 11,
       "footer": [],
       "onSystemBack": [
@@ -225,7 +225,7 @@
           "mandatory": true
         }
       ],
-      "category": "VAS",
+      "category": "ORS",
       "navigateTo": null,
       "screenType": "TEMPLATE",
       "submitCondition": null,
@@ -1142,12 +1142,12 @@
           "schemaCode": null
         }
       ],
-      "name": "vasDetails",
+      "name": "orsDetails",
       "order": 14,
       "footer": [
         {
           "type": "template",
-          "label": "VAS_RECORD_CYCLE_DOSE",
+          "label": "ORS_RECORD_CYCLE_DOSE",
           "format": "actionPopup",
           "fieldName": "insufficientStockPopUp",
           "visible": "{{fn:hasStockForDelivery(contextData.0.eligibleProductVariants)}} == false",
@@ -1186,7 +1186,7 @@
                     {
                       "actionType": "CLOSE_POPUP",
                       "properties": {
-                        "parentScreenKey": "vasDetails"
+                        "parentScreenKey": "orsDetails"
                       }
                     }
                   ],
@@ -1283,7 +1283,7 @@
                     "value": "{{navigation.sourceFlow}}"
                   }
                 ],
-                "name": "VASDELIVERY",
+                "name": "ORSDELIVERY",
                 "type": "FORM"
               }
             }
@@ -1313,11 +1313,11 @@
           ]
         }
       ],
-      "heading": "VAS_BENEFICIARY_DETAILS_HEADING",
-      "category": "VAS",
+      "heading": "ORS_BENEFICIARY_DETAILS_HEADING",
+      "category": "ORS",
       "navigateTo": null,
       "screenType": "TEMPLATE",
-      "description": "VAS_BENEFICIARY_DETAILS_DESC",
+      "description": "ORS_BENEFICIARY_DETAILS_DESC",
       "initActions": [
         {
           "actionType": "SEARCH_EVENT",
@@ -1434,7 +1434,7 @@
             }
           },
           "deliveryLength": {
-            "from": "{{singleton.vasProjectType.cycles}}",
+            "from": "{{singleton.orsProjectType.cycles}}",
             "order": 3,
             "where": {
               "left": "{{id}}",
@@ -1455,7 +1455,7 @@
             }
           },
           "currentRunningCycle": {
-            "from": "{{singleton.vasProjectType.cycles}}",
+            "from": "{{singleton.orsProjectType.cycles}}",
             "order": 1,
             "where": [
               {
@@ -1536,7 +1536,7 @@
         "wrapperName": "DeliveryWrapper",
         "computedList": {
           "pastCycles": {
-            "from": "{{fn:getVASProjectCycles()}}",
+            "from": "{{fn:getORSProjectCycles()}}",
             "order": 6,
             "where": {
               "left": "{{item.id}}",
@@ -1554,7 +1554,7 @@
             }
           },
           "targetCycle": {
-            "from": "{{fn:getVASProjectCycles()}}",
+            "from": "{{fn:getORSProjectCycles()}}",
             "order": 1,
             "where": {
               "left": "{{id}}",
@@ -2017,10 +2017,10 @@
                   },
                   {
                 "type": "template",
-                "label": "VAS_ADMINISTERED_SUCCESS",
+                "label": "ORS_ADMINISTERED_SUCCESS",
                 "format": "tag",
-                "visible": "{{fn:isVASDelivered(item.task)}}==true",
-                "fieldName": "vasAdministrationSuccess",
+                "visible": "{{fn:isORSDelivered(item.task)}}==true",
+                "fieldName": "orsAdministrationSuccess",
                 "properties": {
                   "tagType": "success",
                   "bottomGap": 16
@@ -2028,11 +2028,11 @@
               },
                {
                     "type": "template",
-                    "label": "VAS_BENEFICIARY_REFERRED",
+                    "label": "ORS_BENEFICIARY_REFERRED",
                     "format": "tag",
                     "hidden": false,
-                    "visible": "{{fn:hasVASReferralForCurrentCycle(item.hFReferral)}}==true && {{fn:isHead(item.member)}}==false",
-                    "fieldName": "vasBeneficiaryReferred",
+                    "visible": "{{fn:hasORSReferralForCurrentCycle(item.hFReferral)}}==true && {{fn:isHead(item.member)}}==false",
+                    "fieldName": "orsBeneficiaryReferred",
                     "properties": {
                       "tagType": "error",
                   "bottomGap": 16
@@ -2040,10 +2040,10 @@
                   },
               {
                 "type": "template",
-                "label": "VAS_INELIGIBLE",
+                "label": "ORS_INELIGIBLE",
                 "format": "tag",
-                "visible": "{{fn:vasWithinTheAge(item.individual.0)}}==true && {{fn:hasVASIneligible(item.task)}}==true",
-                "fieldName": "vasIneligible",
+                "visible": "{{fn:orsWithinTheAge(item.individual.0)}}==true && {{fn:hasORSIneligible(item.task)}}==true",
+                "fieldName": "orsIneligible",
                 "properties": {
                   "tagType": "error",
                   "bottomGap": 16
@@ -2282,8 +2282,8 @@
                   },
                    {
                     "type": "template",
-                    "label": "VAS",
-                    "visible": "{{fn:isSMCFlowDone(item.task, item.hFReferral)}} == true && {{fn:isVASDelivered(item.task)}}==false && {{fn:hasVASReferralForCurrentCycle(item.hFReferral)}}==false && {{fn:hasVASIneligible(item.task)}}==false && {{fn:vasWithinTheAge(item.individual.0)}}==true && {{fn:isHead(item.member)}}==false",
+                    "label": "ORS",
+                    "visible": "{{fn:isSMCFlowDone(item.task, item.hFReferral)}} == true && {{fn:isORSDelivered(item.task)}}==false && {{fn:hasORSReferralForCurrentCycle(item.hFReferral)}}==false && {{fn:hasORSIneligible(item.task)}}==false && {{fn:orsWithinTheAge(item.individual.0)}}==true && {{fn:isHead(item.member)}}==false",
                     "format": "button",
                     "onAction": [
                       {
@@ -2347,12 +2347,12 @@
                               "value": "{{contextData.0.currentRunningCycle}}"
                             }
                           ],
-                          "name": "VASCHECKLIST",
+                          "name": "ORSCHECKLIST",
                           "type": "FORM"
                         }
                       }
                     ],
-                    "fieldName": "vasDeliveryButton",
+                    "fieldName": "orsDeliveryButton",
                     "mandatory": true,
                     "properties": {
                       "size": "medium",
@@ -4801,15 +4801,15 @@
       "scrollListener": {}
     },
      {
-      "name": "VASDELIVERY",
+      "name": "ORSDELIVERY",
       "order": 15,
       "pages": [
         {
           "body": null,
-          "flow": "VASDELIVERY",
-          "page": "VASDeliveryChecklist",
+          "flow": "ORSDELIVERY",
+          "page": "ORSDeliveryChecklist",
           "type": "object",
-          "label": "APPONE_VASDELIVERYFLOW_DELIVERYDETAILS_ACTIONS_SCREEN_HEADING",
+          "label": "APPONE_ORSDELIVERYFLOW_DELIVERYDETAILS_ACTIONS_SCREEN_HEADING",
           "order": 2,
           "footer": [
             {
@@ -4834,7 +4834,7 @@
             }
           ],
           "module": "REGISTRATION",
-          "heading": "APPONE_VASDELIVERYFLOW_DELIVERYDETAILS_ACTIONS_SCREEN_HEADING",
+          "heading": "APPONE_ORSDELIVERYFLOW_DELIVERYDETAILS_ACTIONS_SCREEN_HEADING",
           "summary": false,
           "version": 1,
           "onAction": [
@@ -5042,7 +5042,7 @@
           "properties": [
             {
               "type": "boolean",
-              "label": "APPONE_VASDELIVERYFLOW_DELIVERYDETAIL_ACTIONS_1",
+              "label": "APPONE_ORSDELIVERYFLOW_DELIVERYDETAIL_ACTIONS_1",
               "order": 1,
               "value": "",
               "format": "checkbox",
@@ -5063,14 +5063,14 @@
                 {
                   "type": "required",
                   "value": true,
-                  "message": "APPONE_VASDELIVERYFLOW_DELIVERYDETAIL_ACTIONS_REQUIRED_MESSAGE"
+                  "message": "APPONE_ORSDELIVERYFLOW_DELIVERYDETAIL_ACTIONS_REQUIRED_MESSAGE"
                 }
               ],
               "errorMessage": ""
             }
           ],
-          "actionLabel": "APPONE_VASDELIVERYFLOW_DELIVERYDETAILS_ACTIONS_SUBMIT_LABEL",
-          "description": "APPONE_VASDELIVERYFLOW_DELIVERYDETAILS_ACTIONS_SCREEN_DESCRIPTION",
+          "actionLabel": "APPONE_ORSDELIVERYFLOW_DELIVERYDETAILS_ACTIONS_SUBMIT_LABEL",
+          "description": "APPONE_ORSDELIVERYFLOW_DELIVERYDETAILS_ACTIONS_SCREEN_DESCRIPTION",
           "showTabView": false,
           "submitCondition": null,
           "preventScreenCapture": false,
@@ -5078,21 +5078,21 @@
         },
         {
           "body": null,
-          "flow": "VASDELIVERY",
-          "page": "VASDeliveryDetails",
+          "flow": "ORSDELIVERY",
+          "page": "ORSDeliveryDetails",
           "type": "object",
           "label": "APPONE_REGISTRATION_DELIVERYDETAILS_SCREEN_HEADING",
           "order": 1,
           "footer": [
             {
-              "label": "APPONE_REGISTRATION_VASDELIVERYDETAILS_ACTION_BUTTON_LABEL_1",
+              "label": "APPONE_REGISTRATION_ORSDELIVERYDETAILS_ACTION_BUTTON_LABEL_1",
               "format": "button",
               "fieldName": "deliveryDetailsSubmitButton",
               "onAction": [
                 {
                   "actionType": "NAVIGATION",
                   "properties": {
-                    "name": "VASDeliveryChecklist",
+                    "name": "ORSDeliveryChecklist",
                     "type": "template"
                   }
                 }
@@ -5106,7 +5106,7 @@
             }
           ],
           "module": "REGISTRATION",
-          "heading": "APPONE_REGISTRATION_VASDELIVERYDETAILS_SCREEN_HEADING",
+          "heading": "APPONE_REGISTRATION_ORSDELIVERYDETAILS_SCREEN_HEADING",
           "summary": false,
           "version": 1,
           "onAction": [
@@ -5175,7 +5175,7 @@
                     }
                   }
                 ],
-                "configName": "vasDelivery"
+                "configName": "orsDelivery"
               }
             },
             {
@@ -5204,7 +5204,7 @@
                     "value": "{{navigation.HouseholdClientReferenceId}}"
                   }
                 ],
-                "name": "vasDeliverySuccess",
+                "name": "orsDeliverySuccess",
                 "type": "TEMPLATE",
                 "onError": [
                   {
@@ -5220,7 +5220,7 @@
             }
           ],
           "navigateTo": {
-            "name": "VASDeliveryChecklist",
+            "name": "ORSDeliveryChecklist",
             "type": "template"
           },
           "properties": [
@@ -5397,13 +5397,13 @@
               "includeInSummary": true
             }
           ],
-          "actionLabel": "APPONE_REGISTRATION_VASDELIVERYDETAILS_ACTION_BUTTON_LABEL_1",
-          "description": "APPONE_REGISTRATION_VASDELIVERYDETAILS_SCREEN_DESCRIPTION",
+          "actionLabel": "APPONE_REGISTRATION_ORSDELIVERYDETAILS_ACTION_BUTTON_LABEL_1",
+          "description": "APPONE_REGISTRATION_ORSDELIVERYDETAILS_SCREEN_DESCRIPTION",
           "showTabView": false,
           "showAlertPopUp": {
             "title": "APPONE_ELIGIBILITYCHECKLIST_ALERT_TITLE",
             "conditions": [],
-            "description": "APPONE_REGISTRATION_VASDELIVERYDETAILS_SCREEN_DESCRIPTION",
+            "description": "APPONE_REGISTRATION_ORSDELIVERYDETAILS_SCREEN_DESCRIPTION",
             "primaryActionLabel": "ACTION_SUBMIT",
             "secondaryActionLabel": "ACTION_CANCEL"
           },
@@ -5413,7 +5413,7 @@
       ],
       "summary": false,
       "version": 3,
-      "category": "VAS",
+      "category": "ORS",
       "disabled": false,
       "onAction": [
         {
@@ -5481,7 +5481,7 @@
                 }
               }
             ],
-            "configName": "vasDelivery"
+            "configName": "orsDelivery"
           }
         },
         {
@@ -5524,7 +5524,7 @@
                 "value": "{{navigation.HouseholdClientReferenceId}}"
               }
             ],
-            "name": "vasDeliverySuccess",
+            "name": "orsDeliverySuccess",
             "type": "TEMPLATE",
             "onError": [
               {
@@ -7130,19 +7130,19 @@
       "scrollListener": {}
     },
     {
-      "name": "VASCHECKLIST",
+      "name": "ORSCHECKLIST",
       "order": 6,
       "pages": [
         {
           "body": null,
-          "flow": "VASCHECKLIST",
+          "flow": "ORSCHECKLIST",
           "page": "eligibilityChecklist",
           "type": "object",
-          "label": "APPONE_VAS_ELIGIBILITY_CHECKLIST_SCREEN_HEADING",
+          "label": "APPONE_ORS_ELIGIBILITY_CHECKLIST_SCREEN_HEADING",
           "order": 1,
           "footer": [
             {
-              "label": "APPONE_VAS_REGISTRATION_DELIVERYDETAILS_ACTION_BUTTON_LABEL_1",
+              "label": "APPONE_ORS_REGISTRATION_DELIVERYDETAILS_ACTION_BUTTON_LABEL_1",
               "format": "button",
               "fieldName": "eligibilityChecklistSubmitButton",
               "onAction": [
@@ -7163,7 +7163,7 @@
             }
           ],
           "module": "REGISTRATION",
-          "heading": "APPONE_VAS_ELIGIBILITY_CHECKLIST_SCREEN_HEADING",
+          "heading": "APPONE_ORS_ELIGIBILITY_CHECKLIST_SCREEN_HEADING",
           "summary": false,
           "version": 1,
           "onAction": [
@@ -7187,7 +7187,7 @@
                   "name": "QUESTION_1_NO"
                 }
               ],
-              "label": "APPONE_VAS_ELIGIBILITYCHECKLIST_QUESTION_1_LABEL",
+              "label": "APPONE_ORS_ELIGIBILITYCHECKLIST_QUESTION_1_LABEL",
               "order": 1,
               "value": "",
               "format": "radio",
@@ -7208,7 +7208,7 @@
                 {
                   "type": "required",
                   "value": true,
-                  "message": "APPONE_VAS_ELIGIBILITYCHECKLIST_QUESTION_1_LABEL_REQUIRED_MESSAGE"
+                  "message": "APPONE_ORS_ELIGIBILITYCHECKLIST_QUESTION_1_LABEL_REQUIRED_MESSAGE"
                 }
               ],
               "errorMessage": "",
@@ -7225,7 +7225,7 @@
                 }
               ],
               "includeInSummary": true,
-              "required.message": "APPONE_VAS_ELIGIBILITYCHECKLIST_QUESTION_1_LABEL_REQUIRED_MESSAGE"
+              "required.message": "APPONE_ORS_ELIGIBILITYCHECKLIST_QUESTION_1_LABEL_REQUIRED_MESSAGE"
             },
             {
               "type": "string",
@@ -7239,7 +7239,7 @@
                   "name": "QUESTION_2_NO"
                 }
               ],
-              "label": "APPONE_VAS_ELIGIBILITYCHECKLIST_QUESTION_2_LABEL",
+              "label": "APPONE_ORS_ELIGIBILITYCHECKLIST_QUESTION_2_LABEL",
               "order": 2,
               "value": "",
               "format": "radio",
@@ -7260,7 +7260,7 @@
                 {
                   "type": "required",
                   "value": true,
-                  "message": "APPONE_VAS_ELIGIBILITYCHECKLIST_QUESTION_2_LABEL_REQUIRED_MESSAGE"
+                  "message": "APPONE_ORS_ELIGIBILITYCHECKLIST_QUESTION_2_LABEL_REQUIRED_MESSAGE"
                 }
               ],
               "errorMessage": "",
@@ -7277,14 +7277,14 @@
                 }
               ],
               "includeInSummary": true,
-              "required.message": "APPONE_VAS_ELIGIBILITYCHECKLIST_QUESTION_2_LABEL_REQUIRED_MESSAGE"
+              "required.message": "APPONE_ORS_ELIGIBILITYCHECKLIST_QUESTION_2_LABEL_REQUIRED_MESSAGE"
             }
           ],
-          "actionLabel": "APPONE_VAS_REGISTRATION_DELIVERYDETAILS_ACTION_BUTTON_LABEL_1",
-          "description": "APPONE_VAS_ELIGIBILITY_CHECKLIST_SCREEN_DESCRIPTION",
+          "actionLabel": "APPONE_ORS_REGISTRATION_DELIVERYDETAILS_ACTION_BUTTON_LABEL_1",
+          "description": "APPONE_ORS_ELIGIBILITY_CHECKLIST_SCREEN_DESCRIPTION",
           "showTabView": false,
           "showAlertPopUp": {
-            "title": "APPONE_VAS_ELIGIBILITYCHECKLIST_ALERT_TITLE",
+            "title": "APPONE_ORS_ELIGIBILITYCHECKLIST_ALERT_TITLE",
             "conditions": [
               {
                 "value": "To Administer",
@@ -7309,7 +7309,7 @@
       ],
       "summary": false,
       "version": 3,
-      "category": "VAS",
+      "category": "ORS",
       "disabled": false,
       "onAction": [
             {
@@ -7357,10 +7357,10 @@
                       },
                       {
                         "key": "sourceFlow",
-                        "value": "VASCHECKLIST"
+                        "value": "ORSCHECKLIST"
                       }
                     ],
-                    "name": "vasDetails",
+                    "name": "orsDetails",
                     "type": "TEMPLATE",
                     "onError": [
                       {
@@ -7448,7 +7448,7 @@
                       },
                       {
                         "key": "sourceFlow",
-                        "value": "VASCHECKLIST"
+                        "value": "ORSCHECKLIST"
                       }
                     ],
                     "name": "REFER_BENEFICIARY",
@@ -7534,7 +7534,7 @@
                         }
                       }
                     ],
-                    "configName": "vasIneligibleConfig"
+                    "configName": "orsIneligibleConfig"
                   }
                 },
                 {
@@ -8752,7 +8752,7 @@
               "visibilityCondition": {
                 "expression": [
                   {
-                    "condition": "navigation.sourceFlow != 'CHECKLIST' && navigation.sourceFlow != 'VASCHECKLIST'"
+                    "condition": "navigation.sourceFlow != 'CHECKLIST' && navigation.sourceFlow != 'ORSCHECKLIST'"
                   }
                 ]
               },
