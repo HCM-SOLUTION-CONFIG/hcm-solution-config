@@ -5568,6 +5568,10 @@
                         "value": "{{navigation.HouseholdClientReferenceId}}"
                       },
                       {
+                        "key": "memberCount",
+                        "value": "{{navigation.memberCount}}"
+                      },
+                      {
                         "key": "ProjectBeneficiaryClientReferenceId",
                         "value": "{{formData.projectBeneficiary.clientReferenceId}}"
                       },
@@ -5584,8 +5588,32 @@
                         "value": "{{fn:formatDate(formData.dobPicker, 'ageInMonths')}}"
                       },
                       {
+                        "key": "childName",
+                        "value": "{{formData.nameOfIndividual}}"
+                      },
+                      {
+                        "key": "ageInMonths",
+                        "value": "{{fn:formatDate(formData.dobPicker, 'ageInMonths')}}"
+                      },
+                      {
+                        "key": "gender",
+                        "value": "{{formData.gender}}"
+                      },
+                      {
+                        "key": "headName",
+                        "value": "{{navigation.headName}}"
+                      },
+                      {
+                        "key": "headMobileNumber",
+                        "value": "{{navigation.headMobileNumber}}"
+                      },
+                      {
                         "key": "cycleIndex",
-                        "value": "{{contextData.0.cycleIndex}}"
+                        "value": "{{navigation.cycleIndex}}"
+                      },
+                      {
+                        "key": "disableBack",
+                        "value": "true"
                       }
                     ],
                     "name": "CHECKLIST",
@@ -5677,27 +5705,27 @@
                   },
                   {
                     "key": "selectedIndividualName",
-                    "value": "{{fn:str(contextData.entities.IndividualModel.name)}}"
+                    "value": "{{formData.nameOfIndividual}}"
                   },
                   {
                     "key": "selectedIndividualGender",
-                    "value": "{{fn:str(contextData.entities.IndividualModel.gender)}}"
+                    "value": "{{formData.gender}}"
                   },
                   {
                     "key": "selectedIndividualAgeInMonths",
-                    "value": "{{fn:formatDate(contextData.entities.IndividualModel.dateOfBirth, 'ageInMonths')}}"
+                    "value": "{{fn:formatDate(formData.dobPicker, 'ageInMonths')}}"
                   },
                   {
                     "key": "childName",
-                    "value": "{{fn:str(contextData.entities.IndividualModel.name)}}"
+                    "value": "{{formData.nameOfIndividual}}"
                   },
                   {
                     "key": "ageInMonths",
-                    "value": "{{fn:formatDate(contextData.entities.IndividualModel.dateOfBirth, 'ageInMonths')}}"
+                    "value": "{{fn:formatDate(formData.dobPicker, 'ageInMonths')}}"
                   },
                   {
                     "key": "gender",
-                    "value": "{{fn:str(contextData.entities.IndividualModel.gender)}}"
+                    "value": "{{formData.gender}}"
                   },
                   {
                     "key": "headName",
@@ -5735,35 +5763,63 @@
             "data": [
               {
                 "key": "selectedIndividualClientReferenceId",
-                "value": "{{formData.individual.clientReferenceId}}"
+                "value": "{{contextData.entities.IndividualModel.clientReferenceId}}"
               },
               {
                 "key": "selectedIndividualIdentifierId",
-                "value": "{{formData.individual.identifiers.0.identifierId}}"
+                "value": "{{contextData.entities.IndividualModel.identifiers.0.identifierId}}"
               },
               {
                 "key": "HouseholdClientReferenceId",
                 "value": "{{navigation.HouseholdClientReferenceId}}"
               },
               {
+                "key": "memberCount",
+                "value": "{{navigation.memberCount}}"
+              },
+              {
                 "key": "ProjectBeneficiaryClientReferenceId",
-                "value": "{{formData.projectBeneficiary.clientReferenceId}}"
+                "value": "{{contextData.entities.ProjectBeneficiaryModel.clientReferenceId}}"
               },
               {
                 "key": "selectedIndividualName",
-                "value": "{{formData.individual.name.familyName}}"
+                "value": "{{formData.nameOfIndividual}}"
               },
               {
                 "key": "selectedIndividualGender",
-                "value": "{{formData.individual.gender}}"
+                "value": "{{formData.gender}}"
               },
               {
                 "key": "selectedIndividualAgeInMonths",
-                "value": "{{fn:formatDate(formData, 'ageinmonths')}}"
+                "value": "{{fn:formatDate(formData.dobPicker, 'ageInMonths')}}"
+              },
+              {
+                "key": "childName",
+                "value": "{{formData.nameOfIndividual}}"
+              },
+              {
+                "key": "ageInMonths",
+                "value": "{{fn:formatDate(formData.dobPicker, 'ageInMonths')}}"
+              },
+              {
+                "key": "gender",
+                "value": "{{formData.gender}}"
+              },
+              {
+                "key": "headName",
+                "value": "{{navigation.headName}}"
+              },
+              {
+                "key": "headMobileNumber",
+                "value": "{{navigation.headMobileNumber}}"
               },
               {
                 "key": "cycleIndex",
-                "value": "{{contextData.0.cycleIndex}}"
+                "value": "{{navigation.cycleIndex}}"
+              },
+              {
+                "key": "disableBack",
+                "value": "true"
               }
             ],
             "name": "CHECKLIST",
@@ -6193,6 +6249,10 @@
                 "value": "{{navigation.HouseholdClientReferenceId}}"
               },
               {
+                "key": "memberCount",
+                "value": "{{navigation.memberCount}}"
+              },
+              {
                 "key": "ProjectBeneficiaryClientReferenceId",
                 "value": "{{contextData.entities.ProjectBeneficiaryModel.clientReferenceId}}"
               },
@@ -6209,8 +6269,32 @@
                 "value": "{{fn:formatDate(contextData.entities.IndividualModel.dateOfBirth, 'ageinmonths')}}"
               },
               {
+                "key": "childName",
+                "value": "{{contextData.entities.IndividualModel.name.givenName}}"
+              },
+              {
+                "key": "ageInMonths",
+                "value": "{{fn:formatDate(contextData.entities.IndividualModel.dateOfBirth, 'ageinmonths')}}"
+              },
+              {
+                "key": "gender",
+                "value": "{{contextData.entities.IndividualModel.gender}}"
+              },
+              {
+                "key": "headName",
+                "value": "{{navigation.headName}}"
+              },
+              {
+                "key": "headMobileNumber",
+                "value": "{{navigation.headMobileNumber}}"
+              },
+              {
                 "key": "cycleIndex",
-                "value": "{{contextData.0.cycleIndex}}"
+                "value": "{{navigation.cycleIndex}}"
+              },
+              {
+                "key": "disableBack",
+                "value": "true"
               }
             ],
             "name": "CHECKLIST",
