@@ -5689,7 +5689,7 @@
                   },
                   {
                     "key": "selectedIndividualIdentifierId",
-                    "value": "{{contextData.entities.IndividualModel.identifiers.0.identifierId}}"
+                    "value": "{{contextData.formData.beneficiaryDetails.identifiers.1}}"
                   },
                   {
                     "key": "HouseholdClientReferenceId",
@@ -5767,7 +5767,7 @@
               },
               {
                 "key": "selectedIndividualIdentifierId",
-                "value": "{{contextData.entities.IndividualModel.identifiers.0.identifierId}}"
+                "value": "{{contextData.formData.beneficiaryDetails.identifiers.1}}"
               },
               {
                 "key": "HouseholdClientReferenceId",
@@ -6242,7 +6242,7 @@
               },
               {
                 "key": "selectedIndividualIdentifierId",
-                "value": "{{contextData.entities.IndividualModel.identifiers.0.identifierId}}"
+                "value": "{{contextData.formData.beneficiaryDetails.identifiers.1}}"
               },
               {
                 "key": "HouseholdClientReferenceId",
