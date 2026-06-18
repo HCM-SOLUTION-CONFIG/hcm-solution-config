@@ -1145,7 +1145,7 @@
       "name": "orsDetails",
       "order": 14,
       "footer": [
-        {
+ {
           "type": "template",
           "label": "ORS_RECORD_CYCLE_DOSE",
           "format": "actionPopup",
@@ -1211,7 +1211,7 @@
           "type": "template",
           "label": "RECORD_CYCLE_DOSE",
           "format": "button",
-          "visible": "{{fn:hasStockForDelivery(contextData.0.eligibleProductVariants)}} == true",
+            "visible": "{{fn:hasStockForDelivery(contextData.0.eligibleProductVariants)}} == true",
           "disabled": "{{fn:hasStockForDelivery(contextData.0.eligibleProductVariants)}} == false",
           "onAction": [
             {
@@ -2026,29 +2026,7 @@
                   "bottomGap": 16
                 }
               },
-               {
-                    "type": "template",
-                    "label": "ORS_BENEFICIARY_REFERRED",
-                    "format": "tag",
-                    "hidden": false,
-                    "visible": "{{fn:hasORSReferralForCurrentCycle(item.hFReferral)}}==true && {{fn:isHead(item.member)}}==false",
-                    "fieldName": "orsBeneficiaryReferred",
-                    "properties": {
-                      "tagType": "error",
-                  "bottomGap": 16
-                    }
-                  },
-              {
-                "type": "template",
-                "label": "ORS_INELIGIBLE",
-                "format": "tag",
-                "visible": "{{fn:orsWithinTheAge(item.individual.0)}}==true && {{fn:hasORSIneligible(item.task)}}==true",
-                "fieldName": "orsIneligible",
-                "properties": {
-                  "tagType": "error",
-                  "bottomGap": 16
-                }
-              },
+               
                   {
                     "type": "template",
                     "label": "DELIVERY",
@@ -2280,11 +2258,11 @@
                       "bottomGap": 16
                     }
                   },
-                   {
+                  {
                     "type": "template",
                     "label": "ORS",
-                    "visible": "{{fn:isSMCFlowDone(item.task, item.hFReferral)}} == true && {{fn:isORSDelivered(item.task)}}==false && {{fn:hasORSReferralForCurrentCycle(item.hFReferral)}}==false && {{fn:hasORSIneligible(item.task)}}==false && {{fn:orsWithinTheAge(item.individual.0)}}==true && {{fn:isHead(item.member)}}==false",
                     "format": "button",
+                    "visible": "{{fn:checkEligibilityForAgeAndSideEffect(item.individual.0, item.task, contextData.0.currentRunningCycle)}}==true && {{fn:isDelivered(item.task)}}==true && {{fn:isORSEligible(item.individual.0)}} && {{fn:isORSDelivered(item.task)}}==false && {{fn:isHead(item.member)}}==false",
                     "onAction": [
                       {
                         "actionType": "NAVIGATION",
@@ -2347,7 +2325,89 @@
                               "value": "{{contextData.0.currentRunningCycle}}"
                             }
                           ],
-                          "name": "ORSCHECKLIST",
+                          "name": "orsDetails",
+                          "type": "FORM"
+                        }
+                      }
+                    ],
+                    "fieldName": "orsDeliveryButton",
+                    "mandatory": true,
+                    "properties": {
+                      "size": "medium",
+                      "type": "primary",
+                      "mainAxisSize": "max",
+                      "mainAxisAlignment": "center",
+                      "bottomGap": 16
+                    }
+                  },
+                   {
+                    "type": "template",
+                    "label": "ORS",
+                    "format": "button",
+                    "visible": "{{fn:checkEligibilityForAgeAndSideEffect(item.individual.0, item.task, contextData.0.currentRunningCycle)}}==false && {{fn:isORSEligible(item.individual.0)}} && {{fn:isORSDelivered(item.task)}}==false && {{fn:isHead(item.member)}}==false",
+                    "onAction": [
+                      {
+                        "actionType": "NAVIGATION",
+                        "properties": {
+                          "data": [
+                            {
+                              "key": "selectedIndividualClientReferenceId",
+                              "value": "{{item.individual.0.clientReferenceId}}"
+                            },
+                            {
+                              "key": "selectedIndividualIdentifierId",
+                              "value": "{{item.individual.0.identifiers.0.identifierId}}"
+                            },
+                            {
+                              "key": "HouseholdClientReferenceId",
+                              "value": "{{item.member.0.householdClientReferenceId}}"
+                            },
+                            {
+                              "key": "memberCount",
+                              "value": "{{contextData.0.household.HouseholdModel.memberCount}}"
+                            },
+                            {
+                              "key": "ProjectBeneficiaryClientReferenceId",
+                              "value": "{{item.projectBeneficiary.0.clientReferenceId}}"
+                            },
+                            {
+                              "key": "selectedIndividualName",
+                              "value": "{{fn:str(item.individual.0.name)}}"
+                            },
+                            {
+                              "key": "selectedIndividualGender",
+                              "value": "{{fn:str(item.individual.0.gender)}}"
+                            },
+                            {
+                              "key": "selectedIndividualAgeInMonths",
+                              "value": "{{fn:formatDate(item.individual.0.dateOfBirth, 'ageInMonths')}}"
+                            },
+                            {
+                              "key": "childName",
+                              "value": "{{fn:str(item.individual.0.name)}}"
+                            },
+                            {
+                              "key": "ageInMonths",
+                              "value": "{{fn:formatDate(item.individual.0.dateOfBirth, 'ageInMonths')}}"
+                            },
+                            {
+                              "key": "gender",
+                              "value": "{{fn:str(item.individual.0.gender)}}"
+                            },
+                            {
+                              "key": "headName",
+                              "value": "{{fn:str(contextData.0.headIndividual.IndividualModel.name)}}"
+                            },
+                            {
+                              "key": "headMobileNumber",
+                              "value": "{{fn:str(contextData.0.headIndividual.IndividualModel.mobileNumber)}}"
+                            },
+                            {
+                              "key": "cycleIndex",
+                              "value": "{{contextData.0.currentRunningCycle}}"
+                            }
+                          ],
+                          "name": "orsDetails",
                           "type": "FORM"
                         }
                       }
@@ -7926,7 +7986,7 @@
               "tooltip": "APPONE_REGISTRATION_BENEFICIARYDETAILS_label_dobPicker_tooltip_addmember",
               "ageRange": {
                 "maxAge": 59,
-                "minAge": 3,
+                "minAge": 0,
                 "errorMessage": "AGE_VALIDATION_ADDMEMBER"
               },
               "helpText": "APPONE_REGISTRATION_BENEFICIARYDETAILS_label_dobPicker_helpText_addmember",
@@ -7947,7 +8007,7 @@
                 },
                 {
                   "type": "minAge",
-                  "value": 3,
+                  "value": 0,
                   "message": "AGE_VALIDATION_ADDMEMBER"
                 },
                 {
