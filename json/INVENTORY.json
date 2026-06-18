@@ -2668,6 +2668,10 @@
                           "value": "{{item.items[0].senderId}}"
                         },
                         {
+                          "key": "receivedFromName",
+                          "value": "{{fn:getFacilityName(item.items[0].senderId)}}"
+                        },
+                        {
                           "key": "quantity",
                           "value": "{{item.items[0].quantity}}"
                         },
@@ -2760,6 +2764,10 @@
               {
                 "key": "senderFacilityId",
                 "value": "{{navigation.senderFacilityId}}"
+              },
+              {
+                "key": "receivedFromName",
+                "value": "{{fn:getFacilityName(item.items[0].senderId)}}"
               },
               {
                 "key": "productVariantId",
@@ -3012,7 +3020,7 @@
               "type": "string",
               "label": "INVENTORY_RECEIVED_FROM_LABEL",
               "order": 3,
-              "value": "{{senderFacilityId}}",
+              "value": "{{receivedFromName}}",
               "format": "text",
               "fieldName": "receivedFrom",
               "displayOnly": true
