@@ -1428,7 +1428,7 @@
               },
               {
                 "key": "deliveryTeamName",
-                "value": "{{fn:getTeamName(formData.warehouseDetails.teamCode)}}"
+                "value": "{{fn:getDeliveryTeamName(formData.warehouseDetails.teamCode, formData.stockDetails.facilityFromWhich, singleton.loggedInUser.userName)}}"
               },
               {
                 "key": "mrnNumber",
