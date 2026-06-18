@@ -520,6 +520,26 @@
                   {
                     "key": "futureDoses",
                     "value": "{{contextData.0.futureDeliveries}}"
+                  },
+                  {
+                    "key": "ec1",
+                    "value": "{{navigation.ec1}}"
+                  },
+                  {
+                    "key": "ec2",
+                    "value": "{{navigation.ec2}}"
+                  },
+                  {
+                    "key": "ec3",
+                    "value": "{{navigation.ec3}}"
+                  },
+                  {
+                    "key": "ec4",
+                    "value": "{{navigation.ec4}}"
+                  },
+                  {
+                    "key": "ec5",
+                    "value": "{{navigation.ec5}}"
                   }
                 ],
                 "name": "DELIVERY",
@@ -3066,6 +3086,26 @@
                   {
                     "key": "deliveryStrategy",
                     "value": "{{navigation.deliveryStrategy}}"
+                  },
+                  {
+                    "key": "ec1",
+                    "value": "{{navigation.ec1}}"
+                  },
+                  {
+                    "key": "ec2",
+                    "value": "{{navigation.ec2}}"
+                  },
+                  {
+                    "key": "ec3",
+                    "value": "{{navigation.ec3}}"
+                  },
+                  {
+                    "key": "ec4",
+                    "value": "{{navigation.ec4}}"
+                  },
+                  {
+                    "key": "ec5",
+                    "value": "{{navigation.ec5}}"
                   }
                 ],
                 "onError": [
@@ -3149,6 +3189,26 @@
                       {
                         "key": "futureDoses",
                         "value": "{{navigation.futureDoses}}"
+                      },
+                      {
+                        "key": "ec1",
+                        "value": "{{navigation.ec1}}"
+                      },
+                      {
+                        "key": "ec2",
+                        "value": "{{navigation.ec2}}"
+                      },
+                      {
+                        "key": "ec3",
+                        "value": "{{navigation.ec3}}"
+                      },
+                      {
+                        "key": "ec4",
+                        "value": "{{navigation.ec4}}"
+                      },
+                      {
+                        "key": "ec5",
+                        "value": "{{navigation.ec5}}"
                       }
                     ],
                     "onError": [
@@ -3394,6 +3454,26 @@
                   {
                     "key": "deliveryStrategy",
                     "value": "{{navigation.deliveryStrategy}}"
+                  },
+                  {
+                    "key": "ec1",
+                    "value": "{{navigation.ec1}}"
+                  },
+                  {
+                    "key": "ec2",
+                    "value": "{{navigation.ec2}}"
+                  },
+                  {
+                    "key": "ec3",
+                    "value": "{{navigation.ec3}}"
+                  },
+                  {
+                    "key": "ec4",
+                    "value": "{{navigation.ec4}}"
+                  },
+                  {
+                    "key": "ec5",
+                    "value": "{{navigation.ec5}}"
                   }
                 ],
                 "onError": [
@@ -3477,6 +3557,26 @@
                       {
                         "key": "futureDoses",
                         "value": "{{navigation.futureDoses}}"
+                      },
+                      {
+                        "key": "ec1",
+                        "value": "{{navigation.ec1}}"
+                      },
+                      {
+                        "key": "ec2",
+                        "value": "{{navigation.ec2}}"
+                      },
+                      {
+                        "key": "ec3",
+                        "value": "{{navigation.ec3}}"
+                      },
+                      {
+                        "key": "ec4",
+                        "value": "{{navigation.ec4}}"
+                      },
+                      {
+                        "key": "ec5",
+                        "value": "{{navigation.ec5}}"
                       }
                     ],
                     "onError": [
@@ -3788,6 +3888,26 @@
               {
                 "key": "deliveryStrategy",
                 "value": "{{navigation.deliveryStrategy}}"
+              },
+              {
+                "key": "ec1",
+                "value": "{{navigation.ec1}}"
+              },
+              {
+                "key": "ec2",
+                "value": "{{navigation.ec2}}"
+              },
+              {
+                "key": "ec3",
+                "value": "{{navigation.ec3}}"
+              },
+              {
+                "key": "ec4",
+                "value": "{{navigation.ec4}}"
+              },
+              {
+                "key": "ec5",
+                "value": "{{navigation.ec5}}"
               }
             ],
             "onError": [
@@ -3885,6 +4005,26 @@
                   {
                     "key": "futureDoses",
                     "value": "{{navigation.futureDoses}}"
+                  },
+                  {
+                    "key": "ec1",
+                    "value": "{{navigation.ec1}}"
+                  },
+                  {
+                    "key": "ec2",
+                    "value": "{{navigation.ec2}}"
+                  },
+                  {
+                    "key": "ec3",
+                    "value": "{{navigation.ec3}}"
+                  },
+                  {
+                    "key": "ec4",
+                    "value": "{{navigation.ec4}}"
+                  },
+                  {
+                    "key": "ec5",
+                    "value": "{{navigation.ec5}}"
                   }
                 ],
                 "onError": [
@@ -4064,6 +4204,26 @@
                       {
                         "key": "locationAccuracy",
                         "value": "{{navigation.locationAccuracy}}"
+                      },
+                      {
+                        "key": "ec1",
+                        "value": "{{navigation.ec1}}"
+                      },
+                      {
+                        "key": "ec2",
+                        "value": "{{navigation.ec2}}"
+                      },
+                      {
+                        "key": "ec3",
+                        "value": "{{navigation.ec3}}"
+                      },
+                      {
+                        "key": "ec4",
+                        "value": "{{navigation.ec4}}"
+                      },
+                      {
+                        "key": "ec5",
+                        "value": "{{navigation.ec5}}"
                       }
                     ],
                     "onError": [
@@ -4371,6 +4531,26 @@
               {
                 "key": "locationAccuracy",
                 "value": "{{navigation.locationAccuracy}}"
+              },
+              {
+                "key": "ec1",
+                "value": "{{navigation.ec1}}"
+              },
+              {
+                "key": "ec2",
+                "value": "{{navigation.ec2}}"
+              },
+              {
+                "key": "ec3",
+                "value": "{{navigation.ec3}}"
+              },
+              {
+                "key": "ec4",
+                "value": "{{navigation.ec4}}"
+              },
+              {
+                "key": "ec5",
+                "value": "{{navigation.ec5}}"
               }
             ],
             "onError": [
@@ -4526,6 +4706,26 @@
                       {
                         "key": "headMobileNumber",
                         "value": "{{navigation.headMobileNumber}}"
+                      },
+                      {
+                        "key": "ec1",
+                        "value": "{{eligibilityChecklist.ec1}}"
+                      },
+                      {
+                        "key": "ec2",
+                        "value": "{{eligibilityChecklist.ec2}}"
+                      },
+                      {
+                        "key": "ec3",
+                        "value": "{{eligibilityChecklist.ec3}}"
+                      },
+                      {
+                        "key": "ec4",
+                        "value": "{{eligibilityChecklist.ec4}}"
+                      },
+                      {
+                        "key": "ec5",
+                        "value": "{{eligibilityChecklist.ec5}}"
                       }
                     ],
                     "name": "beneficiaryDetails",
@@ -4589,6 +4789,26 @@
                       {
                         "key": "headMobileNumber",
                         "value": "{{navigation.headMobileNumber}}"
+                      },
+                      {
+                        "key": "ec1",
+                        "value": "{{eligibilityChecklist.ec1}}"
+                      },
+                      {
+                        "key": "ec2",
+                        "value": "{{eligibilityChecklist.ec2}}"
+                      },
+                      {
+                        "key": "ec3",
+                        "value": "{{eligibilityChecklist.ec3}}"
+                      },
+                      {
+                        "key": "ec4",
+                        "value": "{{eligibilityChecklist.ec4}}"
+                      },
+                      {
+                        "key": "ec5",
+                        "value": "{{eligibilityChecklist.ec5}}"
                       }
                     ],
                     "name": "beneficiaryDetails",
@@ -4664,6 +4884,26 @@
                       {
                         "key": "ProjectBeneficiaryClientReferenceId",
                         "value": "{{navigation.ProjectBeneficiaryClientReferenceId}}"
+                      },
+                      {
+                        "key": "ec1",
+                        "value": "{{eligibilityChecklist.ec1}}"
+                      },
+                      {
+                        "key": "ec2",
+                        "value": "{{eligibilityChecklist.ec2}}"
+                      },
+                      {
+                        "key": "ec3",
+                        "value": "{{eligibilityChecklist.ec3}}"
+                      },
+                      {
+                        "key": "ec4",
+                        "value": "{{eligibilityChecklist.ec4}}"
+                      },
+                      {
+                        "key": "ec5",
+                        "value": "{{eligibilityChecklist.ec5}}"
                       }
                     ],
                     "onError": [
@@ -5331,6 +5571,26 @@
                   {
                     "key": "ProjectBeneficiaryClientReferenceId",
                     "value": "{{navigation.ProjectBeneficiaryClientReferenceId}}"
+                  },
+                  {
+                    "key": "ec1",
+                    "value": "{{eligibilityChecklist.ec1}}"
+                  },
+                  {
+                    "key": "ec2",
+                    "value": "{{eligibilityChecklist.ec2}}"
+                  },
+                  {
+                    "key": "ec3",
+                    "value": "{{eligibilityChecklist.ec3}}"
+                  },
+                  {
+                    "key": "ec4",
+                    "value": "{{eligibilityChecklist.ec4}}"
+                  },
+                  {
+                    "key": "ec5",
+                    "value": "{{eligibilityChecklist.ec5}}"
                   }
                 ],
                 "onError": [
