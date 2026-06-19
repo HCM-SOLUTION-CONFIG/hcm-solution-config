@@ -1759,7 +1759,7 @@
               "data": [
                 {
                   "key": "HOUSEHOLD_HEAD_NAME",
-                  "value": "{{contextData.0.headIndividual.IndividualModel.name.givenName}} {{contextData.0.headIndividual.IndividualModel.name.familyName}}",
+                  "value": "{{fn:individualName(contextData.0.headIndividual.IndividualModel.name)}}",
                   "isActive": true
                 },
                 {
@@ -1940,7 +1940,7 @@
                   },
                   {
                     "type": "template",
-                    "value": "{{ item.individual.0.name.givenName }} {{ item.individual.0.name.familyName }}",
+                    "value": "{{fn:individualName(item.individual.0.name)}}",
                     "format": "textTemplate",
                     "fieldName": "individualName",
                     "properties": {
@@ -3383,7 +3383,7 @@
                 "children": [
                   {
                     "type": "template",
-                    "value": "{{ item.headIndividual.0.name.givenName }} {{ item.headIndividual.0.name.familyName }}",
+                    "value": "{{fn:individualName(item.headIndividual.0.name)}}",
                     "format": "textTemplate",
                     "fieldName": "headOfHousehold"
                   },
@@ -3517,7 +3517,7 @@
                       "header": "BENEFICIARY",
                       "hidden": false,
                       "isActive": true,
-                      "cellValue": "{{item.name.givenName}} {{item.name.familyName}}"
+                      "cellValue": "{{fn:individualName(item.name)}}"
                     },
                     {
                       "header": "AGE_OF_BENEFICIARY",
