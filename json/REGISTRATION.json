@@ -387,156 +387,7 @@
       ],
       "name": "beneficiaryDetails",
       "order": 9,
-      "footer": [
-        {
-          "type": "template",
-          "label": "RECORD_CYCLE_DOSE",
-          "format": "actionPopup",
-          "fieldName": "insufficientStockPopUp",
-          "visible": "{{fn:hasStockForDelivery(contextData.0.eligibleProductVariants)}} == false",
-          "properties": {
-            "icon": "Warning",
-            "size": "large",
-            "type": "primary",
-            "suffixIcon": null,
-            "popupConfig": {
-              "body": [
-                {
-                  "type": "template",
-                  "value": "{{fn:getInsufficientStockMessage()}}",
-                  "format": "textTemplate",
-                  "fieldName": "insufficientStockMessageText",
-                  "properties": {
-                    "separatedBy": "::",
-                    "replaceAll": [
-                      {
-                        "searchValue": "::",
-                        "replaceValue": "\n"
-                      }
-                    ]
-                  }
-                }
-              ],
-              "type": "default",
-              "title": "INSUFFICIENT_STOCK_TITLE",
-              "titleIcon": "Warning",
-              "footerActions": [
-                {
-                  "type": "template",
-                  "label": "GO_BACK",
-                  "format": "button",
-                  "onAction": [
-                    {
-                      "actionType": "CLOSE_POPUP",
-                      "properties": {
-                        "parentScreenKey": "beneficiaryDetails"
-                      }
-                    }
-                  ],
-                  "fieldName": "closePopUp",
-                  "properties": {
-                    "size": "large",
-                    "type": "primary",
-                    "mainAxisSize": "max"
-                  }
-                }
-              ],
-              "showCloseButton": true,
-              "barrierDismissible": true
-            },
-            "mainAxisSize": "max",
-            "mainAxisAlignment": "center"
-          },
-          "schemaCode": null,
-          "suffixIcon": null
-        },
-        {
-          "type": "template",
-          "label": "RECORD_CYCLE_DOSE",
-          "format": "button",
-          "visible": "{{fn:canRecordDelivery(contextData.0.nextCycleId)}}==true && {{fn:hasStockForDelivery(contextData.0.eligibleProductVariants)}} == true",
-          "disabled": "{{fn:hasStockForDelivery(contextData.0.eligibleProductVariants)}} == false",
-          "onAction": [
-            {
-              "actionType": "NAVIGATION",
-              "properties": {
-                "data": [
-                  {
-                    "key": "ProjectBeneficiaryClientReferenceId",
-                    "value": "{{contextData.0.projectBeneficiaries.0.clientReferenceId}}"
-                  },
-                  {
-                    "key": "HouseholdClientReferenceId",
-                    "value": "{{contextData.0.household.0.clientReferenceId}}"
-                  },
-                  {
-                    "key": "memberCount",
-                    "value": "{{household.0.memberCount}}"
-                  },
-                  {
-                    "key": "individualClientReferenceId",
-                    "value": "{{navigation.selectedIndividualClientReferenceId}}"
-                  },
-                  {
-                    "key": "beneficiaryId",
-                    "value": "{{navigation.selectedIndividualIdentifierId}}"
-                  },
-                  {
-                    "key": "childName",
-                    "value": "{{navigation.childName}}"
-                  },
-                  {
-                    "key": "ageInMonths",
-                    "value": "{{navigation.ageInMonths}}"
-                  },
-                  {
-                    "key": "gender",
-                    "value": "{{navigation.gender}}"
-                  },
-                  {
-                    "key": "headName",
-                    "value": "{{navigation.headName}}"
-                  },
-                  {
-                    "key": "headMobileNumber",
-                    "value": "{{navigation.headMobileNumber}}"
-                  },
-                  {
-                    "key": "cycleIndex",
-                    "value": "{{contextData.0.nextCycleId}}"
-                  },
-                  {
-                    "key": "doseIndex",
-                    "value": "{{contextData.0.nextDoseId}}"
-                  },
-                  {
-                    "key": "deliveryStrategy",
-                    "value": "{{contextData.0.currentDelivery.0.deliveryStrategy}}"
-                  },
-                  {
-                    "key": "totalDosesInCycle",
-                    "value": "{{contextData.0.deliveryLength}}"
-                  },
-                  {
-                    "key": "futureDoses",
-                    "value": "{{contextData.0.futureDeliveries}}"
-                  }
-                ],
-                "name": "DELIVERY",
-                "type": "FORM"
-              }
-            }
-          ],
-          "fieldName": "recordCycle",
-          "mandatory": true,
-          "properties": {
-            "size": "large",
-            "type": "primary",
-            "mainAxisSize": "max",
-            "mainAxisAlignment": "center"
-          }
-        }
-      ],
+      "footer": [],
       "header": [
         {
           "label": "BENEFICIARY_BACK",
@@ -2816,6 +2667,12 @@
                       "hidden": false,
                       "isActive": true,
                       "cellValue": "{{item.gender}}"
+                    },
+                    {
+                      "header": "STATUS",
+                      "hidden": false,
+                      "isActive": true,
+                      "cellValue": "{{fn:getIndividualStatus(item, currentItem.householdMembers)}}"
                     }
                   ]
                 },
@@ -3114,7 +2971,7 @@
             "name": "projectBeneficiaries",
             "match": {
               "field": "beneficiaryClientReferenceId",
-              "inFrom": "individuals.clientReferenceId"
+              "equalsFrom": "clientReferenceId"
             },
             "entity": "ProjectBeneficiaryModel"
           },
@@ -4788,9 +4645,9 @@
               "schemaCode": null,
               "systemDate": false,
               "lengthRange": {
-                "maxLength": 10,
-                "minLength": 10,
-                "errorMessage": "MOBILE_LENGTH_10_DIGIT_ERROR_ADDMEMBER"
+                "maxLength": 8,
+                "minLength": 8,
+                "errorMessage": "MOBILE_LENGTH_8_DIGIT_ERROR_ADDMEMBER"
               },
               "validations": [
                 {
@@ -4800,13 +4657,13 @@
                 },
                 {
                   "type": "minLength",
-                  "value": 10,
-                  "message": "MOBILE_LENGTH_10_DIGIT_ERROR_ADDMEMBER"
+                  "value": 8,
+                  "message": "MOBILE_LENGTH_8_DIGIT_ERROR_ADDMEMBER"
                 },
                 {
                   "type": "maxLength",
-                  "value": 10,
-                  "message": "MOBILE_LENGTH_10_DIGIT_ERROR_ADDMEMBER"
+                  "value": 8,
+                  "message": "MOBILE_LENGTH_8_DIGIT_ERROR_ADDMEMBER"
                 }
               ],
               "errorMessage": "",

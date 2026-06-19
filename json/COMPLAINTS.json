@@ -902,7 +902,7 @@
               "mandatory": true,
               "deleteFlag": false,
               "innerLabel": "",
-              "prefixText": "+91",
+              "prefixText": "+235",
               "systemDate": false,
               "validations": [
                 {
@@ -912,8 +912,8 @@
                 },
                 {
                   "type": "minLength",
-                  "value": 11,
-                  "message": "MOBILE_LENGTH_11_DIGIT"
+                  "value": 8,
+                  "message": "MOBILE_LENGTH_8_DIGIT"
                 },
                 {
                   "type": "pattern",
@@ -922,8 +922,8 @@
                 },
                 {
                   "type": "maxLength",
-                  "value": 11,
-                  "message": "MOBILE_LENGTH_11_DIGIT"
+                  "value": 8,
+                  "message": "MOBILE_LENGTH_8_DIGIT"
                 }
               ],
               "errorMessage": "",
@@ -986,18 +986,18 @@
               "fieldName": "supervisorContactNumber",
               "deleteFlag": false,
               "innerLabel": "",
-              "prefixText": "+91",
+              "prefixText": "+235",
               "systemDate": false,
               "validations": [
                 {
                   "type": "minLength",
-                  "value": 11,
-                  "message": "MOBILE_LENGTH_11_DIGITS"
+                  "value": 8,
+                  "message": "MOBILE_LENGTH_8_DIGIT"
                 },
                 {
                   "type": "maxLength",
-                  "value": 11,
-                  "message": "MOBILE_LENGTH_11_DIGITS"
+                  "value": 8,
+                  "message": "MOBILE_LENGTH_8_DIGIT"
                 },
                 {
                   "type": "pattern",
