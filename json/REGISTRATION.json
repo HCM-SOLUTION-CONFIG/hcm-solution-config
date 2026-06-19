@@ -1301,6 +1301,10 @@
                   {
                     "key": "sourceFlow",
                     "value": "{{navigation.sourceFlow}}"
+                  },
+                  {
+                    "key": "isSMCDelivered",
+                    "value": "{{navigation.isSMCDelivered}}"
                   }
                 ],
                 "name": "VASDELIVERY",
@@ -2365,6 +2369,10 @@
                             {
                               "key": "cycleIndex",
                               "value": "{{contextData.0.currentRunningCycle}}"
+                            },
+                            {
+                              "key": "isSMCDelivered",
+                              "value": "{{fn:isDelivered(item.task)}}"
                             }
                           ],
                           "name": "VASCHECKLIST",
@@ -5612,6 +5620,10 @@
               {
                 "key": "deliveryStrategy",
                 "value": "{{navigation.deliveryStrategy}}"
+              },
+              {
+                "key": "isSMCDelivered",
+                "value": "{{navigation.isSMCDelivered}}"
               }
             ],
             "onError": [
@@ -7699,6 +7711,10 @@
                       {
                         "key": "sourceFlow",
                         "value": "VASCHECKLIST"
+                      },
+                      {
+                        "key": "isSMCDelivered",
+                        "value": "{{navigation.isSMCDelivered}}"
                       }
                     ],
                     "name": "vasDetails",
