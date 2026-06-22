@@ -449,7 +449,7 @@
                       {
                         "key": "additionalFields",
                         "value": "{{fn:getStockEntryType(navigation.reportType)}}",
-                        "operation": "contains"
+                        "operation": "matches"
                       },
                       {
                         "key": "{{fn:getSenderOrReceiver(navigation.reportType)}}",
@@ -491,7 +491,7 @@
                       {
                         "key": "additionalFields",
                         "value": "{{fn:getStockEntryType(navigation.reportType)}}",
-                        "operation": "contains"
+                        "operation": "matches"
                       },
                       {
                         "key": "{{fn:getSenderOrReceiver(navigation.reportType)}}",
