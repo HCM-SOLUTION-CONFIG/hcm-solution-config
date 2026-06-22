@@ -860,6 +860,7 @@
                       {
                         "type": "template",
                         "format": "column",
+                        "visible": "{{fn:isHead(item.member)}} == false",
                         "children": [
                           {
                             "type": "template",
@@ -1016,6 +1017,7 @@
                     "type": "template",
                     "value": "{{item.individual.0.gender }} | {{fn:formatDate(item.individual.0.dateOfBirth, 'age')}}",
                     "format": "textTemplate",
+                    "visible": "{{fn:isHead(item.member)}} == false",
                     "fieldName": "genderAge",
                     "properties": {
                       "bottomGap": 16
@@ -3810,6 +3812,18 @@
                   "name": "REDOSE_REASON_VOMITTING"
                 },
                 {
+                  "code": "FEVER",
+                  "name": "REDOSE_REASON_FEVER"
+                },
+                {
+                  "code": "ABDOMINAL_PAIN",
+                  "name": "REDOSE_REASON_ABDOMINAL_PAIN"
+                },
+                {
+                  "code": "ITCHING",
+                  "name": "REDOSE_REASON_ITCHING"
+                },
+                {
                   "code": "OTHERS",
                   "name": "REDOSE_REASON_OTHERS"
                 }
@@ -5853,7 +5867,8 @@
               "order": 3,
               "value": "true",
               "format": "checkbox",
-              "hidden": false,
+              "hidden": true,
+              "includeInForm": true,
               "isMdms": false,
               "tooltip": "",
               "helpText": "",
@@ -5923,9 +5938,10 @@
               "type": "string",
               "label": "APPONE_REGISTRATION_BENEFICIARYDETAILS_label_dobPicker",
               "order": 5,
-              "value": "",
+              "value": "01/01/1970",
               "format": "dob",
-              "hidden": false,
+              "hidden": true,
+              "includeInForm": true,
               "isMdms": false,
               "tooltip": "APPONE_REGISTRATION_BENEFICIARYDETAILS_label_dobPicker_tooltip",
               "ageRange": {
@@ -5978,9 +5994,10 @@
               ],
               "label": "APPONE_REGISTRATION_BENEFICIARYDETAILS_label_gender",
               "order": 6,
-              "value": "",
+              "value": "FEMALE",
               "format": "select",
-              "hidden": false,
+              "hidden": true,
+              "includeInForm": true,
               "isMdms": true,
               "tooltip": "",
               "helpText": "",
