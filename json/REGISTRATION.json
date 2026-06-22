@@ -5901,7 +5901,7 @@
                       },
                       {
                         "key": "selectedIndividualIdentifierId",
-                        "value": "{{formData.individual.identifiers.0.identifierId}}"
+                        "value": "{{contextData.formData.beneficiaryDetails.identifiers.1}}"
                       },
                       {
                         "key": "HouseholdClientReferenceId",
