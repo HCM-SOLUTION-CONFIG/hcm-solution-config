@@ -388,6 +388,23 @@
       "name": "beneficiaryDetails",
       "order": 9,
       "footer": [],
+      "onSystemBack": [
+        {
+          "actionType": "NAVIGATION",
+          "properties": {
+            "data": [
+              {
+                "key": "HouseholdClientReferenceId",
+                "value": "{{navigation.HouseholdClientReferenceId}}"
+              }
+            ],
+            "name": "householdOverview",
+            "type": "TEMPLATE",
+            "navigationMode": "popUntilAndPush",
+            "popUntilPageName": "searchBeneficiary"
+          }
+        }
+      ],
       "header": [
         {
           "label": "BENEFICIARY_BACK",
@@ -396,8 +413,16 @@
             {
               "actionType": "BACK_NAVIGATION",
               "properties": {
+                "data": [
+                  {
+                    "key": "HouseholdClientReferenceId",
+                    "value": "{{navigation.HouseholdClientReferenceId}}"
+                  }
+                ],
                 "name": "householdOverview",
-                "type": "TEMPLATE"
+                "type": "TEMPLATE",
+                "navigationMode": "popUntilAndPush",
+                "popUntilPageName": "searchBeneficiary"
               }
             }
           ]
@@ -1552,6 +1577,10 @@
                           {
                             "key": "UNIQUE_BENEFICIARY_ID",
                             "value": "{{latestBeneficiaryId}}"
+                          },
+                          {
+                            "key": "isHead",
+                            "value": "false"
                           }
                         ],
                         "name": "ADD_MEMBER",
@@ -1627,6 +1656,10 @@
                                   {
                                     "key": "UNIQUE_BENEFICIARY_ID",
                                     "value": "{{latestBeneficiaryId}}"
+                                  },
+                                  {
+                                    "key": "isHead",
+                                    "value": "false"
                                   }
                                 ],
                                 "name": "ADD_MEMBER",
@@ -2674,7 +2707,7 @@
                       "header": "STATUS",
                       "hidden": false,
                       "isActive": true,
-                      "cellValue": "{{fn:getIndividualStatus(item, currentItem.householdMembers)}}"
+                      "cellValue": "{{fn:getIndividualStatus(item, currentItem.members, currentItem.tasks, currentItem.projectBeneficiaries)}}"
                     }
                   ]
                 },
@@ -2973,9 +3006,25 @@
             "name": "projectBeneficiaries",
             "match": {
               "field": "beneficiaryClientReferenceId",
-              "equalsFrom": "clientReferenceId"
+              "inFrom": "individuals.clientReferenceId"
             },
             "entity": "ProjectBeneficiaryModel"
+          },
+          {
+            "name": "tasks",
+            "match": {
+              "field": "projectBeneficiaryClientReferenceId",
+              "inFrom": "projectBeneficiaries.clientReferenceId"
+            },
+            "entity": "TaskModel"
+          },
+          {
+            "name": "sideEffects",
+            "match": {
+              "field": "clientReferenceId",
+              "inFrom": "projectBeneficiaries.clientReferenceId"
+            },
+            "entity": "SideEffectModel"
           },
           {
             "name": "tasks",
@@ -3381,7 +3430,7 @@
               "order": 3,
               "value": "",
               "format": "dropdown",
-              "hidden": false,
+              "hidden": true,
               "isMdms": true,
               "tooltip": "",
               "helpText": "",
@@ -4461,6 +4510,13 @@
               "value": "",
               "format": "dob",
               "hidden": false,
+              "visibilityCondition": {
+                "expression": [
+                  {
+                    "condition": "navigation.isHead != true"
+                  }
+                ]
+              },
               "isMdms": false,
               "tooltip": "APPONE_REGISTRATION_BENEFICIARYDETAILS_label_dobPicker_tooltip_addmember",
               "ageRange": {
@@ -4526,6 +4582,13 @@
               "value": "",
               "format": "select",
               "hidden": false,
+              "visibilityCondition": {
+                "expression": [
+                  {
+                    "condition": "navigation.isHead != true"
+                  }
+                ]
+              },
               "isMdms": true,
               "tooltip": "",
               "helpText": "",
@@ -4809,6 +4872,21 @@
           "properties": {
             "data": [
               {
+                "key": "HouseholdClientReferenceId",
+                "value": "{{navigation.HouseholdClientReferenceId}}"
+              }
+            ],
+            "name": "householdOverview",
+            "type": "TEMPLATE",
+            "navigationMode": "popUntilAndReplace",
+            "popUntilPageName": "householdOverview"
+          }
+        },
+        {
+          "actionType": "NAVIGATION",
+          "properties": {
+            "data": [
+              {
                 "key": "individualClientReferenceId",
                 "value": "{{contextData.entities.IndividualModel.clientReferenceId}}"
               },
@@ -4850,9 +4928,7 @@
                   "message": "Navigation failed."
                 }
               }
-            ],
-            "navigationMode": "popUntilAndPush",
-            "popUntilPageName": "householdOverview"
+            ]
           }
         }
       ],
