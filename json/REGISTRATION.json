@@ -1732,6 +1732,10 @@
                           {
                             "key": "headMobileNumber",
                             "value": "{{fn:str(contextData.0.headIndividual.IndividualModel.mobileNumber)}}"
+                          },
+                          {
+                            "key": "isHead",
+                            "value": "false"
                           }
                         ],
                         "name": "ADD_MEMBER",
@@ -1823,6 +1827,10 @@
                                   {
                                     "key": "headMobileNumber",
                                     "value": "{{fn:str(contextData.0.headIndividual.IndividualModel.mobileNumber)}}"
+                                  },
+                                  {
+                                    "key": "isHead",
+                                    "value": "false"
                                   }
                                 ],
                                 "name": "ADD_MEMBER",
@@ -6347,6 +6355,13 @@
               "readOnly": false,
               "required": true,
               "fieldName": "dobPicker",
+              "visibilityCondition": {
+                "expression": [
+                  {
+                    "condition": "navigation.isHead==false"
+                  }
+                ]
+              },
               "mandatory": true,
               "deleteFlag": false,
               "innerLabel": "",
@@ -6407,6 +6422,13 @@
               "readOnly": false,
               "required": true,
               "fieldName": "gender",
+              "visibilityCondition": {
+                "expression": [
+                  {
+                    "condition": "navigation.isHead==false"
+                  }
+                ]
+              },
               "mandatory": true,
               "deleteFlag": false,
               "innerLabel": "",
@@ -7297,6 +7319,14 @@
                 "value": "{{fn:getSymptomsReferral(navigation)}}"
               },
               {
+                "key": "referralSymptom",
+                "value": "{{fn:getReferralSymptom(navigation)}}"
+              },
+              {
+                "key": "referralReasonsExtra",
+                "value": "{{fn:getReferralReasonsExtra(navigation)}}"
+              },
+              {
                 "key": "sourceFlow",
                 "value": "{{navigation.sourceFlow}}"
               },
@@ -7820,7 +7850,7 @@
               "order": 5,
               "value": "",
               "format": "dob",
-              "hidden": false,
+              "hidden": true,
               "isMdms": false,
               "tooltip": "APPONE_REGISTRATION_BENEFICIARYDETAILS_label_dobPicker_tooltip",
               "ageRange": {
@@ -7875,7 +7905,7 @@
               "order": 6,
               "value": "",
               "format": "select",
-              "hidden": false,
+              "hidden": true,
               "isMdms": true,
               "tooltip": "",
               "helpText": "",
