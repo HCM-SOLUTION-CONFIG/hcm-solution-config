@@ -710,6 +710,11 @@
                   "type": "isGS1Code",
                   "value": false,
                   "message": "APPONE_MANAGESTOCK_WAREHOUSE_label_isGS1Code_message"
+                },
+                {
+                  "type": "pattern",
+                  "value": ".*\\|\\|.*",
+                  "message": "APPONE_MANAGESTOCK_WAREHOUSE_teamCode_pattern_message"
                 }
               ],
               "errorMessage": "",
@@ -1711,6 +1716,11 @@
                   "type": "isGS1Code",
                   "value": false,
                   "message": "APPONE_MANAGESTOCK_WAREHOUSE_label_isGS1Code_message"
+                },
+                {
+                  "type": "pattern",
+                  "value": ".*\\|\\|.*",
+                  "message": "APPONE_MANAGESTOCK_WAREHOUSE_teamCode_pattern_message"
                 }
               ],
               "errorMessage": "",
