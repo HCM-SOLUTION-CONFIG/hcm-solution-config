@@ -907,7 +907,7 @@
                         "type": "template",
                         "label": "REGISTRATION_EDIT_INDIVIDUAL_BUTTON_LABEL",
                         "format": "button",
-                        "disabled": "{{fn:disableEdit(item.task, item.hFReferral)}}==true",
+                        "disabled": true,
                         "onAction": [
                           {
                             "actions": [
@@ -2238,7 +2238,7 @@
                   {
                     "key": "givenName,familyName",
                     "value": "field.value",
-                    "operation": "containsName"
+                    "operation": "containsAll"
                   },
                   {
                     "key": "localityBoundaryCode",
