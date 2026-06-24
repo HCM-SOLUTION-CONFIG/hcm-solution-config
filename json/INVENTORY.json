@@ -112,12 +112,55 @@
           "icon": "FileUpload",
           "onAction": [
             {
-              "actionType": "NAVIGATION",
-              "properties": {
-                "type": "TEMPLATE",
-                "name": "incomingTransactions",
-                "data": []
-              }
+              "condition": {
+                "expression": "{{fn:hasRole('WAREHOUSE_MANAGER')}} == true"
+              },
+              "actions": [
+                {
+                  "actionType": "NAVIGATION",
+                  "properties": {
+                    "type": "FORM",
+                    "name": "RECORDSTOCK",
+                    "data": [
+                      {
+                        "key": "stockEntryType",
+                        "value": "RECEIPT"
+                      },
+                      {
+                        "key": "transactionType",
+                        "value": "RECEIVED"
+                      },
+                      {
+                        "key": "primaryRole",
+                        "value": "RECEIVER"
+                      },
+                      {
+                        "key": "secondaryRole",
+                        "value": "SENDER"
+                      },
+                      {
+                        "key": "mrnNumber",
+                        "value": "{{fn:generateUniqueMaterialNoteNumber()}}"
+                      }
+                    ]
+                  }
+                }
+              ]
+            },
+            {
+              "condition": {
+                "expression": "{{fn:hasRole('WAREHOUSE_MANAGER')}} == false"
+              },
+              "actions": [
+                {
+                  "actionType": "NAVIGATION",
+                  "properties": {
+                    "type": "TEMPLATE",
+                    "name": "incomingTransactions",
+                    "data": []
+                  }
+                }
+              ]
             }
           ]
         },
@@ -648,7 +691,7 @@
                     "hierarchyMapping": {
                       "State": {
                         "forReceipt": [
-                          "National Facility"
+                          "Health Facility"
                         ],
                         "forIssue": [
                           "Health Facility"
@@ -656,10 +699,12 @@
                       },
                       "Health Facility": {
                         "forReceipt": [
-                          "State Facility"
+                          "Central Facility",
+                          "Health Facility"
                         ],
                         "forIssue": [
-                          "DELIVERY_TEAM"
+                          "DELIVERY_TEAM",
+                          "Central Facility"
                         ]
                       }
                     },
@@ -806,10 +851,12 @@
                       },
                       "Health Facility": {
                         "forReceipt": [
-                          "LGA Facility"
+                          "Central Facility",
+                          "Health Facility"
                         ],
                         "forIssue": [
-                          "DELIVERY_TEAM"
+                          "DELIVERY_TEAM",
+                          "Central Facility"
                         ]
                       }
                     },
@@ -1654,10 +1701,12 @@
                       },
                       "Health Facility": {
                         "forReceipt": [
-                          "LGA Facility"
+                          "Central Facility",
+                          "Health Facility"
                         ],
                         "forIssue": [
-                          "DELIVERY_TEAM"
+                          "DELIVERY_TEAM",
+                          "Central Facility"
                         ]
                       }
                     },
@@ -1833,10 +1882,12 @@
                       },
                       "Health Facility": {
                         "forReceipt": [
-                          "LGA Facility"
+                          "Central Facility",
+                          "Health Facility"
                         ],
                         "forIssue": [
-                          "DELIVERY_TEAM"
+                          "DELIVERY_TEAM",
+                          "Central Facility"
                         ]
                       }
                     },
@@ -2460,7 +2511,49 @@
           ]
         }
       ],
-      "footer": [],
+      "footer": [
+        {
+          "format": "button",
+          "type": "template",
+          "fieldName": "recordReceiptManuallyButton",
+          "label": "INVENTORY_RECORD_RECEIPT_MANUALLY",
+          "properties": {
+            "type": "primary",
+            "size": "large",
+            "mainAxisSize": "max",
+            "mainAxisAlignment": "center"
+          },
+          "onAction": [
+            {
+              "actionType": "NAVIGATION",
+              "properties": {
+                "type": "FORM",
+                "name": "RECORDSTOCK",
+                "navigationMode": "popUntilAndPush",
+                "popUntilPageName": "RECORDSTOCK",
+                "data": [
+                  {
+                    "key": "stockEntryType",
+                    "value": "RECEIPT"
+                  },
+                  {
+                    "key": "transactionType",
+                    "value": "RECEIVED"
+                  },
+                  {
+                    "key": "primaryRole",
+                    "value": "RECEIVER"
+                  },
+                  {
+                    "key": "secondaryRole",
+                    "value": "SENDER"
+                  }
+                ]
+              }
+            }
+          ]
+        }
+      ],
       "initActions": [
         {
           "actionType": "SEARCH_EVENT",
@@ -2775,7 +2868,7 @@
               },
               {
                 "key": "quantity",
-                "value": "{{navigation.quantity}}"
+                "value": "{{fn:bottlesToMl(navigation.quantity)}}"
               }
             ],
             "onError": [
@@ -2881,7 +2974,7 @@
               },
               {
                 "key": "quantity",
-                "value": "{{navigation.quantity}}"
+                "value": "{{fn:bottlesToMl(navigation.quantity)}}"
               }
             ],
             "onError": [
