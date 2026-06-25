@@ -182,7 +182,7 @@
           "type": "template",
           "label": "STOCKREPORTS_VIEW_REPORTS_STOCK_DAMAGED_HEADING",
           "format": "menu_card",
-          "hidden": true,
+          "hidden": false,
           "heading": "STOCKREPORTS_VIEW_REPORTS_STOCK_DAMAGED_HEADING",
           "onAction": [
             {
@@ -195,7 +195,7 @@
                   },
                   {
                     "key": "facilities",
-                    "value": "{{FacilityModel}}"
+                    "value": "{{fn:getCurrentFacilities(ProjectFacilityModel)}}"
                   },
                   {
                     "key": "productVariants",
@@ -218,7 +218,7 @@
           "type": "template",
           "label": "STOCKREPORTS_VIEW_REPORTS_STOCK_LOSS_HEADING",
           "format": "menu_card",
-          "hidden": true,
+          "hidden": false,
           "heading": "STOCKREPORTS_VIEW_REPORTS_STOCK_LOSS_HEADING",
           "onAction": [
             {
@@ -231,7 +231,7 @@
                   },
                   {
                     "key": "facilities",
-                    "value": "{{FacilityModel}}"
+                    "value": "{{fn:getCurrentFacilities(ProjectFacilityModel)}}"
                   },
                   {
                     "key": "productVariants",
