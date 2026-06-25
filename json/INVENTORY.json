@@ -181,6 +181,92 @@
               }
             }
           ]
+        },
+        {
+          "format": "menu_card",
+          "type": "template",
+          "fieldName": "manageStockRecordStockDamagedCard",
+          "heading": "APP_CONFIG_INVENTORY_manageStock_RECORD_STOCK_DAMAGED_HEADING",
+          "description": "APP_CONFIG_INVENTORY_manageStock_RECORD_STOCK_DAMAGED_DESCRIPTION",
+          "icon": "ReportProblem",
+          "onAction": [
+            {
+              "actionType": "NAVIGATION",
+              "properties": {
+                "type": "FORM",
+                "name": "RECORDSTOCK",
+                "data": [
+                  {
+                    "key": "stockEntryType",
+                    "value": "DAMAGED"
+                  },
+                  {
+                    "key": "transactionType",
+                    "value": "DISPATCHED"
+                  },
+                  {
+                    "key": "primaryRole",
+                    "value": "SENDER"
+                  },
+                  {
+                    "key": "secondaryRole",
+                    "value": "RECEIVER"
+                  },
+                  {
+                    "key": "mrnNumber",
+                    "value": "{{fn:generateUniqueMaterialNoteNumber()}}"
+                  },
+                  {
+                    "key": "stockBalances",
+                    "value": "{{fn:getAllStockBalances()}}"
+                  }
+                ]
+              }
+            }
+          ]
+        },
+        {
+          "format": "menu_card",
+          "type": "template",
+          "fieldName": "manageStockRecordStockLossCard",
+          "heading": "APP_CONFIG_INVENTORY_manageStock_RECORD_STOCK_LOSS_HEADING",
+          "description": "APP_CONFIG_INVENTORY_manageStock_RECORD_STOCK_LOSS_DESCRIPTION",
+          "icon": "Warning",
+          "onAction": [
+            {
+              "actionType": "NAVIGATION",
+              "properties": {
+                "type": "FORM",
+                "name": "RECORDSTOCK",
+                "data": [
+                  {
+                    "key": "stockEntryType",
+                    "value": "LOSS"
+                  },
+                  {
+                    "key": "transactionType",
+                    "value": "DISPATCHED"
+                  },
+                  {
+                    "key": "primaryRole",
+                    "value": "SENDER"
+                  },
+                  {
+                    "key": "secondaryRole",
+                    "value": "RECEIVER"
+                  },
+                  {
+                    "key": "mrnNumber",
+                    "value": "{{fn:generateUniqueMaterialNoteNumber()}}"
+                  },
+                  {
+                    "key": "stockBalances",
+                    "value": "{{fn:getAllStockBalances()}}"
+                  }
+                ]
+              }
+            }
+          ]
         }
       ]
     },
