@@ -1402,6 +1402,11 @@
                   "message": "QUANTITY_RECEIVED_REQUIRED_ERROR_MESSAGE"
                 },
                 {
+                  "type": "min",
+                  "value": 1,
+                  "message": "QUANTITY_RECEIVED_MIN_REQUIRED_ERROR_MESSAGE"
+                },
+                {
                   "type": "regex",
                   "value": "^[0-9]+$",
                   "message": "QUANTITY_VALID_NUMBER_ERROR_MESSAGE"
