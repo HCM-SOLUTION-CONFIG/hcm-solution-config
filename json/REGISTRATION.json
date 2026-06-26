@@ -7047,7 +7047,7 @@
               "required.message": "REFER_BENEFICIARY_REFERRED_BY_REQUIRED",
               "autoFillCondition": [
                 {
-                  "value": "{{loggedInUserUuid}}",
+                  "value": "{{loggedInUserName}}",
                   "expression": "true==true"
                 }
               ]
