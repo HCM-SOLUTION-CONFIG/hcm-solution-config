@@ -1813,6 +1813,17 @@
       "name": "householdOverview",
       "order": 3,
       "footer": [],
+      "onSystemBack": [
+        {
+          "actionType": "NAVIGATION",
+          "properties": {
+            "name": "searchBeneficiary",
+            "type": "TEMPLATE",
+            "navigationMode": "popUntilAndPush",
+            "popUntilPageName": "searchBeneficiary"
+          }
+        }
+      ],
       "header": [
         {
           "label": "HOUSEHOLD_BACK",
@@ -1822,7 +1833,9 @@
               "actionType": "NAVIGATION",
               "properties": {
                 "name": "searchBeneficiary",
-                "type": "TEMPLATE"
+                "type": "TEMPLATE",
+                "navigationMode": "popUntilAndPush",
+                "popUntilPageName": "searchBeneficiary"
               }
             }
           ]
