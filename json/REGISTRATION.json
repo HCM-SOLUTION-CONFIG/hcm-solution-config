@@ -4557,6 +4557,11 @@
                   "type": "maxLength",
                   "value": "200",
                   "message": "APPONE_REGISTRATION_BENEFICIARYDETAILS_label_nameOfIndividual_max_message_addmember"
+                },
+                {
+                  "type": "pattern",
+                  "value": "^[a-zA-Z0-9\\u00C0-\\u017F\\s!@#$%^&*()_+\\-=\\[\\]{};':\"\\\\|,.\\/?~`]+$",
+                  "message": "ANGULAR_BRACKETS_NOT_ALLOWED"
                 }
               ],
               "errorMessage": "",
