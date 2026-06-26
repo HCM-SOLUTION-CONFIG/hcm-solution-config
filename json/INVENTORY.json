@@ -715,6 +715,11 @@
                   "type": "pattern",
                   "value": ".*\\|\\|.*",
                   "message": "APPONE_MANAGESTOCK_WAREHOUSE_teamCode_pattern_message"
+                },
+                {
+                  "type": "allowManual",
+                  "value": false,
+                  "message": "APPONE_MANAGESTOCK_WAREHOUSE_label_allowManual_message"
                 }
               ],
               "errorMessage": "",
@@ -1721,6 +1726,11 @@
                   "type": "pattern",
                   "value": ".*\\|\\|.*",
                   "message": "APPONE_MANAGESTOCK_WAREHOUSE_teamCode_pattern_message"
+                },
+                {
+                  "type": "allowManual",
+                  "value": false,
+                  "message": "APPONE_MANAGESTOCK_WAREHOUSE_label_allowManual_message"
                 }
               ],
               "errorMessage": "",
