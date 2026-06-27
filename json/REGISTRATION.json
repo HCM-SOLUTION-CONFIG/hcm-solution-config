@@ -856,32 +856,6 @@
               "children": [
                 {
                   "type": "template",
-                  "format": "expanded",
-                  "child": {
-                    "data": [
-                      {
-                        "key": "HOUSEHOLD_HEAD_NAME",
-                        "value": "{{contextData.0.headIndividual.IndividualModel.name.givenName}}",
-                        "isActive": true
-                      },
-                      {
-                        "key": "HOUSEHOLD_LOCALITY",
-                        "value": "{{contextData.0.household.HouseholdModel.address.locality.code}}",
-                        "isActive": true
-                      },
-                      {
-                        "key": "MEMBER_COUNT",
-                        "value": "{{contextData.0.household.HouseholdModel.memberCount}}",
-                        "isActive": true
-                      }
-                    ],
-                    "type": "template",
-                    "format": "labelPairList",
-                    "fieldName": "householdDetails"
-                  }
-                },
-                {
-                  "type": "template",
                   "label": "REGISTRATION_EDIT_INDIVIDUAL_BUTTON_LABEL",
                   "format": "button",
                   "onAction": [
@@ -911,6 +885,10 @@
                           {
                             "key": "isEdit",
                             "value": "true"
+                          },
+                          {
+                            "key": "existingMemberCount",
+                            "value": "{{contextData.0.household.HouseholdModel.memberCount}}"
                           }
                         ],
                         "name": "HOUSEHOLD",
@@ -928,12 +906,33 @@
                   }
                 }
               ],
-              "fieldName": "householdDetailsRow",
+              "fieldName": "editHouseholdRow",
               "properties": {
                 "mainAxisSize": "max",
-                "mainAxisAlignment": "spaceBetween",
-                "crossAxisAlignment": "start"
+                "mainAxisAlignment": "end"
               }
+            },
+            {
+              "data": [
+                {
+                  "key": "HOUSEHOLD_HEAD_NAME",
+                  "value": "{{contextData.0.headIndividual.IndividualModel.name.givenName}}",
+                  "isActive": true
+                },
+                {
+                  "key": "HOUSEHOLD_LOCALITY",
+                  "value": "{{contextData.0.household.HouseholdModel.address.locality.code}}",
+                  "isActive": true
+                },
+                {
+                  "key": "MEMBER_COUNT",
+                  "value": "{{contextData.0.household.HouseholdModel.memberCount}}",
+                  "isActive": true
+                }
+              ],
+              "type": "template",
+              "format": "labelPairList",
+              "fieldName": "householdDetails"
             },
             {
               "type": "template",
@@ -4998,7 +4997,7 @@
                 },
                 {
                   "type": "pattern",
-                  "value": "^[a-zA-Z0-9\\u00C0-\\u017F\\s!@#$%^&*()_+\\-=\\[\\]{};':\"\\\\|,.\\/?~`]+$",
+                  "value": "^[A-Za-zÀ-ÖØ-öø-ÿ\\s'.-]+$",
                   "message": "ANGULAR_BRACKETS_NOT_ALLOWED"
                 }
               ],
@@ -7025,7 +7024,7 @@
                 },
                 {
                   "type": "min",
-                  "value": "2",
+                  "value": "navigation.existingMemberCount",
                   "message": "APPONE_REGISTRATION_HOUSEHOLDDETAILS_label_memberCount_min_message"
                 },
                 {
