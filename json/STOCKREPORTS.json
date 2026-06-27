@@ -94,7 +94,7 @@
                 "data": [
                   {
                     "key": "reportType",
-                    "value": "ISSUED"
+                    "value": "receipt"
                   },
                   {
                     "key": "facilities",
