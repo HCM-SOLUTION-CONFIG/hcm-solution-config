@@ -1290,7 +1290,7 @@
                             },
                             {
                               "key": "cycleIndex",
-                              "value": "{{contextData.0.currentRunningCycle}}"
+                              "value": "{{fn:getCurrentCycleIndex()}}"
                             },
                             {
                               "key": "doseIndex",
@@ -2445,9 +2445,6 @@
                 "expression": [
                   {
                     "condition": "unableToDeliver.reason==ADVERSE_EFFECT"
-                  },
-                  {
-                    "condition": "unableToDeliver.reason==BENEFICIARY_REFUSED"
                   }
                 ]
               }
@@ -5470,7 +5467,7 @@
                   },
                   {
                     "key": "cycleIndex",
-                    "value": "{{contextData.0.currentRunningCycle}}"
+                    "value": "{{fn:getCurrentCycleIndex()}}"
                   },
                   {
                     "key": "doseIndex",

@@ -1015,6 +1015,13 @@
               "deleteFlag": false,
               "innerLabel": "",
               "systemDate": false,
+              "validations": [
+                {
+                  "type": "minLength",
+                  "value": "3",
+                  "message": "INVENTORY_TEXT_MIN_LENGTH_ERROR_MESSAGE"
+                }
+              ],
               "errorMessage": "",
               "isMultiSelect": false,
               "enums": null
@@ -1074,6 +1081,11 @@
                   "type": "required",
                   "value": false,
                   "message": "INVENTORY_WAYBILL_NUMBER_REQUIRED_ERROR_MESSAGE"
+                },
+                {
+                  "type": "minLength",
+                  "value": "3",
+                  "message": "INVENTORY_TEXT_MIN_LENGTH_ERROR_MESSAGE"
                 }
               ],
               "errorMessage": "",
@@ -1100,6 +1112,11 @@
                   "type": "required",
                   "value": false,
                   "message": "INVENTORY_BATCH_NUMBER_REQUIRED_ERROR_MESSAGE"
+                },
+                {
+                  "type": "minLength",
+                  "value": "3",
+                  "message": "INVENTORY_TEXT_MIN_LENGTH_ERROR_MESSAGE"
                 }
               ],
               "errorMessage": "",
@@ -1353,6 +1370,11 @@
                   "type": "required",
                   "value": false,
                   "message": "QUANTITY_DIFFER_COMMENT_REQUIRED_ERROR_MASSAGE"
+                },
+                {
+                  "type": "minLength",
+                  "value": "3",
+                  "message": "INVENTORY_TEXT_MIN_LENGTH_ERROR_MESSAGE"
                 }
               ],
               "errorMessage": "",
@@ -1940,6 +1962,11 @@
                   "type": "required",
                   "value": true,
                   "message": "INVENTORY_REASON_REQUIRED_MESSAGE"
+                },
+                {
+                  "type": "minLength",
+                  "value": "3",
+                  "message": "INVENTORY_TEXT_MIN_LENGTH_ERROR_MESSAGE"
                 }
               ],
               "errorMessage": "",
@@ -3081,7 +3108,13 @@
               "innerLabel": "",
               "systemDate": false,
               "visibilityCondition": {},
-              "validations": [],
+              "validations": [
+                {
+                  "type": "minLength",
+                  "value": "3",
+                  "message": "INVENTORY_TEXT_MIN_LENGTH_ERROR_MESSAGE"
+                }
+              ],
               "errorMessage": "",
               "isMultiSelect": false,
               "enums": null
@@ -3102,7 +3135,13 @@
               "innerLabel": "",
               "systemDate": false,
               "visibilityCondition": {},
-              "validations": [],
+              "validations": [
+                {
+                  "type": "minLength",
+                  "value": "3",
+                  "message": "INVENTORY_TEXT_MIN_LENGTH_ERROR_MESSAGE"
+                }
+              ],
               "errorMessage": "",
               "isMultiSelect": false,
               "enums": null
@@ -3160,6 +3199,11 @@
                   "type": "required",
                   "value": false,
                   "message": "INVENTORY_COMMENTS_LABEL_required"
+                },
+                {
+                  "type": "minLength",
+                  "value": "3",
+                  "message": "INVENTORY_TEXT_MIN_LENGTH_ERROR_MESSAGE"
                 }
               ],
               "errorMessage": "",
