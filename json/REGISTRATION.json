@@ -884,7 +884,7 @@
                           },
                           {
                             "key": "existingMemberCount",
-                            "value": "{{contextData.0.household.HouseholdModel.memberCount}}"
+                            "value": "{{fn:length(contextData.0.members)}}"
                           }
                         ],
                         "name": "HOUSEHOLD",
