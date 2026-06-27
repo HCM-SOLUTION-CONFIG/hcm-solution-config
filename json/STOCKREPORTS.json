@@ -94,7 +94,7 @@
                 "data": [
                   {
                     "key": "reportType",
-                    "value": "ISSUED"
+                    "value": "receipt"
                   },
                   {
                     "key": "facilities",
@@ -182,7 +182,7 @@
           "type": "template",
           "label": "STOCKREPORTS_VIEW_REPORTS_STOCK_DAMAGED_HEADING",
           "format": "menu_card",
-          "hidden": true,
+          "hidden": false,
           "heading": "STOCKREPORTS_VIEW_REPORTS_STOCK_DAMAGED_HEADING",
           "onAction": [
             {
@@ -195,7 +195,7 @@
                   },
                   {
                     "key": "facilities",
-                    "value": "{{FacilityModel}}"
+                    "value": "{{fn:getCurrentFacilities(ProjectFacilityModel)}}"
                   },
                   {
                     "key": "productVariants",
@@ -218,7 +218,7 @@
           "type": "template",
           "label": "STOCKREPORTS_VIEW_REPORTS_STOCK_LOSS_HEADING",
           "format": "menu_card",
-          "hidden": true,
+          "hidden": false,
           "heading": "STOCKREPORTS_VIEW_REPORTS_STOCK_LOSS_HEADING",
           "onAction": [
             {
@@ -231,7 +231,7 @@
                   },
                   {
                     "key": "facilities",
-                    "value": "{{FacilityModel}}"
+                    "value": "{{fn:getCurrentFacilities(ProjectFacilityModel)}}"
                   },
                   {
                     "key": "productVariants",
@@ -548,7 +548,8 @@
               },
               {
                 "header": "STOCKREPORTS_REPORT_DETAILS_TABLE_HEADER_3_LABEL",
-                "cellValue": "{{item.additionalFields.fields.wayBillNumber}}"
+                "cellValue": "{{item.additionalFields.fields.wayBillNumber}}",
+                "width": 300
               },
               {
                 "header": "STOCKREPORTS_REPORT_DETAILS_TABLE_HEADER_4_LABEL",
@@ -745,14 +746,24 @@
                 "header": "STOCKRECON_REPORT_DETAILS_TABLE_HEADER_4_LABEL",
                 "cellValue": "{{item.additionalFields.fields.stockReturned}}"
               },
-             
+              {
+                "header": "STOCKRECON_REPORT_DETAILS_TABLE_HEADER_5_LABEL",
+                "cellValue": "{{item.additionalFields.fields.stockDamaged}}"
+              },
+              {
+                "header": "STOCKRECON_REPORT_DETAILS_TABLE_HEADER_6_LABEL",
+                "cellValue": "{{item.additionalFields.fields.stockLost}}",
+                "width": 250
+              },
               {
                 "header": "STOCKRECON_REPORT_DETAILS_TABLE_HEADER_7_LABEL",
-                "cellValue": "{{item.physicalCount}}"
+                "cellValue": "{{item.physicalCount}}",
+                "width": 250
               },
               {
                 "header": "STOCKRECON_REPORT_DETAILS_TABLE_HEADER_8_LABEL",
-                "cellValue": "{{item.calculatedCount}}"
+                "cellValue": "{{item.calculatedCount}}",
+                "width": 250
               }
             ],
             "rows": "{{contextData.0.StockReconciliationModel}}"

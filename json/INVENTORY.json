@@ -112,12 +112,55 @@
           "icon": "FileUpload",
           "onAction": [
             {
-              "actionType": "NAVIGATION",
-              "properties": {
-                "type": "TEMPLATE",
-                "name": "incomingTransactions",
-                "data": []
-              }
+              "condition": {
+                "expression": "{{fn:hasRole('WAREHOUSE_MANAGER')}} == true"
+              },
+              "actions": [
+                {
+                  "actionType": "NAVIGATION",
+                  "properties": {
+                    "type": "FORM",
+                    "name": "RECORDSTOCK",
+                    "data": [
+                      {
+                        "key": "stockEntryType",
+                        "value": "RECEIPT"
+                      },
+                      {
+                        "key": "transactionType",
+                        "value": "RECEIVED"
+                      },
+                      {
+                        "key": "primaryRole",
+                        "value": "RECEIVER"
+                      },
+                      {
+                        "key": "secondaryRole",
+                        "value": "SENDER"
+                      },
+                      {
+                        "key": "mrnNumber",
+                        "value": "{{fn:generateUniqueMaterialNoteNumber()}}"
+                      }
+                    ]
+                  }
+                }
+              ]
+            },
+            {
+              "condition": {
+                "expression": "{{fn:hasRole('WAREHOUSE_MANAGER')}} == false"
+              },
+              "actions": [
+                {
+                  "actionType": "NAVIGATION",
+                  "properties": {
+                    "type": "TEMPLATE",
+                    "name": "incomingTransactions",
+                    "data": []
+                  }
+                }
+              ]
             }
           ]
         },
@@ -135,6 +178,92 @@
                 "type": "TEMPLATE",
                 "name": "returnOrIssueSelection",
                 "data": []
+              }
+            }
+          ]
+        },
+        {
+          "format": "menu_card",
+          "type": "template",
+          "fieldName": "manageStockRecordStockDamagedCard",
+          "heading": "APP_CONFIG_INVENTORY_manageStock_RECORD_STOCK_DAMAGED_HEADING",
+          "description": "APP_CONFIG_INVENTORY_manageStock_RECORD_STOCK_DAMAGED_DESCRIPTION",
+          "icon": "ReportProblem",
+          "onAction": [
+            {
+              "actionType": "NAVIGATION",
+              "properties": {
+                "type": "FORM",
+                "name": "RECORDSTOCK",
+                "data": [
+                  {
+                    "key": "stockEntryType",
+                    "value": "DAMAGED"
+                  },
+                  {
+                    "key": "transactionType",
+                    "value": "DISPATCHED"
+                  },
+                  {
+                    "key": "primaryRole",
+                    "value": "SENDER"
+                  },
+                  {
+                    "key": "secondaryRole",
+                    "value": "RECEIVER"
+                  },
+                  {
+                    "key": "mrnNumber",
+                    "value": "{{fn:generateUniqueMaterialNoteNumber()}}"
+                  },
+                  {
+                    "key": "stockBalances",
+                    "value": "{{fn:getAllStockBalances()}}"
+                  }
+                ]
+              }
+            }
+          ]
+        },
+        {
+          "format": "menu_card",
+          "type": "template",
+          "fieldName": "manageStockRecordStockLossCard",
+          "heading": "APP_CONFIG_INVENTORY_manageStock_RECORD_STOCK_LOSS_HEADING",
+          "description": "APP_CONFIG_INVENTORY_manageStock_RECORD_STOCK_LOSS_DESCRIPTION",
+          "icon": "Warning",
+          "onAction": [
+            {
+              "actionType": "NAVIGATION",
+              "properties": {
+                "type": "FORM",
+                "name": "RECORDSTOCK",
+                "data": [
+                  {
+                    "key": "stockEntryType",
+                    "value": "LOSS"
+                  },
+                  {
+                    "key": "transactionType",
+                    "value": "DISPATCHED"
+                  },
+                  {
+                    "key": "primaryRole",
+                    "value": "SENDER"
+                  },
+                  {
+                    "key": "secondaryRole",
+                    "value": "RECEIVER"
+                  },
+                  {
+                    "key": "mrnNumber",
+                    "value": "{{fn:generateUniqueMaterialNoteNumber()}}"
+                  },
+                  {
+                    "key": "stockBalances",
+                    "value": "{{fn:getAllStockBalances()}}"
+                  }
+                ]
               }
             }
           ]
@@ -255,11 +384,11 @@
                       },
                       {
                         "key": "primaryRole",
-                        "value": "SENDER"
+                        "value": "RECEIVER"
                       },
                       {
                         "key": "secondaryRole",
-                        "value": "RECEIVER"
+                        "value": "SENDER"
                       },
                       {
                         "key": "mrnNumber",
@@ -268,10 +397,6 @@
                       {
                         "key": "stockBalances",
                         "value": "{{fn:getAllStockBalances()}}"
-                      },
-                      {
-                        "key": "isDistributor",
-                        "value": "{{fn:hasRole('DISTRIBUTOR')}}"
                       }
                     ]
                   }
@@ -304,21 +429,6 @@
                 }
               ],
               "visible": "{{fn:hasRole('DISTRIBUTOR')}} == false"
-            },
-            {
-              "type": "template",
-              "format": "dropdownTemplate",
-              "label": "APP_CONFIG_INVENTORY_returnOrIssueSelection_TRANSACTION_TYPE_LABEL",
-              "fieldName": "transactionType",
-              "valueKey": "code",
-              "enums": [
-                {
-                  "name": "APP_CONFIG_INVENTORY_returnOrIssueSelection_OPTION_RETURNED",
-                  "code": "RETURNED"
-                }
-              ],
-              "visible": "{{fn:hasRole('DISTRIBUTOR')}} == true",
-              "showWhenSingleOption": true
             }
           ]
         }
@@ -648,7 +758,7 @@
                     "hierarchyMapping": {
                       "State": {
                         "forReceipt": [
-                          "National Facility"
+                          "Health Facility"
                         ],
                         "forIssue": [
                           "Health Facility"
@@ -656,10 +766,12 @@
                       },
                       "Health Facility": {
                         "forReceipt": [
-                          "State Facility"
+                          "Central Facility",
+                          "Health Facility"
                         ],
                         "forIssue": [
-                          "DELIVERY_TEAM"
+                          "DELIVERY_TEAM",
+                          "Central Facility"
                         ]
                       }
                     },
@@ -679,7 +791,8 @@
               "visibilityCondition": {
                 "expression": [
                   {
-                    "condition": "warehouseDetails.facilityToWhich==DELIVERY_TEAM"
+                    "condition": "warehouseDetails.facilityToWhich==DELIVERY_TEAM || navigation.stockEntryType == 'RETURNED'",
+                    "type": "custom"
                   }
                 ]
               },
@@ -806,10 +919,12 @@
                       },
                       "Health Facility": {
                         "forReceipt": [
-                          "LGA Facility"
+                          "Central Facility",
+                          "Health Facility"
                         ],
                         "forIssue": [
-                          "DELIVERY_TEAM"
+                          "DELIVERY_TEAM",
+                          "Central Facility"
                         ]
                       }
                     },
@@ -828,7 +943,8 @@
               "visibilityCondition": {
                 "expression": [
                   {
-                    "condition": "stockDetails.facilityFromWhich==DELIVERY_TEAM"
+                    "condition": "stockDetails.facilityFromWhich==DELIVERY_TEAM && navigation.stockEntryType != 'RETURNED'",
+                    "type": "custom"
                   }
                 ]
               },
@@ -899,6 +1015,13 @@
               "deleteFlag": false,
               "innerLabel": "",
               "systemDate": false,
+              "validations": [
+                {
+                  "type": "minLength",
+                  "value": "3",
+                  "message": "INVENTORY_TEXT_MIN_LENGTH_ERROR_MESSAGE"
+                }
+              ],
               "errorMessage": "",
               "isMultiSelect": false,
               "enums": null
@@ -958,6 +1081,11 @@
                   "type": "required",
                   "value": false,
                   "message": "INVENTORY_WAYBILL_NUMBER_REQUIRED_ERROR_MESSAGE"
+                },
+                {
+                  "type": "minLength",
+                  "value": "3",
+                  "message": "INVENTORY_TEXT_MIN_LENGTH_ERROR_MESSAGE"
                 }
               ],
               "errorMessage": "",
@@ -984,6 +1112,11 @@
                   "type": "required",
                   "value": false,
                   "message": "INVENTORY_BATCH_NUMBER_REQUIRED_ERROR_MESSAGE"
+                },
+                {
+                  "type": "minLength",
+                  "value": "3",
+                  "message": "INVENTORY_TEXT_MIN_LENGTH_ERROR_MESSAGE"
                 }
               ],
               "errorMessage": "",
@@ -1168,79 +1301,6 @@
             },
             {
               "type": "integer",
-              "label": "APPONE_INVENTORY_QUANTITY_WASTAGE_LABEL",
-              "order": 5,
-              "value": "",
-              "format": "text",
-              "hidden": false,
-              "tooltip": "",
-              "helpText": "",
-              "infoText": "",
-              "readOnly": false,
-              "fieldName": "quantityWastage",
-              "deleteFlag": false,
-              "innerLabel": "",
-              "visibilityCondition": {
-                "expression": [
-                  {
-                    "condition": "navigation.stockEntryType == 'RETURNED' && navigation.isDistributor",
-                    "type": "custom"
-                  }
-                ]
-              },
-              "systemDate": false,
-              "validations": [
-                {
-                  "type": "required",
-                  "value": true,
-                  "message": "QUANTITY_WASTAGE_REQUIRED_ERROR_MESSAGE"
-                },
-                {
-                  "type": "regex",
-                  "value": "^[0-9]+$",
-                  "message": "QUANTITY_VALID_NUMBER_ERROR_MESSAGE"
-                }
-              ],
-              "errorMessage": "",
-              "isMultiSelect": false,
-              "enums": null
-            },
-            {
-              "type": "integer",
-              "label": "APPONE_INVENTORY_QUANTITY_PARTIAL_USED_LABEL",
-              "order": 6,
-              "value": "",
-              "format": "text",
-              "hidden": false,
-              "tooltip": "",
-              "helpText": "",
-              "infoText": "",
-              "readOnly": false,
-              "fieldName": "quantityPartialUsed",
-              "deleteFlag": false,
-              "innerLabel": "",
-              "visibilityCondition": {
-                "expression": [
-                  {
-                    "condition": "navigation.stockEntryType == 'RETURNED' && navigation.isDistributor",
-                    "type": "custom"
-                  }
-                ]
-              },
-              "systemDate": false,
-              "validations": [
-                {
-                  "type": "regex",
-                  "value": "^[0-9]+$",
-                  "message": "QUANTITY_VALID_NUMBER_ERROR_MESSAGE"
-                }
-              ],
-              "errorMessage": "",
-              "isMultiSelect": false,
-              "enums": null
-            },
-            {
-              "type": "integer",
               "label": "APPONE_INVENTORY_QUANTITY_RECEIVED_LABEL",
               "order": 4,
               "value": "",
@@ -1267,6 +1327,11 @@
                   "type": "required",
                   "value": true,
                   "message": "QUANTITY_RECEIVED_REQUIRED_ERROR_MESSAGE"
+                },
+                {
+                  "type": "min",
+                  "value": 1,
+                  "message": "QUANTITY_RECEIVED_MIN_REQUIRED_ERROR_MESSAGE"
                 },
                 {
                   "type": "regex",
@@ -1305,65 +1370,16 @@
                   "type": "required",
                   "value": false,
                   "message": "QUANTITY_DIFFER_COMMENT_REQUIRED_ERROR_MASSAGE"
+                },
+                {
+                  "type": "minLength",
+                  "value": "3",
+                  "message": "INVENTORY_TEXT_MIN_LENGTH_ERROR_MESSAGE"
                 }
               ],
               "errorMessage": "",
               "isMultiSelect": false,
               "enums": null
-            },
-            {
-              "type": "string",
-              "label": "APPONE_MANAGESTOCK_WAREHOUSE_label_scanResource",
-              "order": 10,
-              "value": "",
-              "format": "scanner",
-              "validations": [
-                {
-                  "type": "isGS1",
-                  "value": true,
-                  "message": "APPONE_MANAGESTOCK_WAREHOUSE_label_scanResource"
-                }
-              ],
-              "hidden": false,
-              "tooltip": "",
-              "comparisonConfig": {
-                "model": "stock",
-                "extractKey": "scanResource",
-                "extractFrom": "additionalFields",
-                "filters": [
-                  {
-                    "key": "senderId",
-                    "value": "{{navigation.facilityFromWhich}}",
-                    "operation": "equals"
-                  },
-                  {
-                    "key": "receiverId",
-                    "value": "{{navigation.facilityToWhich}}",
-                    "operation": "equals"
-                  },
-                  {
-                    "key": "productVariantId",
-                    "value": "{{navigation.currentEntityId}}",
-                    "operation": "equals"
-                  },
-                  {
-                    "key": "additionalFields.stockEntryType",
-                    "value": "{{navigation.stockEntryType}}",
-                    "operation": "equals"
-                  }
-                ],
-                "errorMessage": "RESOURCES_ALREADY_SCANNED"
-              },
-              "helpText": "INVENTORY_SCAN_RESOURCE_HELPTEXT",
-              "infoText": "",
-              "readOnly": false,
-              "fieldName": "scanResource",
-              "deleteFlag": false,
-              "innerLabel": "",
-              "systemDate": false,
-              "errorMessage": "",
-              "isMultiSelect": false,
-              "enums": []
             }
           ],
           "value": null,
@@ -1424,7 +1440,15 @@
               },
               {
                 "key": "teamCode",
-                "value": "{{fn:getTeamCode(formData.warehouseDetails.teamCode)}}"
+                "value": "{{fn:getStockTeamCode(navigation.stockEntryType, navigation.primaryRole, formData.warehouseDetails.teamCode, formData.stockDetails.deliveryTeam)}}"
+              },
+              {
+                "key": "senderId",
+                "value": "{{fn:getStockSenderId(navigation.stockEntryType, navigation.primaryRole, formData.stockDetails.facilityFromWhich, formData.warehouseDetails.teamCode, formData.stockDetails.deliveryTeam, singleton.loggedInUserUuid)}}"
+              },
+              {
+                "key": "receiverId",
+                "value": "{{fn:getStockReceiverId(navigation.stockEntryType, navigation.primaryRole, formData.warehouseDetails.facilityToWhich, formData.warehouseDetails.teamCode, formData.stockDetails.deliveryTeam)}}"
               },
               {
                 "key": "mrnNumber",
@@ -1654,10 +1678,12 @@
                       },
                       "Health Facility": {
                         "forReceipt": [
-                          "LGA Facility"
+                          "Central Facility",
+                          "Health Facility"
                         ],
                         "forIssue": [
-                          "DELIVERY_TEAM"
+                          "DELIVERY_TEAM",
+                          "Central Facility"
                         ]
                       }
                     },
@@ -1833,10 +1859,12 @@
                       },
                       "Health Facility": {
                         "forReceipt": [
-                          "LGA Facility"
+                          "Central Facility",
+                          "Health Facility"
                         ],
                         "forIssue": [
-                          "DELIVERY_TEAM"
+                          "DELIVERY_TEAM",
+                          "Central Facility"
                         ]
                       }
                     },
@@ -1934,6 +1962,11 @@
                   "type": "required",
                   "value": true,
                   "message": "INVENTORY_REASON_REQUIRED_MESSAGE"
+                },
+                {
+                  "type": "minLength",
+                  "value": "3",
+                  "message": "INVENTORY_TEXT_MIN_LENGTH_ERROR_MESSAGE"
                 }
               ],
               "errorMessage": "",
@@ -2460,7 +2493,49 @@
           ]
         }
       ],
-      "footer": [],
+      "footer": [
+        {
+          "format": "button",
+          "type": "template",
+          "fieldName": "recordReceiptManuallyButton",
+          "label": "INVENTORY_RECORD_RECEIPT_MANUALLY",
+          "properties": {
+            "type": "primary",
+            "size": "large",
+            "mainAxisSize": "max",
+            "mainAxisAlignment": "center"
+          },
+          "onAction": [
+            {
+              "actionType": "NAVIGATION",
+              "properties": {
+                "type": "FORM",
+                "name": "RECORDSTOCK",
+                "navigationMode": "popUntilAndPush",
+                "popUntilPageName": "RECORDSTOCK",
+                "data": [
+                  {
+                    "key": "stockEntryType",
+                    "value": "RECEIPT"
+                  },
+                  {
+                    "key": "transactionType",
+                    "value": "RECEIVED"
+                  },
+                  {
+                    "key": "primaryRole",
+                    "value": "RECEIVER"
+                  },
+                  {
+                    "key": "secondaryRole",
+                    "value": "SENDER"
+                  }
+                ]
+              }
+            }
+          ]
+        }
+      ],
       "initActions": [
         {
           "actionType": "SEARCH_EVENT",
@@ -2637,7 +2712,7 @@
                       "data": [
                         {
                           "key": "stockEntryType",
-                          "value": "RECEIPT"
+                          "value": "{{item.items[0].additionalFields.fields.stockEntryType}}"
                         },
                         {
                           "key": "transactionType",
@@ -2739,11 +2814,11 @@
             "data": [
               {
                 "key": "stockEntryType",
-                "value": "RECEIPT"
+                "value": "{{navigation.stockEntryType}}"
               },
               {
                 "key": "transactionType",
-                "value": "RECEIVED"
+                "value": "{{navigation.transactionType}}"
               },
               {
                 "key": "primaryRole",
@@ -2775,7 +2850,7 @@
               },
               {
                 "key": "quantity",
-                "value": "{{navigation.quantity}}"
+                "value": "{{fn:bottlesToMl(navigation.quantity)}}"
               }
             ],
             "onError": [
@@ -2881,7 +2956,7 @@
               },
               {
                 "key": "quantity",
-                "value": "{{navigation.quantity}}"
+                "value": "{{fn:bottlesToMl(navigation.quantity)}}"
               }
             ],
             "onError": [
@@ -3033,7 +3108,13 @@
               "innerLabel": "",
               "systemDate": false,
               "visibilityCondition": {},
-              "validations": [],
+              "validations": [
+                {
+                  "type": "minLength",
+                  "value": "3",
+                  "message": "INVENTORY_TEXT_MIN_LENGTH_ERROR_MESSAGE"
+                }
+              ],
               "errorMessage": "",
               "isMultiSelect": false,
               "enums": null
@@ -3054,7 +3135,13 @@
               "innerLabel": "",
               "systemDate": false,
               "visibilityCondition": {},
-              "validations": [],
+              "validations": [
+                {
+                  "type": "minLength",
+                  "value": "3",
+                  "message": "INVENTORY_TEXT_MIN_LENGTH_ERROR_MESSAGE"
+                }
+              ],
               "errorMessage": "",
               "isMultiSelect": false,
               "enums": null
@@ -3112,6 +3199,11 @@
                   "type": "required",
                   "value": false,
                   "message": "INVENTORY_COMMENTS_LABEL_required"
+                },
+                {
+                  "type": "minLength",
+                  "value": "3",
+                  "message": "INVENTORY_TEXT_MIN_LENGTH_ERROR_MESSAGE"
                 }
               ],
               "errorMessage": "",
