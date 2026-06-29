@@ -2182,6 +2182,43 @@
                 }
               ],
               "errorMessage": ""
+            },
+            {
+              "type": "string",
+              "label": "RECORD_ADVERSE_EFFECT_COMMENT_LABEL",
+              "order": 3,
+              "value": "",
+              "format": "textArea",
+              "hidden": false,
+              "isMdms": false,
+              "tooltip": "",
+              "helpText": "",
+              "infoText": "",
+              "readOnly": false,
+              "fieldName": "comment",
+              "mandatory": true,
+              "deleteFlag": false,
+              "innerLabel": "",
+              "schemaCode": null,
+              "systemDate": false,
+              "validations": [
+                {
+                  "type": "required",
+                  "value": true,
+                  "message": "RECORD_ADVERSE_EFFECT_COMMENT_REQUIRED"
+                }
+              ],
+              "errorMessage": "",
+              "includeInForm": true,
+              "isMultiSelect": false,
+              "includeInSummary": true,
+              "visibilityCondition": {
+                "expression": [
+                  {
+                    "condition": "recordAdverseEffect.additionalReason==OTHERS"
+                  }
+                ]
+              }
             }
           ],
           "actionLabel": "RECORD_ADVERSE_EFFECT",
