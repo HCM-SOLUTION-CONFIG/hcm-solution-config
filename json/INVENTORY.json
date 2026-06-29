@@ -362,7 +362,7 @@
                     {
                       "key": "additionalFields",
                       "value": "{{scannedMrn}}",
-                      "operation": "contains"
+                      "operation": "matches"
                     }
                   ]
                 }
@@ -457,7 +457,7 @@
                   {
                     "key": "additionalFields",
                     "value": "680C-E975-B27F",
-                    "operation": "contains"
+                    "operation": "matches"
                   }
                 ]
               }
@@ -710,6 +710,16 @@
                   "type": "isGS1Code",
                   "value": false,
                   "message": "APPONE_MANAGESTOCK_WAREHOUSE_label_isGS1Code_message"
+                },
+                {
+                  "type": "pattern",
+                  "value": ".*\\|\\|.*",
+                  "message": "APPONE_MANAGESTOCK_WAREHOUSE_teamCode_pattern_message"
+                },
+                {
+                  "type": "allowManual",
+                  "value": false,
+                  "message": "APPONE_MANAGESTOCK_WAREHOUSE_label_allowManual_message"
                 }
               ],
               "errorMessage": "",
@@ -1427,6 +1437,10 @@
                 "value": "{{fn:getTeamCode(formData.warehouseDetails.teamCode)}}"
               },
               {
+                "key": "deliveryTeamName",
+                "value": "{{fn:getDeliveryTeamName(formData.warehouseDetails.teamCode, formData.stockDetails.facilityFromWhich, singleton.loggedInUser.userName)}}"
+              },
+              {
                 "key": "mrnNumber",
                 "value": "{{navigation.mrnNumber}}"
               }
@@ -1707,6 +1721,16 @@
                   "type": "isGS1Code",
                   "value": false,
                   "message": "APPONE_MANAGESTOCK_WAREHOUSE_label_isGS1Code_message"
+                },
+                {
+                  "type": "pattern",
+                  "value": ".*\\|\\|.*",
+                  "message": "APPONE_MANAGESTOCK_WAREHOUSE_teamCode_pattern_message"
+                },
+                {
+                  "type": "allowManual",
+                  "value": false,
+                  "message": "APPONE_MANAGESTOCK_WAREHOUSE_label_allowManual_message"
                 }
               ],
               "errorMessage": "",
@@ -2231,7 +2255,7 @@
                         "format": "textTemplate",
                         "type": "template",
                         "fieldName": "viewTransactionPartyValueText",
-                        "value": "{{fn:getFirstPageParty(item.items[0].additionalFields.fields, item.items[0].senderId, item.items[0].receiverId)}}"
+                        "value": "{{fn:getFirstPageParty(item.items[0].additionalFields.fields, item.items[0].senderId, item.items[0].receiverId, item.items[0].senderType, item.items[0].receiverType)}}"
                       }
                     ]
                   },
@@ -2356,7 +2380,7 @@
               {
                 "key": "additionalFields",
                 "value": "{{navigation.selectedStock}}",
-                "operation": "contains"
+                "operation": "matches"
               }
             ]
           }
@@ -2410,7 +2434,7 @@
                   },
                   {
                     "key": "{{fn:getSecondPagePartyLabel(item.additionalFields.fields)}}",
-                    "value": "{{fn:getSecondPageParty(item.additionalFields.fields, item.senderId, item.receiverId)}}"
+                    "value": "{{fn:getSecondPageParty(item.additionalFields.fields, item.senderId, item.receiverId, item.senderType, item.receiverType)}}"
                   },
                   {
                     "key": "INVENTORY_MRN_NUMBER_LABEL",
@@ -2487,7 +2511,7 @@
               {
                 "key": "additionalFields",
                 "value": "IN_TRANSIT",
-                "operation": "contains"
+                "operation": "matches"
               }
             ]
           }
@@ -2668,6 +2692,10 @@
                           "value": "{{item.items[0].senderId}}"
                         },
                         {
+                          "key": "receivedFromName",
+                          "value": "{{fn:getFacilityName(item.items[0].senderId)}}"
+                        },
+                        {
                           "key": "quantity",
                           "value": "{{item.items[0].quantity}}"
                         },
@@ -2760,6 +2788,10 @@
               {
                 "key": "senderFacilityId",
                 "value": "{{navigation.senderFacilityId}}"
+              },
+              {
+                "key": "receivedFromName",
+                "value": "{{fn:getFacilityName(item.items[0].senderId)}}"
               },
               {
                 "key": "productVariantId",
@@ -3012,7 +3044,7 @@
               "type": "string",
               "label": "INVENTORY_RECEIVED_FROM_LABEL",
               "order": 3,
-              "value": "{{senderFacilityId}}",
+              "value": "{{receivedFromName}}",
               "format": "text",
               "fieldName": "receivedFrom",
               "displayOnly": true
