@@ -520,6 +520,26 @@
                   {
                     "key": "futureDoses",
                     "value": "{{contextData.0.futureDeliveries}}"
+                  },
+                  {
+                    "key": "ec1",
+                    "value": "{{navigation.ec1}}"
+                  },
+                  {
+                    "key": "ec2",
+                    "value": "{{navigation.ec2}}"
+                  },
+                  {
+                    "key": "ec3",
+                    "value": "{{navigation.ec3}}"
+                  },
+                  {
+                    "key": "ec4",
+                    "value": "{{navigation.ec4}}"
+                  },
+                  {
+                    "key": "ec5",
+                    "value": "{{navigation.ec5}}"
                   }
                 ],
                 "name": "DELIVERY",
@@ -860,6 +880,7 @@
       "submitCondition": null,
       "preventScreenCapture": false
     },
+   
     {
       "body": [
         {
@@ -978,7 +999,7 @@
               "data": [
                 {
                   "key": "HOUSEHOLD_HEAD_NAME",
-                  "value": "{{contextData.0.headIndividual.IndividualModel.name.givenName}} {{contextData.0.headIndividual.IndividualModel.name.familyName}}",
+                  "value": "{{fn:individualName(contextData.0.headIndividual.IndividualModel.name)}}",
                   "isActive": true
                 },
                 {
@@ -1159,7 +1180,7 @@
                   },
                   {
                     "type": "template",
-                    "value": "{{ item.individual.0.name.givenName }} {{ item.individual.0.name.familyName }}",
+                    "value": "{{fn:individualName(item.individual.0.name)}}",
                     "format": "textTemplate",
                     "fieldName": "individualName",
                     "properties": {
@@ -1190,18 +1211,18 @@
                     "type": "template",
                     "label": "NOT_ELIGIBLE",
                     "format": "tag",
-                    "visible": "{{fn:checkEligibilityForAgeAndSideEffect(item.individual.0.dateOfBirth, item.task, contextData.0.currentRunningCycle)}}==false && && {{fn:length(item.hFReferral)}}>0 && {{fn:isHead(item.member)}}==false && {{fn:hasReferralForCurrentCycle(item.hFReferral)}}==false",
+                    "visible": "{{fn:checkEligibilityForAgeAndSideEffect(item.individual.0, item.task, contextData.0.currentRunningCycle)}}==false && && {{fn:length(item.hFReferral)}}>0 && {{fn:isHead(item.member)}}==false && {{fn:hasSMCReferralForCurrentCycle(item.hFReferral)}}==false",
                     "fieldName": "notEligible",
                     "properties": {
                       "tagType": "error",
                       "bottomGap": 16
                     }
                   },
-                  {
+                 {
                     "type": "template",
                     "label": "ADMINISTERED_SUCCESS",
                     "format": "tag",
-                    "visible": "{{fn:isDelivered(item.task.last.status)}}==true && {{fn:checkEligibilityForAgeAndSideEffect(item.individual.0.dateOfBirth, item.task, contextData.0.currentRunningCycle)}}==true && {{fn:hasReferralForCurrentCycle(item.hFReferral)}}==false",
+                    "visible": "{{fn:isDelivered(item.task)}}==true && {{fn:checkEligibilityForAgeAndSideEffect(item.individual.0, item.task, contextData.0.currentRunningCycle)}}==true && {{fn:hasSMCReferralForCurrentCycle(item.hFReferral)}}==false",
                     "fieldName": "administrationSuccess",
                     "properties": {
                       "tagType": "success",
@@ -1212,10 +1233,11 @@
                     "type": "template",
                     "label": "{{fn:getInEligibleStatus(item.task)}}",
                     "format": "tag",
-                    "visible": "{{fn:checkEligibilityForAgeAndSideEffect(item.individual.0.dateOfBirth, item.task, contextData.0.currentRunningCycle)}}==false && {{fn:length(item.hFReferral)}}<=0 && {{fn:isHead(item.member)}}==false",
+                    "visible": "{{fn:checkEligibilityForAgeAndSideEffect(item.individual.0, item.task, contextData.0.currentRunningCycle)}}==false && {{fn:hasSMCReferral(item.hFReferral)}}==false && {{fn:isHead(item.member)}}==false",
                     "fieldName": "notEligible",
                     "properties": {
-                      "tagType": "error"
+                      "tagType": "error",
+                  "bottomGap": 16
                     }
                   },
                   {
@@ -1223,39 +1245,43 @@
                     "label": "BENEFICIARY_REFERRED",
                     "format": "tag",
                     "hidden": false,
-                    "visible": "{{fn:hasReferralForCurrentCycle(item.hFReferral)}}==true && {{fn:isHead(item.member)}}==false",
+                    "visible": "{{fn:hasSMCReferralForCurrentCycle(item.hFReferral)}}==true && {{fn:isHead(item.member)}}==false",
                     "fieldName": "beneficiaryReferred",
                     "properties": {
-                      "tagType": "error"
+                      "tagType": "error",
+                  "bottomGap": 16
                     }
                   },
                   {
                     "type": "template",
                     "label": "REDOSE_COMPLETED",
                     "format": "tag",
-                    "visible": "{{fn:isRedoseCompleted(item.task)}}==true && {{fn:checkEligibilityForAgeAndSideEffect(item.individual.0.dateOfBirth, item.task, contextData.0.currentRunningCycle)}}==true && {{fn:hasReferralForCurrentCycle(item.hFReferral)}}==false",
+                    "visible": "{{fn:isRedoseCompleted(item.task)}}==true && {{fn:checkEligibilityForAgeAndSideEffect(item.individual.0, item.task, contextData.0.currentRunningCycle)}}==true && {{fn:hasSMCReferralForCurrentCycle(item.hFReferral)}}==false",
                     "fieldName": "redoseCompleted",
                     "properties": {
                       "tagType": "success",
                       "bottomGap": 16
                     }
                   },
+                  
                   {
                     "type": "template",
                     "label": "NOT_VISITED",
                     "format": "tag",
-                    "visible": "{{fn:checkEligibilityForAgeAndSideEffect(item.individual.0.dateOfBirth, item.task, contextData.0.currentRunningCycle)}}==true && {{fn:isDelivered(item.task.last.status)}}==false && {{fn:hasReferralForCurrentCycle(item.hFReferral)}}==false && {{fn:isRedoseCompleted(item.task)}}==false",
+                    "visible": "{{fn:checkEligibilityForAgeAndSideEffect(item.individual.0, item.task, contextData.0.currentRunningCycle)}}==true && {{fn:isDelivered(item.task)}}==false && {{fn:hasSMCReferralForCurrentCycle(item.hFReferral)}}==false && {{fn:isRedoseCompleted(item.task)}}==false",
                     "fieldName": "notVisited",
                     "properties": {
                       "tagType": "info",
                       "bottomGap": 16
                     }
                   },
+                  
+               
                   {
                     "type": "template",
                     "label": "DELIVERY",
                     "format": "button",
-                    "visible": "{{fn:checkEligibilityForAgeAndSideEffect(item.individual.0.dateOfBirth, item.task,contextData.0.currentRunningCycle)}} == true  && {{fn:checkAllDoseDelivered(item.task)}} == false && {{fn:hasReferralForCurrentCycle(item.hFReferral)}}==false && {{fn:isHead(item.member)}} == false",
+                    "visible": "{{fn:checkEligibilityForAgeAndSideEffect(item.individual.0, item.task,contextData.0.currentRunningCycle)}} == true  && {{fn:checkAllDoseDelivered(item.task)}} == false && {{fn:hasSMCReferralForCurrentCycle(item.hFReferral)}}==false && {{fn:isHead(item.member)}} == false",
                     "onAction": [
                       {
                         "actionType": "NAVIGATION",
@@ -1333,11 +1359,12 @@
                       "bottomGap": 16
                     }
                   },
+                 
                   {
                     "type": "template",
                     "label": "HOUSEHOLD_OVERVIEW_UNABLE_TO_DELIVER_LABEL",
                     "format": "button",
-                    "visible": "{{fn:checkEligibilityForAgeAndSideEffect(item.individual.0.dateOfBirth, item.task,contextData.0.currentRunningCycle)}} == true  && {{fn:checkAllDoseDelivered(item.task)}} == false && {{fn:hasReferralForCurrentCycle(item.hFReferral)}}==false && {{fn:isHead(item.member)}} == false",
+                    "visible": "{{fn:checkEligibilityForAgeAndSideEffect(item.individual.0, item.task,contextData.0.currentRunningCycle)}} == true  && {{fn:checkAllDoseDelivered(item.task)}} == false && {{fn:hasSMCReferralForCurrentCycle(item.hFReferral)}}==false && {{fn:isHead(item.member)}} == false",
                     "onAction": [
                       {
                         "actionType": "NAVIGATION",
@@ -1408,7 +1435,7 @@
                     "type": "template",
                     "label": "REGISTRATION_VIEW_DETAILS",
                     "format": "button",
-                    "visible": "{{fn:checkEligibilityForAgeAndSideEffect(item.individual.0.dateOfBirth, item.task,contextData.0.currentRunningCycle)}} == true &&  {{fn:checkAllDoseDelivered(item.task)}} == true && {{fn:hasReferralForCurrentCycle(item.hFReferral)}}==false",
+                    "visible": "{{fn:checkEligibilityForAgeAndSideEffect(item.individual.0, item.task,contextData.0.currentRunningCycle)}} == true &&  {{fn:checkAllDoseDelivered(item.task)}} == true && {{fn:hasSMCReferralForCurrentCycle(item.hFReferral)}}==false",
                     "onAction": [
                       {
                         "actionType": "NAVIGATION",
@@ -1486,7 +1513,7 @@
                     "label": "REDOSE_ADMINISTRATION",
                     "format": "actionPopup",
                     "fieldName": "redoseInsufficientStockPopUp",
-                    "visible": "{{fn:checkEligibilityForAgeAndSideEffect(item.individual.0.dateOfBirth, item.task,contextData.0.currentRunningCycle)}} == true && {{fn:checkAllDoseDelivered(item.task)}} == true && {{fn:hasReferralForCurrentCycle(item.hFReferral)}}==false && {{fn:hasStockForRedose(item.task)}} == false",
+                    "visible": "{{fn:checkEligibilityForAgeAndSideEffect(item.individual.0, item.task,contextData.0.currentRunningCycle)}} == true && {{fn:checkAllDoseDelivered(item.task)}} == true && {{fn:hasSMCReferralForCurrentCycle(item.hFReferral)}}==false && {{fn:hasStockForRedose(item.task)}} == false",
                     "disabled": "{{fn:isRedoseWindowExpired(item.task)}}==true || {{fn:isRedoseCompleted(item.task)}}==true",
                     "properties": {
                       "icon": "Warning",
@@ -1549,7 +1576,7 @@
                     "type": "template",
                     "label": "REDOSE_ADMINISTRATION",
                     "format": "button",
-                    "visible": "{{fn:checkEligibilityForAgeAndSideEffect(item.individual.0.dateOfBirth, item.task,contextData.0.currentRunningCycle)}} == true && {{fn:checkAllDoseDelivered(item.task)}} == true && {{fn:hasReferralForCurrentCycle(item.hFReferral)}}==false && {{fn:hasStockForRedose(item.task)}} == true",
+                    "visible": "{{fn:checkEligibilityForAgeAndSideEffect(item.individual.0, item.task,contextData.0.currentRunningCycle)}} == true && {{fn:checkAllDoseDelivered(item.task)}} == true && {{fn:hasSMCReferralForCurrentCycle(item.hFReferral)}}==false && {{fn:hasStockForRedose(item.task)}} == true",
                     "disabled": "{{fn:isRedoseWindowExpired(item.task)}}==true || {{fn:isRedoseCompleted(item.task)}}==true",
                     "onAction": [
                       {
@@ -2264,6 +2291,7 @@
       ],
       "isSelected": true,
       "screenType": "FORM",
+      "category": "REGISTRATION",
       "initActions": [],
       "wrapperConfig": {},
       "scrollListener": {}
@@ -2361,6 +2389,7 @@
           ],
           "fieldName": "searchBar",
           "mandatory": true,
+          "debounceMs": 300,
           "validations": [
             {
               "type": "minSearchChars",
@@ -2420,7 +2449,7 @@
                 "children": [
                   {
                     "type": "template",
-                    "value": "{{ item.headIndividual.0.name.givenName }} {{ item.headIndividual.0.name.familyName }}",
+                    "value": "{{fn:individualName(item.headIndividual.0.name)}}",
                     "format": "textTemplate",
                     "fieldName": "headOfHousehold"
                   },
@@ -2554,7 +2583,7 @@
                       "header": "BENEFICIARY",
                       "hidden": false,
                       "isActive": true,
-                      "cellValue": "{{item.name.givenName}} {{item.name.familyName}}"
+                      "cellValue": "{{fn:individualName(item.name)}}"
                     },
                     {
                       "header": "AGE_OF_BENEFICIARY",
@@ -3034,6 +3063,26 @@
                   {
                     "key": "deliveryStrategy",
                     "value": "{{navigation.deliveryStrategy}}"
+                  },
+                  {
+                    "key": "ec1",
+                    "value": "{{navigation.ec1}}"
+                  },
+                  {
+                    "key": "ec2",
+                    "value": "{{navigation.ec2}}"
+                  },
+                  {
+                    "key": "ec3",
+                    "value": "{{navigation.ec3}}"
+                  },
+                  {
+                    "key": "ec4",
+                    "value": "{{navigation.ec4}}"
+                  },
+                  {
+                    "key": "ec5",
+                    "value": "{{navigation.ec5}}"
                   }
                 ],
                 "onError": [
@@ -3117,6 +3166,26 @@
                       {
                         "key": "futureDoses",
                         "value": "{{navigation.futureDoses}}"
+                      },
+                      {
+                        "key": "ec1",
+                        "value": "{{navigation.ec1}}"
+                      },
+                      {
+                        "key": "ec2",
+                        "value": "{{navigation.ec2}}"
+                      },
+                      {
+                        "key": "ec3",
+                        "value": "{{navigation.ec3}}"
+                      },
+                      {
+                        "key": "ec4",
+                        "value": "{{navigation.ec4}}"
+                      },
+                      {
+                        "key": "ec5",
+                        "value": "{{navigation.ec5}}"
                       }
                     ],
                     "onError": [
@@ -3362,6 +3431,26 @@
                   {
                     "key": "deliveryStrategy",
                     "value": "{{navigation.deliveryStrategy}}"
+                  },
+                  {
+                    "key": "ec1",
+                    "value": "{{navigation.ec1}}"
+                  },
+                  {
+                    "key": "ec2",
+                    "value": "{{navigation.ec2}}"
+                  },
+                  {
+                    "key": "ec3",
+                    "value": "{{navigation.ec3}}"
+                  },
+                  {
+                    "key": "ec4",
+                    "value": "{{navigation.ec4}}"
+                  },
+                  {
+                    "key": "ec5",
+                    "value": "{{navigation.ec5}}"
                   }
                 ],
                 "onError": [
@@ -3445,6 +3534,26 @@
                       {
                         "key": "futureDoses",
                         "value": "{{navigation.futureDoses}}"
+                      },
+                      {
+                        "key": "ec1",
+                        "value": "{{navigation.ec1}}"
+                      },
+                      {
+                        "key": "ec2",
+                        "value": "{{navigation.ec2}}"
+                      },
+                      {
+                        "key": "ec3",
+                        "value": "{{navigation.ec3}}"
+                      },
+                      {
+                        "key": "ec4",
+                        "value": "{{navigation.ec4}}"
+                      },
+                      {
+                        "key": "ec5",
+                        "value": "{{navigation.ec5}}"
                       }
                     ],
                     "onError": [
@@ -3756,6 +3865,26 @@
               {
                 "key": "deliveryStrategy",
                 "value": "{{navigation.deliveryStrategy}}"
+              },
+              {
+                "key": "ec1",
+                "value": "{{navigation.ec1}}"
+              },
+              {
+                "key": "ec2",
+                "value": "{{navigation.ec2}}"
+              },
+              {
+                "key": "ec3",
+                "value": "{{navigation.ec3}}"
+              },
+              {
+                "key": "ec4",
+                "value": "{{navigation.ec4}}"
+              },
+              {
+                "key": "ec5",
+                "value": "{{navigation.ec5}}"
               }
             ],
             "onError": [
@@ -3853,6 +3982,26 @@
                   {
                     "key": "futureDoses",
                     "value": "{{navigation.futureDoses}}"
+                  },
+                  {
+                    "key": "ec1",
+                    "value": "{{navigation.ec1}}"
+                  },
+                  {
+                    "key": "ec2",
+                    "value": "{{navigation.ec2}}"
+                  },
+                  {
+                    "key": "ec3",
+                    "value": "{{navigation.ec3}}"
+                  },
+                  {
+                    "key": "ec4",
+                    "value": "{{navigation.ec4}}"
+                  },
+                  {
+                    "key": "ec5",
+                    "value": "{{navigation.ec5}}"
                   }
                 ],
                 "onError": [
@@ -3918,6 +4067,7 @@
       "wrapperConfig": {},
       "scrollListener": {}
     },
+   
     {
       "name": "REDOSE",
       "order": 12,
@@ -4032,6 +4182,26 @@
                       {
                         "key": "locationAccuracy",
                         "value": "{{navigation.locationAccuracy}}"
+                      },
+                      {
+                        "key": "ec1",
+                        "value": "{{navigation.ec1}}"
+                      },
+                      {
+                        "key": "ec2",
+                        "value": "{{navigation.ec2}}"
+                      },
+                      {
+                        "key": "ec3",
+                        "value": "{{navigation.ec3}}"
+                      },
+                      {
+                        "key": "ec4",
+                        "value": "{{navigation.ec4}}"
+                      },
+                      {
+                        "key": "ec5",
+                        "value": "{{navigation.ec5}}"
                       }
                     ],
                     "onError": [
@@ -4339,6 +4509,26 @@
               {
                 "key": "locationAccuracy",
                 "value": "{{navigation.locationAccuracy}}"
+              },
+              {
+                "key": "ec1",
+                "value": "{{navigation.ec1}}"
+              },
+              {
+                "key": "ec2",
+                "value": "{{navigation.ec2}}"
+              },
+              {
+                "key": "ec3",
+                "value": "{{navigation.ec3}}"
+              },
+              {
+                "key": "ec4",
+                "value": "{{navigation.ec4}}"
+              },
+              {
+                "key": "ec5",
+                "value": "{{navigation.ec5}}"
               }
             ],
             "onError": [
@@ -4494,6 +4684,26 @@
                       {
                         "key": "headMobileNumber",
                         "value": "{{navigation.headMobileNumber}}"
+                      },
+                      {
+                        "key": "ec1",
+                        "value": "{{eligibilityChecklist.ec1}}"
+                      },
+                      {
+                        "key": "ec2",
+                        "value": "{{eligibilityChecklist.ec2}}"
+                      },
+                      {
+                        "key": "ec3",
+                        "value": "{{eligibilityChecklist.ec3}}"
+                      },
+                      {
+                        "key": "ec4",
+                        "value": "{{eligibilityChecklist.ec4}}"
+                      },
+                      {
+                        "key": "ec5",
+                        "value": "{{eligibilityChecklist.ec5}}"
                       }
                     ],
                     "name": "beneficiaryDetails",
@@ -4557,6 +4767,26 @@
                       {
                         "key": "headMobileNumber",
                         "value": "{{navigation.headMobileNumber}}"
+                      },
+                      {
+                        "key": "ec1",
+                        "value": "{{eligibilityChecklist.ec1}}"
+                      },
+                      {
+                        "key": "ec2",
+                        "value": "{{eligibilityChecklist.ec2}}"
+                      },
+                      {
+                        "key": "ec3",
+                        "value": "{{eligibilityChecklist.ec3}}"
+                      },
+                      {
+                        "key": "ec4",
+                        "value": "{{eligibilityChecklist.ec4}}"
+                      },
+                      {
+                        "key": "ec5",
+                        "value": "{{eligibilityChecklist.ec5}}"
                       }
                     ],
                     "name": "beneficiaryDetails",
@@ -4632,6 +4862,26 @@
                       {
                         "key": "ProjectBeneficiaryClientReferenceId",
                         "value": "{{navigation.ProjectBeneficiaryClientReferenceId}}"
+                      },
+                      {
+                        "key": "ec1",
+                        "value": "{{eligibilityChecklist.ec1}}"
+                      },
+                      {
+                        "key": "ec2",
+                        "value": "{{eligibilityChecklist.ec2}}"
+                      },
+                      {
+                        "key": "ec3",
+                        "value": "{{eligibilityChecklist.ec3}}"
+                      },
+                      {
+                        "key": "ec4",
+                        "value": "{{eligibilityChecklist.ec4}}"
+                      },
+                      {
+                        "key": "ec5",
+                        "value": "{{eligibilityChecklist.ec5}}"
                       }
                     ],
                     "onError": [
@@ -4677,6 +4927,26 @@
                       {
                         "key": "ProjectBeneficiaryClientReferenceId",
                         "value": "{{navigation.ProjectBeneficiaryClientReferenceId}}"
+                      },
+                      {
+                        "key": "ec1",
+                        "value": "{{eligibilityChecklist.ec1}}"
+                      },
+                      {
+                        "key": "ec2",
+                        "value": "{{eligibilityChecklist.ec2}}"
+                      },
+                      {
+                        "key": "ec3",
+                        "value": "{{eligibilityChecklist.ec3}}"
+                      },
+                      {
+                        "key": "ec4",
+                        "value": "{{eligibilityChecklist.ec4}}"
+                      },
+                      {
+                        "key": "ec5",
+                        "value": "{{eligibilityChecklist.ec5}}"
                       }
                     ],
                     "name": "householdOverview",
@@ -5157,6 +5427,26 @@
                   {
                     "key": "headMobileNumber",
                     "value": "{{navigation.headMobileNumber}}"
+                  },
+                  {
+                    "key": "ec1",
+                    "value": "{{eligibilityChecklist.ec1}}"
+                  },
+                  {
+                    "key": "ec2",
+                    "value": "{{eligibilityChecklist.ec2}}"
+                  },
+                  {
+                    "key": "ec3",
+                    "value": "{{eligibilityChecklist.ec3}}"
+                  },
+                  {
+                    "key": "ec4",
+                    "value": "{{eligibilityChecklist.ec4}}"
+                  },
+                  {
+                    "key": "ec5",
+                    "value": "{{eligibilityChecklist.ec5}}"
                   }
                 ],
                 "name": "beneficiaryDetails",
@@ -5224,6 +5514,26 @@
                   {
                     "key": "headMobileNumber",
                     "value": "{{navigation.headMobileNumber}}"
+                  },
+                  {
+                    "key": "ec1",
+                    "value": "{{eligibilityChecklist.ec1}}"
+                  },
+                  {
+                    "key": "ec2",
+                    "value": "{{eligibilityChecklist.ec2}}"
+                  },
+                  {
+                    "key": "ec3",
+                    "value": "{{eligibilityChecklist.ec3}}"
+                  },
+                  {
+                    "key": "ec4",
+                    "value": "{{eligibilityChecklist.ec4}}"
+                  },
+                  {
+                    "key": "ec5",
+                    "value": "{{eligibilityChecklist.ec5}}"
                   }
                 ],
                 "name": "beneficiaryDetails",
@@ -5299,6 +5609,26 @@
                   {
                     "key": "ProjectBeneficiaryClientReferenceId",
                     "value": "{{navigation.ProjectBeneficiaryClientReferenceId}}"
+                  },
+                  {
+                    "key": "ec1",
+                    "value": "{{eligibilityChecklist.ec1}}"
+                  },
+                  {
+                    "key": "ec2",
+                    "value": "{{eligibilityChecklist.ec2}}"
+                  },
+                  {
+                    "key": "ec3",
+                    "value": "{{eligibilityChecklist.ec3}}"
+                  },
+                  {
+                    "key": "ec4",
+                    "value": "{{eligibilityChecklist.ec4}}"
+                  },
+                  {
+                    "key": "ec5",
+                    "value": "{{eligibilityChecklist.ec5}}"
                   }
                 ],
                 "onError": [
@@ -5368,6 +5698,26 @@
                   {
                     "key": "headMobileNumber",
                     "value": "{{navigation.headMobileNumber}}"
+                  },
+                  {
+                    "key": "ec1",
+                    "value": "{{eligibilityChecklist.ec1}}"
+                  },
+                  {
+                    "key": "ec2",
+                    "value": "{{eligibilityChecklist.ec2}}"
+                  },
+                  {
+                    "key": "ec3",
+                    "value": "{{eligibilityChecklist.ec3}}"
+                  },
+                  {
+                    "key": "ec4",
+                    "value": "{{eligibilityChecklist.ec4}}"
+                  },
+                  {
+                    "key": "ec5",
+                    "value": "{{eligibilityChecklist.ec5}}"
                   }
                 ],
                 "name": "householdOverview",
@@ -5536,6 +5886,10 @@
                         "value": "{{navigation.HouseholdClientReferenceId}}"
                       },
                       {
+                        "key": "memberCount",
+                        "value": "{{navigation.memberCount}}"
+                      },
+                      {
                         "key": "ProjectBeneficiaryClientReferenceId",
                         "value": "{{formData.projectBeneficiary.clientReferenceId}}"
                       },
@@ -5552,8 +5906,32 @@
                         "value": "{{fn:formatDate(formData.dobPicker, 'ageInMonths')}}"
                       },
                       {
+                        "key": "childName",
+                        "value": "{{formData.nameOfIndividual}}"
+                      },
+                      {
+                        "key": "ageInMonths",
+                        "value": "{{fn:formatDate(formData.dobPicker, 'ageInMonths')}}"
+                      },
+                      {
+                        "key": "gender",
+                        "value": "{{formData.gender}}"
+                      },
+                      {
+                        "key": "headName",
+                        "value": "{{navigation.headName}}"
+                      },
+                      {
+                        "key": "headMobileNumber",
+                        "value": "{{navigation.headMobileNumber}}"
+                      },
+                      {
                         "key": "cycleIndex",
-                        "value": "{{contextData.0.cycleIndex}}"
+                        "value": "{{navigation.cycleIndex}}"
+                      },
+                      {
+                        "key": "disableBack",
+                        "value": "true"
                       }
                     ],
                     "name": "ACKNOWLEDGEMENT",
@@ -5626,10 +6004,58 @@
                   {
                     "key": "HouseholdClientReferenceId",
                     "value": "{{navigation.HouseholdClientReferenceId}}"
+                  },
+                  {
+                    "key": "memberCount",
+                    "value": "{{navigation.memberCount}}"
+                  },
+                  {
+                    "key": "ProjectBeneficiaryClientReferenceId",
+                    "value": "{{contextData.entities.ProjectBeneficiaryModel.clientReferenceId}}"
+                  },
+                  {
+                    "key": "selectedIndividualName",
+                    "value": "{{formData.nameOfIndividual}}"
+                  },
+                  {
+                    "key": "selectedIndividualGender",
+                    "value": "{{formData.gender}}"
+                  },
+                  {
+                    "key": "selectedIndividualAgeInMonths",
+                    "value": "{{fn:formatDate(formData.dobPicker, 'ageInMonths')}}"
+                  },
+                  {
+                    "key": "childName",
+                    "value": "{{formData.nameOfIndividual}}"
+                  },
+                  {
+                    "key": "ageInMonths",
+                    "value": "{{fn:formatDate(formData.dobPicker, 'ageInMonths')}}"
+                  },
+                  {
+                    "key": "gender",
+                    "value": "{{formData.gender}}"
+                  },
+                  {
+                    "key": "headName",
+                    "value": "{{navigation.headName}}"
+                  },
+                  {
+                    "key": "headMobileNumber",
+                    "value": "{{navigation.headMobileNumber}}"
+                  },
+                  {
+                    "key": "cycleIndex",
+                    "value": "{{navigation.cycleIndex}}"
+                  },
+                  {
+                    "key": "disableBack",
+                    "value": "true"
                   }
                 ],
-                "name": "householdOverview",
-                "type": "TEMPLATE",
+                "name": "CHECKLIST",
+                "type": "FORM",
                 "onError": [
                   {
                     "actionType": "SHOW_TOAST",
@@ -5647,35 +6073,63 @@
             "data": [
               {
                 "key": "selectedIndividualClientReferenceId",
-                "value": "{{formData.individual.clientReferenceId}}"
+                "value": "{{contextData.entities.IndividualModel.clientReferenceId}}"
               },
               {
                 "key": "selectedIndividualIdentifierId",
-                "value": "{{formData.individual.identifiers.0.identifierId}}"
+                "value": "{{contextData.entities.IndividualModel.identifiers.0.identifierId}}"
               },
               {
                 "key": "HouseholdClientReferenceId",
                 "value": "{{navigation.HouseholdClientReferenceId}}"
               },
               {
+                "key": "memberCount",
+                "value": "{{navigation.memberCount}}"
+              },
+              {
                 "key": "ProjectBeneficiaryClientReferenceId",
-                "value": "{{formData.projectBeneficiary.clientReferenceId}}"
+                "value": "{{contextData.entities.ProjectBeneficiaryModel.clientReferenceId}}"
               },
               {
                 "key": "selectedIndividualName",
-                "value": "{{formData.individual.name.familyName}}"
+                "value": "{{formData.nameOfIndividual}}"
               },
               {
                 "key": "selectedIndividualGender",
-                "value": "{{formData.individual.gender}}"
+                "value": "{{formData.gender}}"
               },
               {
                 "key": "selectedIndividualAgeInMonths",
-                "value": "{{fn:formatDate(formData, 'ageinmonths')}}"
+                "value": "{{fn:formatDate(formData.dobPicker, 'ageInMonths')}}"
+              },
+              {
+                "key": "childName",
+                "value": "{{formData.nameOfIndividual}}"
+              },
+              {
+                "key": "ageInMonths",
+                "value": "{{fn:formatDate(formData.dobPicker, 'ageInMonths')}}"
+              },
+              {
+                "key": "gender",
+                "value": "{{formData.gender}}"
+              },
+              {
+                "key": "headName",
+                "value": "{{navigation.headName}}"
+              },
+              {
+                "key": "headMobileNumber",
+                "value": "{{navigation.headMobileNumber}}"
               },
               {
                 "key": "cycleIndex",
-                "value": "{{contextData.0.cycleIndex}}"
+                "value": "{{navigation.cycleIndex}}"
+              },
+              {
+                "key": "disableBack",
+                "value": "true"
               }
             ],
             "name": "ACKNOWLEDGEMENT",
@@ -5832,7 +6286,7 @@
               "tooltip": "APPONE_REGISTRATION_BENEFICIARYDETAILS_label_dobPicker_tooltip_addmember",
               "ageRange": {
                 "maxAge": 59,
-                "minAge": 3,
+                "minAge": 0,
                 "errorMessage": "AGE_VALIDATION_ADDMEMBER"
               },
               "helpText": "APPONE_REGISTRATION_BENEFICIARYDETAILS_label_dobPicker_helpText_addmember",
@@ -5853,7 +6307,7 @@
                 },
                 {
                   "type": "minAge",
-                  "value": 3,
+                  "value": 0,
                   "message": "AGE_VALIDATION_ADDMEMBER"
                 },
                 {
@@ -6105,6 +6559,10 @@
                 "value": "{{navigation.HouseholdClientReferenceId}}"
               },
               {
+                "key": "memberCount",
+                "value": "{{navigation.memberCount}}"
+              },
+              {
                 "key": "ProjectBeneficiaryClientReferenceId",
                 "value": "{{contextData.entities.ProjectBeneficiaryModel.clientReferenceId}}"
               },
@@ -6121,8 +6579,32 @@
                 "value": "{{fn:formatDate(contextData.entities.IndividualModel.dateOfBirth, 'ageinmonths')}}"
               },
               {
+                "key": "childName",
+                "value": "{{contextData.entities.IndividualModel.name.givenName}}"
+              },
+              {
+                "key": "ageInMonths",
+                "value": "{{fn:formatDate(contextData.entities.IndividualModel.dateOfBirth, 'ageinmonths')}}"
+              },
+              {
+                "key": "gender",
+                "value": "{{contextData.entities.IndividualModel.gender}}"
+              },
+              {
+                "key": "headName",
+                "value": "{{navigation.headName}}"
+              },
+              {
+                "key": "headMobileNumber",
+                "value": "{{navigation.headMobileNumber}}"
+              },
+              {
                 "key": "cycleIndex",
-                "value": "{{contextData.0.cycleIndex}}"
+                "value": "{{navigation.cycleIndex}}"
+              },
+              {
+                "key": "disableBack",
+                "value": "true"
               }
             ],
             "name": "ACKNOWLEDGEMENT",
@@ -6583,7 +7065,7 @@
               "required.message": "REFER_BENEFICIARY_REFERRED_BY_REQUIRED",
               "autoFillCondition": [
                 {
-                  "value": "{{loggedInUserUuid}}",
+                  "value": "{{loggedInUserName}}",
                   "expression": "true==true"
                 }
               ]
@@ -6743,8 +7225,8 @@
                 "value": "{{navigation.sourceFlow}}"
               },
               {
-                "key": "referralReasons",
-                "value": "{{navigation.referralReasons}}"
+                "key": "sourceFlow",
+                "value": "{{navigation.sourceFlow}}"
               }
             ],
             "onError": [
@@ -8833,6 +9315,7 @@
         }
       ],
       "heading": "",
+      "category": "REGISTRATION",
       "screenType": "TEMPLATE",
       "description": "",
       "body": [
