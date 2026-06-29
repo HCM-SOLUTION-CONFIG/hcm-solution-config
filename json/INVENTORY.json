@@ -966,6 +966,11 @@
                   "type": "required",
                   "value": true,
                   "message": "APPONE_MANAGESTOCK_WAREHOUSE_label_facilityFromWhich_mandatory_message"
+                },
+                {
+                  "type": "isGS1Code",
+                  "value": false,
+                  "message": "APPONE_MANAGESTOCK_WAREHOUSE_label_isGS1Code_message"
                 }
               ],
               "errorMessage": "",
@@ -1905,6 +1910,11 @@
                   "type": "required",
                   "value": true,
                   "message": "APPONE_MANAGESTOCK_WAREHOUSE_label_facilityFromWhich_mandatory_message"
+                },
+                {
+                  "type": "isGS1Code",
+                  "value": false,
+                  "message": "APPONE_MANAGESTOCK_WAREHOUSE_label_isGS1Code_message"
                 }
               ],
               "errorMessage": "",
