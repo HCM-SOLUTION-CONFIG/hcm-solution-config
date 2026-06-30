@@ -998,7 +998,7 @@
               "data": [
                 {
                   "key": "HOUSEHOLD_HEAD_NAME",
-                  "value": "{{fn:individualName(contextData.0.headIndividual.IndividualModel.name)}}",
+                  "value": "{{fn:fullName(contextData.0.headIndividual.IndividualModel.name)}}",
                   "isActive": true
                 },
                 {
@@ -1179,7 +1179,7 @@
                   },
                   {
                     "type": "template",
-                    "value": "{{fn:individualName(item.individual.0.name)}}",
+                    "value": "{{fn:fullName(item.individual.0.name)}}",
                     "format": "textTemplate",
                     "fieldName": "individualName",
                     "properties": {
@@ -1217,7 +1217,7 @@
                       "bottomGap": 16
                     }
                   },
-                 {
+                  {
                     "type": "template",
                     "label": "ADMINISTERED_SUCCESS",
                     "format": "tag",
@@ -1236,7 +1236,7 @@
                     "fieldName": "notEligible",
                     "properties": {
                       "tagType": "error",
-                  "bottomGap": 16
+                      "bottomGap": 16
                     }
                   },
                   {
@@ -1248,7 +1248,7 @@
                     "fieldName": "beneficiaryReferred",
                     "properties": {
                       "tagType": "error",
-                  "bottomGap": 16
+                      "bottomGap": 16
                     }
                   },
                   {
@@ -1262,7 +1262,6 @@
                       "bottomGap": 16
                     }
                   },
-                  
                   {
                     "type": "template",
                     "label": "NOT_VISITED",
@@ -1329,7 +1328,7 @@
                             },
                             {
                               "key": "selectedIndividualName",
-                              "value": "{{fn:str(item.individual.0.name)}}"
+                              "value": "{{fn:fullName(item.individual.0.name)}}"
                             },
                             {
                               "key": "selectedIndividualGender",
@@ -1341,7 +1340,7 @@
                             },
                             {
                               "key": "childName",
-                              "value": "{{fn:str(item.individual.0.name)}}"
+                              "value": "{{fn:fullName(item.individual.0.name)}}"
                             },
                             {
                               "key": "ageInMonths",
@@ -1353,7 +1352,15 @@
                             },
                             {
                               "key": "headName",
-                              "value": "{{fn:str(contextData.0.headIndividual.IndividualModel.name)}}"
+                              "value": "{{fn:fullName(contextData.0.headIndividual.IndividualModel.name)}}"
+                            },
+                            {
+                              "key": "latitude",
+                              "value": "{{contextData.0.headIndividual.IndividualModel.address.0.latitude}}"
+                            },
+                            {
+                              "key": "longitude",
+                              "value": "{{contextData.0.headIndividual.IndividualModel.address.0.longitude}}"
                             },
                             {
                               "key": "headMobileNumber",
@@ -1379,7 +1386,6 @@
                       "bottomGap": 16
                     }
                   },
-                 
                   {
                     "type": "template",
                     "label": "RI_DELIVERY",
@@ -1424,7 +1430,7 @@
                             },
                             {
                               "key": "childName",
-                              "value": "{{fn:str(item.individual.0.name)}}"
+                              "value": "{{fn:fullName(item.individual.0.name)}}"
                             },
                             {
                               "key": "ageInMonths",
@@ -1436,7 +1442,7 @@
                             },
                             {
                               "key": "headName",
-                              "value": "{{fn:str(contextData.0.headIndividual.IndividualModel.name)}}"
+                              "value": "{{fn:fullName(contextData.0.headIndividual.IndividualModel.name)}}"
                             },
                             {
                               "key": "headMobileNumber",
@@ -1490,7 +1496,7 @@
                             },
                             {
                               "key": "childName",
-                              "value": "{{fn:str(item.individual.0.name)}}"
+                              "value": "{{fn:fullName(item.individual.0.name)}}"
                             },
                             {
                               "key": "ageInMonths",
@@ -1502,7 +1508,7 @@
                             },
                             {
                               "key": "headName",
-                              "value": "{{fn:str(contextData.0.headIndividual.IndividualModel.name)}}"
+                              "value": "{{fn:fullName(contextData.0.headIndividual.IndividualModel.name)}}"
                             },
                             {
                               "key": "headMobileNumber",
@@ -1573,7 +1579,7 @@
                             },
                             {
                               "key": "childName",
-                              "value": "{{fn:str(item.individual.0.name)}}"
+                              "value": "{{fn:fullName(item.individual.0.name)}}"
                             },
                             {
                               "key": "ageInMonths",
@@ -1585,7 +1591,7 @@
                             },
                             {
                               "key": "headName",
-                              "value": "{{fn:str(contextData.0.headIndividual.IndividualModel.name)}}"
+                              "value": "{{fn:fullName(contextData.0.headIndividual.IndividualModel.name)}}"
                             },
                             {
                               "key": "headMobileNumber",
@@ -1719,7 +1725,7 @@
                             },
                             {
                               "key": "childName",
-                              "value": "{{fn:str(item.individual.0.name)}}"
+                              "value": "{{fn:fullName(item.individual.0.name)}}"
                             },
                             {
                               "key": "ageInMonths",
@@ -1731,7 +1737,7 @@
                             },
                             {
                               "key": "headName",
-                              "value": "{{fn:str(contextData.0.headIndividual.IndividualModel.name)}}"
+                              "value": "{{fn:fullName(contextData.0.headIndividual.IndividualModel.name)}}"
                             },
                             {
                               "key": "headMobileNumber",
@@ -2551,7 +2557,7 @@
                 "children": [
                   {
                     "type": "template",
-                    "value": "{{fn:individualName(item.headIndividual.0.name)}}",
+                    "value": "{{fn:fullName(item.headIndividual.0.name)}}",
                     "format": "textTemplate",
                     "fieldName": "headOfHousehold"
                   },
@@ -2685,7 +2691,7 @@
                       "header": "BENEFICIARY",
                       "hidden": false,
                       "isActive": true,
-                      "cellValue": "{{fn:individualName(item.name)}}"
+                      "cellValue": "{{fn:fullName(item.name)}}"
                     },
                     {
                       "header": "AGE_OF_BENEFICIARY",
@@ -3254,6 +3260,14 @@
                         "value": "{{navigation.headName}}"
                       },
                       {
+                        "key": "latitude",
+                        "value": "{{navigation.latitude}}"
+                      },
+                      {
+                        "key": "longitude",
+                        "value": "{{navigation.longitude}}"
+                      },
+                      {
                         "key": "headMobileNumber",
                         "value": "{{navigation.headMobileNumber}}"
                       },
@@ -3620,6 +3634,14 @@
                       {
                         "key": "headName",
                         "value": "{{navigation.headName}}"
+                      },
+                      {
+                        "key": "latitude",
+                        "value": "{{navigation.latitude}}"
+                      },
+                      {
+                        "key": "longitude",
+                        "value": "{{navigation.longitude}}"
                       },
                       {
                         "key": "headMobileNumber",
@@ -6744,6 +6766,14 @@
                     "value": "{{navigation.headName}}"
                   },
                   {
+                    "key": "latitude",
+                    "value": "{{navigation.latitude}}"
+                  },
+                  {
+                    "key": "longitude",
+                    "value": "{{navigation.longitude}}"
+                  },
+                  {
                     "key": "headMobileNumber",
                     "value": "{{navigation.headMobileNumber}}"
                   }
@@ -6807,6 +6837,10 @@
                         "value": "{{navigation.HouseholdClientReferenceId}}"
                       },
                       {
+                        "key": "memberCount",
+                        "value": "{{navigation.memberCount}}"
+                      },
+                      {
                         "key": "ProjectBeneficiaryClientReferenceId",
                         "value": "{{formData.projectBeneficiary.clientReferenceId}}"
                       },
@@ -6823,8 +6857,32 @@
                         "value": "{{fn:formatDate(formData.dobPicker, 'ageInMonths')}}"
                       },
                       {
+                        "key": "childName",
+                        "value": "{{formData.nameOfIndividual}}"
+                      },
+                      {
+                        "key": "ageInMonths",
+                        "value": "{{fn:formatDate(formData.dobPicker, 'ageInMonths')}}"
+                      },
+                      {
+                        "key": "gender",
+                        "value": "{{formData.gender}}"
+                      },
+                      {
+                        "key": "headName",
+                        "value": "{{navigation.headName}}"
+                      },
+                      {
+                        "key": "headMobileNumber",
+                        "value": "{{navigation.headMobileNumber}}"
+                      },
+                      {
                         "key": "cycleIndex",
-                        "value": "{{contextData.0.cycleIndex}}"
+                        "value": "{{navigation.cycleIndex}}"
+                      },
+                      {
+                        "key": "disableBack",
+                        "value": "true"
                       }
                     ],
                     "name": "ACKNOWLEDGEMENT",
@@ -6918,35 +6976,63 @@
             "data": [
               {
                 "key": "selectedIndividualClientReferenceId",
-                "value": "{{formData.individual.clientReferenceId}}"
+                "value": "{{contextData.entities.IndividualModel.clientReferenceId}}"
               },
               {
                 "key": "selectedIndividualIdentifierId",
-                "value": "{{formData.individual.identifiers.0.identifierId}}"
+                "value": "{{contextData.entities.IndividualModel.identifiers.0.identifierId}}"
               },
               {
                 "key": "HouseholdClientReferenceId",
                 "value": "{{navigation.HouseholdClientReferenceId}}"
               },
               {
+                "key": "memberCount",
+                "value": "{{navigation.memberCount}}"
+              },
+              {
                 "key": "ProjectBeneficiaryClientReferenceId",
-                "value": "{{formData.projectBeneficiary.clientReferenceId}}"
+                "value": "{{contextData.entities.ProjectBeneficiaryModel.clientReferenceId}}"
               },
               {
                 "key": "selectedIndividualName",
-                "value": "{{formData.individual.name.familyName}}"
+                "value": "{{formData.nameOfIndividual}}"
               },
               {
                 "key": "selectedIndividualGender",
-                "value": "{{formData.individual.gender}}"
+                "value": "{{formData.gender}}"
               },
               {
                 "key": "selectedIndividualAgeInMonths",
-                "value": "{{fn:formatDate(formData, 'ageinmonths')}}"
+                "value": "{{fn:formatDate(formData.dobPicker, 'ageInMonths')}}"
+              },
+              {
+                "key": "childName",
+                "value": "{{formData.nameOfIndividual}}"
+              },
+              {
+                "key": "ageInMonths",
+                "value": "{{fn:formatDate(formData.dobPicker, 'ageInMonths')}}"
+              },
+              {
+                "key": "gender",
+                "value": "{{formData.gender}}"
+              },
+              {
+                "key": "headName",
+                "value": "{{navigation.headName}}"
+              },
+              {
+                "key": "headMobileNumber",
+                "value": "{{navigation.headMobileNumber}}"
               },
               {
                 "key": "cycleIndex",
-                "value": "{{contextData.0.cycleIndex}}"
+                "value": "{{navigation.cycleIndex}}"
+              },
+              {
+                "key": "disableBack",
+                "value": "true"
               }
             ],
             "name": "ACKNOWLEDGEMENT",
@@ -7103,7 +7189,7 @@
               "tooltip": "APPONE_REGISTRATION_BENEFICIARYDETAILS_label_dobPicker_tooltip_addmember",
               "ageRange": {
                 "maxAge": 59,
-                "minAge": 3,
+                "minAge": 0,
                 "errorMessage": "AGE_VALIDATION_ADDMEMBER"
               },
               "helpText": "APPONE_REGISTRATION_BENEFICIARYDETAILS_label_dobPicker_helpText_addmember",
@@ -7124,7 +7210,7 @@
                 },
                 {
                   "type": "minAge",
-                  "value": 3,
+                  "value": 0,
                   "message": "AGE_VALIDATION_ADDMEMBER"
                 },
                 {
@@ -7376,6 +7462,10 @@
                 "value": "{{navigation.HouseholdClientReferenceId}}"
               },
               {
+                "key": "memberCount",
+                "value": "{{navigation.memberCount}}"
+              },
+              {
                 "key": "ProjectBeneficiaryClientReferenceId",
                 "value": "{{contextData.entities.ProjectBeneficiaryModel.clientReferenceId}}"
               },
@@ -7392,8 +7482,32 @@
                 "value": "{{fn:formatDate(contextData.entities.IndividualModel.dateOfBirth, 'ageinmonths')}}"
               },
               {
+                "key": "childName",
+                "value": "{{contextData.entities.IndividualModel.name.givenName}}"
+              },
+              {
+                "key": "ageInMonths",
+                "value": "{{fn:formatDate(contextData.entities.IndividualModel.dateOfBirth, 'ageinmonths')}}"
+              },
+              {
+                "key": "gender",
+                "value": "{{contextData.entities.IndividualModel.gender}}"
+              },
+              {
+                "key": "headName",
+                "value": "{{navigation.headName}}"
+              },
+              {
+                "key": "headMobileNumber",
+                "value": "{{navigation.headMobileNumber}}"
+              },
+              {
                 "key": "cycleIndex",
-                "value": "{{contextData.0.cycleIndex}}"
+                "value": "{{navigation.cycleIndex}}"
+              },
+              {
+                "key": "disableBack",
+                "value": "true"
               }
             ],
             "name": "ACKNOWLEDGEMENT",
@@ -7854,7 +7968,7 @@
               "required.message": "REFER_BENEFICIARY_REFERRED_BY_REQUIRED",
               "autoFillCondition": [
                 {
-                  "value": "{{loggedInUserUuid}}",
+                  "value": "{{loggedInUserName}}",
                   "expression": "true==true"
                 }
               ]
@@ -7982,6 +8096,18 @@
                 "value": "{{navigation.selectedIndividualAgeInMonths}}"
               },
               {
+                "key": "headName",
+                "value": "{{navigation.headName}}"
+              },
+              {
+                "key": "latitude",
+                "value": "{{navigation.latitude}}"
+              },
+              {
+                "key": "longitude",
+                "value": "{{navigation.longitude}}"
+              },
+              {
                 "key": "cycleIndex",
                 "value": "{{fn:getCurrentCycleIndex()}}"
               },
@@ -8008,6 +8134,14 @@
               {
                 "key": "referralReasons",
                 "value": "{{fn:getSymptomsReferral(navigation)}}"
+              },
+              {
+                "key": "referralSymptom",
+                "value": "{{fn:getReferralSymptom(navigation)}}"
+              },
+              {
+                "key": "referralReasonsExtra",
+                "value": "{{fn:getReferralReasonsExtra(navigation)}}"
               },
               {
                 "key": "sourceFlow",
@@ -8062,6 +8196,18 @@
                 "value": "{{navigation.selectedIndividualAgeInMonths}}"
               },
               {
+                "key": "headName",
+                "value": "{{navigation.headName}}"
+              },
+              {
+                "key": "latitude",
+                "value": "{{navigation.latitude}}"
+              },
+              {
+                "key": "longitude",
+                "value": "{{navigation.longitude}}"
+              },
+              {
                 "key": "cycleIndex",
                 "value": "{{navigation.cycleIndex}}"
               }
@@ -8107,6 +8253,18 @@
               {
                 "key": "selectedIndividualAgeInMonths",
                 "value": "{{navigation.selectedIndividualAgeInMonths}}"
+              },
+              {
+                "key": "headName",
+                "value": "{{navigation.headName}}"
+              },
+              {
+                "key": "latitude",
+                "value": "{{navigation.latitude}}"
+              },
+              {
+                "key": "longitude",
+                "value": "{{navigation.longitude}}"
               },
               {
                 "key": "cycleIndex",
