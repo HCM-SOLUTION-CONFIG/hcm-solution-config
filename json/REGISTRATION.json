@@ -7265,8 +7265,12 @@
                 "value": "{{fn:getSymptomsReferral(navigation)}}"
               },
               {
-                "key": "sourceFlow",
-                "value": "{{navigation.sourceFlow}}"
+                "key": "referralSymptom",
+                "value": "{{fn:getReferralSymptom(navigation)}}"
+              },
+              {
+                "key": "referralReasonsExtra",
+                "value": "{{fn:getReferralReasonsExtra(navigation)}}"
               },
               {
                 "key": "sourceFlow",
