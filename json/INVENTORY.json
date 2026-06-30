@@ -1182,7 +1182,7 @@
               "order": 5,
               "value": "",
               "format": "text",
-              "hidden": false,
+              "hidden": true,
               "tooltip": "",
               "helpText": "",
               "infoText": "",
