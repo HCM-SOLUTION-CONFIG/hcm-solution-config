@@ -1098,12 +1098,13 @@
                   },
                   {
                     "type": "template",
-                    "value": "{{item.individual.0.gender }} | {{fn:formatDate(item.individual.0.dateOfBirth, 'age')}}",
+                    "value": "CORE_COMMON_{{item.individual.0.gender}} | {{fn:formatDate(item.individual.0.dateOfBirth, 'age')}}",
                     "format": "textTemplate",
                     "visible": "{{fn:isHead(item.member)}} == false",
                     "fieldName": "genderAge",
                     "properties": {
-                      "bottomGap": 16
+                      "bottomGap": 16,
+                      "separatedBy": " | "
                     }
                   },
                   {
