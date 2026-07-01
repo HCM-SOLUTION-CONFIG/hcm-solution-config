@@ -5115,7 +5115,7 @@
               "type": "string",
               "label": "APPONE_REGISTRATION_BENEFICIARYDETAILS_label_dobPicker_addmember",
               "order": 4,
-              "value": "01/01/1970",
+              "value": "",
               "format": "dob",
               "hidden": false,
               "visibilityCondition": {
@@ -5188,7 +5188,7 @@
               ],
               "label": "APPONE_REGISTRATION_BENEFICIARYDETAILS_label_gender_addmember",
               "order": 5,
-              "value": "FEMALE",
+              "value": "",
               "format": "select",
               "hidden": false,
               "visibilityCondition": {
