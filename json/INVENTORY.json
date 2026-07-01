@@ -784,12 +784,12 @@
               "enums": []
             },
             {
-              "type": "string",
+              "type": "dynamic",
               "enums": [],
               "visibilityCondition": {
                 "expression": [
                   {
-                    "condition": "warehouseDetails.facilityToWhich==DELIVERY_TEAM || navigation.stockEntryType == 'RETURNED'",
+                    "condition": "warehouseDetails.facilityToWhich==DELIVERY_TEAM",
                     "type": "custom"
                   }
                 ]
@@ -797,7 +797,7 @@
               "label": "APP_CONFIG_INVENTORY_warehouseDetails_teamCode_LABEL",
               "order": 4,
               "value": "",
-              "format": "scanner",
+              "format": "custom",
               "hidden": false,
               "isMdms": false,
               "tooltip": "",
@@ -935,11 +935,11 @@
               "schemaCode": "HCM.FACILITY_OPTIONS_POPULATOR"
             },
             {
-              "type": "string",
+              "type": "dynamic",
               "visibilityCondition": {
                 "expression": [
                   {
-                    "condition": "stockDetails.facilityFromWhich==DELIVERY_TEAM && navigation.stockEntryType != 'RETURNED'",
+                    "condition": "stockDetails.facilityFromWhich==DELIVERY_TEAM",
                     "type": "custom"
                   }
                 ]
@@ -947,7 +947,7 @@
               "label": "APPONE_MANAGESTOCK_WAREHOUSE_label_deliveryTeamCode",
               "order": 4,
               "value": "",
-              "format": "scanner",
+              "format": "custom",
               "hidden": false,
               "tooltip": "",
               "helpText": "INVENTORY_SCAN_TEAM_CODE_HELPTEXT",
