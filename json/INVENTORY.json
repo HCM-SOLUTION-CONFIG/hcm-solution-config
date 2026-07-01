@@ -766,12 +766,10 @@
                       },
                       "Health Facility": {
                         "forReceipt": [
-                          "Central Facility",
-                          "Health Facility"
+                          "DISTRICT Facility"
                         ],
                         "forIssue": [
-                          "DELIVERY_TEAM",
-                          "Central Facility"
+                          "DELIVERY_TEAM"
                         ]
                       }
                     },
@@ -906,7 +904,7 @@
                           "Central Facility"
                         ],
                         "forIssue": [
-                          "LGA Facility"
+                          "DISTRICT Facility"
                         ]
                       },
                       "LGA": {
@@ -919,12 +917,10 @@
                       },
                       "Health Facility": {
                         "forReceipt": [
-                          "Central Facility",
-                          "Health Facility"
+                          "DISTRICT Facility"
                         ],
                         "forIssue": [
-                          "DELIVERY_TEAM",
-                          "Central Facility"
+                          "DELIVERY_TEAM"
                         ]
                       }
                     },
@@ -1667,10 +1663,10 @@
                     "hierarchyMapping": {
                       "State": {
                         "forReceipt": [
-                          "LGA Facility"
+                          "DISTRICT Facility"
                         ],
                         "forIssue": [
-                          "LGA Facility"
+                          "DISTRICT Facility"
                         ]
                       },
                       "LGA": {
@@ -1683,12 +1679,10 @@
                       },
                       "Health Facility": {
                         "forReceipt": [
-                          "Central Facility",
-                          "Health Facility"
+                          "DISTRICT Facility"
                         ],
                         "forIssue": [
-                          "DELIVERY_TEAM",
-                          "Central Facility"
+                          "DELIVERY_TEAM"
                         ]
                       }
                     },
@@ -1851,7 +1845,7 @@
                           "Central Facility"
                         ],
                         "forIssue": [
-                          "LGA Facility"
+                          "DISTRICT Facility"
                         ]
                       },
                       "LGA": {
@@ -1864,12 +1858,10 @@
                       },
                       "Health Facility": {
                         "forReceipt": [
-                          "Central Facility",
-                          "Health Facility"
+                          "DISTRICT Facility"
                         ],
                         "forIssue": [
-                          "DELIVERY_TEAM",
-                          "Central Facility"
+                          "DELIVERY_TEAM"
                         ]
                       }
                     },
