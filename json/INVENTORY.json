@@ -972,60 +972,6 @@
               "errorMessage": "",
               "isMultiSelect": false,
               "enums": []
-            },
-            {
-              "type": "string",
-              "label": "APPONE_INVENTORY_TRANSPORT_LABEL",
-              "order": 3,
-              "value": "",
-              "format": "dropdown",
-              "hidden": false,
-              "tooltip": "",
-              "helpText": "INVENTORY_TRANSPORT_TYPE_HELPTEXT",
-              "infoText": "",
-              "readOnly": false,
-              "fieldName": "transportType",
-              "deleteFlag": false,
-              "innerLabel": "",
-              "systemDate": false,
-              "errorMessage": "",
-              "isMultiSelect": false,
-              "enums": [
-                {
-                  "code": "BUS",
-                  "name": "Bus"
-                },
-                {
-                  "code": "TRUCK",
-                  "name": "Truck"
-                }
-              ]
-            },
-            {
-              "type": "string",
-              "label": "APPONE_INVENTORY_VEHICLE_NUMBER_LABEL",
-              "order": 4,
-              "value": "",
-              "format": "text",
-              "hidden": false,
-              "tooltip": "",
-              "helpText": "INVENTORY_VEHICLE_NUMBER_HELPTEXT",
-              "infoText": "",
-              "readOnly": false,
-              "fieldName": "vehicleNumber",
-              "deleteFlag": false,
-              "innerLabel": "",
-              "systemDate": false,
-              "validations": [
-                {
-                  "type": "minLength",
-                  "value": "3",
-                  "message": "INVENTORY_TEXT_MIN_LENGTH_ERROR_MESSAGE"
-                }
-              ],
-              "errorMessage": "",
-              "isMultiSelect": false,
-              "enums": null
             }
           ],
           "value": null,
@@ -1062,37 +1008,6 @@
             "sourceFieldKey": "productdetail"
           },
           "properties": [
-            {
-              "type": "string",
-              "label": "APPONE_INVENTORY_WAYBILL_LABEL",
-              "order": 1,
-              "value": "",
-              "format": "text",
-              "hidden": false,
-              "tooltip": "",
-              "helpText": "",
-              "infoText": "",
-              "readOnly": false,
-              "fieldName": "wayBillNumber",
-              "deleteFlag": false,
-              "innerLabel": "",
-              "systemDate": false,
-              "validations": [
-                {
-                  "type": "required",
-                  "value": false,
-                  "message": "INVENTORY_WAYBILL_NUMBER_REQUIRED_ERROR_MESSAGE"
-                },
-                {
-                  "type": "minLength",
-                  "value": "3",
-                  "message": "INVENTORY_TEXT_MIN_LENGTH_ERROR_MESSAGE"
-                }
-              ],
-              "errorMessage": "",
-              "isMultiSelect": false,
-              "enums": null
-            },
             {
               "type": "string",
               "label": "APPONE_INVENTORY_BATCH_NUMBER_LABEL",
@@ -1211,6 +1126,96 @@
                   }
                 ]
               }
+            },
+            {
+              "type": "string",
+              "label": "APPONE_INVENTORY_LOSS_DECLARATION_LABEL",
+              "order": 5,
+              "value": "",
+              "format": "dropdown",
+              "hidden": false,
+              "tooltip": "",
+              "helpText": "",
+              "infoText": "",
+              "readOnly": false,
+              "fieldName": "lossDeclaration",
+              "deleteFlag": false,
+              "innerLabel": "",
+              "systemDate": false,
+              "visibilityCondition": {
+                "expression": [
+                  {
+                    "condition": "navigation.stockEntryType == 'LOSS'",
+                    "type": "custom"
+                  }
+                ]
+              },
+              "validations": [
+                {
+                  "type": "required",
+                  "value": true,
+                  "message": "APPONE_INVENTORY_LOSS_DECLARATION_REQUIRED_ERROR_MESSAGE"
+                }
+              ],
+              "errorMessage": "",
+              "isMultiSelect": false,
+              "enums": [
+                {
+                  "code": "DECLARED_LOSS",
+                  "name": "DECLARED_LOSS"
+                },
+                {
+                  "code": "UNDECLARED_LOSS",
+                  "name": "UNDECLARED_LOSS"
+                }
+              ]
+            },
+            {
+              "type": "string",
+              "label": "APPONE_INVENTORY_NATURE_OF_LOSS_LABEL",
+              "order": 6,
+              "value": "",
+              "format": "dropdown",
+              "hidden": false,
+              "tooltip": "",
+              "helpText": "",
+              "infoText": "",
+              "readOnly": false,
+              "fieldName": "natureOfLoss",
+              "deleteFlag": false,
+              "innerLabel": "",
+              "systemDate": false,
+              "visibilityCondition": {
+                "expression": [
+                  {
+                    "condition": "navigation.stockEntryType == 'LOSS'",
+                    "type": "custom"
+                  }
+                ]
+              },
+              "validations": [
+                {
+                  "type": "required",
+                  "value": true,
+                  "message": "APPONE_INVENTORY_NATURE_OF_LOSS_REQUIRED_ERROR_MESSAGE"
+                }
+              ],
+              "errorMessage": "",
+              "isMultiSelect": false,
+              "enums": [
+                {
+                  "code": "LOSS_IN_STORE",
+                  "name": "LOSS_IN_STORE"
+                },
+                {
+                  "code": "LOSS_BY_FIELD_TEAMS",
+                  "name": "LOSS_BY_FIELD_TEAMS"
+                },
+                {
+                  "code": "LOSS_BY_THEFT",
+                  "name": "LOSS_BY_THEFT"
+                }
+              ]
             },
             {
               "type": "integer",
