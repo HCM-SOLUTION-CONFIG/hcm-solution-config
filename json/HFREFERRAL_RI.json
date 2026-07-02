@@ -1571,6 +1571,32 @@
               }
             },
             {
+              "type": "custom",
+              "condition": "navigation.isEdit==true&&navigation.referralSymptom==RI",
+              "navigateTo": {
+                "data": [
+                  {
+                    "key": "clientReferenceId",
+                    "value": "{{navigation.clientReferenceId}}"
+                  },
+                  {
+                    "key": "referralSymptom",
+                    "value": "{{navigation.referralSymptom}}"
+                  },
+                  {
+                    "key": "isEdit",
+                    "value": "true"
+                  },
+                  {
+                    "key": "rowVersion",
+                    "value": "{{navigation.rowVersion}}"
+                  }
+                ],
+                "name": "RI",
+                "type": "form"
+              }
+            },
+            {
               "condition": "referralDetails.referralReason==DRUG_SE_CC",
               "navigateTo": {
                 "name": "sideEffectFromCurrentCycle",
