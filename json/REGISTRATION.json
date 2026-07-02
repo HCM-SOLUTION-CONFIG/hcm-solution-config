@@ -1040,7 +1040,10 @@
                             "visible": "{{fn:hasBeneficiaryId(item.individual.0.identifiers.0)}}==true",
                             "label": "{{ item.individual.0.identifiers.0.identifierId }}",
                             "format": "tag",
-                            "fieldName": "isHead"
+                            "fieldName": "isHead",
+                            "properties": {
+                              "bold": true
+                            }
                           },
                           {
                             "type": "template",
@@ -8163,8 +8166,58 @@
             },
             {
               "type": "integer",
-              "label": "APPONE_REGISTRATION_HOUSEHOLDDETAILS_label_childrenCount",
+              "label": "APPONE_REGISTRATION_HOUSEHOLDDETAILS_label_memberCount",
               "order": 2,
+              "range": {
+                "max": "30",
+                "min": "1",
+                "errorMessage": "APPONE_REGISTRATION_HOUSEHOLDDETAILS_label_memberCount_max_message"
+              },
+              "value": "1",
+              "format": "numeric",
+              "hidden": false,
+              "isMdms": false,
+              "tooltip": "",
+              "helpText": "",
+              "infoText": "",
+              "readOnly": false,
+              "required": true,
+              "fieldName": "memberCount",
+              "mandatory": true,
+              "deleteFlag": false,
+              "innerLabel": "",
+              "schemaCode": null,
+              "systemDate": false,
+              "validations": [
+                {
+                  "type": "required",
+                  "value": true,
+                  "message": "APPONE_REGISTRATION_HOUSEHOLDDETAILS_label_memberCount_mandatory_message"
+                },
+                {
+                  "type": "min",
+                  "value": "0",
+                  "message": "APPONE_REGISTRATION_HOUSEHOLDDETAILS_label_memberCount_min_message"
+                },
+                {
+                  "type": "max",
+                  "value": "30",
+                  "message": "APPONE_REGISTRATION_HOUSEHOLDDETAILS_label_memberCount_max_message"
+                },
+                {
+                  "type": "relativeMin",
+                  "value": "{{childrenCount + 1}}",
+                  "message": "APPONE_REGISTRATION_HOUSEHOLDDETAILS_label_memberCount_min_message"
+                }
+              ],
+              "errorMessage": "",
+              "isMultiSelect": false,
+              "required.message": "APPONE_REGISTRATION_HOUSEHOLDDETAILS_label_memberCount_mandatory_message"
+            },
+            {
+              "type": "integer",
+              "label": "APPONE_REGISTRATION_HOUSEHOLDDETAILS_label_childrenCount",
+              "order": 3,
               "range": {
                 "max": "30",
                 "min": "0",
@@ -8213,7 +8266,7 @@
             {
               "type": "integer",
               "label": "APPONE_REGISTRATION_HOUSEHOLDDETAILS_label_pregnantWomenCount",
-              "order": 3,
+              "order": 4,
               "value": "0",
               "format": "numeric",
               "hidden": true,
@@ -8231,56 +8284,6 @@
               "validations": [],
               "errorMessage": "",
               "isMultiSelect": false
-            },
-            {
-              "type": "integer",
-              "label": "APPONE_REGISTRATION_HOUSEHOLDDETAILS_label_memberCount",
-              "order": 4,
-              "range": {
-                "max": "30",
-                "min": "1",
-                "errorMessage": "APPONE_REGISTRATION_HOUSEHOLDDETAILS_label_memberCount_max_message"
-              },
-              "value": "1",
-              "format": "numeric",
-              "hidden": false,
-              "isMdms": false,
-              "tooltip": "",
-              "helpText": "",
-              "infoText": "",
-              "readOnly": false,
-              "required": true,
-              "fieldName": "memberCount",
-              "mandatory": true,
-              "deleteFlag": false,
-              "innerLabel": "",
-              "schemaCode": null,
-              "systemDate": false,
-              "validations": [
-                {
-                  "type": "required",
-                  "value": true,
-                  "message": "APPONE_REGISTRATION_HOUSEHOLDDETAILS_label_memberCount_mandatory_message"
-                },
-                {
-                  "type": "min",
-                  "value": "0",
-                  "message": "APPONE_REGISTRATION_HOUSEHOLDDETAILS_label_memberCount_min_message"
-                },
-                {
-                  "type": "max",
-                  "value": "30",
-                  "message": "APPONE_REGISTRATION_HOUSEHOLDDETAILS_label_memberCount_max_message"
-                },
-                {
-                  "type": "relativeMin",
-                  "value": "{{childrenCount + 1}}",
-                  "message": "APPONE_REGISTRATION_HOUSEHOLDDETAILS_label_memberCount_min_message"
-                }
-              ],
-              "errorMessage": "",
-              "isMultiSelect": false,
-              "required.message": "APPONE_REGISTRATION_HOUSEHOLDDETAILS_label_memberCount_mandatory_message"
             }
           ],
           "actionLabel": "APPONE_REGISTRATION_HOUSEHOLDDETAILS_ACTION_BUTTON_LABEL_1",
