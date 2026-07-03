@@ -1295,11 +1295,15 @@
                             },
                             {
                               "key": "doseIndex",
-                              "value": "1"
+                              "value": "{{contextData.0.nextDoseId}}"
                             },
                             {
                               "key": "deliveryStrategy",
-                              "value": "DIRECT"
+                              "value": "{{contextData.0.currentDelivery.0.deliveryStrategy}}"
+                            },
+                            {
+                              "key": "futureDoses",
+                              "value": "{{contextData.0.futureDeliveries}}"
                             }
                           ],
                           "name": "DELIVERY",
@@ -3795,12 +3799,21 @@
                         "value": "{{navigation.cycleIndex}}"
                       },
                       {
-                        "key": "deliveryStrategy",
-                        "value": "{{navigation.deliveryStrategy}}"
+                        "key": "futureDoses",
+                        "value": [
+                          {
+                            "id": 2,
+                            "deliveryStrategy": "INDIRECT"
+                          },
+                          {
+                            "id": 3,
+                            "deliveryStrategy": "INDIRECT"
+                          }
+                        ]
                       },
                       {
-                        "key": "futureDoses",
-                        "value": "{{navigation.futureDoses}}"
+                        "key": "__contextfutureDoses:headName",
+                        "value": "{{navigation.headName}}"
                       }
                     ],
                     "onError": [
@@ -3829,7 +3842,7 @@
                 }
               ],
               "condition": {
-                "expression": "doseIndex == 1"
+                "expression": "doseIndex == 1 || doseIndex == '1'"
               }
             },
             {
@@ -4241,12 +4254,21 @@
                     "value": "{{navigation.cycleIndex}}"
                   },
                   {
-                    "key": "deliveryStrategy",
-                    "value": "{{navigation.deliveryStrategy}}"
+                    "key": "futureDoses",
+                    "value": [
+                      {
+                        "id": 2,
+                        "deliveryStrategy": "INDIRECT"
+                      },
+                      {
+                        "id": 3,
+                        "deliveryStrategy": "INDIRECT"
+                      }
+                    ]
                   },
                   {
-                    "key": "futureDoses",
-                    "value": "{{navigation.futureDoses}}"
+                    "key": "__contextfutureDoses:headName",
+                    "value": "{{navigation.headName}}"
                   }
                 ],
                 "onError": [
@@ -4275,7 +4297,7 @@
             }
           ],
           "condition": {
-            "expression": "doseIndex == 1"
+            "expression": "doseIndex == 1 || doseIndex == '1'"
           }
         },
         {
@@ -5532,6 +5554,14 @@
                   {
                     "key": "doseIndex",
                     "value": "1"
+                  },
+                  {
+                    "key": "deliveryStrategy",
+                    "value": "DIRECT"
+                  },
+                  {
+                    "key": "futureDoses",
+                    "value": "{{contextData.0.futureDeliveries}}"
                   }
                 ],
                 "name": "DELIVERY",
