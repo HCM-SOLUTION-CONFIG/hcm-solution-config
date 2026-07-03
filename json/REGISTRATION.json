@@ -2637,20 +2637,6 @@
               "onAction": [
                 {
                   "condition": {
-                    "expression": "{{fn:length(contextData.0.members)}} >= {{contextData.0.household.HouseholdModel.memberCount}}"
-                  },
-                  "actions": [
-                    {
-                      "actionType": "SHOW_TOAST",
-                      "properties": {
-                        "message": "REGISTRATION_SEARCH_BENEFICIARY_CHILDREN_COUNT_EXCEEDED",
-                        "type": "error"
-                      }
-                    }
-                  ]
-                },
-                {
-                  "condition": {
                     "expression": "DEFAULT"
                   },
                   "actions": [
