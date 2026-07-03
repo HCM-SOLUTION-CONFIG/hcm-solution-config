@@ -286,8 +286,16 @@
                       "@default": "REGISTRATION_CURRENT_DOSE_STATUS_PENDING",
                       "@condition": [
                         {
+                          "when": "{{item.id}} > 1 && {{fn:isDoseCompleted(item.id, contextData.0.currentRunningCycle)}} == true",
+                          "value": "REGISTRATION_CURRENT_DOSE_STATUS_TOBE_ADMINISTERED"
+                        },
+                        {
                           "when": "{{fn:isDoseCompleted(item.id, contextData.0.currentRunningCycle)}} == true",
                           "value": "REGISTRATION_CURRENT_DOSE_STATUS_ADMINISTERED"
+                        },
+                        {
+                          "when": "{{item.id}} == {{contextData.0.nextDoseId}}",
+                          "value": "REGISTRATION_CURRENT_DOSE_STATUS_TOBE_ADMINISTERED"
                         }
                       ]
                     }
@@ -339,8 +347,16 @@
                                 "@default": "REGISTRATION_PAST_DOSE_STATUS_PENDING",
                                 "@condition": [
                                   {
+                                    "when": "{{item.id}} > 1 && {{fn:isDoseCompleted(item.id, currentItem.id)}} == true",
+                                    "value": "REGISTRATION_CURRENT_DOSE_STATUS_TOBE_ADMINISTERED"
+                                  },
+                                  {
                                     "when": "{{fn:isDoseCompleted(item.id, currentItem.id)}} == true",
                                     "value": "REGISTRATION_PAST_DOSE_STATUS_ADMINISTERED"
+                                  },
+                                  {
+                                    "when": "{{item.id}} == {{contextData.0.nextDoseId}}",
+                                    "value": "REGISTRATION_CURRENT_DOSE_STATUS_TOBE_ADMINISTERED"
                                   }
                                 ]
                               }
@@ -1295,7 +1311,7 @@
                             },
                             {
                               "key": "doseIndex",
-                              "value": "{{contextData.0.nextDoseId}}"
+                              "value": "1"
                             },
                             {
                               "key": "deliveryStrategy",
@@ -3668,6 +3684,185 @@
           "version": 1,
           "onAction": [
             {
+              "actions": [
+                {
+                  "actionType": "FETCH_TRANSFORMER_CONFIG",
+                  "properties": {
+                    "data": [
+                      {
+                        "key": "ProjectBeneficiaryClientReferenceId",
+                        "value": "{{navigation.ProjectBeneficiaryClientReferenceId}}"
+                      },
+                      {
+                        "key": "HouseholdClientReferenceId",
+                        "value": "{{navigation.HouseholdClientReferenceId}}"
+                      },
+                      {
+                        "key": "memberCount",
+                        "value": "{{navigation.memberCount}}"
+                      },
+                      {
+                        "key": "individualClientReferenceId",
+                        "value": "{{navigation.selectedIndividualClientReferenceId}}"
+                      },
+                      {
+                        "key": "beneficiaryId",
+                        "value": "{{navigation.selectedIndividualIdentifierId}}"
+                      },
+                      {
+                        "key": "childName",
+                        "value": "{{navigation.childName}}"
+                      },
+                      {
+                        "key": "ageInMonths",
+                        "value": "{{navigation.ageInMonths}}"
+                      },
+                      {
+                        "key": "gender",
+                        "value": "{{navigation.gender}}"
+                      },
+                      {
+                        "key": "headName",
+                        "value": "{{navigation.headName}}"
+                      },
+                      {
+                        "key": "headMobileNumber",
+                        "value": "{{navigation.headMobileNumber}}"
+                      },
+                      {
+                        "key": "cycleIndex",
+                        "value": "{{navigation.cycleIndex}}"
+                      },
+                      {
+                        "key": "futureDoses",
+                        "value": [
+                          {
+                            "id": 2,
+                            "deliveryStrategy": "INDIRECT"
+                          }
+                        ]
+                      },
+                      {
+                        "key": "headName",
+                        "value": "{{navigation.headName}}"
+                      }
+                    ],
+                    "onError": [
+                      {
+                        "actionType": "SHOW_TOAST",
+                        "properties": {
+                          "message": "Failed to fetch config for bulk delivery."
+                        }
+                      }
+                    ],
+                    "configName": "indirectBulkDelivery"
+                  }
+                },
+                {
+                  "actionType": "CREATE_EVENT",
+                  "properties": {
+                    "onError": [
+                      {
+                        "actionType": "SHOW_TOAST",
+                        "properties": {
+                          "message": "Failed to create bulk tasks."
+                        }
+                      }
+                    ]
+                  }
+                },
+                {
+                  "actionType": "FETCH_TRANSFORMER_CONFIG",
+                  "properties": {
+                    "data": [
+                      {
+                        "key": "ProjectBeneficiaryClientReferenceId",
+                        "value": "{{navigation.ProjectBeneficiaryClientReferenceId}}"
+                      },
+                      {
+                        "key": "HouseholdClientReferenceId",
+                        "value": "{{navigation.HouseholdClientReferenceId}}"
+                      },
+                      {
+                        "key": "memberCount",
+                        "value": "{{navigation.memberCount}}"
+                      },
+                      {
+                        "key": "individualClientReferenceId",
+                        "value": "{{navigation.selectedIndividualClientReferenceId}}"
+                      },
+                      {
+                        "key": "beneficiaryId",
+                        "value": "{{navigation.selectedIndividualIdentifierId}}"
+                      },
+                      {
+                        "key": "childName",
+                        "value": "{{navigation.childName}}"
+                      },
+                      {
+                        "key": "ageInMonths",
+                        "value": "{{navigation.ageInMonths}}"
+                      },
+                      {
+                        "key": "gender",
+                        "value": "{{navigation.gender}}"
+                      },
+                      {
+                        "key": "headName",
+                        "value": "{{navigation.headName}}"
+                      },
+                      {
+                        "key": "headMobileNumber",
+                        "value": "{{navigation.headMobileNumber}}"
+                      },
+                      {
+                        "key": "cycleIndex",
+                        "value": "{{navigation.cycleIndex}}"
+                      },
+                      {
+                        "key": "futureDoses",
+                        "value": [
+                          {
+                            "id": 3,
+                            "deliveryStrategy": "INDIRECT"
+                          }
+                        ]
+                      },
+                      {
+                        "key": "headName",
+                        "value": "{{navigation.headName}}"
+                      }
+                    ],
+                    "onError": [
+                      {
+                        "actionType": "SHOW_TOAST",
+                        "properties": {
+                          "message": "Failed to fetch config for bulk delivery."
+                        }
+                      }
+                    ],
+                    "configName": "indirectBulkDelivery"
+                  }
+                },
+                {
+                  "actionType": "CREATE_EVENT",
+                  "properties": {
+                    "onError": [
+                      {
+                        "actionType": "SHOW_TOAST",
+                        "properties": {
+                          "message": "Failed to create bulk tasks."
+                        }
+                      }
+                    ]
+                  }
+                }
+              ],
+              "condition": {
+                "expression": "doseIndex == 1 || doseIndex == '1'"
+              }
+            },
+            {
               "actionType": "FETCH_TRANSFORMER_CONFIG",
               "properties": {
                 "data": [
@@ -3746,103 +3941,6 @@
                     }
                   }
                 ]
-              }
-            },
-            {
-              "actions": [
-                {
-                  "actionType": "FETCH_TRANSFORMER_CONFIG",
-                  "properties": {
-                    "data": [
-                      {
-                        "key": "ProjectBeneficiaryClientReferenceId",
-                        "value": "{{navigation.ProjectBeneficiaryClientReferenceId}}"
-                      },
-                      {
-                        "key": "HouseholdClientReferenceId",
-                        "value": "{{navigation.HouseholdClientReferenceId}}"
-                      },
-                      {
-                        "key": "memberCount",
-                        "value": "{{navigation.memberCount}}"
-                      },
-                      {
-                        "key": "individualClientReferenceId",
-                        "value": "{{navigation.selectedIndividualClientReferenceId}}"
-                      },
-                      {
-                        "key": "beneficiaryId",
-                        "value": "{{navigation.selectedIndividualIdentifierId}}"
-                      },
-                      {
-                        "key": "childName",
-                        "value": "{{navigation.childName}}"
-                      },
-                      {
-                        "key": "ageInMonths",
-                        "value": "{{navigation.ageInMonths}}"
-                      },
-                      {
-                        "key": "gender",
-                        "value": "{{navigation.gender}}"
-                      },
-                      {
-                        "key": "headName",
-                        "value": "{{navigation.headName}}"
-                      },
-                      {
-                        "key": "headMobileNumber",
-                        "value": "{{navigation.headMobileNumber}}"
-                      },
-                      {
-                        "key": "cycleIndex",
-                        "value": "{{navigation.cycleIndex}}"
-                      },
-                      {
-                        "key": "futureDoses",
-                        "value": [
-                          {
-                            "id": 2,
-                            "deliveryStrategy": "INDIRECT"
-                          },
-                          {
-                            "id": 3,
-                            "deliveryStrategy": "INDIRECT"
-                          }
-                        ]
-                      },
-                      {
-                        "key": "__contextfutureDoses:headName",
-                        "value": "{{navigation.headName}}"
-                      }
-                    ],
-                    "onError": [
-                      {
-                        "actionType": "SHOW_TOAST",
-                        "properties": {
-                          "message": "Failed to fetch config for bulk delivery."
-                        }
-                      }
-                    ],
-                    "configName": "indirectBulkDelivery"
-                  }
-                },
-                {
-                  "actionType": "CREATE_EVENT",
-                  "properties": {
-                    "onError": [
-                      {
-                        "actionType": "SHOW_TOAST",
-                        "properties": {
-                          "message": "Failed to create bulk tasks."
-                        }
-                      }
-                    ]
-                  }
-                }
-              ],
-              "condition": {
-                "expression": "doseIndex == 1 || doseIndex == '1'"
               }
             },
             {
@@ -4109,6 +4207,185 @@
       "disabled": false,
       "onAction": [
         {
+          "actions": [
+            {
+              "actionType": "FETCH_TRANSFORMER_CONFIG",
+              "properties": {
+                "data": [
+                  {
+                    "key": "ProjectBeneficiaryClientReferenceId",
+                    "value": "{{navigation.ProjectBeneficiaryClientReferenceId}}"
+                  },
+                  {
+                    "key": "HouseholdClientReferenceId",
+                    "value": "{{navigation.HouseholdClientReferenceId}}"
+                  },
+                  {
+                    "key": "memberCount",
+                    "value": "{{navigation.memberCount}}"
+                  },
+                  {
+                    "key": "individualClientReferenceId",
+                    "value": "{{navigation.selectedIndividualClientReferenceId}}"
+                  },
+                  {
+                    "key": "beneficiaryId",
+                    "value": "{{navigation.selectedIndividualIdentifierId}}"
+                  },
+                  {
+                    "key": "childName",
+                    "value": "{{navigation.childName}}"
+                  },
+                  {
+                    "key": "ageInMonths",
+                    "value": "{{navigation.ageInMonths}}"
+                  },
+                  {
+                    "key": "gender",
+                    "value": "{{navigation.gender}}"
+                  },
+                  {
+                    "key": "headName",
+                    "value": "{{navigation.headName}}"
+                  },
+                  {
+                    "key": "headMobileNumber",
+                    "value": "{{navigation.headMobileNumber}}"
+                  },
+                  {
+                    "key": "cycleIndex",
+                    "value": "{{navigation.cycleIndex}}"
+                  },
+                  {
+                    "key": "futureDoses",
+                    "value": [
+                      {
+                        "id": 2,
+                        "deliveryStrategy": "INDIRECT"
+                      }
+                    ]
+                  },
+                  {
+                    "key": "headName",
+                    "value": "{{navigation.headName}}"
+                  }
+                ],
+                "onError": [
+                  {
+                    "actionType": "SHOW_TOAST",
+                    "properties": {
+                      "message": "Failed to fetch config for bulk delivery."
+                    }
+                  }
+                ],
+                "configName": "indirectBulkDelivery"
+              }
+            },
+            {
+              "actionType": "CREATE_EVENT",
+              "properties": {
+                "onError": [
+                  {
+                    "actionType": "SHOW_TOAST",
+                    "properties": {
+                      "message": "Failed to create bulk tasks."
+                    }
+                  }
+                ]
+              }
+            },
+            {
+              "actionType": "FETCH_TRANSFORMER_CONFIG",
+              "properties": {
+                "data": [
+                  {
+                    "key": "ProjectBeneficiaryClientReferenceId",
+                    "value": "{{navigation.ProjectBeneficiaryClientReferenceId}}"
+                  },
+                  {
+                    "key": "HouseholdClientReferenceId",
+                    "value": "{{navigation.HouseholdClientReferenceId}}"
+                  },
+                  {
+                    "key": "memberCount",
+                    "value": "{{navigation.memberCount}}"
+                  },
+                  {
+                    "key": "individualClientReferenceId",
+                    "value": "{{navigation.selectedIndividualClientReferenceId}}"
+                  },
+                  {
+                    "key": "beneficiaryId",
+                    "value": "{{navigation.selectedIndividualIdentifierId}}"
+                  },
+                  {
+                    "key": "childName",
+                    "value": "{{navigation.childName}}"
+                  },
+                  {
+                    "key": "ageInMonths",
+                    "value": "{{navigation.ageInMonths}}"
+                  },
+                  {
+                    "key": "gender",
+                    "value": "{{navigation.gender}}"
+                  },
+                  {
+                    "key": "headName",
+                    "value": "{{navigation.headName}}"
+                  },
+                  {
+                    "key": "headMobileNumber",
+                    "value": "{{navigation.headMobileNumber}}"
+                  },
+                  {
+                    "key": "cycleIndex",
+                    "value": "{{navigation.cycleIndex}}"
+                  },
+                  {
+                    "key": "futureDoses",
+                    "value": [
+                      {
+                        "id": 3,
+                        "deliveryStrategy": "INDIRECT"
+                      }
+                    ]
+                  },
+                  {
+                    "key": "headName",
+                    "value": "{{navigation.headName}}"
+                  }
+                ],
+                "onError": [
+                  {
+                    "actionType": "SHOW_TOAST",
+                    "properties": {
+                      "message": "Failed to fetch config for bulk delivery."
+                    }
+                  }
+                ],
+                "configName": "indirectBulkDelivery"
+              }
+            },
+            {
+              "actionType": "CREATE_EVENT",
+              "properties": {
+                "onError": [
+                  {
+                    "actionType": "SHOW_TOAST",
+                    "properties": {
+                      "message": "Failed to create bulk tasks."
+                    }
+                  }
+                ]
+              }
+            }
+          ],
+          "condition": {
+            "expression": "doseIndex == 1 || doseIndex == '1'"
+          }
+        },
+        {
           "actionType": "FETCH_TRANSFORMER_CONFIG",
           "properties": {
             "data": [
@@ -4201,103 +4478,6 @@
                 }
               }
             ]
-          }
-        },
-        {
-          "actions": [
-            {
-              "actionType": "FETCH_TRANSFORMER_CONFIG",
-              "properties": {
-                "data": [
-                  {
-                    "key": "ProjectBeneficiaryClientReferenceId",
-                    "value": "{{navigation.ProjectBeneficiaryClientReferenceId}}"
-                  },
-                  {
-                    "key": "HouseholdClientReferenceId",
-                    "value": "{{navigation.HouseholdClientReferenceId}}"
-                  },
-                  {
-                    "key": "memberCount",
-                    "value": "{{navigation.memberCount}}"
-                  },
-                  {
-                    "key": "individualClientReferenceId",
-                    "value": "{{navigation.selectedIndividualClientReferenceId}}"
-                  },
-                  {
-                    "key": "beneficiaryId",
-                    "value": "{{navigation.selectedIndividualIdentifierId}}"
-                  },
-                  {
-                    "key": "childName",
-                    "value": "{{navigation.childName}}"
-                  },
-                  {
-                    "key": "ageInMonths",
-                    "value": "{{navigation.ageInMonths}}"
-                  },
-                  {
-                    "key": "gender",
-                    "value": "{{navigation.gender}}"
-                  },
-                  {
-                    "key": "headName",
-                    "value": "{{navigation.headName}}"
-                  },
-                  {
-                    "key": "headMobileNumber",
-                    "value": "{{navigation.headMobileNumber}}"
-                  },
-                  {
-                    "key": "cycleIndex",
-                    "value": "{{navigation.cycleIndex}}"
-                  },
-                  {
-                    "key": "futureDoses",
-                    "value": [
-                      {
-                        "id": 2,
-                        "deliveryStrategy": "INDIRECT"
-                      },
-                      {
-                        "id": 3,
-                        "deliveryStrategy": "INDIRECT"
-                      }
-                    ]
-                  },
-                  {
-                    "key": "__contextfutureDoses:headName",
-                    "value": "{{navigation.headName}}"
-                  }
-                ],
-                "onError": [
-                  {
-                    "actionType": "SHOW_TOAST",
-                    "properties": {
-                      "message": "Failed to fetch config for bulk delivery."
-                    }
-                  }
-                ],
-                "configName": "indirectBulkDelivery"
-              }
-            },
-            {
-              "actionType": "CREATE_EVENT",
-              "properties": {
-                "onError": [
-                  {
-                    "actionType": "SHOW_TOAST",
-                    "properties": {
-                      "message": "Failed to create bulk tasks."
-                    }
-                  }
-                ]
-              }
-            }
-          ],
-          "condition": {
-            "expression": "doseIndex == 1 || doseIndex == '1'"
           }
         },
         {
@@ -4893,6 +5073,10 @@
                   {
                     "key": "HouseholdClientReferenceId",
                     "value": "{{navigation.HouseholdClientReferenceId}}"
+                  },
+                  {
+                    "key": "beneficiaryType",
+                    "value": "INDIVIDUAL"
                   }
                 ],
                 "onError": [
@@ -4909,9 +5093,16 @@
             {
               "actions": [
                 {
-                  "actionType": "UPDATE_EVENT",
+                  "actionType": "CREATE_EVENT",
                   "properties": {
-                    "entity": "IndividualModel, ProjectBeneficiaryModel"
+                    "onError": [
+                      {
+                        "actionType": "SHOW_TOAST",
+                        "properties": {
+                          "message": "Failed to add member."
+                        }
+                      }
+                    ]
                   }
                 },
                 {
@@ -5438,6 +5629,10 @@
               {
                 "key": "HouseholdClientReferenceId",
                 "value": "{{navigation.HouseholdClientReferenceId}}"
+              },
+              {
+                "key": "beneficiaryType",
+                "value": "INDIVIDUAL"
               }
             ],
             "onError": [
