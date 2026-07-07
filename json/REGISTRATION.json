@@ -1493,7 +1493,7 @@
                             },
                             {
                               "key": "selectedIndividualName",
-                              "value": "{{fn:str(item.individual.0.name)}}"
+                              "value": "{{fn:fullName(item.individual.0.name)}}"
                             },
                             {
                               "key": "selectedIndividualGender",
@@ -1574,7 +1574,7 @@
                             },
                             {
                               "key": "selectedIndividualName",
-                              "value": "{{fn:str(item.individual.0.name)}}"
+                              "value": "{{fn:fullName(item.individual.0.name)}}"
                             },
                             {
                               "key": "selectedIndividualGender",
@@ -1586,7 +1586,7 @@
                             },
                             {
                               "key": "childName",
-                              "value": "{{fn:str(item.individual.0.name)}}"
+                              "value": "{{fn:fullName(item.individual.0.name)}}"
                             },
                             {
                               "key": "ageInMonths",
@@ -1721,7 +1721,7 @@
                             },
                             {
                               "key": "selectedIndividualName",
-                              "value": "{{fn:str(item.individual.0.name)}}"
+                              "value": "{{fn:fullName(item.individual.0.name)}}"
                             },
                             {
                               "key": "selectedIndividualGender",
