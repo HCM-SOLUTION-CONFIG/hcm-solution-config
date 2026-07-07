@@ -1367,6 +1367,10 @@
                               "value": "{{contextData.0.headIndividual.IndividualModel.address.0.longitude}}"
                             },
                             {
+                              "key": "locationAccuracy",
+                              "value": "{{contextData.0.headIndividual.IndividualModel.address.0.locationAccuracy}}"
+                            },
+                            {
                               "key": "headMobileNumber",
                               "value": "{{fn:str(contextData.0.headIndividual.IndividualModel.mobileNumber)}}"
                             },
@@ -4996,6 +5000,18 @@
                       {
                         "key": "ec5",
                         "value": "{{eligibilityChecklist.ec5}}"
+                      },
+                      {
+                        "key": "latitude",
+                        "value": "{{navigation.latitude}}"
+                      },
+                      {
+                        "key": "longitude",
+                        "value": "{{navigation.longitude}}"
+                      },
+                      {
+                        "key": "locationAccuracy",
+                        "value": "{{navigation.locationAccuracy}}"
                       }
                     ],
                     "onError": [
@@ -5743,6 +5759,18 @@
                   {
                     "key": "ec5",
                     "value": "{{eligibilityChecklist.ec5}}"
+                  },
+                  {
+                    "key": "latitude",
+                    "value": "{{navigation.latitude}}"
+                  },
+                  {
+                    "key": "longitude",
+                    "value": "{{navigation.longitude}}"
+                  },
+                  {
+                    "key": "locationAccuracy",
+                    "value": "{{navigation.locationAccuracy}}"
                   }
                 ],
                 "onError": [
