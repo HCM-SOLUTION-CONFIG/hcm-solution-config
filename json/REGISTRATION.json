@@ -1,4 +1,4 @@
-{
+﻿{
   "id": "9d3a901b-d831-427b-8aeb-4bbda9ec2018",
   "tenantId": "mz",
   "schemaCode": "HCM-ADMIN-CONSOLE.FormConfigTemplate",
@@ -5473,6 +5473,18 @@
                   {
                     "key": "ec5",
                     "value": "{{eligibilityChecklist.ec5}}"
+                  },
+                  {
+                    "key": "latitude",
+                    "value": "{{navigation.latitude}}"
+                  },
+                  {
+                    "key": "longitude",
+                    "value": "{{navigation.longitude}}"
+                  },
+                  {
+                    "key": "locationAccuracy",
+                    "value": "{{navigation.locationAccuracy}}"
                   }
                 ],
                 "name": "beneficiaryDetails",
@@ -5560,6 +5572,18 @@
                   {
                     "key": "ec5",
                     "value": "{{eligibilityChecklist.ec5}}"
+                  },
+                  {
+                    "key": "latitude",
+                    "value": "{{navigation.latitude}}"
+                  },
+                  {
+                    "key": "longitude",
+                    "value": "{{navigation.longitude}}"
+                  },
+                  {
+                    "key": "locationAccuracy",
+                    "value": "{{navigation.locationAccuracy}}"
                   }
                 ],
                 "name": "beneficiaryDetails",
@@ -5756,6 +5780,18 @@
                   {
                     "key": "ec5",
                     "value": "{{eligibilityChecklist.ec5}}"
+                  },
+                  {
+                    "key": "latitude",
+                    "value": "{{navigation.latitude}}"
+                  },
+                  {
+                    "key": "longitude",
+                    "value": "{{navigation.longitude}}"
+                  },
+                  {
+                    "key": "locationAccuracy",
+                    "value": "{{navigation.locationAccuracy}}"
                   }
                 ],
                 "name": "householdOverview",
@@ -5867,6 +5903,10 @@
                   {
                     "key": "longitude",
                     "value": "{{navigation.longitude}}"
+                  },
+                  {
+                    "key": "locationAccuracy",
+                    "value": "{{navigation.locationAccuracy}}"
                   },
                   {
                     "key": "headMobileNumber",
