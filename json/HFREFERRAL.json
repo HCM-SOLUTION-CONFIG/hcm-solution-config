@@ -399,6 +399,7 @@
           "type": "template",
           "label": "SCAN_BENEFICIARY",
           "format": "qrScanner",
+          "hidden": true,
           "onAction": [
             {
               "actionType": "OPEN_SCANNER",

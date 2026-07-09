@@ -6441,8 +6441,8 @@
               "schemaCode": null,
               "systemDate": false,
               "lengthRange": {
-                "maxLength": 10,
-                "minLength": 10,
+                "maxLength": 11,
+                "minLength": 11,
                 "errorMessage": "MOBILE_LENGTH_10_DIGIT_ERROR_ADDMEMBER"
               },
               "validations": [
@@ -6453,13 +6453,13 @@
                 },
                 {
                   "type": "minLength",
-                  "value": 10,
-                  "message": "MOBILE_LENGTH_10_DIGIT_ERROR_ADDMEMBER"
+                  "value": 11,
+                  "message": "MOBILE_LENGTH_11_DIGIT_ERROR_ADDMEMBER"
                 },
                 {
                   "type": "maxLength",
-                  "value": 10,
-                  "message": "MOBILE_LENGTH_10_DIGIT_ERROR_ADDMEMBER"
+                  "value": 111,
+                  "message": "MOBILE_LENGTH_11_DIGIT_ERROR_ADDMEMBER"
                 }
               ],
               "errorMessage": "",

@@ -902,7 +902,7 @@
               "mandatory": true,
               "deleteFlag": false,
               "innerLabel": "",
-              "prefixText": "+91",
+              "prefixText": "+234",
               "systemDate": false,
               "validations": [
                 {
@@ -986,7 +986,7 @@
               "fieldName": "supervisorContactNumber",
               "deleteFlag": false,
               "innerLabel": "",
-              "prefixText": "+91",
+              "prefixText": "+234",
               "systemDate": false,
               "validations": [
                 {
