@@ -1607,6 +1607,18 @@
                             {
                               "key": "cycleIndex",
                               "value": "{{contextData.0.currentRunningCycle}}"
+                            },
+                            {
+                              "key": "latitude",
+                              "value": "{{contextData.0.headIndividual.IndividualModel.address.0.latitude}}"
+                            },
+                            {
+                              "key": "longitude",
+                              "value": "{{contextData.0.headIndividual.IndividualModel.address.0.longitude}}"
+                            },
+                            {
+                              "key": "locationAccuracy",
+                              "value": "{{contextData.0.headIndividual.IndividualModel.address.0.locationAccuracy}}"
                             }
                           ],
                           "name": "RI_CHECKLIST",
@@ -6094,6 +6106,18 @@
                       {
                         "key": "ProjectBeneficiaryClientReferenceId",
                         "value": "{{navigation.ProjectBeneficiaryClientReferenceId}}"
+                      },
+                      {
+                        "key": "latitude",
+                        "value": "{{navigation.latitude}}"
+                      },
+                      {
+                        "key": "longitude",
+                        "value": "{{navigation.longitude}}"
+                      },
+                      {
+                        "key": "locationAccuracy",
+                        "value": "{{navigation.locationAccuracy}}"
                       }
                     ],
                     "onError": [
@@ -6639,6 +6663,18 @@
                   {
                     "key": "ProjectBeneficiaryClientReferenceId",
                     "value": "{{navigation.ProjectBeneficiaryClientReferenceId}}"
+                  },
+                  {
+                    "key": "latitude",
+                    "value": "{{navigation.latitude}}"
+                  },
+                  {
+                    "key": "longitude",
+                    "value": "{{navigation.longitude}}"
+                  },
+                  {
+                    "key": "locationAccuracy",
+                    "value": "{{navigation.locationAccuracy}}"
                   }
                 ],
                 "onError": [
@@ -6792,10 +6828,22 @@
                     "key": "headMobileNumber",
                     "value": "{{navigation.headMobileNumber}}"
                   },
-                   {
-                "key": "referralReasons",
-                "value": "RI"
-              }
+                  {
+                    "key": "referralReasons",
+                    "value": "RI"
+                  },
+                  {
+                    "key": "latitude",
+                    "value": "{{navigation.latitude}}"
+                  },
+                  {
+                    "key": "longitude",
+                    "value": "{{navigation.longitude}}"
+                  },
+                  {
+                    "key": "locationAccuracy",
+                    "value": "{{navigation.locationAccuracy}}"
+                  }
                 ],
                 "name": "REFER_BENEFICIARY",
                 "type": "FORM",
