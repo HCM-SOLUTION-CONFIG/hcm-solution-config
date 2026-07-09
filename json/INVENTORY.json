@@ -2616,7 +2616,7 @@
                         "format": "textTemplate",
                         "type": "template",
                         "fieldName": "incomingTransactionsSenderValueText",
-                        "value": "{{fn:getFacilityName(item.items[0].senderId)}}"
+                        "value": "{{fn:getReceivedFromName(item.items[0].additionalFields.fields, item.items[0].senderId, item.items[0].senderType)}}"
                       }
                     ]
                   },
@@ -2693,7 +2693,7 @@
                         },
                         {
                           "key": "receivedFromName",
-                          "value": "{{fn:getFacilityName(item.items[0].senderId)}}"
+                          "value": "{{fn:getReceivedFromName(item.items[0].additionalFields.fields, item.items[0].senderId, item.items[0].senderType)}}"
                         },
                         {
                           "key": "quantity",
@@ -2791,7 +2791,7 @@
               },
               {
                 "key": "receivedFromName",
-                "value": "{{fn:getFacilityName(item.items[0].senderId)}}"
+                "value": "{{fn:getReceivedFromName(item.items[0].additionalFields.fields, item.items[0].senderId, item.items[0].senderType)}}"
               },
               {
                 "key": "productVariantId",
