@@ -1742,7 +1742,7 @@
                           },
                           {
                             "key": "headName",
-                            "value": "{{fn:str(contextData.0.headIndividual.IndividualModel.name)}}"
+                            "value": "{{fn:fullName(contextData.0.headIndividual.IndividualModel.name)}}"
                           },
                           {
                             "key": "headMobileNumber",
@@ -6633,7 +6633,7 @@
                   },
                   {
                     "key": "childName",
-                    "value": "{{contextData.entities.IndividualModel.name.givenName}}"
+                    "value": "{{fn:fullName(contextData.entities.IndividualModel.name)}}"
                   },
                   {
                     "key": "ageInMonths",
