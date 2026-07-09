@@ -968,6 +968,16 @@
                   "type": "required",
                   "value": false,
                   "message": "INVENTORY_WAYBILL_NUMBER_REQUIRED_ERROR_MESSAGE"
+                },
+                {
+                  "type": "maxLength",
+                  "value": 200,
+                  "message": "INVENTORY_WAYBILL_NUMBER_MAX_LENGTH_ERROR_MESSAGE"
+                },
+                {
+                  "type": "pattern",
+                  "value": "^[a-zA-Z0-9 ]+$",
+                  "message": "INVENTORY_WAYBILL_NUMBER_PATTERN_ERROR_MESSAGE"
                 }
               ],
               "errorMessage": "",
@@ -994,6 +1004,16 @@
                   "type": "required",
                   "value": false,
                   "message": "INVENTORY_BATCH_NUMBER_REQUIRED_ERROR_MESSAGE"
+                },
+                {
+                  "type": "maxLength",
+                  "value": 63,
+                  "message": "INVENTORY_BATCH_NUMBER_MAX_LENGTH_ERROR_MESSAGE"
+                },
+                {
+                  "type": "pattern",
+                  "value": "^[a-zA-Z0-9 ]+$",
+                  "message": "INVENTORY_BATCH_NUMBER_PATTERN_ERROR_MESSAGE"
                 }
               ],
               "errorMessage": "",
@@ -3065,7 +3085,18 @@
               "innerLabel": "",
               "systemDate": false,
               "visibilityCondition": {},
-              "validations": [],
+              "validations": [
+                {
+                  "type": "maxLength",
+                  "value": 63,
+                  "message": "INVENTORY_WAYBILL_NUMBER_MAX_LENGTH_ERROR_MESSAGE"
+                },
+                {
+                  "type": "pattern",
+                  "value": "^[a-zA-Z0-9 ]+$",
+                  "message": "INVENTORY_WAYBILL_NUMBER_PATTERN_ERROR_MESSAGE"
+                }
+              ],
               "errorMessage": "",
               "isMultiSelect": false,
               "enums": null
@@ -3086,7 +3117,18 @@
               "innerLabel": "",
               "systemDate": false,
               "visibilityCondition": {},
-              "validations": [],
+              "validations": [
+                {
+                  "type": "maxLength",
+                  "value": 200,
+                  "message": "INVENTORY_BATCH_NUMBER_MAX_LENGTH_ERROR_MESSAGE"
+                },
+                {
+                  "type": "pattern",
+                  "value": "^[a-zA-Z0-9 ]+$",
+                  "message": "INVENTORY_BATCH_NUMBER_PATTERN_ERROR_MESSAGE"
+                }
+              ],
               "errorMessage": "",
               "isMultiSelect": false,
               "enums": null
