@@ -850,7 +850,7 @@
               "tooltip": "",
               "helpText": "INVENTORY_SCAN_TEAM_CODE_HELPTEXT",
               "infoText": "",
-              "readOnly": false,
+              "readOnly": true,
               "fieldName": "deliveryTeam",
               "deleteFlag": false,
               "innerLabel": "",
