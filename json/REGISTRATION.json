@@ -993,7 +993,7 @@
       "submitCondition": null,
       "preventScreenCapture": false
     },
-   {
+    {
       "body": [
         {
           "type": "template",
@@ -1165,7 +1165,7 @@
       "name": "orsDetails",
       "order": 14,
       "footer": [
- {
+        {
           "type": "template",
           "label": "ORS_RECORD_CYCLE_DOSE",
           "format": "actionPopup",
@@ -1231,7 +1231,7 @@
           "type": "template",
           "label": "RECORD_CYCLE_DOSE",
           "format": "button",
-            "visible": "{{fn:hasStockForDelivery(contextData.0.eligibleProductVariants)}} == true",
+          "visible": "{{fn:hasStockForDelivery(contextData.0.eligibleProductVariants)}} == true",
           "disabled": "{{fn:hasStockForDelivery(contextData.0.eligibleProductVariants)}} == false",
           "onAction": [
             {
@@ -1982,7 +1982,7 @@
                       "bottomGap": 16
                     }
                   },
-                 {
+                  {
                     "type": "template",
                     "label": "ADMINISTERED_SUCCESS",
                     "format": "tag",
@@ -2012,7 +2012,7 @@
                     "fieldName": "notEligible",
                     "properties": {
                       "tagType": "error",
-                  "bottomGap": 16
+                      "bottomGap": 16
                     }
                   },
                   {
@@ -2024,7 +2024,7 @@
                     "fieldName": "beneficiaryReferred",
                     "properties": {
                       "tagType": "error",
-                  "bottomGap": 16
+                      "bottomGap": 16
                     }
                   },
                   {
@@ -2038,7 +2038,6 @@
                       "bottomGap": 16
                     }
                   },
-                  
                   {
                     "type": "template",
                     "label": "NOT_VISITED",
@@ -2050,8 +2049,6 @@
                       "bottomGap": 16
                     }
                   },
-                  
-               
                   {
                     "type": "template",
                     "label": "DELIVERY",
@@ -2241,7 +2238,7 @@
                             },
                             {
                               "key": "selectedIndividualName",
-                              "value": "{{fn:str(item.individual.0.name)}}"
+                              "value": "{{fn:fullName(item.individual.0.name)}}"
                             },
                             {
                               "key": "selectedIndividualGender",
@@ -2290,7 +2287,7 @@
                       "bottomGap": 16
                     }
                   },
-                   {
+                  {
                     "type": "template",
                     "label": "ORS_Zinc",
                     "format": "button",
@@ -2376,7 +2373,7 @@
                       "bottomGap": 16
                     }
                   },
-                   {
+                  {
                     "type": "template",
                     "label": "ORS_Zinc",
                     "format": "button",
@@ -2559,7 +2556,7 @@
                             },
                             {
                               "key": "selectedIndividualName",
-                              "value": "{{fn:str(item.individual.0.name)}}"
+                              "value": "{{fn:fullName(item.individual.0.name)}}"
                             },
                             {
                               "key": "selectedIndividualGender",
