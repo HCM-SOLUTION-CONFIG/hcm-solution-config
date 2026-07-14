@@ -1301,6 +1301,10 @@
                   {
                     "key": "sourceFlow",
                     "value": "{{navigation.sourceFlow}}"
+                  },
+                  {
+                    "key": "isSMCDelivered",
+                    "value": "{{navigation.isSMCDelivered}}"
                   }
                 ],
                 "name": "ORSDELIVERY",
@@ -2351,6 +2355,10 @@
                             {
                               "key": "cycleIndex",
                               "value": "{{contextData.0.currentRunningCycle}}"
+                            },
+                            {
+                              "key": "isSMCDelivered",
+                              "value": "{{fn:isDelivered(item.task)}}"
                             }
                           ],
                           "name": "orsDetails",
@@ -2433,6 +2441,10 @@
                             {
                               "key": "cycleIndex",
                               "value": "{{contextData.0.currentRunningCycle}}"
+                            },
+                            {
+                              "key": "isSMCDelivered",
+                              "value": "{{fn:isDelivered(item.task)}}"
                             }
                           ],
                           "name": "orsDetails",
@@ -5376,6 +5388,10 @@
                   {
                     "key": "deliveryStrategy",
                     "value": "{{navigation.deliveryStrategy}}"
+                  },
+                  {
+                    "key": "isSMCDelivered",
+                    "value": "{{navigation.isSMCDelivered}}"
                   }
                 ],
                 "onError": [
@@ -5682,6 +5698,10 @@
               {
                 "key": "deliveryStrategy",
                 "value": "{{navigation.deliveryStrategy}}"
+              },
+              {
+                "key": "isSMCDelivered",
+                "value": "{{navigation.isSMCDelivered}}"
               }
             ],
             "onError": [
