@@ -6587,6 +6587,10 @@
                       {
                         "key": "ec5",
                         "value": "{{eligibilityChecklist.ec5}}"
+                      },
+                      {
+                        "key": "cycleIndex",
+                        "value": "{{fn:getCurrentCycleIndex()}}"
                       }
                     ],
                     "onError": [
@@ -7334,6 +7338,10 @@
                   {
                     "key": "ec5",
                     "value": "{{eligibilityChecklist.ec5}}"
+                  },
+                  {
+                    "key": "cycleIndex",
+                    "value": "{{fn:getCurrentCycleIndex()}}"
                   }
                 ],
                 "onError": [
