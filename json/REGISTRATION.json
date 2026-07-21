@@ -1280,7 +1280,7 @@
                   },
                   {
                     "key": "cycleIndex",
-                    "value": "{{contextData.0.nextCycleId}}"
+                    "value": "{{contextData.0.currentRunningCycle}}"
                   },
                   {
                     "key": "doseIndex",
