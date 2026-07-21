@@ -993,7 +993,7 @@
       "submitCondition": null,
       "preventScreenCapture": false
     },
-   {
+    {
       "body": [
         {
           "type": "template",
@@ -1165,7 +1165,7 @@
       "name": "orsDetails",
       "order": 14,
       "footer": [
- {
+        {
           "type": "template",
           "label": "ORS_RECORD_CYCLE_DOSE",
           "format": "actionPopup",
@@ -1231,7 +1231,7 @@
           "type": "template",
           "label": "RECORD_CYCLE_DOSE",
           "format": "button",
-            "visible": "{{fn:hasStockForDelivery(contextData.0.eligibleProductVariants)}} == true",
+          "visible": "{{fn:hasStockForDelivery(contextData.0.eligibleProductVariants)}} == true",
           "disabled": "{{fn:hasStockForDelivery(contextData.0.eligibleProductVariants)}} == false",
           "onAction": [
             {
@@ -1978,7 +1978,7 @@
                       "bottomGap": 16
                     }
                   },
-                 {
+                  {
                     "type": "template",
                     "label": "ADMINISTERED_SUCCESS",
                     "format": "tag",
@@ -1993,7 +1993,7 @@
                     "type": "template",
                     "label": "ORS_ADMINISTERED_SUCCESS",
                     "format": "tag",
-                    "visible": "{{fn:isORSDelivered(item.task)}}==true",
+                    "visible": "{{fn:isORSDelivered(item.task, contextData.0.currentRunningCycle)}}==true",
                     "fieldName": "orsAdministrationSuccess",
                     "properties": {
                       "tagType": "success",
@@ -2008,7 +2008,7 @@
                     "fieldName": "notEligible",
                     "properties": {
                       "tagType": "error",
-                  "bottomGap": 16
+                      "bottomGap": 16
                     }
                   },
                   {
@@ -2020,7 +2020,7 @@
                     "fieldName": "beneficiaryReferred",
                     "properties": {
                       "tagType": "error",
-                  "bottomGap": 16
+                      "bottomGap": 16
                     }
                   },
                   {
@@ -2034,7 +2034,6 @@
                       "bottomGap": 16
                     }
                   },
-                  
                   {
                     "type": "template",
                     "label": "NOT_VISITED",
@@ -2046,8 +2045,6 @@
                       "bottomGap": 16
                     }
                   },
-                  
-               
                   {
                     "type": "template",
                     "label": "DELIVERY",
@@ -2286,11 +2283,11 @@
                       "bottomGap": 16
                     }
                   },
-                   {
+                  {
                     "type": "template",
                     "label": "ORS_Zinc",
                     "format": "button",
-                    "visible": "{{fn:checkEligibilityForAgeAndSideEffect(item.individual.0, item.task, contextData.0.currentRunningCycle)}}==true && {{fn:isDelivered(item.task)}}==true && {{fn:isORSEligible(item.individual.0)}} && {{fn:isORSDelivered(item.task)}}==false && {{fn:isHead(item.member)}}==false",
+                    "visible": "{{fn:checkEligibilityForAgeAndSideEffect(item.individual.0, item.task, contextData.0.currentRunningCycle)}}==true && {{fn:isDelivered(item.task)}}==true && {{fn:isORSEligible(item.individual.0)}} && {{fn:isORSDelivered(item.task, contextData.0.currentRunningCycle)}}==false && {{fn:isHead(item.member)}}==false",
                     "onAction": [
                       {
                         "actionType": "NAVIGATION",
@@ -2368,11 +2365,11 @@
                       "bottomGap": 16
                     }
                   },
-                   {
+                  {
                     "type": "template",
                     "label": "ORS_Zinc",
                     "format": "button",
-                    "visible": "{{fn:checkEligibilityForAgeAndSideEffect(item.individual.0, item.task, contextData.0.currentRunningCycle)}}==false && {{fn:isORSEligible(item.individual.0)}} && {{fn:isORSDelivered(item.task)}}==false && {{fn:isHead(item.member)}}==false",
+                    "visible": "{{fn:checkEligibilityForAgeAndSideEffect(item.individual.0, item.task, contextData.0.currentRunningCycle)}}==false && {{fn:isORSEligible(item.individual.0)}} && {{fn:isORSDelivered(item.task, contextData.0.currentRunningCycle)}}==false && {{fn:isHead(item.member)}}==false",
                     "onAction": [
                       {
                         "actionType": "NAVIGATION",
