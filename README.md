@@ -74,3 +74,25 @@ Each file is a flow-definition document consumed by the Digit flow engine. At ru
 - Missing search filters causing empty list screens.
 - Invalid expression paths in visibility or value templates.
 - submit onAction missing FETCH_TRANSFORMER_CONFIG before CREATE_EVENT.
+
+## Version Tracking
+
+`version.json` at the repo root is a minimal pointer: the current config
+`version` (semver, independent of the apk) and `apkVersion` — a comparator
+expression describing which `health_campaign_field_worker_app` apk version(s)
+(from its `pubspec.yaml` `version:` field) this config release is compatible
+with, e.g. `>=2.2.93+93`, `2.2.93+93 - 2.2.99+99`, or a single pinned version
+if only one apk version has been validated.
+
+Full release history — which config files changed in each release and why —
+lives in `CHANGELOG.md`, not in `version.json`.
+
+When cutting a release that ships updated configs:
+
+1. Bump `version` in `version.json` (semver) and update `apkVersion` to the
+   comparator expression describing which apk version(s) this config release
+   supports.
+2. Append a new section to `CHANGELOG.md` for that `version`, with the release
+   `date` (YYYY-MM-DD), the paired `apkVersion`, and a bullet per config JSON
+   file touched since the previous entry describing what changed.
+3. Do not edit or remove prior `CHANGELOG.md` entries — the log is append-only.
