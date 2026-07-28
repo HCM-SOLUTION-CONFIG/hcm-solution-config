@@ -6052,7 +6052,6 @@
             {
               "label": "APPONE_REGISTRATION_DELIVERYDETAILS_ACTION_BUTTON_LABEL_1",
               "format": "button",
-              "fieldName": "riEligibilityChecklistSubmitButton",
               "onAction": [
                 {
                   "actionType": "NAVIGATION",
@@ -6062,6 +6061,7 @@
                   }
                 }
               ],
+              "fieldName": "riEligibilityChecklistSubmitButton",
               "properties": {
                 "size": "large",
                 "type": "primary",
@@ -6076,7 +6076,6 @@
           "version": 1,
           "onAction": [
             {
-              "actionId": 1,
               "actions": [
                 {
                   "actionType": "FETCH_TRANSFORMER_CONFIG",
@@ -6191,12 +6190,12 @@
                   }
                 }
               ],
+              "actionId": 1,
               "condition": {
                 "expression": "riEligibilityChecklist.chcSeen==YES && riEligibilityChecklist.fullyImmunized==YES"
               }
             },
             {
-              "actionId": 2,
               "actions": [
                 {
                   "actionType": "NAVIGATION",
@@ -6294,6 +6293,7 @@
                   }
                 }
               ],
+              "actionId": 2,
               "condition": {
                 "expression": "DEFAULT"
               }
@@ -6621,7 +6621,6 @@
       "disabled": false,
       "onAction": [
         {
-          "actionId": 1,
           "actions": [
             {
               "actionType": "FETCH_TRANSFORMER_CONFIG",
@@ -6736,12 +6735,12 @@
               }
             }
           ],
+          "actionId": 1,
           "condition": {
             "expression": "riEligibilityChecklist.chcSeen==YES && riEligibilityChecklist.fullyImmunized==YES"
           }
         },
         {
-          "actionId": 2,
           "actions": [
             {
               "actionType": "NAVIGATION",
@@ -6847,6 +6846,7 @@
               }
             }
           ],
+          "actionId": 2,
           "condition": {
             "expression": "DEFAULT"
           }
@@ -8217,6 +8217,10 @@
               {
                 "key": "zeroDose",
                 "value": "{{navigation.zeroDose}}"
+              },
+              {
+                "key": "unimmunized",
+                "value": "{{navigation.unimmunized}}"
               },
               {
                 "key": "sourceFlow",
