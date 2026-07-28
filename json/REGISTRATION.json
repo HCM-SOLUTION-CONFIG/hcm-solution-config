@@ -8203,6 +8203,22 @@
                 "value": "{{fn:getReferralReasonsExtra(navigation)}}"
               },
               {
+                "key": "chcSeen",
+                "value": "{{navigation.chcSeen}}"
+              },
+              {
+                "key": "fullyImmunized",
+                "value": "{{navigation.fullyImmunized}}"
+              },
+              {
+                "key": "partiallyImmunized",
+                "value": "{{navigation.partiallyImmunized}}"
+              },
+              {
+                "key": "zeroDose",
+                "value": "{{navigation.zeroDose}}"
+              },
+              {
                 "key": "sourceFlow",
                 "value": "{{navigation.sourceFlow}}"
               }
