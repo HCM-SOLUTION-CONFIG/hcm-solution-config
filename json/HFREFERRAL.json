@@ -23,8 +23,7 @@
                 },
                 {
                   "key": "REFERRAL_INBOX_REFERRAL_STATUS",
-                  "value":
-                      "{{fn:computeReferralStatus(HFReferralModel.0.symptom, HFReferralModel.0.additionalFields.fields)}}"
+                  "value": "{{fn:computeReferralStatus(HFReferralModel.0.symptom, HFReferralModel.0.additionalFields.fields)}}"
                 }
               ],
               "type": "template",
@@ -34,7 +33,10 @@
             }
           ],
           "fieldName": "templateCard",
-          "properties": {"type": "primary", "cardType": "primary"}
+          "properties": {
+            "type": "primary",
+            "cardType": "primary"
+          }
         }
       ],
       "name": "referralOverview",
@@ -44,8 +46,7 @@
           "type": "template",
           "label": "HF_REFERRAL_GO_BACK",
           "format": "button",
-          "visible":
-              "{{fn:computeReferralButtonLabel(HFReferralModel.0.symptom, HFReferralModel.0.additionalFields.fields)}}==HF_REFERRAL_GO_BACK",
+          "visible": "{{fn:computeReferralButtonLabel(HFReferralModel.0.symptom, HFReferralModel.0.additionalFields.fields)}}==HF_REFERRAL_GO_BACK",
           "onAction": [
             {
               "actionType": "NAVIGATION",
@@ -71,14 +72,15 @@
           "type": "template",
           "label": "HF_REFERRAL_CONTINUE",
           "format": "button",
-          "visible":
-              "{{fn:computeReferralButtonLabel(HFReferralModel.0.symptom, HFReferralModel.0.additionalFields.fields)}}==HF_REFERRAL_CONTINUE",
+          "visible": "{{fn:computeReferralButtonLabel(HFReferralModel.0.symptom, HFReferralModel.0.additionalFields.fields)}}==HF_REFERRAL_CONTINUE",
           "onAction": [
             {
               "actionType": "REVERSE_TRANSFORM",
               "properties": {
                 "configName": "referralCreation",
-                "entityTypes": ["HFReferralModel"]
+                "entityTypes": [
+                  "HFReferralModel"
+                ]
               }
             },
             {
@@ -93,12 +95,18 @@
                     "key": "referralSymptom",
                     "value": "{{HFReferralModel.0.symptom}}"
                   },
-                  {"key": "isEdit", "value": "true"},
+                  {
+                    "key": "isEdit",
+                    "value": "true"
+                  },
                   {
                     "key": "rowVersion",
                     "value": "{{HFReferralModel.0.rowVersion}}"
                   },
-                  {"key": "nameOfChild", "value": "{{HFReferralModel.0.name}}"},
+                  {
+                    "key": "nameOfChild",
+                    "value": "{{HFReferralModel.0.name}}"
+                  },
                   {
                     "key": "beneficiaryId",
                     "value": "{{HFReferralModel.0.beneficiaryId}}"
@@ -109,19 +117,20 @@
                   },
                   {
                     "key": "ageInMonths",
-                    "value":
-                        "{{HFReferralModel.0.additionalFields.fields.ageInMonths}}"
+                    "value": "{{HFReferralModel.0.additionalFields.fields.ageInMonths}}"
                   },
                   {
                     "key": "gender",
-                    "value":
-                        "{{HFReferralModel.0.additionalFields.fields.gender}}"
+                    "value": "{{HFReferralModel.0.additionalFields.fields.gender}}"
                   },
                   {
                     "key": "referralReason",
                     "value": "{{HFReferralModel.0.symptom}}"
                   },
-                  {"key": "startPage", "value": "referralDetails"}
+                  {
+                    "key": "startPage",
+                    "value": "referralDetails"
+                  }
                 ],
                 "name": "REFERRAL_CREATE",
                 "type": "FORM"
@@ -146,7 +155,10 @@
           "onAction": [
             {
               "actionType": "BACK_NAVIGATION",
-              "properties": {"name": "referralInbox", "type": "TEMPLATE"}
+              "properties": {
+                "name": "referralInbox",
+                "type": "TEMPLATE"
+              }
             }
           ],
           "fieldName": "backLink"
@@ -180,7 +192,9 @@
         "groupByType": true,
         "wrapperName": "hFReferral",
         "searchConfig": {
-          "select": ["hFReferral"],
+          "select": [
+            "hFReferral"
+          ],
           "primary": "hFReferral"
         }
       },
@@ -196,7 +210,9 @@
           "heading": "REFERRAL_ACKNOWLEDGEMENT_PANEL_CARD_LABEL",
           "fieldName": "referralSuccess",
           "mandatory": true,
-          "properties": {"type": "success"},
+          "properties": {
+            "type": "success"
+          },
           "description": "REFERRAL_ACKNOWLEDGEMENT_PANEL_CARD_DESCRIPTION",
           "secondaryAction": {
             "type": "template",
@@ -205,14 +221,16 @@
             "onAction": [
               {
                 "actionType": "NAVIGATION",
-                "properties": {"name": "referralInbox", "type": "TEMPLATE"}
+                "properties": {
+                  "name": "referralInbox",
+                  "type": "TEMPLATE"
+                }
               }
             ],
             "fieldName": "back",
             "mandatory": true
           },
-          "secondaryActionLabel":
-              "REFERRAL_ACKNOWLEDGEMENT_PANEL_CARD_ACTION_LABEL"
+          "secondaryActionLabel": "REFERRAL_ACKNOWLEDGEMENT_PANEL_CARD_ACTION_LABEL"
         }
       ],
       "name": "referralAcknowledgement",
@@ -250,7 +268,11 @@
           "fieldName": "searchBar",
           "mandatory": true,
           "validation": [
-            {"key": "minSearchChars", "error": "", "value": 3}
+            {
+              "key": "minSearchChars",
+              "error": "",
+              "value": 3
+            }
           ]
         },
         {
@@ -296,8 +318,7 @@
                             },
                             {
                               "key": "buttonLabel",
-                              "value":
-                                  "{{fn:computeReferralButtonLabel(itemData.symptom, itemData.additionalFields.fields)}}"
+                              "value": "{{fn:computeReferralButtonLabel(itemData.symptom, itemData.additionalFields.fields)}}"
                             }
                           ],
                           "name": "referralOverview",
@@ -306,7 +327,10 @@
                       }
                     ],
                     "fieldName": "openButton",
-                    "properties": {"size": "medium", "type": "secondary"}
+                    "properties": {
+                      "size": "medium",
+                      "type": "secondary"
+                    }
                   }
                 ],
                 "fieldName": "rowtemplate",
@@ -320,8 +344,7 @@
                 "format": "row",
                 "children": [
                   {
-                    "value":
-                        "HF_REFERRAL_INBOX_DATE_OF_EVALUATION {{ fn:formatDate(itemData.additionalFields.fields.dateOfEvaluation, 'date', dd MMM yyyy) }}",
+                    "value": "HF_REFERRAL_INBOX_DATE_OF_EVALUATION {{ fn:formatDate(itemData.additionalFields.fields.dateOfEvaluation, 'date', dd MMM yyyy) }}",
                     "format": "textTemplate",
                     "fieldName": "textTemplatetext"
                   }
@@ -353,7 +376,10 @@
               "actionType": "NAVIGATION",
               "properties": {
                 "data": [
-                  {"key": "isEdit", "value": "false"}
+                  {
+                    "key": "isEdit",
+                    "value": "false"
+                  }
                 ],
                 "name": "REFERRAL_CREATE",
                 "type": "FORM"
@@ -417,7 +443,10 @@
               "value": 1,
               "message": "SCANLIMIT_ERROR_MESSAGE"
             },
-            {"type": "isGS1", "value": false}
+            {
+              "type": "isGS1",
+              "value": false
+            }
           ]
         }
       ],
@@ -429,7 +458,10 @@
           "onAction": [
             {
               "actionType": "BACK_NAVIGATION",
-              "properties": {"name": "HOME", "type": "HOME"}
+              "properties": {
+                "name": "HOME",
+                "type": "HOME"
+              }
             }
           ],
           "fieldName": "backLinkNavigation"
@@ -448,9 +480,14 @@
         "groupByType": true,
         "wrapperName": "hFReferral",
         "searchConfig": {
-          "select": ["hFReferral"],
+          "select": [
+            "hFReferral"
+          ],
           "primary": "hFReferral",
-          "pagination": {"limit": 5, "maxItems": 15}
+          "pagination": {
+            "limit": 5,
+            "maxItems": 15
+          }
         }
       },
       "scrollListener": {
@@ -459,7 +496,10 @@
           {
             "actionType": "REFRESH_SEARCH",
             "properties": {
-              "pagination": {"limit": 5, "maxItems": 15}
+              "pagination": {
+                "limit": 5,
+                "maxItems": 15
+              }
             }
           }
         ],
@@ -468,7 +508,10 @@
           {
             "actionType": "REFRESH_SEARCH",
             "properties": {
-              "pagination": {"limit": 5, "maxItems": 15}
+              "pagination": {
+                "limit": 5,
+                "maxItems": 15
+              }
             }
           }
         ],
@@ -514,7 +557,9 @@
                     "onError": [
                       {
                         "actionType": "SHOW_TOAST",
-                        "properties": {"message": "Failed to fetch config."}
+                        "properties": {
+                          "message": "Failed to fetch config."
+                        }
                       }
                     ],
                     "configName": "referralCreation"
@@ -528,14 +573,18 @@
                     "onError": [
                       {
                         "actionType": "SHOW_TOAST",
-                        "properties": {"message": "Failed to create."}
+                        "properties": {
+                          "message": "Failed to create."
+                        }
                       }
                     ]
                   }
                 },
                 {
                   "actionType": "UPDATE_EVENT",
-                  "properties": {"applyIf": "navigation.isEdit==true"}
+                  "properties": {
+                    "applyIf": "navigation.isEdit==true"
+                  }
                 },
                 {
                   "actionType": "NAVIGATION",
@@ -546,7 +595,9 @@
                     "onError": [
                       {
                         "actionType": "SHOW_TOAST",
-                        "properties": {"message": "Navigation failed."}
+                        "properties": {
+                          "message": "Navigation failed."
+                        }
                       }
                     ]
                   }
@@ -587,7 +638,9 @@
                 "onError": [
                   {
                     "actionType": "SHOW_TOAST",
-                    "properties": {"message": "Failed to fetch config."}
+                    "properties": {
+                      "message": "Failed to fetch config."
+                    }
                   }
                 ],
                 "configName": "referralCreation"
@@ -601,14 +654,18 @@
                 "onError": [
                   {
                     "actionType": "SHOW_TOAST",
-                    "properties": {"message": "Failed to create."}
+                    "properties": {
+                      "message": "Failed to create."
+                    }
                   }
                 ]
               }
             },
             {
               "actionType": "UPDATE_EVENT",
-              "properties": {"applyIf": "navigation.isEdit==true"}
+              "properties": {
+                "applyIf": "navigation.isEdit==true"
+              }
             },
             {
               "actionType": "NAVIGATION",
@@ -619,7 +676,9 @@
                 "onError": [
                   {
                     "actionType": "SHOW_TOAST",
-                    "properties": {"message": "Navigation failed."}
+                    "properties": {
+                      "message": "Navigation failed."
+                    }
                   }
                 ]
               }
@@ -633,8 +692,14 @@
             {
               "type": "string",
               "enums": [
-                {"code": "YES", "name": "SICKQ1_YES"},
-                {"code": "NO", "name": "SICKQ1_NO"}
+                {
+                  "code": "YES",
+                  "name": "SICKQ1_YES"
+                },
+                {
+                  "code": "NO",
+                  "name": "SICKQ1_NO"
+                }
               ],
               "label": "HFREFERRAL_SIDEEFFECTFROMSICK_sickQ1_LABEL",
               "order": 1,
@@ -657,18 +722,22 @@
                 {
                   "type": "required",
                   "value": true,
-                  "message":
-                      "HFREFERRAL_SIDEEFFECTFROMSICK_sickQ1_REQUIRED_ERROR"
+                  "message": "HFREFERRAL_SIDEEFFECTFROMSICK_sickQ1_REQUIRED_ERROR"
                 }
               ],
               "errorMessage": "",
               "isMultiSelect": false,
               "dropDownOptions": [
-                {"code": "YES", "name": "SICKQ1_YES"},
-                {"code": "NO", "name": "SICKQ1_NO"}
+                {
+                  "code": "YES",
+                  "name": "SICKQ1_YES"
+                },
+                {
+                  "code": "NO",
+                  "name": "SICKQ1_NO"
+                }
               ],
-              "required.message":
-                  "HFREFERRAL_SIDEEFFECTFROMSICK_sickQ1_REQUIRED_ERROR"
+              "required.message": "HFREFERRAL_SIDEEFFECTFROMSICK_sickQ1_REQUIRED_ERROR"
             },
             {
               "type": "string",
@@ -693,25 +762,31 @@
                 {
                   "type": "required",
                   "value": true,
-                  "message":
-                      "HFREFERRAL_SIDEEFFECTFROMSICK_sickQ4_REQUIRED_ERROR"
+                  "message": "HFREFERRAL_SIDEEFFECTFROMSICK_sickQ4_REQUIRED_ERROR"
                 }
               ],
               "errorMessage": "",
               "isMultiSelect": false,
-              "required.message":
-                  "HFREFERRAL_SIDEEFFECTFROMSICK_sickQ4_REQUIRED_ERROR",
+              "required.message": "HFREFERRAL_SIDEEFFECTFROMSICK_sickQ4_REQUIRED_ERROR",
               "visibilityCondition": {
                 "expression": [
-                  {"condition": "sideEffectSick.sickQ1==YES"}
+                  {
+                    "condition": "sideEffectSick.sickQ1==YES"
+                  }
                 ]
               }
             },
             {
               "type": "string",
               "enums": [
-                {"code": "YES", "name": "SICKQ2_YES"},
-                {"code": "NO", "name": "SICKQ2_NO"}
+                {
+                  "code": "YES",
+                  "name": "SICKQ2_YES"
+                },
+                {
+                  "code": "NO",
+                  "name": "SICKQ2_NO"
+                }
               ],
               "label": "HFREFERRAL_SIDEEFFECTFROMSICK_sickQ2_LABEL",
               "order": 3,
@@ -734,18 +809,22 @@
                 {
                   "type": "required",
                   "value": true,
-                  "message":
-                      "HFREFERRAL_SIDEEFFECTFROMSICK_sickQ2_REQUIRED_ERROR"
+                  "message": "HFREFERRAL_SIDEEFFECTFROMSICK_sickQ2_REQUIRED_ERROR"
                 }
               ],
               "errorMessage": "",
               "isMultiSelect": false,
               "dropDownOptions": [
-                {"code": "YES", "name": "SICKQ2_YES"},
-                {"code": "NO", "name": "SICKQ2_NO"}
+                {
+                  "code": "YES",
+                  "name": "SICKQ2_YES"
+                },
+                {
+                  "code": "NO",
+                  "name": "SICKQ2_NO"
+                }
               ],
-              "required.message":
-                  "HFREFERRAL_SIDEEFFECTFROMSICK_sickQ2_REQUIRED_ERROR"
+              "required.message": "HFREFERRAL_SIDEEFFECTFROMSICK_sickQ2_REQUIRED_ERROR"
             },
             {
               "type": "string",
@@ -770,25 +849,31 @@
                 {
                   "type": "required",
                   "value": true,
-                  "message":
-                      "HFREFERRAL_SIDEEFFECTFROMSICK_sickQ5_REQUIRED_ERROR"
+                  "message": "HFREFERRAL_SIDEEFFECTFROMSICK_sickQ5_REQUIRED_ERROR"
                 }
               ],
               "errorMessage": "",
               "isMultiSelect": false,
-              "required.message":
-                  "HFREFERRAL_SIDEEFFECTFROMSICK_sickQ5_REQUIRED_ERROR",
+              "required.message": "HFREFERRAL_SIDEEFFECTFROMSICK_sickQ5_REQUIRED_ERROR",
               "visibilityCondition": {
                 "expression": [
-                  {"condition": "sideEffectSick.sickQ2==YES"}
+                  {
+                    "condition": "sideEffectSick.sickQ2==YES"
+                  }
                 ]
               }
             },
             {
               "type": "string",
               "enums": [
-                {"code": "YES", "name": "SICKQ3_YES"},
-                {"code": "NO", "name": "SICKQ3_NO"}
+                {
+                  "code": "YES",
+                  "name": "SICKQ3_YES"
+                },
+                {
+                  "code": "NO",
+                  "name": "SICKQ3_NO"
+                }
               ],
               "label": "HFREFERRAL_SIDEEFFECTFROMSICK_sickQ3_LABEL",
               "order": 5,
@@ -811,18 +896,22 @@
                 {
                   "type": "required",
                   "value": true,
-                  "message":
-                      "HFREFERRAL_SIDEEFFECTFROMSICK_sickQ3_REQUIRED_ERROR"
+                  "message": "HFREFERRAL_SIDEEFFECTFROMSICK_sickQ3_REQUIRED_ERROR"
                 }
               ],
               "errorMessage": "",
               "isMultiSelect": false,
               "dropDownOptions": [
-                {"code": "YES", "name": "SICKQ3_YES"},
-                {"code": "NO", "name": "SICKQ3_NO"}
+                {
+                  "code": "YES",
+                  "name": "SICKQ3_YES"
+                },
+                {
+                  "code": "NO",
+                  "name": "SICKQ3_NO"
+                }
               ],
-              "required.message":
-                  "HFREFERRAL_SIDEEFFECTFROMSICK_sickQ3_REQUIRED_ERROR"
+              "required.message": "HFREFERRAL_SIDEEFFECTFROMSICK_sickQ3_REQUIRED_ERROR"
             }
           ],
           "actionLabel": "HFREFERRAL_SIDEEFFECTFROMSICK_ACTION_LABEL",
@@ -865,7 +954,9 @@
                     "onError": [
                       {
                         "actionType": "SHOW_TOAST",
-                        "properties": {"message": "Failed to fetch config."}
+                        "properties": {
+                          "message": "Failed to fetch config."
+                        }
                       }
                     ],
                     "configName": "referralCreation"
@@ -879,14 +970,18 @@
                     "onError": [
                       {
                         "actionType": "SHOW_TOAST",
-                        "properties": {"message": "Failed to create."}
+                        "properties": {
+                          "message": "Failed to create."
+                        }
                       }
                     ]
                   }
                 },
                 {
                   "actionType": "UPDATE_EVENT",
-                  "properties": {"applyIf": "navigation.isEdit==true"}
+                  "properties": {
+                    "applyIf": "navigation.isEdit==true"
+                  }
                 },
                 {
                   "actionType": "NAVIGATION",
@@ -897,7 +992,9 @@
                     "onError": [
                       {
                         "actionType": "SHOW_TOAST",
-                        "properties": {"message": "Navigation failed."}
+                        "properties": {
+                          "message": "Navigation failed."
+                        }
                       }
                     ]
                   }
@@ -938,7 +1035,9 @@
                 "onError": [
                   {
                     "actionType": "SHOW_TOAST",
-                    "properties": {"message": "Failed to fetch config."}
+                    "properties": {
+                      "message": "Failed to fetch config."
+                    }
                   }
                 ],
                 "configName": "referralCreation"
@@ -952,14 +1051,18 @@
                 "onError": [
                   {
                     "actionType": "SHOW_TOAST",
-                    "properties": {"message": "Failed to create."}
+                    "properties": {
+                      "message": "Failed to create."
+                    }
                   }
                 ]
               }
             },
             {
               "actionType": "UPDATE_EVENT",
-              "properties": {"applyIf": "navigation.isEdit==true"}
+              "properties": {
+                "applyIf": "navigation.isEdit==true"
+              }
             },
             {
               "actionType": "NAVIGATION",
@@ -970,7 +1073,9 @@
                 "onError": [
                   {
                     "actionType": "SHOW_TOAST",
-                    "properties": {"message": "Navigation failed."}
+                    "properties": {
+                      "message": "Navigation failed."
+                    }
                   }
                 ]
               }
@@ -984,11 +1089,16 @@
             {
               "type": "string",
               "enums": [
-                {"code": "YES", "name": "SIDE_EFFECT_PREQ1_YES"},
-                {"code": "NO", "name": "SIDE_EFFECT_PREQ1_NO"}
+                {
+                  "code": "YES",
+                  "name": "SIDE_EFFECT_PREQ1_YES"
+                },
+                {
+                  "code": "NO",
+                  "name": "SIDE_EFFECT_PREQ1_NO"
+                }
               ],
-              "label":
-                  "HFREFERRAL_SIDEEFFECTFROMPREVIOUSCYCLE_sideEffectPQ1_LABEL",
+              "label": "HFREFERRAL_SIDEEFFECTFROMPREVIOUSCYCLE_sideEffectPQ1_LABEL",
               "order": 1,
               "value": "",
               "format": "radio",
@@ -1009,27 +1119,36 @@
                 {
                   "type": "required",
                   "value": true,
-                  "message":
-                      "HFREFERRAL_SIDEEFFECTFROMPREVIOUSCYCLE_sideEffectPQ1_REQUIRED_ERROR"
+                  "message": "HFREFERRAL_SIDEEFFECTFROMPREVIOUSCYCLE_sideEffectPQ1_REQUIRED_ERROR"
                 }
               ],
               "errorMessage": "",
               "isMultiSelect": false,
               "dropDownOptions": [
-                {"code": "YES", "name": "SIDE_EFFECT_PREQ1_YES"},
-                {"code": "NO", "name": "SIDE_EFFECT_PREQ1_NO"}
+                {
+                  "code": "YES",
+                  "name": "SIDE_EFFECT_PREQ1_YES"
+                },
+                {
+                  "code": "NO",
+                  "name": "SIDE_EFFECT_PREQ1_NO"
+                }
               ],
-              "required.message":
-                  "HFREFERRAL_SIDEEFFECTFROMPREVIOUSCYCLE_sideEffectPQ1_REQUIRED_ERROR"
+              "required.message": "HFREFERRAL_SIDEEFFECTFROMPREVIOUSCYCLE_sideEffectPQ1_REQUIRED_ERROR"
             },
             {
               "type": "string",
               "enums": [
-                {"code": "YES", "name": "SIDE_EFFECT_PREQ2_YES"},
-                {"code": "NO", "name": "SIDE_EFFECT_PREQ2_NO"}
+                {
+                  "code": "YES",
+                  "name": "SIDE_EFFECT_PREQ2_YES"
+                },
+                {
+                  "code": "NO",
+                  "name": "SIDE_EFFECT_PREQ2_NO"
+                }
               ],
-              "label":
-                  "HFREFERRAL_SIDEEFFECTFROMPREVIOUSCYCLE_sideEffectPQ2_LABEL",
+              "label": "HFREFERRAL_SIDEEFFECTFROMPREVIOUSCYCLE_sideEffectPQ2_LABEL",
               "order": 2,
               "value": "",
               "format": "radio",
@@ -1050,27 +1169,36 @@
                 {
                   "type": "required",
                   "value": true,
-                  "message":
-                      "HFREFERRAL_SIDEEFFECTFROMPREVIOUSCYCLE_sideEffectPQ2_REQUIRED_ERROR"
+                  "message": "HFREFERRAL_SIDEEFFECTFROMPREVIOUSCYCLE_sideEffectPQ2_REQUIRED_ERROR"
                 }
               ],
               "errorMessage": "",
               "isMultiSelect": false,
               "dropDownOptions": [
-                {"code": "YES", "name": "SIDE_EFFECT_PREQ2_YES"},
-                {"code": "NO", "name": "SIDE_EFFECT_PREQ2_NO"}
+                {
+                  "code": "YES",
+                  "name": "SIDE_EFFECT_PREQ2_YES"
+                },
+                {
+                  "code": "NO",
+                  "name": "SIDE_EFFECT_PREQ2_NO"
+                }
               ],
-              "required.message":
-                  "HFREFERRAL_SIDEEFFECTFROMPREVIOUSCYCLE_sideEffectPQ2_REQUIRED_ERROR"
+              "required.message": "HFREFERRAL_SIDEEFFECTFROMPREVIOUSCYCLE_sideEffectPQ2_REQUIRED_ERROR"
             },
             {
               "type": "string",
               "enums": [
-                {"code": "YES", "name": "SIDE_EFFECT_PREQ3_YES"},
-                {"code": "NO", "name": "SIDE_EFFECT_PREQ3_NO"}
+                {
+                  "code": "YES",
+                  "name": "SIDE_EFFECT_PREQ3_YES"
+                },
+                {
+                  "code": "NO",
+                  "name": "SIDE_EFFECT_PREQ3_NO"
+                }
               ],
-              "label":
-                  "HFREFERRAL_SIDEEFFECTFROMPREVIOUSCYCLE_sideEffectPQ3_LABEL",
+              "label": "HFREFERRAL_SIDEEFFECTFROMPREVIOUSCYCLE_sideEffectPQ3_LABEL",
               "order": 3,
               "value": "",
               "format": "radio",
@@ -1091,18 +1219,22 @@
                 {
                   "type": "required",
                   "value": true,
-                  "message":
-                      "HFREFERRAL_SIDEEFFECTFROMPREVIOUSCYCLE_sideEffectPQ3_REQUIRED_ERROR"
+                  "message": "HFREFERRAL_SIDEEFFECTFROMPREVIOUSCYCLE_sideEffectPQ3_REQUIRED_ERROR"
                 }
               ],
               "errorMessage": "",
               "isMultiSelect": false,
               "dropDownOptions": [
-                {"code": "YES", "name": "SIDE_EFFECT_PREQ3_YES"},
-                {"code": "NO", "name": "SIDE_EFFECT_PREQ3_NO"}
+                {
+                  "code": "YES",
+                  "name": "SIDE_EFFECT_PREQ3_YES"
+                },
+                {
+                  "code": "NO",
+                  "name": "SIDE_EFFECT_PREQ3_NO"
+                }
               ],
-              "required.message":
-                  "HFREFERRAL_SIDEEFFECTFROMPREVIOUSCYCLE_sideEffectPQ3_REQUIRED_ERROR"
+              "required.message": "HFREFERRAL_SIDEEFFECTFROMPREVIOUSCYCLE_sideEffectPQ3_REQUIRED_ERROR"
             }
           ],
           "actionLabel": "HFREFERRAL_SIDEEFFECTFROMPREVIOUSCYCLE_ACTION_LABEL",
@@ -1149,7 +1281,9 @@
                 "onError": [
                   {
                     "actionType": "SHOW_TOAST",
-                    "properties": {"message": "Failed to fetch config."}
+                    "properties": {
+                      "message": "Failed to fetch config."
+                    }
                   }
                 ],
                 "configName": "referralCreation"
@@ -1163,14 +1297,18 @@
                 "onError": [
                   {
                     "actionType": "SHOW_TOAST",
-                    "properties": {"message": "Failed to create."}
+                    "properties": {
+                      "message": "Failed to create."
+                    }
                   }
                 ]
               }
             },
             {
               "actionType": "UPDATE_EVENT",
-              "properties": {"applyIf": "navigation.isEdit==true"}
+              "properties": {
+                "applyIf": "navigation.isEdit==true"
+              }
             },
             {
               "actionType": "NAVIGATION",
@@ -1181,7 +1319,9 @@
                 "onError": [
                   {
                     "actionType": "SHOW_TOAST",
-                    "properties": {"message": "Navigation failed."}
+                    "properties": {
+                      "message": "Navigation failed."
+                    }
                   }
                 ]
               }
@@ -1214,14 +1354,12 @@
                 {
                   "type": "required",
                   "value": true,
-                  "message":
-                      "HFREFERRAL_REFERRAL_DETAILS_referralCycle_REQUIRED_ERROR"
+                  "message": "HFREFERRAL_REFERRAL_DETAILS_referralCycle_REQUIRED_ERROR"
                 }
               ],
               "errorMessage": "",
               "isMultiSelect": false,
-              "required.message":
-                  "HFREFERRAL_REFERRAL_DETAILS_referralCycle_REQUIRED_ERROR"
+              "required.message": "HFREFERRAL_REFERRAL_DETAILS_referralCycle_REQUIRED_ERROR"
             },
             {
               "type": "string",
@@ -1245,14 +1383,12 @@
                 {
                   "type": "required",
                   "value": true,
-                  "message":
-                      "HFREFERRAL_REFERRAL_DETAILS_nameOfChild_REQUIRED_ERROR"
+                  "message": "HFREFERRAL_REFERRAL_DETAILS_nameOfChild_REQUIRED_ERROR"
                 }
               ],
               "errorMessage": "",
               "isMultiSelect": false,
-              "required.message":
-                  "HFREFERRAL_REFERRAL_DETAILS_nameOfChild_REQUIRED_ERROR",
+              "required.message": "HFREFERRAL_REFERRAL_DETAILS_nameOfChild_REQUIRED_ERROR",
               "autoFillCondition": [
                 {
                   "value": "{{nameOfChild}}",
@@ -1336,26 +1472,22 @@
                 {
                   "type": "required",
                   "value": true,
-                  "message":
-                      "HFREFERRAL_REFERRAL_DETAILS_ageInMonths_REQUIRED_ERROR"
+                  "message": "HFREFERRAL_REFERRAL_DETAILS_ageInMonths_REQUIRED_ERROR"
                 },
                 {
                   "type": "min",
                   "value": 3,
-                  "message":
-                      "HFREFERRAL_REFERRAL_DETAILS_ageInMonths_VALIDATION"
+                  "message": "HFREFERRAL_REFERRAL_DETAILS_ageInMonths_VALIDATION"
                 },
                 {
                   "type": "max",
                   "value": 59,
-                  "message":
-                      "HFREFERRAL_REFERRAL_DETAILS_ageInMonths_VALIDATION"
+                  "message": "HFREFERRAL_REFERRAL_DETAILS_ageInMonths_VALIDATION"
                 }
               ],
               "errorMessage": "",
               "isMultiSelect": false,
-              "required.message":
-                  "HFREFERRAL_REFERRAL_DETAILS_ageInMonths_REQUIRED_ERROR",
+              "required.message": "HFREFERRAL_REFERRAL_DETAILS_ageInMonths_REQUIRED_ERROR",
               "autoFillCondition": [
                 {
                   "value": "{{ageInMonths}}",
@@ -1366,9 +1498,18 @@
             {
               "type": "string",
               "enums": [
-                {"code": "OTHER", "name": "OTHER"},
-                {"code": "FEMALE", "name": "FEMALE"},
-                {"code": "MALE", "name": "MALE"}
+                {
+                  "code": "OTHER",
+                  "name": "OTHER"
+                },
+                {
+                  "code": "FEMALE",
+                  "name": "FEMALE"
+                },
+                {
+                  "code": "MALE",
+                  "name": "MALE"
+                }
               ],
               "label": "HFREFERRAL_REFERRAL_DETAILS_gender_LABEL",
               "order": 6,
@@ -1397,23 +1538,46 @@
               "errorMessage": "",
               "isMultiSelect": false,
               "dropDownOptions": [
-                {"code": "OTHER", "name": "OTHER"},
-                {"code": "FEMALE", "name": "FEMALE"},
-                {"code": "MALE", "name": "MALE"}
+                {
+                  "code": "OTHER",
+                  "name": "OTHER"
+                },
+                {
+                  "code": "FEMALE",
+                  "name": "FEMALE"
+                },
+                {
+                  "code": "MALE",
+                  "name": "MALE"
+                }
               ],
-              "required.message":
-                  "HFREFERRAL_REFERRAL_DETAILS_gender_REQUIRED_ERROR",
+              "required.message": "HFREFERRAL_REFERRAL_DETAILS_gender_REQUIRED_ERROR",
               "autoFillCondition": [
-                {"value": "{{gender}}", "expression": "navigation.isEdit==true"}
+                {
+                  "value": "{{gender}}",
+                  "expression": "navigation.isEdit==true"
+                }
               ]
             },
             {
               "type": "string",
               "enums": [
-                {"code": "DRUG_SE_CC", "name": "DRUG_SE_CC"},
-                {"code": "DRUG_SE_PC", "name": "DRUG_SE_PC"},
-                {"code": "FEVER", "name": "FEVER"},
-                {"code": "SICK", "name": "SICK"}
+                {
+                  "code": "DRUG_SE_CC",
+                  "name": "DRUG_SE_CC"
+                },
+                {
+                  "code": "DRUG_SE_PC",
+                  "name": "DRUG_SE_PC"
+                },
+                {
+                  "code": "FEVER",
+                  "name": "FEVER"
+                },
+                {
+                  "code": "SICK",
+                  "name": "SICK"
+                }
               ],
               "label": "HFREFERRAL_REFERRAL_DETAILS_referralReason_LABEL",
               "order": 7,
@@ -1436,23 +1600,35 @@
                 {
                   "type": "required",
                   "value": true,
-                  "message":
-                      "HFREFERRAL_REFERRAL_DETAILS_referralReason_REQUIRED_ERROR"
+                  "message": "HFREFERRAL_REFERRAL_DETAILS_referralReason_REQUIRED_ERROR"
                 }
               ],
               "errorMessage": "",
               "isMultiSelect": false,
               "dropDownOptions": [
-                {"code": "DRUG_SE_CC", "name": "DRUG_SE_CC"},
-                {"code": "DRUG_SE_PC", "name": "DRUG_SE_PC"},
-                {"code": "FEVER", "name": "FEVER"},
-                {"code": "SICK", "name": "SICK"}
+                {
+                  "code": "DRUG_SE_CC",
+                  "name": "DRUG_SE_CC"
+                },
+                {
+                  "code": "DRUG_SE_PC",
+                  "name": "DRUG_SE_PC"
+                },
+                {
+                  "code": "FEVER",
+                  "name": "FEVER"
+                },
+                {
+                  "code": "SICK",
+                  "name": "SICK"
+                }
               ],
-              "required.message":
-                  "HFREFERRAL_REFERRAL_DETAILS_referralReason_REQUIRED_ERROR",
+              "required.message": "HFREFERRAL_REFERRAL_DETAILS_referralReason_REQUIRED_ERROR",
               "visibilityCondition": {
                 "expression": [
-                  {"condition": "navigation.isEdit!=true"}
+                  {
+                    "condition": "navigation.isEdit!=true"
+                  }
                 ]
               }
             }
@@ -1465,8 +1641,7 @@
           "conditionalNavigateTo": [
             {
               "type": "custom",
-              "condition":
-                  "navigation.isEdit==true&&navigation.referralSymptom==DRUG_SE_CC",
+              "condition": "navigation.isEdit==true&&navigation.referralSymptom==DRUG_SE_CC",
               "navigateTo": {
                 "data": [
                   {
@@ -1477,8 +1652,14 @@
                     "key": "referralSymptom",
                     "value": "{{navigation.referralSymptom}}"
                   },
-                  {"key": "isEdit", "value": "true"},
-                  {"key": "rowVersion", "value": "{{navigation.rowVersion}}"}
+                  {
+                    "key": "isEdit",
+                    "value": "true"
+                  },
+                  {
+                    "key": "rowVersion",
+                    "value": "{{navigation.rowVersion}}"
+                  }
                 ],
                 "name": "sideEffectFromCurrentCycle",
                 "type": "form"
@@ -1486,8 +1667,7 @@
             },
             {
               "type": "custom",
-              "condition":
-                  "navigation.isEdit==true&&navigation.referralSymptom==DRUG_SE_PC",
+              "condition": "navigation.isEdit==true&&navigation.referralSymptom==DRUG_SE_PC",
               "navigateTo": {
                 "data": [
                   {
@@ -1498,8 +1678,14 @@
                     "key": "referralSymptom",
                     "value": "{{navigation.referralSymptom}}"
                   },
-                  {"key": "isEdit", "value": "true"},
-                  {"key": "rowVersion", "value": "{{navigation.rowVersion}}"}
+                  {
+                    "key": "isEdit",
+                    "value": "true"
+                  },
+                  {
+                    "key": "rowVersion",
+                    "value": "{{navigation.rowVersion}}"
+                  }
                 ],
                 "name": "sideEffectFromPreviousCycle",
                 "type": "form"
@@ -1507,8 +1693,7 @@
             },
             {
               "type": "custom",
-              "condition":
-                  "navigation.isEdit==true&&navigation.referralSymptom==FEVER",
+              "condition": "navigation.isEdit==true&&navigation.referralSymptom==FEVER",
               "navigateTo": {
                 "data": [
                   {
@@ -1519,8 +1704,14 @@
                     "key": "referralSymptom",
                     "value": "{{navigation.referralSymptom}}"
                   },
-                  {"key": "isEdit", "value": "true"},
-                  {"key": "rowVersion", "value": "{{navigation.rowVersion}}"}
+                  {
+                    "key": "isEdit",
+                    "value": "true"
+                  },
+                  {
+                    "key": "rowVersion",
+                    "value": "{{navigation.rowVersion}}"
+                  }
                 ],
                 "name": "sideEffectFever",
                 "type": "form"
@@ -1528,8 +1719,7 @@
             },
             {
               "type": "custom",
-              "condition":
-                  "navigation.isEdit==true&&navigation.referralSymptom==SICK,FEVER",
+              "condition": "navigation.isEdit==true&&navigation.referralSymptom==SICK,FEVER",
               "navigateTo": {
                 "data": [
                   {
@@ -1540,8 +1730,14 @@
                     "key": "referralSymptom",
                     "value": "{{navigation.referralSymptom}}"
                   },
-                  {"key": "isEdit", "value": "true"},
-                  {"key": "rowVersion", "value": "{{navigation.rowVersion}}"}
+                  {
+                    "key": "isEdit",
+                    "value": "true"
+                  },
+                  {
+                    "key": "rowVersion",
+                    "value": "{{navigation.rowVersion}}"
+                  }
                 ],
                 "name": "sideEffectFever",
                 "type": "form"
@@ -1549,8 +1745,7 @@
             },
             {
               "type": "custom",
-              "condition":
-                  "navigation.isEdit==true&&navigation.referralSymptom==SICK",
+              "condition": "navigation.isEdit==true&&navigation.referralSymptom==SICK",
               "navigateTo": {
                 "data": [
                   {
@@ -1561,8 +1756,14 @@
                     "key": "referralSymptom",
                     "value": "{{navigation.referralSymptom}}"
                   },
-                  {"key": "isEdit", "value": "true"},
-                  {"key": "rowVersion", "value": "{{navigation.rowVersion}}"}
+                  {
+                    "key": "isEdit",
+                    "value": "true"
+                  },
+                  {
+                    "key": "rowVersion",
+                    "value": "{{navigation.rowVersion}}"
+                  }
                 ],
                 "name": "sideEffectSick",
                 "type": "form"
@@ -1584,15 +1785,24 @@
             },
             {
               "condition": "referralDetails.referralReason==FEVER",
-              "navigateTo": {"name": "sideEffectFever", "type": "form"}
+              "navigateTo": {
+                "name": "sideEffectFever",
+                "type": "form"
+              }
             },
             {
               "condition": "referralDetails.referralReason==SICK,FEVER",
-              "navigateTo": {"name": "sideEffectFever", "type": "form"}
+              "navigateTo": {
+                "name": "sideEffectFever",
+                "type": "form"
+              }
             },
             {
               "condition": "referralDetails.referralReason==SICK",
-              "navigateTo": {"name": "sideEffectSick", "type": "form"}
+              "navigateTo": {
+                "name": "sideEffectSick",
+                "type": "form"
+              }
             }
           ]
         },
@@ -1629,7 +1839,9 @@
                     "onError": [
                       {
                         "actionType": "SHOW_TOAST",
-                        "properties": {"message": "Failed to fetch config."}
+                        "properties": {
+                          "message": "Failed to fetch config."
+                        }
                       }
                     ],
                     "configName": "referralCreation"
@@ -1643,14 +1855,18 @@
                     "onError": [
                       {
                         "actionType": "SHOW_TOAST",
-                        "properties": {"message": "Failed to create."}
+                        "properties": {
+                          "message": "Failed to create."
+                        }
                       }
                     ]
                   }
                 },
                 {
                   "actionType": "UPDATE_EVENT",
-                  "properties": {"applyIf": "navigation.isEdit==true"}
+                  "properties": {
+                    "applyIf": "navigation.isEdit==true"
+                  }
                 },
                 {
                   "actionType": "NAVIGATION",
@@ -1661,7 +1877,9 @@
                     "onError": [
                       {
                         "actionType": "SHOW_TOAST",
-                        "properties": {"message": "Navigation failed."}
+                        "properties": {
+                          "message": "Navigation failed."
+                        }
                       }
                     ]
                   }
@@ -1702,7 +1920,9 @@
                 "onError": [
                   {
                     "actionType": "SHOW_TOAST",
-                    "properties": {"message": "Failed to fetch config."}
+                    "properties": {
+                      "message": "Failed to fetch config."
+                    }
                   }
                 ],
                 "configName": "referralCreation"
@@ -1716,14 +1936,18 @@
                 "onError": [
                   {
                     "actionType": "SHOW_TOAST",
-                    "properties": {"message": "Failed to create."}
+                    "properties": {
+                      "message": "Failed to create."
+                    }
                   }
                 ]
               }
             },
             {
               "actionType": "UPDATE_EVENT",
-              "properties": {"applyIf": "navigation.isEdit==true"}
+              "properties": {
+                "applyIf": "navigation.isEdit==true"
+              }
             },
             {
               "actionType": "NAVIGATION",
@@ -1734,7 +1958,9 @@
                 "onError": [
                   {
                     "actionType": "SHOW_TOAST",
-                    "properties": {"message": "Navigation failed."}
+                    "properties": {
+                      "message": "Navigation failed."
+                    }
                   }
                 ]
               }
@@ -1748,8 +1974,14 @@
             {
               "type": "string",
               "enums": [
-                {"code": "YES", "name": "FEVERQ1_YES"},
-                {"code": "NO", "name": "FEVERQ1_NO"}
+                {
+                  "code": "YES",
+                  "name": "FEVERQ1_YES"
+                },
+                {
+                  "code": "NO",
+                  "name": "FEVERQ1_NO"
+                }
               ],
               "label": "HFREFERRAL_SIDEEFFECTFROMFEVER_feverQ1_LABEL",
               "order": 1,
@@ -1772,24 +2004,34 @@
                 {
                   "type": "required",
                   "value": true,
-                  "message":
-                      "HFREFERRAL_SIDEEFFECTFROMFEVER_feverQ1_REQUIRED_ERROR"
+                  "message": "HFREFERRAL_SIDEEFFECTFROMFEVER_feverQ1_REQUIRED_ERROR"
                 }
               ],
               "errorMessage": "",
               "isMultiSelect": false,
               "dropDownOptions": [
-                {"code": "YES", "name": "FEVERQ1_YES"},
-                {"code": "NO", "name": "FEVERQ1_NO"}
+                {
+                  "code": "YES",
+                  "name": "FEVERQ1_YES"
+                },
+                {
+                  "code": "NO",
+                  "name": "FEVERQ1_NO"
+                }
               ],
-              "required.message":
-                  "HFREFERRAL_SIDEEFFECTFROMFEVER_feverQ1_REQUIRED_ERROR"
+              "required.message": "HFREFERRAL_SIDEEFFECTFROMFEVER_feverQ1_REQUIRED_ERROR"
             },
             {
               "type": "string",
               "enums": [
-                {"code": "POSITIVE", "name": "FEVERQ2_POSITIVE"},
-                {"code": "NEGATIVE", "name": "FEVERQ2_NEGATIVE"}
+                {
+                  "code": "POSITIVE",
+                  "name": "FEVERQ2_POSITIVE"
+                },
+                {
+                  "code": "NEGATIVE",
+                  "name": "FEVERQ2_NEGATIVE"
+                }
               ],
               "label": "HFREFERRAL_SIDEEFFECTFROMFEVER_feverQ2_LABEL",
               "order": 2,
@@ -1812,29 +2054,41 @@
                 {
                   "type": "required",
                   "value": true,
-                  "message":
-                      "HFREFERRAL_SIDEEFFECTFROMFEVER_feverQ2_REQUIRED_ERROR"
+                  "message": "HFREFERRAL_SIDEEFFECTFROMFEVER_feverQ2_REQUIRED_ERROR"
                 }
               ],
               "errorMessage": "",
               "isMultiSelect": false,
               "dropDownOptions": [
-                {"code": "POSITIVE", "name": "FEVERQ2_POSITIVE"},
-                {"code": "NEGATIVE", "name": "FEVERQ2_NEGATIVE"}
+                {
+                  "code": "POSITIVE",
+                  "name": "FEVERQ2_POSITIVE"
+                },
+                {
+                  "code": "NEGATIVE",
+                  "name": "FEVERQ2_NEGATIVE"
+                }
               ],
-              "required.message":
-                  "HFREFERRAL_SIDEEFFECTFROMFEVER_feverQ2_REQUIRED_ERROR",
+              "required.message": "HFREFERRAL_SIDEEFFECTFROMFEVER_feverQ2_REQUIRED_ERROR",
               "visibilityCondition": {
                 "expression": [
-                  {"condition": "sideEffectFever.feverQ1==YES"}
+                  {
+                    "condition": "sideEffectFever.feverQ1==YES"
+                  }
                 ]
               }
             },
             {
               "type": "string",
               "enums": [
-                {"code": "YES", "name": "FEVERQ3_YES"},
-                {"code": "NO", "name": "FEVERQ2_NO"}
+                {
+                  "code": "YES",
+                  "name": "FEVERQ3_YES"
+                },
+                {
+                  "code": "NO",
+                  "name": "FEVERQ2_NO"
+                }
               ],
               "label": "HFREFERRAL_SIDEEFFECTFROMFEVER_feverQ3_LABEL",
               "order": 3,
@@ -1857,29 +2111,41 @@
                 {
                   "type": "required",
                   "value": true,
-                  "message":
-                      "HFREFERRAL_SIDEEFFECTFROMFEVER_feverQ3_REQUIRED_ERROR"
+                  "message": "HFREFERRAL_SIDEEFFECTFROMFEVER_feverQ3_REQUIRED_ERROR"
                 }
               ],
               "errorMessage": "",
               "isMultiSelect": false,
               "dropDownOptions": [
-                {"code": "YES", "name": "FEVERQ3_YES"},
-                {"code": "NO", "name": "FEVERQ2_NO"}
+                {
+                  "code": "YES",
+                  "name": "FEVERQ3_YES"
+                },
+                {
+                  "code": "NO",
+                  "name": "FEVERQ2_NO"
+                }
               ],
-              "required.message":
-                  "HFREFERRAL_SIDEEFFECTFROMFEVER_feverQ3_REQUIRED_ERROR",
+              "required.message": "HFREFERRAL_SIDEEFFECTFROMFEVER_feverQ3_REQUIRED_ERROR",
               "visibilityCondition": {
                 "expression": [
-                  {"condition": "sideEffectFever.feverQ2==NEGATIVE"}
+                  {
+                    "condition": "sideEffectFever.feverQ2==NEGATIVE"
+                  }
                 ]
               }
             },
             {
               "type": "string",
               "enums": [
-                {"code": "YES", "name": "FEVERQ4_YES"},
-                {"code": "NO", "name": "FEVERQ4_NO"}
+                {
+                  "code": "YES",
+                  "name": "FEVERQ4_YES"
+                },
+                {
+                  "code": "NO",
+                  "name": "FEVERQ4_NO"
+                }
               ],
               "label": "HFREFERRAL_SIDEEFFECTFROMFEVER_feverQ4_LABEL",
               "order": 4,
@@ -1902,29 +2168,41 @@
                 {
                   "type": "required",
                   "value": true,
-                  "message":
-                      "HFREFERRAL_SIDEEFFECTFROMFEVER_feverQ4_REQUIRED_ERROR"
+                  "message": "HFREFERRAL_SIDEEFFECTFROMFEVER_feverQ4_REQUIRED_ERROR"
                 }
               ],
               "errorMessage": "",
               "isMultiSelect": false,
               "dropDownOptions": [
-                {"code": "YES", "name": "FEVERQ4_YES"},
-                {"code": "NO", "name": "FEVERQ4_NO"}
+                {
+                  "code": "YES",
+                  "name": "FEVERQ4_YES"
+                },
+                {
+                  "code": "NO",
+                  "name": "FEVERQ4_NO"
+                }
               ],
-              "required.message":
-                  "HFREFERRAL_SIDEEFFECTFROMFEVER_feverQ4_REQUIRED_ERROR",
+              "required.message": "HFREFERRAL_SIDEEFFECTFROMFEVER_feverQ4_REQUIRED_ERROR",
               "visibilityCondition": {
                 "expression": [
-                  {"condition": "sideEffectFever.feverQ2==POSITIVE"}
+                  {
+                    "condition": "sideEffectFever.feverQ2==POSITIVE"
+                  }
                 ]
               }
             },
             {
               "type": "string",
               "enums": [
-                {"code": "YES", "name": "FEVERQ5_YES"},
-                {"code": "NO", "name": "FEVERQ5_NO"}
+                {
+                  "code": "YES",
+                  "name": "FEVERQ5_YES"
+                },
+                {
+                  "code": "NO",
+                  "name": "FEVERQ5_NO"
+                }
               ],
               "label": "HFREFERRAL_SIDEEFFECTFROMFEVER_feverQ5_LABEL",
               "order": 5,
@@ -1947,21 +2225,27 @@
                 {
                   "type": "required",
                   "value": true,
-                  "message":
-                      "HFREFERRAL_SIDEEFFECTFROMFEVER_feverQ5_REQUIRED_ERROR"
+                  "message": "HFREFERRAL_SIDEEFFECTFROMFEVER_feverQ5_REQUIRED_ERROR"
                 }
               ],
               "errorMessage": "",
               "isMultiSelect": false,
               "dropDownOptions": [
-                {"code": "YES", "name": "FEVERQ5_YES"},
-                {"code": "NO", "name": "FEVERQ5_NO"}
+                {
+                  "code": "YES",
+                  "name": "FEVERQ5_YES"
+                },
+                {
+                  "code": "NO",
+                  "name": "FEVERQ5_NO"
+                }
               ],
-              "required.message":
-                  "HFREFERRAL_SIDEEFFECTFROMFEVER_feverQ5_REQUIRED_ERROR",
+              "required.message": "HFREFERRAL_SIDEEFFECTFROMFEVER_feverQ5_REQUIRED_ERROR",
               "visibilityCondition": {
                 "expression": [
-                  {"condition": "sideEffectFever.feverQ2==POSITIVE"}
+                  {
+                    "condition": "sideEffectFever.feverQ2==POSITIVE"
+                  }
                 ]
               }
             },
@@ -1988,17 +2272,17 @@
                 {
                   "type": "required",
                   "value": true,
-                  "message":
-                      "HFREFERRAL_SIDEEFFECTFROMFEVER_feverQ6_REQUIRED_ERROR"
+                  "message": "HFREFERRAL_SIDEEFFECTFROMFEVER_feverQ6_REQUIRED_ERROR"
                 }
               ],
               "errorMessage": "",
               "isMultiSelect": false,
-              "required.message":
-                  "HFREFERRAL_SIDEEFFECTFROMFEVER_feverQ6_REQUIRED_ERROR",
+              "required.message": "HFREFERRAL_SIDEEFFECTFROMFEVER_feverQ6_REQUIRED_ERROR",
               "visibilityCondition": {
                 "expression": [
-                  {"condition": "sideEffectFever.feverQ5==YES"}
+                  {
+                    "condition": "sideEffectFever.feverQ5==YES"
+                  }
                 ]
               }
             }
@@ -2042,7 +2326,9 @@
                     "onError": [
                       {
                         "actionType": "SHOW_TOAST",
-                        "properties": {"message": "Failed to fetch config."}
+                        "properties": {
+                          "message": "Failed to fetch config."
+                        }
                       }
                     ],
                     "configName": "referralCreation"
@@ -2056,14 +2342,18 @@
                     "onError": [
                       {
                         "actionType": "SHOW_TOAST",
-                        "properties": {"message": "Failed to create."}
+                        "properties": {
+                          "message": "Failed to create."
+                        }
                       }
                     ]
                   }
                 },
                 {
                   "actionType": "UPDATE_EVENT",
-                  "properties": {"applyIf": "navigation.isEdit==true"}
+                  "properties": {
+                    "applyIf": "navigation.isEdit==true"
+                  }
                 },
                 {
                   "actionType": "NAVIGATION",
@@ -2074,7 +2364,9 @@
                     "onError": [
                       {
                         "actionType": "SHOW_TOAST",
-                        "properties": {"message": "Navigation failed."}
+                        "properties": {
+                          "message": "Navigation failed."
+                        }
                       }
                     ]
                   }
@@ -2115,7 +2407,9 @@
                 "onError": [
                   {
                     "actionType": "SHOW_TOAST",
-                    "properties": {"message": "Failed to fetch config."}
+                    "properties": {
+                      "message": "Failed to fetch config."
+                    }
                   }
                 ],
                 "configName": "referralCreation"
@@ -2129,14 +2423,18 @@
                 "onError": [
                   {
                     "actionType": "SHOW_TOAST",
-                    "properties": {"message": "Failed to create."}
+                    "properties": {
+                      "message": "Failed to create."
+                    }
                   }
                 ]
               }
             },
             {
               "actionType": "UPDATE_EVENT",
-              "properties": {"applyIf": "navigation.isEdit==true"}
+              "properties": {
+                "applyIf": "navigation.isEdit==true"
+              }
             },
             {
               "actionType": "NAVIGATION",
@@ -2147,7 +2445,9 @@
                 "onError": [
                   {
                     "actionType": "SHOW_TOAST",
-                    "properties": {"message": "Navigation failed."}
+                    "properties": {
+                      "message": "Navigation failed."
+                    }
                   }
                 ]
               }
@@ -2161,11 +2461,16 @@
             {
               "type": "string",
               "enums": [
-                {"code": "YES", "name": "SIDE_EFFECTQ1_YES"},
-                {"code": "NO", "name": "SIDE_EFFECTQ1_NO"}
+                {
+                  "code": "YES",
+                  "name": "SIDE_EFFECTQ1_YES"
+                },
+                {
+                  "code": "NO",
+                  "name": "SIDE_EFFECTQ1_NO"
+                }
               ],
-              "label":
-                  "HFREFERRAL_SIDEEFFECTFROMCURRENTCYCLE_sideEffectQ1_LABEL",
+              "label": "HFREFERRAL_SIDEEFFECTFROMCURRENTCYCLE_sideEffectQ1_LABEL",
               "order": 1,
               "value": "",
               "format": "radio",
@@ -2186,27 +2491,36 @@
                 {
                   "type": "required",
                   "value": true,
-                  "message":
-                      "HFREFERRAL_SIDEEFFECTFROMCURRENTCYCLE_sideEffectQ1_REQUIRED_ERROR"
+                  "message": "HFREFERRAL_SIDEEFFECTFROMCURRENTCYCLE_sideEffectQ1_REQUIRED_ERROR"
                 }
               ],
               "errorMessage": "",
               "isMultiSelect": false,
               "dropDownOptions": [
-                {"code": "YES", "name": "SIDE_EFFECTQ1_YES"},
-                {"code": "NO", "name": "SIDE_EFFECTQ1_NO"}
+                {
+                  "code": "YES",
+                  "name": "SIDE_EFFECTQ1_YES"
+                },
+                {
+                  "code": "NO",
+                  "name": "SIDE_EFFECTQ1_NO"
+                }
               ],
-              "required.message":
-                  "HFREFERRAL_SIDEEFFECTFROMCURRENTCYCLE_sideEffectQ1_REQUIRED_ERROR"
+              "required.message": "HFREFERRAL_SIDEEFFECTFROMCURRENTCYCLE_sideEffectQ1_REQUIRED_ERROR"
             },
             {
               "type": "string",
               "enums": [
-                {"code": "YES", "name": "SIDE_EFFECTQ2_YES"},
-                {"code": "NO", "name": "SIDE_EFFECTQ2_NO"}
+                {
+                  "code": "YES",
+                  "name": "SIDE_EFFECTQ2_YES"
+                },
+                {
+                  "code": "NO",
+                  "name": "SIDE_EFFECTQ2_NO"
+                }
               ],
-              "label":
-                  "HFREFERRAL_SIDEEFFECTFROMCURRENTCYCLE_sideEffectQ2_LABEL",
+              "label": "HFREFERRAL_SIDEEFFECTFROMCURRENTCYCLE_sideEffectQ2_LABEL",
               "order": 2,
               "value": "",
               "format": "radio",
@@ -2227,27 +2541,36 @@
                 {
                   "type": "required",
                   "value": true,
-                  "message":
-                      "HFREFERRAL_SIDEEFFECTFROMCURRENTCYCLE_sideEffectQ2_REQUIRED_ERROR"
+                  "message": "HFREFERRAL_SIDEEFFECTFROMCURRENTCYCLE_sideEffectQ2_REQUIRED_ERROR"
                 }
               ],
               "errorMessage": "",
               "isMultiSelect": false,
               "dropDownOptions": [
-                {"code": "YES", "name": "SIDE_EFFECTQ2_YES"},
-                {"code": "NO", "name": "SIDE_EFFECTQ2_NO"}
+                {
+                  "code": "YES",
+                  "name": "SIDE_EFFECTQ2_YES"
+                },
+                {
+                  "code": "NO",
+                  "name": "SIDE_EFFECTQ2_NO"
+                }
               ],
-              "required.message":
-                  "HFREFERRAL_SIDEEFFECTFROMCURRENTCYCLE_sideEffectQ2_REQUIRED_ERROR"
+              "required.message": "HFREFERRAL_SIDEEFFECTFROMCURRENTCYCLE_sideEffectQ2_REQUIRED_ERROR"
             },
             {
               "type": "string",
               "enums": [
-                {"code": "YES", "name": "SIDE_EFFECTQ3_YES"},
-                {"code": "NO", "name": "SIDE_EFFECTQ3_NO"}
+                {
+                  "code": "YES",
+                  "name": "SIDE_EFFECTQ3_YES"
+                },
+                {
+                  "code": "NO",
+                  "name": "SIDE_EFFECTQ3_NO"
+                }
               ],
-              "label":
-                  "HFREFERRAL_SIDEEFFECTFROMCURRENTCYCLE_sideEffectQ3_LABEL",
+              "label": "HFREFERRAL_SIDEEFFECTFROMCURRENTCYCLE_sideEffectQ3_LABEL",
               "order": 3,
               "value": "",
               "format": "radio",
@@ -2268,18 +2591,22 @@
                 {
                   "type": "required",
                   "value": true,
-                  "message":
-                      "HFREFERRAL_SIDEEFFECTFROMCURRENTCYCLE_sideEffectQ3_REQUIRED_ERROR"
+                  "message": "HFREFERRAL_SIDEEFFECTFROMCURRENTCYCLE_sideEffectQ3_REQUIRED_ERROR"
                 }
               ],
               "errorMessage": "",
               "isMultiSelect": false,
               "dropDownOptions": [
-                {"code": "YES", "name": "SIDE_EFFECTQ3_YES"},
-                {"code": "NO", "name": "SIDE_EFFECTQ3_NO"}
+                {
+                  "code": "YES",
+                  "name": "SIDE_EFFECTQ3_YES"
+                },
+                {
+                  "code": "NO",
+                  "name": "SIDE_EFFECTQ3_NO"
+                }
               ],
-              "required.message":
-                  "HFREFERRAL_SIDEEFFECTFROMCURRENTCYCLE_sideEffectQ3_REQUIRED_ERROR"
+              "required.message": "HFREFERRAL_SIDEEFFECTFROMCURRENTCYCLE_sideEffectQ3_REQUIRED_ERROR"
             }
           ],
           "actionLabel": "HFREFERRAL_SIDEEFFECTFROMCURRENTCYCLE_ACTION_LABEL",
@@ -2301,7 +2628,10 @@
               "onAction": [
                 {
                   "actionType": "NAVIGATION",
-                  "properties": {"name": "referralDetails", "type": "form"}
+                  "properties": {
+                    "name": "referralDetails",
+                    "type": "form"
+                  }
                 }
               ],
               "properties": {
@@ -2323,7 +2653,9 @@
                 "onError": [
                   {
                     "actionType": "SHOW_TOAST",
-                    "properties": {"message": "Failed to fetch config."}
+                    "properties": {
+                      "message": "Failed to fetch config."
+                    }
                   }
                 ],
                 "configName": "referralCreation"
@@ -2336,7 +2668,9 @@
                 "onError": [
                   {
                     "actionType": "SHOW_TOAST",
-                    "properties": {"message": "Failed to create household."}
+                    "properties": {
+                      "message": "Failed to create household."
+                    }
                   }
                 ]
               }
@@ -2350,13 +2684,18 @@
                 "onError": [
                   {
                     "actionType": "SHOW_TOAST",
-                    "properties": {"message": "Navigation failed."}
+                    "properties": {
+                      "message": "Navigation failed."
+                    }
                   }
                 ]
               }
             }
           ],
-          "navigateTo": {"name": "referralDetails", "type": "form"},
+          "navigateTo": {
+            "name": "referralDetails",
+            "type": "form"
+          },
           "properties": [
             {
               "type": "string",
@@ -2381,14 +2720,12 @@
                 {
                   "type": "required",
                   "value": true,
-                  "message":
-                      "HFREFERRAL_FACILITY_DETAILS_administrativeArea_REQUIRED_ERROR"
+                  "message": "HFREFERRAL_FACILITY_DETAILS_administrativeArea_REQUIRED_ERROR"
                 }
               ],
               "errorMessage": "",
               "isMultiSelect": false,
-              "required.message":
-                  "HFREFERRAL_FACILITY_DETAILS_administrativeArea_REQUIRED_ERROR"
+              "required.message": "HFREFERRAL_FACILITY_DETAILS_administrativeArea_REQUIRED_ERROR"
             },
             {
               "type": "integer",
@@ -2413,14 +2750,12 @@
                 {
                   "type": "required",
                   "value": true,
-                  "message":
-                      "HFREFERRAL_FACILITY_DETAILS_dateOfEvaluation_REQUIRED_ERROR"
+                  "message": "HFREFERRAL_FACILITY_DETAILS_dateOfEvaluation_REQUIRED_ERROR"
                 }
               ],
               "errorMessage": "",
               "isMultiSelect": false,
-              "required.message":
-                  "HFREFERRAL_FACILITY_DETAILS_dateOfEvaluation_REQUIRED_ERROR"
+              "required.message": "HFREFERRAL_FACILITY_DETAILS_dateOfEvaluation_REQUIRED_ERROR"
             },
             {
               "type": "dynamic",
@@ -2447,15 +2782,13 @@
                 {
                   "type": "required",
                   "value": true,
-                  "message":
-                      "HFREFERRAL_FACILITY_DETAILS_evaluationFacility_REQUIRED_ERROR"
+                  "message": "HFREFERRAL_FACILITY_DETAILS_evaluationFacility_REQUIRED_ERROR"
                 }
               ],
               "errorMessage": "",
               "isMultiSelect": false,
               "dropDownOptions": [],
-              "required.message":
-                  "HFREFERRAL_FACILITY_DETAILS_evaluationFacility_REQUIRED_ERROR"
+              "required.message": "HFREFERRAL_FACILITY_DETAILS_evaluationFacility_REQUIRED_ERROR"
             },
             {
               "type": "string",
@@ -2493,7 +2826,10 @@
       "disabled": false,
       "onAction": [
         {
-          "condition": {"type": "custom", "expression": "isEdit==true"},
+          "condition": {
+            "type": "custom",
+            "expression": "isEdit==true"
+          },
           "actions": [
             {
               "actionType": "SEARCH_EVENT",
@@ -2512,11 +2848,15 @@
             },
             {
               "actionType": "FETCH_TRANSFORMER_CONFIG",
-              "properties": {"configName": "referralCreation"}
+              "properties": {
+                "configName": "referralCreation"
+              }
             },
             {
               "actionType": "UPDATE_EVENT",
-              "properties": {"entity": "HFReferralModel"}
+              "properties": {
+                "entity": "HFReferralModel"
+              }
             },
             {
               "actionType": "NAVIGATION",
@@ -2529,15 +2869,21 @@
           ]
         },
         {
-          "condition": {"expression": "DEFAULT"},
+          "condition": {
+            "expression": "DEFAULT"
+          },
           "actions": [
             {
               "actionType": "FETCH_TRANSFORMER_CONFIG",
-              "properties": {"configName": "referralCreation"}
+              "properties": {
+                "configName": "referralCreation"
+              }
             },
             {
               "actionType": "CREATE_EVENT",
-              "properties": {"entity": ""}
+              "properties": {
+                "entity": ""
+              }
             },
             {
               "actionType": "NAVIGATION",
