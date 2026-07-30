@@ -775,6 +775,7 @@
           "child": {
             "type": "template",
             "format": "card",
+            "visible": "{{fn:showAttendanceCard(widgetData, item, contextData.0.AttendanceRegisterModel)}}",
             "properties": {
               "color": "white",
               "type": "secondary",
