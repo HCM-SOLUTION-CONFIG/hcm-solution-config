@@ -2616,7 +2616,7 @@
                         "format": "textTemplate",
                         "type": "template",
                         "fieldName": "incomingTransactionsSenderValueText",
-                        "value": "{{fn:getFacilityName(item.items[0].senderId)}}"
+                        "value": "{{fn:getFacilityName(item.items[0].senderId, item.items[0].additionalFields.fields.deliveryTeamName)}}"
                       }
                     ]
                   },
