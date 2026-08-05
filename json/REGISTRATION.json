@@ -1788,7 +1788,7 @@
               "type": "template",
               "label": "ADD_MEMBER",
               "format": "button",
-              "visible": "{{fn:hasMinimumBeneficiaryId(singleton.beneficiaryIdMinCount, uniqueIdPoolCount)}}==true && {{fn:isWithinWorkingHours('07:00','17:00')}}==true",
+              "visible": "{{fn:hasMinimumBeneficiaryId(singleton.beneficiaryIdMinCount, uniqueIdPoolCount)}}==true && {{fn:isWithinWorkingHours('07:00','17:00')}}==true && {{fn:isDailyDeliveryLimitReached('100')}}==false",
               "onAction": [
                 {
                   "condition": {
@@ -1934,6 +1934,49 @@
                         }
                       ],
                       "fieldName": "closeWorkingHoursPopup",
+                      "properties": {
+                        "size": "large",
+                        "type": "primary",
+                        "mainAxisSize": "max"
+                      }
+                    }
+                  ],
+                  "showCloseButton": true,
+                  "barrierDismissible": true
+                },
+                "mainAxisSize": "max",
+                "mainAxisAlignment": "center"
+              },
+              "schemaCode": null
+            },
+            {
+              "type": "template",
+              "visible": "{{fn:hasMinimumBeneficiaryId(singleton.beneficiaryIdMinCount, uniqueIdPoolCount)}}==true && {{fn:isWithinWorkingHours('07:00','17:00')}}==true && {{fn:isDailyDeliveryLimitReached('100')}}==true",
+              "label": "ADD_MEMBER",
+              "format": "actionPopup",
+              "fieldName": "addMemberDailyLimitCheck",
+              "properties": {
+                "size": "medium",
+                "type": "tertiary",
+                "popupConfig": {
+                  "body": [],
+                  "type": "alert",
+                  "title": "DAILY_DELIVERY_LIMIT_REACHED_TITLE",
+                  "description": "DAILY_DELIVERY_LIMIT_REACHED_DESCRIPTION",
+                  "footerActions": [
+                    {
+                      "type": "template",
+                      "label": "GO_BACK",
+                      "format": "button",
+                      "onAction": [
+                        {
+                          "actionType": "CLOSE_POPUP",
+                          "properties": {
+                            "parentScreenKey": "searchBeneficiary"
+                          }
+                        }
+                      ],
+                      "fieldName": "closeDailyLimitPopup",
                       "properties": {
                         "size": "large",
                         "type": "primary",
