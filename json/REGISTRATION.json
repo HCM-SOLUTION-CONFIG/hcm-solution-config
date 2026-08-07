@@ -1213,7 +1213,7 @@
                     "type": "template",
                     "label": "NOT_ELIGIBLE",
                     "format": "tag",
-                    "visible": "{{fn:checkEligibilityForAgeAndSideEffect(item.individual.0.dateOfBirth, item.task, contextData.0.currentRunningCycle)}}==false && && {{fn:length(item.hFReferral)}}>0 && {{fn:isHead(item.member)}}==false && {{fn:hasReferralForCurrentCycle(item.hFReferral)}}==false",
+                    "visible": "{{fn:checkEligibilityForAgeAndSideEffect(item.individual.0.dateOfBirth, item.task, contextData.0.currentRunningCycle)}}==false && {{fn:length(item.hFReferral)}}>0 && {{fn:isHead(item.member)}}==false && {{fn:hasReferralForCurrentCycle(item.hFReferral)}}==false",
                     "fieldName": "notEligible",
                     "properties": {
                       "tagType": "error",
@@ -5071,6 +5071,10 @@
                       {
                         "key": "locationAccuracy",
                         "value": "{{navigation.locationAccuracy}}"
+                      },
+                      {
+                        "key": "cycleIndex",
+                        "value": "{{fn:getCurrentCycleIndex()}}"
                       }
                     ],
                     "onError": [
@@ -5830,6 +5834,10 @@
                   {
                     "key": "locationAccuracy",
                     "value": "{{navigation.locationAccuracy}}"
+                  },
+                  {
+                    "key": "cycleIndex",
+                    "value": "{{fn:getCurrentCycleIndex()}}"
                   }
                 ],
                 "onError": [
