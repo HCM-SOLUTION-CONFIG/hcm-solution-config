@@ -592,6 +592,8 @@
                     "data": [],
                     "name": "referralAcknowledgement",
                     "type": "TEMPLATE",
+                    "navigationMode": "popUntilAndPush",
+                    "popUntilPageName": "referralInbox",
                     "onError": [
                       {
                         "actionType": "SHOW_TOAST",
@@ -674,6 +676,8 @@
                 "data": [],
                 "name": "referralAcknowledgement",
                 "type": "TEMPLATE",
+                "navigationMode": "popUntilAndPush",
+                "popUntilPageName": "referralInbox",
                 "onError": [
                   {
                     "actionType": "SHOW_TOAST",
@@ -990,6 +994,8 @@
                     "data": [],
                     "name": "referralAcknowledgement",
                     "type": "TEMPLATE",
+                    "navigationMode": "popUntilAndPush",
+                    "popUntilPageName": "referralInbox",
                     "onError": [
                       {
                         "actionType": "SHOW_TOAST",
@@ -1072,6 +1078,8 @@
                 "data": [],
                 "name": "referralAcknowledgement",
                 "type": "TEMPLATE",
+                "navigationMode": "popUntilAndPush",
+                "popUntilPageName": "referralInbox",
                 "onError": [
                   {
                     "actionType": "SHOW_TOAST",
@@ -1098,10 +1106,6 @@
                 {
                   "code": "NO",
                   "name": "RIQ1_NO"
-                },
-                {
-                  "code": "NOT_SELECTED",
-                  "name": "RIQ1_NOT_SELECTED"
                 }
               ],
               "dropDownOptions": [
@@ -1112,10 +1116,6 @@
                 {
                   "code": "NO",
                   "name": "RIQ1_NO"
-                },
-                {
-                  "code": "NOT_SELECTED",
-                  "name": "RIQ1_NOT_SELECTED"
                 }
               ],
               "label": "HFREFERRAL_RI_Q1_LABEL",
@@ -1222,10 +1222,6 @@
                 {
                   "code": "NO",
                   "name": "RIQ3_NO"
-                },
-                {
-                  "code": "NOT_SELECTED",
-                  "name": "RIQ3_NOT_SELECTED"
                 }
               ],
               "label": "HFREFERRAL_RI_Q3_LABEL",
@@ -1269,10 +1265,6 @@
                 {
                   "code": "NO",
                   "name": "RIQ1_NO"
-                },
-                {
-                  "code": "NOT_SELECTED",
-                  "name": "RIQ1_NOT_SELECTED"
                 }
               ],
               "required.message": "HFREFERRAL_RIQ3_REQUIRED_ERROR"
@@ -1482,6 +1474,8 @@
                     "data": [],
                     "name": "referralAcknowledgement",
                     "type": "TEMPLATE",
+                    "navigationMode": "popUntilAndPush",
+                    "popUntilPageName": "referralInbox",
                     "onError": [
                       {
                         "actionType": "SHOW_TOAST",
@@ -1564,6 +1558,8 @@
                 "data": [],
                 "name": "referralAcknowledgement",
                 "type": "TEMPLATE",
+                "navigationMode": "popUntilAndPush",
+                "popUntilPageName": "referralInbox",
                 "onError": [
                   {
                     "actionType": "SHOW_TOAST",
@@ -1811,6 +1807,8 @@
                 "data": [],
                 "name": "referralAcknowledgement",
                 "type": "TEMPLATE",
+                "navigationMode": "popUntilAndPush",
+                "popUntilPageName": "referralInbox",
                 "onError": [
                   {
                     "actionType": "SHOW_TOAST",
@@ -2410,6 +2408,8 @@
                     "data": [],
                     "name": "referralAcknowledgement",
                     "type": "TEMPLATE",
+                    "navigationMode": "popUntilAndPush",
+                    "popUntilPageName": "referralInbox",
                     "onError": [
                       {
                         "actionType": "SHOW_TOAST",
@@ -2492,6 +2492,8 @@
                 "data": [],
                 "name": "referralAcknowledgement",
                 "type": "TEMPLATE",
+                "navigationMode": "popUntilAndPush",
+                "popUntilPageName": "referralInbox",
                 "onError": [
                   {
                     "actionType": "SHOW_TOAST",
@@ -2898,6 +2900,8 @@
                     "data": [],
                     "name": "referralAcknowledgement",
                     "type": "TEMPLATE",
+                    "navigationMode": "popUntilAndPush",
+                    "popUntilPageName": "referralInbox",
                     "onError": [
                       {
                         "actionType": "SHOW_TOAST",
@@ -2980,6 +2984,8 @@
                 "data": [],
                 "name": "referralAcknowledgement",
                 "type": "TEMPLATE",
+                "navigationMode": "popUntilAndPush",
+                "popUntilPageName": "referralInbox",
                 "onError": [
                   {
                     "actionType": "SHOW_TOAST",
@@ -3220,6 +3226,8 @@
                 "data": [],
                 "name": "referralAcknowledgement",
                 "type": "TEMPLATE",
+                "navigationMode": "popUntilAndPush",
+                "popUntilPageName": "referralInbox",
                 "onError": [
                   {
                     "actionType": "SHOW_TOAST",
@@ -3403,7 +3411,9 @@
               "properties": {
                 "data": [],
                 "name": "referralAcknowledgement",
-                "type": "TEMPLATE"
+                "type": "TEMPLATE",
+                "navigationMode": "popUntilAndPush",
+                "popUntilPageName": "referralInbox"
               }
             }
           ]
@@ -3430,7 +3440,9 @@
               "properties": {
                 "data": [],
                 "name": "referralAcknowledgement",
-                "type": "TEMPLATE"
+                "type": "TEMPLATE",
+                "navigationMode": "popUntilAndPush",
+                "popUntilPageName": "referralInbox"
               }
             }
           ]
