@@ -555,7 +555,7 @@
                 "cellValue": "{{item.quantity}}"
               }
             ],
-            "rows": "{{contextData.0.StockModel}}"
+            "rows": "{{fn:filterRecordsWithinCurrentCycle(contextData.0.StockModel, 'dateOfEntry', navigation.reportType)}}"
           }
         }
       ]
@@ -755,7 +755,7 @@
                 "cellValue": "{{item.calculatedCount}}"
               }
             ],
-            "rows": "{{contextData.0.StockReconciliationModel}}"
+            "rows": "{{fn:filterRecordsWithinCurrentCycle(contextData.0.StockReconciliationModel, 'dateOfReconciliation')}}"
           }
         }
       ]
