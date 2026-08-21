@@ -880,7 +880,6 @@
       "submitCondition": null,
       "preventScreenCapture": false
     },
-   
     {
       "body": [
         {
@@ -1218,7 +1217,7 @@
                       "bottomGap": 16
                     }
                   },
-                 {
+                  {
                     "type": "template",
                     "label": "ADMINISTERED_SUCCESS",
                     "format": "tag",
@@ -1237,7 +1236,7 @@
                     "fieldName": "notEligible",
                     "properties": {
                       "tagType": "error",
-                  "bottomGap": 16
+                      "bottomGap": 16
                     }
                   },
                   {
@@ -1249,7 +1248,7 @@
                     "fieldName": "beneficiaryReferred",
                     "properties": {
                       "tagType": "error",
-                  "bottomGap": 16
+                      "bottomGap": 16
                     }
                   },
                   {
@@ -1263,7 +1262,6 @@
                       "bottomGap": 16
                     }
                   },
-                  
                   {
                     "type": "template",
                     "label": "NOT_VISITED",
@@ -1275,8 +1273,6 @@
                       "bottomGap": 16
                     }
                   },
-                  
-               
                   {
                     "type": "template",
                     "label": "DELIVERY",
@@ -1371,7 +1367,6 @@
                       "bottomGap": 16
                     }
                   },
-                 
                   {
                     "type": "template",
                     "label": "HOUSEHOLD_OVERVIEW_UNABLE_TO_DELIVER_LABEL",
@@ -4081,7 +4076,6 @@
       "wrapperConfig": {},
       "scrollListener": {}
     },
-   
     {
       "name": "REDOSE",
       "order": 12,
@@ -4986,7 +4980,7 @@
                       }
                     ],
                     "navigationMode": "popUntilAndPush",
-                    "popUntilPageName": "householdOverview"
+                    "popUntilPageName": "searchBeneficiary"
                   }
                 }
               ],
@@ -5805,7 +5799,7 @@
                   }
                 ],
                 "navigationMode": "popUntilAndPush",
-                "popUntilPageName": "householdOverview"
+                "popUntilPageName": "searchBeneficiary"
               }
             }
           ],
