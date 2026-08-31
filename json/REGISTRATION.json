@@ -880,7 +880,6 @@
       "submitCondition": null,
       "preventScreenCapture": false
     },
-   
     {
       "body": [
         {
@@ -1218,7 +1217,7 @@
                       "bottomGap": 16
                     }
                   },
-                 {
+                  {
                     "type": "template",
                     "label": "ADMINISTERED_SUCCESS",
                     "format": "tag",
@@ -1260,7 +1259,7 @@
                     "fieldName": "notEligible",
                     "properties": {
                       "tagType": "error",
-                  "bottomGap": 16
+                      "bottomGap": 16
                     }
                   },
                   {
@@ -1272,7 +1271,7 @@
                     "fieldName": "beneficiaryReferred",
                     "properties": {
                       "tagType": "error",
-                  "bottomGap": 16
+                      "bottomGap": 16
                     }
                   },
                   {
@@ -1286,7 +1285,6 @@
                       "bottomGap": 16
                     }
                   },
-                  
                   {
                     "type": "template",
                     "label": "NOT_VISITED",
@@ -1298,8 +1296,6 @@
                       "bottomGap": 16
                     }
                   },
-                  
-               
                   {
                     "type": "template",
                     "label": "DELIVERY",
@@ -1546,7 +1542,7 @@
                     "type": "template",
                     "label": "RI_DELIVERY",
                     "format": "button",
-                    "visible": "{{fn:checkRIEligibility(item.individual.0.dateOfBirth, item.task,contextData.0.currentRunningCycle)}} == true  && {{fn:hasRIFullyImmunized(item.task)}} == false && {{fn:hasRIReferralForCurrentCycle(item.hFReferral)}}==false && {{fn:isHead(item.member)}} == false",
+                    "visible": "{{fn:checkRIEligibility(item.individual.0.dateOfBirth, item.task,contextData.0.currentRunningCycle, 59)}} == true  && {{fn:hasRIFullyImmunized(item.task)}} == false && {{fn:hasRIReferralForCurrentCycle(item.hFReferral)}}==false && {{fn:isHead(item.member)}} == false",
                     "onAction": [
                       {
                         "actionType": "NAVIGATION",
@@ -4197,7 +4193,6 @@
       "wrapperConfig": {},
       "scrollListener": {}
     },
-   
     {
       "name": "REDOSE",
       "order": 12,
@@ -5102,7 +5097,7 @@
                       }
                     ],
                     "navigationMode": "popUntilAndPush",
-                    "popUntilPageName": "householdOverview"
+                    "popUntilPageName": "searchBeneficiary"
                   }
                 }
               ],
@@ -5885,7 +5880,7 @@
                   }
                 ],
                 "navigationMode": "popUntilAndPush",
-                "popUntilPageName": "householdOverview"
+                "popUntilPageName": "searchBeneficiary"
               }
             }
           ],
@@ -7736,6 +7731,17 @@
       "order": 5,
       "screenType": "TEMPLATE",
       "preventScreenCapture": false,
+      "onSystemBack": [
+        {
+          "actionType": "NAVIGATION",
+          "properties": {
+            "name": "searchBeneficiary",
+            "type": "TEMPLATE",
+            "navigationMode": "popUntilAndPush",
+            "popUntilPageName": "searchBeneficiary"
+          }
+        }
+      ],
       "header": [
         {
           "type": "template",
@@ -7746,7 +7752,9 @@
               "actionType": "NAVIGATION",
               "properties": {
                 "name": "searchBeneficiary",
-                "type": "TEMPLATE"
+                "type": "TEMPLATE",
+                "navigationMode": "popUntilAndPush",
+                "popUntilPageName": "searchBeneficiary"
               }
             }
           ],
@@ -8214,6 +8222,22 @@
               {
                 "key": "referralReasonsExtra",
                 "value": "{{fn:getReferralReasonsExtra(navigation)}}"
+              },
+              {
+                "key": "chcSeen",
+                "value": "{{navigation.chcSeen}}"
+              },
+              {
+                "key": "fullyImmunized",
+                "value": "{{navigation.fullyImmunized}}"
+              },
+              {
+                "key": "partiallyImmunized",
+                "value": "{{navigation.partiallyImmunized}}"
+              },
+              {
+                "key": "zeroDose",
+                "value": "{{navigation.zeroDose}}"
               },
               {
                 "key": "sourceFlow",
