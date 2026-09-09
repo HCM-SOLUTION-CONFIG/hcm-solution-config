@@ -8280,7 +8280,8 @@
                         "format": "row",
                         "fieldName": "dedupMatchNameRow",
                         "properties": {
-                          "mainAxisAlignment": "spaceBetween"
+                          "mainAxisAlignment": "spaceBetween",
+                          "crossAxisAlignment": "center"
                         },
                         "children": [
                           {
@@ -8291,6 +8292,9 @@
                               "type": "template",
                               "format": "row",
                               "fieldName": "dedupMatchNameGroup",
+                              "properties": {
+                                "crossAxisAlignment": "center"
+                              },
                               "children": [
                                 {
                                   "type": "template",
@@ -8312,6 +8316,10 @@
                                   "format": "iconButton",
                                   "fieldName": "dedupCopyName",
                                   "iconData": "ContentCopyOutlined",
+                                  "properties": {
+                                    "iconSize": 16,
+                                    "padding": 4
+                                  },
                                   "onAction": [
                                     {
                                       "actionType": "COPY_TO_CLIPBOARD",
@@ -8340,69 +8348,56 @@
                         "type": "template",
                         "format": "row",
                         "fieldName": "dedupMatchIdRow",
+                        "properties": {
+                          "crossAxisAlignment": "center"
+                        },
                         "children": [
-                          {
-                            "type": "template",
-                            "format": "textTemplate",
-                            "fieldName": "dedupMatchIdLabel",
-                            "value": "DEDUP_SIMILAR_BENEFICIARY_ID_LABEL",
-                            "properties": {
-                              "style": "bodyS"
-                            }
-                          },
                           {
                             "type": "template",
                             "format": "expanded",
                             "fieldName": "dedupMatchIdExpanded",
-                            "visible": "{{item.hasBeneficiaryId}}==true",
                             "child": {
                               "type": "template",
-                              "format": "row",
-                              "fieldName": "dedupMatchIdGroup",
-                              "children": [
-                                {
-                                  "type": "template",
-                                  "format": "expanded",
-                                  "fieldName": "dedupMatchIdTextExpanded",
-                                  "child": {
-                                    "type": "template",
-                                    "format": "textTemplate",
-                                    "fieldName": "dedupMatchId",
-                                    "value": "{{item.beneficiaryId}}",
-                                    "properties": {
-                                      "style": "bodyS",
-                                      "selectable": true
-                                    }
-                                  }
-                                },
-                                {
-                                  "type": "template",
-                                  "format": "iconButton",
-                                  "fieldName": "dedupCopyId",
-                                  "iconData": "ContentCopyOutlined",
-                                  "onAction": [
-                                    {
-                                      "actionType": "COPY_TO_CLIPBOARD",
-                                      "properties": {
-                                        "value": "{{item.beneficiaryId}}",
-                                        "successMessage": "DEDUP_SIMILAR_BENEFICIARY_COPIED"
-                                      }
-                                    }
-                                  ]
-                                }
-                              ]
+                              "format": "textTemplate",
+                              "fieldName": "dedupMatchId",
+                              "value": "DEDUP_SIMILAR_BENEFICIARY_ID_LABEL {{item.beneficiaryId}}",
+                              "visible": "{{item.hasBeneficiaryId}}==true",
+                              "properties": {
+                                "style": "bodyS",
+                                "selectable": true
+                              }
                             }
+                          },
+                          {
+                            "type": "template",
+                            "format": "iconButton",
+                            "fieldName": "dedupCopyId",
+                            "iconData": "ContentCopyOutlined",
+                            "visible": "{{item.hasBeneficiaryId}}==true",
+                            "properties": {
+                              "iconSize": 16,
+                              "padding": 4
+                            },
+                            "onAction": [
+                              {
+                                "actionType": "COPY_TO_CLIPBOARD",
+                                "properties": {
+                                  "value": "{{item.beneficiaryId}}",
+                                  "successMessage": "DEDUP_SIMILAR_BENEFICIARY_COPIED"
+                                }
+                              }
+                            ]
                           },
                           {
                             "type": "template",
                             "format": "expanded",
                             "fieldName": "dedupMatchNoIdExpanded",
-                            "visible": "{{item.hasBeneficiaryId}}==false",
                             "child": {
                               "type": "template",
                               "format": "textTemplate",
                               "fieldName": "dedupMatchNoId",
                               "value": "DEDUP_SIMILAR_BENEFICIARY_NO_ID",
+                              "visible": "{{item.hasBeneficiaryId}}==false",
                               "properties": {
                                 "style": "bodyS"
                               }
