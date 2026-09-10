@@ -8274,6 +8274,9 @@
                     "type": "template",
                     "format": "card",
                     "fieldName": "dedupMatchCard",
+                    "properties": {
+                      "spacing": 4
+                    },
                     "children": [
                       {
                         "type": "template",
@@ -8281,13 +8284,14 @@
                         "fieldName": "dedupMatchNameRow",
                         "properties": {
                           "mainAxisAlignment": "spaceBetween",
-                          "crossAxisAlignment": "center"
+                          "crossAxisAlignment": "center",
+                          "mainAxisSize": "max"
                         },
                         "children": [
                           {
                             "type": "template",
-                            "format": "expanded",
-                            "fieldName": "dedupMatchNameExpanded",
+                            "format": "flexible",
+                            "fieldName": "dedupMatchNameGroupFlex",
                             "child": {
                               "type": "template",
                               "format": "row",
@@ -8298,8 +8302,8 @@
                               "children": [
                                 {
                                   "type": "template",
-                                  "format": "expanded",
-                                  "fieldName": "dedupMatchNameTextExpanded",
+                                  "format": "flexible",
+                                  "fieldName": "dedupMatchNameTextFlex",
                                   "child": {
                                     "type": "template",
                                     "format": "textTemplate",
@@ -8347,25 +8351,60 @@
                       {
                         "type": "template",
                         "format": "row",
-                        "fieldName": "dedupMatchIdRow",
+                        "fieldName": "dedupMatchIdBlock",
                         "properties": {
                           "crossAxisAlignment": "center"
                         },
                         "children": [
                           {
                             "type": "template",
-                            "format": "expanded",
-                            "fieldName": "dedupMatchIdExpanded",
+                            "format": "flexible",
+                            "fieldName": "dedupMatchIdGroupFlex",
                             "child": {
                               "type": "template",
-                              "format": "textTemplate",
-                              "fieldName": "dedupMatchId",
-                              "value": "DEDUP_SIMILAR_BENEFICIARY_ID_LABEL {{item.beneficiaryId}}",
-                              "visible": "{{item.hasBeneficiaryId}}==true",
+                              "format": "row",
+                              "fieldName": "dedupMatchIdGroup",
                               "properties": {
-                                "style": "bodyS",
-                                "selectable": true
-                              }
+                                "crossAxisAlignment": "center"
+                              },
+                              "children": [
+                                {
+                                  "type": "template",
+                                  "format": "textTemplate",
+                                  "fieldName": "dedupMatchIdLabel",
+                                  "value": "DEDUP_SIMILAR_BENEFICIARY_ID_LABEL",
+                                  "visible": "{{item.hasBeneficiaryId}}==true",
+                                  "properties": {
+                                    "style": "bodyS"
+                                  }
+                                },
+                                {
+                                  "type": "template",
+                                  "format": "textTemplate",
+                                  "fieldName": "dedupMatchIdLabelSeparator",
+                                  "value": ": ",
+                                  "visible": "{{item.hasBeneficiaryId}}==true",
+                                  "properties": {
+                                    "style": "bodyS"
+                                  }
+                                },
+                                {
+                                  "type": "template",
+                                  "format": "flexible",
+                                  "fieldName": "dedupMatchIdFlex",
+                                  "visible": "{{item.hasBeneficiaryId}}==true",
+                                  "child": {
+                                    "type": "template",
+                                    "format": "textTemplate",
+                                    "fieldName": "dedupMatchId",
+                                    "value": "{{item.beneficiaryId}}",
+                                    "properties": {
+                                      "style": "bodyS",
+                                      "selectable": true
+                                    }
+                                  }
+                                }
+                              ]
                             }
                           },
                           {
@@ -8390,14 +8429,14 @@
                           },
                           {
                             "type": "template",
-                            "format": "expanded",
-                            "fieldName": "dedupMatchNoIdExpanded",
+                            "format": "flexible",
+                            "fieldName": "dedupMatchNoIdFlex",
+                            "visible": "{{item.hasBeneficiaryId}}==false",
                             "child": {
                               "type": "template",
                               "format": "textTemplate",
                               "fieldName": "dedupMatchNoId",
                               "value": "DEDUP_SIMILAR_BENEFICIARY_NO_ID",
-                              "visible": "{{item.hasBeneficiaryId}}==false",
                               "properties": {
                                 "style": "bodyS"
                               }
