@@ -399,7 +399,7 @@
                       "@default": "REGISTRATION_CURRENT_DOSE_STATUS_PENDING",
                       "@condition": [
                         {
-                          "when": "{{fn:isDoseCompleted(item.id, contextData.0.currentRunningCycle)}} == true",
+                          "when": "{{fn:isDoseCompleted(item.id, contextData.0.currentRunningCycle, 'smcDone')}} == true",
                           "value": "REGISTRATION_CURRENT_DOSE_STATUS_ADMINISTERED"
                         },
                         {
@@ -456,7 +456,7 @@
                                 "@default": "REGISTRATION_PAST_DOSE_STATUS_PENDING",
                                 "@condition": [
                                   {
-                                    "when": "{{fn:isDoseCompleted(item.id, currentItem.id)}} == true",
+                                    "when": "{{fn:isDoseCompleted(item.id, currentItem.id, 'smcDone')}} == true",
                                     "value": "REGISTRATION_PAST_DOSE_STATUS_ADMINISTERED"
                                   }
                                 ]
@@ -1063,7 +1063,7 @@
                       "@default": "REGISTRATION_CURRENT_DOSE_STATUS_PENDING",
                       "@condition": [
                         {
-                          "when": "{{fn:isDoseCompleted(item.id, contextData.0.currentRunningCycle)}} == true",
+                          "when": "{{fn:isDoseCompleted(item.id, contextData.0.currentRunningCycle, 'orsDone')}} == true",
                           "value": "REGISTRATION_CURRENT_DOSE_STATUS_ADMINISTERED"
                         },
                         {
@@ -1120,7 +1120,7 @@
                                 "@default": "REGISTRATION_PAST_DOSE_STATUS_PENDING",
                                 "@condition": [
                                   {
-                                    "when": "{{fn:isDoseCompleted(item.id, currentItem.id)}} == true",
+                                    "when": "{{fn:isDoseCompleted(item.id, currentItem.id, 'orsDone')}} == true",
                                     "value": "REGISTRATION_PAST_DOSE_STATUS_ADMINISTERED"
                                   }
                                 ]
