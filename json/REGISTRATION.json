@@ -8236,6 +8236,10 @@
                 "value": "{{navigation.partiallyImmunized}}"
               },
               {
+                "key": "unimmunized",
+                "value": "{{navigation.unimmunized}}"
+              },
+              {
                 "key": "zeroDose",
                 "value": "{{navigation.zeroDose}}"
               },
