@@ -8236,8 +8236,12 @@
           "dedupCheck": {
             "model": "individual",
             "fields": {
-              "givenName": "nameOfIndividual",
-              "familyName": "familyname"
+              "givenName": "nameOfIndividual"
+            },
+            "optionalFields": {
+              "familyName": "familyname",
+              "mobileNumber": "phone",
+              "latLng": "latLng"
             },
             "filters": [
               {
@@ -8247,10 +8251,11 @@
                 "operation": "equals"
               }
             ],
-            "matchThreshold": 0.85,
+            "matchThreshold": 0.5,
             "maxResults": 5,
             "minFieldLength": 2,
             "maxCandidates": 5000,
+            "proximityRadiusMeters": 1500,
             "skipOnEdit": true,
             "backToSearchPage": "searchBeneficiary",
             "dedupAlertPopUp": {
