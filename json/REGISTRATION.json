@@ -412,7 +412,7 @@
                   {
                     "header": "COMPLETED_ON",
                     "isActive": true,
-                    "cellValue": "{{fn:getTaskCompletionDate(item.id, contextData.0.currentRunningCycle)}}"
+                    "cellValue": "{{fn:getTaskCompletionDate(item.id, contextData.0.currentRunningCycle, 'smcDone')}}"
                   }
                 ]
               },
@@ -465,7 +465,7 @@
                             {
                               "header": "COMPLETED_ON",
                               "isActive": true,
-                              "cellValue": "{{fn:getTaskCompletionDate(item.id, currentItem.id)}}"
+                              "cellValue": "{{fn:getTaskCompletionDate(item.id, currentItem.id, 'smcDone')}}"
                             }
                           ]
                         },
@@ -1076,7 +1076,7 @@
                   {
                     "header": "COMPLETED_ON",
                     "isActive": true,
-                    "cellValue": "{{fn:getTaskCompletionDate(item.id, contextData.0.currentRunningCycle)}}"
+                    "cellValue": "{{fn:getTaskCompletionDate(item.id, contextData.0.currentRunningCycle, 'orsDone')}}"
                   }
                 ]
               },
@@ -1129,7 +1129,7 @@
                             {
                               "header": "COMPLETED_ON",
                               "isActive": true,
-                              "cellValue": "{{fn:getTaskCompletionDate(item.id, currentItem.id)}}"
+                              "cellValue": "{{fn:getTaskCompletionDate(item.id, currentItem.id, 'orsDone')}}"
                             }
                           ]
                         },
