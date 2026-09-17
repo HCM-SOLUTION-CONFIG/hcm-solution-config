@@ -1,4 +1,4 @@
- {
+{
   "name": "PERMISSIONHANDLER",
   "initialPage": "permissionHandler",
   "order": 6,
@@ -17,7 +17,10 @@
           "format": "backLink",
           "label": "CORE_COMMON_BACK",
           "onAction": [
-            {"actionType": "BACK_NAVIGATION", "properties": {}}
+            {
+              "actionType": "BACK_NAVIGATION",
+              "properties": {}
+            }
           ]
         }
       ],
@@ -30,7 +33,10 @@
       "body": [
         {
           "format": "column",
-          "properties": {"mainAxisAlignment": "start", "mainAxisSize": "min"},
+          "properties": {
+            "mainAxisAlignment": "start",
+            "mainAxisSize": "min"
+          },
           "children": [
             {
               "format": "card",
@@ -49,7 +55,10 @@
                         "mainAxisSize": "min"
                       },
                       "children": [
-                        {"format": "icon", "value": "NotificationsActive"},
+                        {
+                          "format": "icon",
+                          "value": "NotificationsActive"
+                        },
                         {
                           "format": "column",
                           "properties": {
@@ -80,7 +89,9 @@
                       "onAction": [
                         {
                           "actionType": "REQUEST_PERMISSION",
-                          "properties": {"permission": "notification"}
+                          "properties": {
+                            "permission": "notification"
+                          }
                         }
                       ]
                     }
@@ -110,7 +121,10 @@
                         "mainAxisSize": "min"
                       },
                       "children": [
-                        {"format": "icon", "value": "SettingsCell"},
+                        {
+                          "format": "icon",
+                          "value": "SettingsCell"
+                        },
                         {
                           "format": "column",
                           "expanded": true,
@@ -121,8 +135,7 @@
                           "children": [
                             {
                               "format": "textTemplate",
-                              "value":
-                                  "CORE_COMMON_PERMISSION_IGNOREBATTERYOPTIMIZATIONS",
+                              "value": "CORE_COMMON_PERMISSION_IGNOREBATTERYOPTIMIZATIONS",
                               "required": true
                             }
                           ]
@@ -133,8 +146,7 @@
                       "format": "button",
                       "label": "GRANT_PERMISSION",
                       "hidden": false,
-                      "visible":
-                          "{{ !context.ignoreBatteryOptimizationsPermissionGranted }}",
+                      "visible": "{{ !context.ignoreBatteryOptimizationsPermissionGranted }}",
                       "properties": {
                         "type": "primary",
                         "size": "small",
@@ -154,8 +166,7 @@
                 },
                 {
                   "format": "tag",
-                  "label":
-                      "{{context.ignoreBatteryOptimizationsPermissionStatus}}"
+                  "label": "{{context.ignoreBatteryOptimizationsPermissionStatus}}"
                 }
               ]
             },
@@ -176,7 +187,10 @@
                         "mainAxisSize": "min"
                       },
                       "children": [
-                        {"format": "icon", "value": "LocationOn"},
+                        {
+                          "format": "icon",
+                          "value": "LocationOn"
+                        },
                         {
                           "format": "column",
                           "properties": {
@@ -207,7 +221,9 @@
                       "onAction": [
                         {
                           "actionType": "REQUEST_PERMISSION",
-                          "properties": {"permission": "location"}
+                          "properties": {
+                            "permission": "location"
+                          }
                         }
                       ]
                     }
@@ -237,7 +253,10 @@
                         "mainAxisSize": "min"
                       },
                       "children": [
-                        {"format": "icon", "value": "PermScanWifi"},
+                        {
+                          "format": "icon",
+                          "value": "PermScanWifi"
+                        },
                         {
                           "format": "column",
                           "properties": {
@@ -247,8 +266,7 @@
                           "children": [
                             {
                               "format": "textTemplate",
-                              "value":
-                                  "CORE_COMMON_PERMISSION_NEARBYWIFIDEVICES",
+                              "value": "CORE_COMMON_PERMISSION_NEARBYWIFIDEVICES",
                               "required": true
                             }
                           ]
@@ -259,8 +277,7 @@
                       "format": "button",
                       "label": "GRANT_PERMISSION",
                       "hidden": false,
-                      "visible":
-                          "{{ !context.nearbyWifiDevicesPermissionGranted }}",
+                      "visible": "{{ !context.nearbyWifiDevicesPermissionGranted }}",
                       "properties": {
                         "type": "primary",
                         "size": "small",
@@ -270,7 +287,9 @@
                       "onAction": [
                         {
                           "actionType": "REQUEST_PERMISSION",
-                          "properties": {"permission": "nearbyWifiDevices"}
+                          "properties": {
+                            "permission": "nearbyWifiDevices"
+                          }
                         }
                       ]
                     }
@@ -300,7 +319,10 @@
                         "mainAxisSize": "min"
                       },
                       "children": [
-                        {"format": "icon", "value": "PermScanWifi"},
+                        {
+                          "format": "icon",
+                          "value": "PermScanWifi"
+                        },
                         {
                           "format": "column",
                           "properties": {
@@ -321,8 +343,7 @@
                       "format": "button",
                       "label": "GRANT_PERMISSION",
                       "hidden": false,
-                      "visible":
-                          "{{ !context.bluetoothScanPermissionGranted }}",
+                      "visible": "{{ !context.bluetoothScanPermissionGranted }}",
                       "properties": {
                         "type": "primary",
                         "size": "small",
@@ -332,7 +353,9 @@
                       "onAction": [
                         {
                           "actionType": "REQUEST_PERMISSION",
-                          "properties": {"permission": "bluetoothScan"}
+                          "properties": {
+                            "permission": "bluetoothScan"
+                          }
                         }
                       ]
                     }
@@ -361,7 +384,10 @@
                         "mainAxisSize": "min"
                       },
                       "children": [
-                        {"format": "icon", "value": "PermCameraMic"},
+                        {
+                          "format": "icon",
+                          "value": "PermCameraMic"
+                        },
                         {
                           "format": "column",
                           "properties": {
@@ -391,13 +417,18 @@
                       "onAction": [
                         {
                           "actionType": "REQUEST_PERMISSION",
-                          "properties": {"permission": "camera"}
+                          "properties": {
+                            "permission": "camera"
+                          }
                         }
                       ]
                     }
                   ]
                 },
-                {"format": "tag", "label": "{{context.cameraPermissionStatus}}"}
+                {
+                  "format": "tag",
+                  "label": "{{context.cameraPermissionStatus}}"
+                }
               ]
             }
           ]

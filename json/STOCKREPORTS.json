@@ -745,7 +745,6 @@
                 "header": "STOCKRECON_REPORT_DETAILS_TABLE_HEADER_4_LABEL",
                 "cellValue": "{{item.additionalFields.fields.stockReturned}}"
               },
-             
               {
                 "header": "STOCKRECON_REPORT_DETAILS_TABLE_HEADER_7_LABEL",
                 "cellValue": "{{item.physicalCount}}"
