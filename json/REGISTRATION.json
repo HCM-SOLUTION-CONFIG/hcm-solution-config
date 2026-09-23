@@ -1029,6 +1029,17 @@
                 "children": [
                   {
                     "type": "template",
+                    "visible": "{{fn:isOwnedByMyTeam(item.projectBeneficiary)}}==false",
+                    "label": "NOT_REGISTERED_BY_YOU",
+                    "format": "tag",
+                    "fieldName": "notRegisteredByYou",
+                    "properties": {
+                      "tagType": "monochrome",
+                      "bottomGap": 8
+                    }
+                  },
+                  {
+                    "type": "template",
                     "format": "row",
                     "children": [
                       {
