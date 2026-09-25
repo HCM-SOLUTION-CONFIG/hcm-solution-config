@@ -540,6 +540,38 @@
                   {
                     "key": "ec5",
                     "value": "{{navigation.ec5}}"
+                  },
+                  {
+                    "key": "malariaVaccine",
+                    "value": "{{navigation.malariaVaccine}}"
+                  },
+                  {
+                    "key": "malariaVaccineDate",
+                    "value": "{{navigation.malariaVaccineDate}}"
+                  },
+                  {
+                    "key": "smc",
+                    "value": "{{navigation.smc}}"
+                  },
+                  {
+                    "key": "smcDate",
+                    "value": "{{navigation.smcDate}}"
+                  },
+                  {
+                    "key": "polio",
+                    "value": "{{navigation.polio}}"
+                  },
+                  {
+                    "key": "polioDate",
+                    "value": "{{navigation.polioDate}}"
+                  },
+                  {
+                    "key": "measlesRubella",
+                    "value": "{{navigation.measlesRubella}}"
+                  },
+                  {
+                    "key": "measlesRubellaDate",
+                    "value": "{{navigation.measlesRubellaDate}}"
                   }
                 ],
                 "name": "DELIVERY",
@@ -3076,6 +3108,38 @@
                   {
                     "key": "ec5",
                     "value": "{{navigation.ec5}}"
+                  },
+                  {
+                    "key": "malariaVaccine",
+                    "value": "{{navigation.malariaVaccine}}"
+                  },
+                  {
+                    "key": "malariaVaccineDate",
+                    "value": "{{navigation.malariaVaccineDate}}"
+                  },
+                  {
+                    "key": "smc",
+                    "value": "{{navigation.smc}}"
+                  },
+                  {
+                    "key": "smcDate",
+                    "value": "{{navigation.smcDate}}"
+                  },
+                  {
+                    "key": "polio",
+                    "value": "{{navigation.polio}}"
+                  },
+                  {
+                    "key": "polioDate",
+                    "value": "{{navigation.polioDate}}"
+                  },
+                  {
+                    "key": "measlesRubella",
+                    "value": "{{navigation.measlesRubella}}"
+                  },
+                  {
+                    "key": "measlesRubellaDate",
+                    "value": "{{navigation.measlesRubellaDate}}"
                   }
                 ],
                 "onError": [
@@ -3187,6 +3251,38 @@
                       {
                         "key": "ec5",
                         "value": "{{navigation.ec5}}"
+                      },
+                      {
+                        "key": "malariaVaccine",
+                        "value": "{{navigation.malariaVaccine}}"
+                      },
+                      {
+                        "key": "malariaVaccineDate",
+                        "value": "{{navigation.malariaVaccineDate}}"
+                      },
+                      {
+                        "key": "smc",
+                        "value": "{{navigation.smc}}"
+                      },
+                      {
+                        "key": "smcDate",
+                        "value": "{{navigation.smcDate}}"
+                      },
+                      {
+                        "key": "polio",
+                        "value": "{{navigation.polio}}"
+                      },
+                      {
+                        "key": "polioDate",
+                        "value": "{{navigation.polioDate}}"
+                      },
+                      {
+                        "key": "measlesRubella",
+                        "value": "{{navigation.measlesRubella}}"
+                      },
+                      {
+                        "key": "measlesRubellaDate",
+                        "value": "{{navigation.measlesRubellaDate}}"
                       }
                     ],
                     "onError": [
@@ -3452,6 +3548,38 @@
                   {
                     "key": "ec5",
                     "value": "{{navigation.ec5}}"
+                  },
+                  {
+                    "key": "malariaVaccine",
+                    "value": "{{navigation.malariaVaccine}}"
+                  },
+                  {
+                    "key": "malariaVaccineDate",
+                    "value": "{{navigation.malariaVaccineDate}}"
+                  },
+                  {
+                    "key": "smc",
+                    "value": "{{navigation.smc}}"
+                  },
+                  {
+                    "key": "smcDate",
+                    "value": "{{navigation.smcDate}}"
+                  },
+                  {
+                    "key": "polio",
+                    "value": "{{navigation.polio}}"
+                  },
+                  {
+                    "key": "polioDate",
+                    "value": "{{navigation.polioDate}}"
+                  },
+                  {
+                    "key": "measlesRubella",
+                    "value": "{{navigation.measlesRubella}}"
+                  },
+                  {
+                    "key": "measlesRubellaDate",
+                    "value": "{{navigation.measlesRubellaDate}}"
                   }
                 ],
                 "onError": [
@@ -3563,6 +3691,38 @@
                       {
                         "key": "ec5",
                         "value": "{{navigation.ec5}}"
+                      },
+                      {
+                        "key": "malariaVaccine",
+                        "value": "{{navigation.malariaVaccine}}"
+                      },
+                      {
+                        "key": "malariaVaccineDate",
+                        "value": "{{navigation.malariaVaccineDate}}"
+                      },
+                      {
+                        "key": "smc",
+                        "value": "{{navigation.smc}}"
+                      },
+                      {
+                        "key": "smcDate",
+                        "value": "{{navigation.smcDate}}"
+                      },
+                      {
+                        "key": "polio",
+                        "value": "{{navigation.polio}}"
+                      },
+                      {
+                        "key": "polioDate",
+                        "value": "{{navigation.polioDate}}"
+                      },
+                      {
+                        "key": "measlesRubella",
+                        "value": "{{navigation.measlesRubella}}"
+                      },
+                      {
+                        "key": "measlesRubellaDate",
+                        "value": "{{navigation.measlesRubellaDate}}"
                       }
                     ],
                     "onError": [
@@ -3894,6 +4054,38 @@
               {
                 "key": "ec5",
                 "value": "{{navigation.ec5}}"
+              },
+              {
+                "key": "malariaVaccine",
+                "value": "{{navigation.malariaVaccine}}"
+              },
+              {
+                "key": "malariaVaccineDate",
+                "value": "{{navigation.malariaVaccineDate}}"
+              },
+              {
+                "key": "smc",
+                "value": "{{navigation.smc}}"
+              },
+              {
+                "key": "smcDate",
+                "value": "{{navigation.smcDate}}"
+              },
+              {
+                "key": "polio",
+                "value": "{{navigation.polio}}"
+              },
+              {
+                "key": "polioDate",
+                "value": "{{navigation.polioDate}}"
+              },
+              {
+                "key": "measlesRubella",
+                "value": "{{navigation.measlesRubella}}"
+              },
+              {
+                "key": "measlesRubellaDate",
+                "value": "{{navigation.measlesRubellaDate}}"
               }
             ],
             "onError": [
@@ -4011,6 +4203,38 @@
                   {
                     "key": "ec5",
                     "value": "{{navigation.ec5}}"
+                  },
+                  {
+                    "key": "malariaVaccine",
+                    "value": "{{navigation.malariaVaccine}}"
+                  },
+                  {
+                    "key": "malariaVaccineDate",
+                    "value": "{{navigation.malariaVaccineDate}}"
+                  },
+                  {
+                    "key": "smc",
+                    "value": "{{navigation.smc}}"
+                  },
+                  {
+                    "key": "smcDate",
+                    "value": "{{navigation.smcDate}}"
+                  },
+                  {
+                    "key": "polio",
+                    "value": "{{navigation.polio}}"
+                  },
+                  {
+                    "key": "polioDate",
+                    "value": "{{navigation.polioDate}}"
+                  },
+                  {
+                    "key": "measlesRubella",
+                    "value": "{{navigation.measlesRubella}}"
+                  },
+                  {
+                    "key": "measlesRubellaDate",
+                    "value": "{{navigation.measlesRubellaDate}}"
                   }
                 ],
                 "onError": [
@@ -4210,6 +4434,38 @@
                       {
                         "key": "ec5",
                         "value": "{{navigation.ec5}}"
+                      },
+                      {
+                        "key": "malariaVaccine",
+                        "value": "{{navigation.malariaVaccine}}"
+                      },
+                      {
+                        "key": "malariaVaccineDate",
+                        "value": "{{navigation.malariaVaccineDate}}"
+                      },
+                      {
+                        "key": "smc",
+                        "value": "{{navigation.smc}}"
+                      },
+                      {
+                        "key": "smcDate",
+                        "value": "{{navigation.smcDate}}"
+                      },
+                      {
+                        "key": "polio",
+                        "value": "{{navigation.polio}}"
+                      },
+                      {
+                        "key": "polioDate",
+                        "value": "{{navigation.polioDate}}"
+                      },
+                      {
+                        "key": "measlesRubella",
+                        "value": "{{navigation.measlesRubella}}"
+                      },
+                      {
+                        "key": "measlesRubellaDate",
+                        "value": "{{navigation.measlesRubellaDate}}"
                       }
                     ],
                     "onError": [
@@ -4537,6 +4793,38 @@
               {
                 "key": "ec5",
                 "value": "{{navigation.ec5}}"
+              },
+              {
+                "key": "malariaVaccine",
+                "value": "{{navigation.malariaVaccine}}"
+              },
+              {
+                "key": "malariaVaccineDate",
+                "value": "{{navigation.malariaVaccineDate}}"
+              },
+              {
+                "key": "smc",
+                "value": "{{navigation.smc}}"
+              },
+              {
+                "key": "smcDate",
+                "value": "{{navigation.smcDate}}"
+              },
+              {
+                "key": "polio",
+                "value": "{{navigation.polio}}"
+              },
+              {
+                "key": "polioDate",
+                "value": "{{navigation.polioDate}}"
+              },
+              {
+                "key": "measlesRubella",
+                "value": "{{navigation.measlesRubella}}"
+              },
+              {
+                "key": "measlesRubellaDate",
+                "value": "{{navigation.measlesRubellaDate}}"
               }
             ],
             "onError": [
@@ -4712,6 +5000,38 @@
                       {
                         "key": "ec5",
                         "value": "{{eligibilityChecklist.ec5}}"
+                      },
+                      {
+                        "key": "malariaVaccine",
+                        "value": "{{eligibilityChecklist.malariaVaccine}}"
+                      },
+                      {
+                        "key": "malariaVaccineDate",
+                        "value": "{{eligibilityChecklist.malariaVaccineDate}}"
+                      },
+                      {
+                        "key": "smc",
+                        "value": "{{eligibilityChecklist.smc}}"
+                      },
+                      {
+                        "key": "smcDate",
+                        "value": "{{eligibilityChecklist.smcDate}}"
+                      },
+                      {
+                        "key": "polio",
+                        "value": "{{eligibilityChecklist.polio}}"
+                      },
+                      {
+                        "key": "polioDate",
+                        "value": "{{eligibilityChecklist.polioDate}}"
+                      },
+                      {
+                        "key": "measlesRubella",
+                        "value": "{{eligibilityChecklist.measlesRubella}}"
+                      },
+                      {
+                        "key": "measlesRubellaDate",
+                        "value": "{{eligibilityChecklist.measlesRubellaDate}}"
                       }
                     ],
                     "name": "beneficiaryDetails",
@@ -4795,6 +5115,38 @@
                       {
                         "key": "ec5",
                         "value": "{{eligibilityChecklist.ec5}}"
+                      },
+                      {
+                        "key": "malariaVaccine",
+                        "value": "{{eligibilityChecklist.malariaVaccine}}"
+                      },
+                      {
+                        "key": "malariaVaccineDate",
+                        "value": "{{eligibilityChecklist.malariaVaccineDate}}"
+                      },
+                      {
+                        "key": "smc",
+                        "value": "{{eligibilityChecklist.smc}}"
+                      },
+                      {
+                        "key": "smcDate",
+                        "value": "{{eligibilityChecklist.smcDate}}"
+                      },
+                      {
+                        "key": "polio",
+                        "value": "{{eligibilityChecklist.polio}}"
+                      },
+                      {
+                        "key": "polioDate",
+                        "value": "{{eligibilityChecklist.polioDate}}"
+                      },
+                      {
+                        "key": "measlesRubella",
+                        "value": "{{eligibilityChecklist.measlesRubella}}"
+                      },
+                      {
+                        "key": "measlesRubellaDate",
+                        "value": "{{eligibilityChecklist.measlesRubellaDate}}"
                       }
                     ],
                     "name": "beneficiaryDetails",
@@ -4892,6 +5244,38 @@
                         "value": "{{eligibilityChecklist.ec5}}"
                       },
                       {
+                        "key": "malariaVaccine",
+                        "value": "{{eligibilityChecklist.malariaVaccine}}"
+                      },
+                      {
+                        "key": "malariaVaccineDate",
+                        "value": "{{eligibilityChecklist.malariaVaccineDate}}"
+                      },
+                      {
+                        "key": "smc",
+                        "value": "{{eligibilityChecklist.smc}}"
+                      },
+                      {
+                        "key": "smcDate",
+                        "value": "{{eligibilityChecklist.smcDate}}"
+                      },
+                      {
+                        "key": "polio",
+                        "value": "{{eligibilityChecklist.polio}}"
+                      },
+                      {
+                        "key": "polioDate",
+                        "value": "{{eligibilityChecklist.polioDate}}"
+                      },
+                      {
+                        "key": "measlesRubella",
+                        "value": "{{eligibilityChecklist.measlesRubella}}"
+                      },
+                      {
+                        "key": "measlesRubellaDate",
+                        "value": "{{eligibilityChecklist.measlesRubellaDate}}"
+                      },
+                      {
                         "key": "latitude",
                         "value": "{{navigation.latitude}}"
                       },
@@ -4967,6 +5351,38 @@
                       {
                         "key": "ec5",
                         "value": "{{eligibilityChecklist.ec5}}"
+                      },
+                      {
+                        "key": "malariaVaccine",
+                        "value": "{{eligibilityChecklist.malariaVaccine}}"
+                      },
+                      {
+                        "key": "malariaVaccineDate",
+                        "value": "{{eligibilityChecklist.malariaVaccineDate}}"
+                      },
+                      {
+                        "key": "smc",
+                        "value": "{{eligibilityChecklist.smc}}"
+                      },
+                      {
+                        "key": "smcDate",
+                        "value": "{{eligibilityChecklist.smcDate}}"
+                      },
+                      {
+                        "key": "polio",
+                        "value": "{{eligibilityChecklist.polio}}"
+                      },
+                      {
+                        "key": "polioDate",
+                        "value": "{{eligibilityChecklist.polioDate}}"
+                      },
+                      {
+                        "key": "measlesRubella",
+                        "value": "{{eligibilityChecklist.measlesRubella}}"
+                      },
+                      {
+                        "key": "measlesRubellaDate",
+                        "value": "{{eligibilityChecklist.measlesRubellaDate}}"
                       }
                     ],
                     "name": "householdOverview",
@@ -5066,6 +5482,38 @@
                       {
                         "key": "ec5",
                         "value": "{{eligibilityChecklist.ec5}}"
+                      },
+                      {
+                        "key": "malariaVaccine",
+                        "value": "{{eligibilityChecklist.malariaVaccine}}"
+                      },
+                      {
+                        "key": "malariaVaccineDate",
+                        "value": "{{eligibilityChecklist.malariaVaccineDate}}"
+                      },
+                      {
+                        "key": "smc",
+                        "value": "{{eligibilityChecklist.smc}}"
+                      },
+                      {
+                        "key": "smcDate",
+                        "value": "{{eligibilityChecklist.smcDate}}"
+                      },
+                      {
+                        "key": "polio",
+                        "value": "{{eligibilityChecklist.polio}}"
+                      },
+                      {
+                        "key": "polioDate",
+                        "value": "{{eligibilityChecklist.polioDate}}"
+                      },
+                      {
+                        "key": "measlesRubella",
+                        "value": "{{eligibilityChecklist.measlesRubella}}"
+                      },
+                      {
+                        "key": "measlesRubellaDate",
+                        "value": "{{eligibilityChecklist.measlesRubellaDate}}"
                       },
                       {
                         "key": "sourceFlow",
@@ -5363,6 +5811,346 @@
               ],
               "includeInSummary": true,
               "required.message": "APPONE_ELIGIBILITYCHECKLIST_QUESTION_5_LABEL_REQUIRED_MESSAGE"
+            },
+            {
+              "type": "string",
+              "enums": [
+                {
+                  "code": "YES",
+                  "name": "QUESTION_1_YES"
+                },
+                {
+                  "code": "NO",
+                  "name": "QUESTION_1_NO"
+                }
+              ],
+              "label": "APPONE_ELIGIBILITYCHECKLIST_MALARIA_VACCINE_LABEL",
+              "order": 4,
+              "value": "",
+              "format": "radio",
+              "hidden": false,
+              "isMdms": false,
+              "tooltip": "",
+              "helpText": "",
+              "infoText": "",
+              "readOnly": false,
+              "required": true,
+              "fieldName": "malariaVaccine",
+              "mandatory": true,
+              "deleteFlag": false,
+              "innerLabel": "",
+              "schemaCode": null,
+              "systemDate": false,
+              "validations": [
+                {
+                  "type": "required",
+                  "value": true,
+                  "message": "APPONE_ELIGIBILITYCHECKLIST_MALARIA_VACCINE_REQUIRED_MESSAGE"
+                }
+              ],
+              "errorMessage": "",
+              "includeInForm": true,
+              "isMultiSelect": false,
+              "includeInSummary": true,
+              "required.message": "APPONE_ELIGIBILITYCHECKLIST_MALARIA_VACCINE_REQUIRED_MESSAGE"
+            },
+            {
+              "type": "string",
+              "label": "APPONE_ELIGIBILITYCHECKLIST_MALARIA_VACCINE_DATE_LABEL",
+              "order": 5,
+              "value": "",
+              "format": "date",
+              "hidden": false,
+              "isMdms": false,
+              "tooltip": "",
+              "helpText": "",
+              "infoText": "",
+              "readOnly": false,
+              "required": true,
+              "fieldName": "malariaVaccineDate",
+              "mandatory": true,
+              "deleteFlag": false,
+              "innerLabel": "",
+              "schemaCode": null,
+              "systemDate": false,
+              "validations": [
+                {
+                  "type": "required",
+                  "value": true,
+                  "message": "APPONE_ELIGIBILITYCHECKLIST_MALARIA_VACCINE_DATE_REQUIRED_MESSAGE"
+                },
+                {
+                  "type": "endDate",
+                  "value": "today",
+                  "message": "APPONE_ELIGIBILITYCHECKLIST_MALARIA_VACCINE_DATE_FUTURE_MESSAGE"
+                }
+              ],
+              "errorMessage": "",
+              "isMultiSelect": false,
+              "includeInSummary": true,
+              "required.message": "APPONE_ELIGIBILITYCHECKLIST_MALARIA_VACCINE_DATE_REQUIRED_MESSAGE",
+              "visibilityCondition": {
+                "expression": [
+                  {
+                    "condition": "eligibilityChecklist.malariaVaccine==YES"
+                  }
+                ]
+              }
+            },
+            {
+              "type": "string",
+              "enums": [
+                {
+                  "code": "YES",
+                  "name": "QUESTION_1_YES"
+                },
+                {
+                  "code": "NO",
+                  "name": "QUESTION_1_NO"
+                }
+              ],
+              "label": "APPONE_ELIGIBILITYCHECKLIST_SMC_LABEL",
+              "order": 6,
+              "value": "",
+              "format": "radio",
+              "hidden": false,
+              "isMdms": false,
+              "tooltip": "",
+              "helpText": "",
+              "infoText": "",
+              "readOnly": false,
+              "required": true,
+              "fieldName": "smc",
+              "mandatory": true,
+              "deleteFlag": false,
+              "innerLabel": "",
+              "schemaCode": null,
+              "systemDate": false,
+              "validations": [
+                {
+                  "type": "required",
+                  "value": true,
+                  "message": "APPONE_ELIGIBILITYCHECKLIST_SMC_REQUIRED_MESSAGE"
+                }
+              ],
+              "errorMessage": "",
+              "includeInForm": true,
+              "isMultiSelect": false,
+              "includeInSummary": true,
+              "required.message": "APPONE_ELIGIBILITYCHECKLIST_SMC_REQUIRED_MESSAGE"
+            },
+            {
+              "type": "string",
+              "label": "APPONE_ELIGIBILITYCHECKLIST_SMC_DATE_LABEL",
+              "order": 7,
+              "value": "",
+              "format": "date",
+              "hidden": false,
+              "isMdms": false,
+              "tooltip": "",
+              "helpText": "",
+              "infoText": "",
+              "readOnly": false,
+              "required": true,
+              "fieldName": "smcDate",
+              "mandatory": true,
+              "deleteFlag": false,
+              "innerLabel": "",
+              "schemaCode": null,
+              "systemDate": false,
+              "validations": [
+                {
+                  "type": "required",
+                  "value": true,
+                  "message": "APPONE_ELIGIBILITYCHECKLIST_SMC_DATE_REQUIRED_MESSAGE"
+                },
+                {
+                  "type": "endDate",
+                  "value": "today",
+                  "message": "APPONE_ELIGIBILITYCHECKLIST_SMC_DATE_FUTURE_MESSAGE"
+                }
+              ],
+              "errorMessage": "",
+              "isMultiSelect": false,
+              "includeInSummary": true,
+              "required.message": "APPONE_ELIGIBILITYCHECKLIST_SMC_DATE_REQUIRED_MESSAGE",
+              "visibilityCondition": {
+                "expression": [
+                  {
+                    "condition": "eligibilityChecklist.smc==YES"
+                  }
+                ]
+              }
+            },
+            {
+              "type": "string",
+              "enums": [
+                {
+                  "code": "YES",
+                  "name": "QUESTION_1_YES"
+                },
+                {
+                  "code": "NO",
+                  "name": "QUESTION_1_NO"
+                }
+              ],
+              "label": "APPONE_ELIGIBILITYCHECKLIST_POLIO_LABEL",
+              "order": 8,
+              "value": "",
+              "format": "radio",
+              "hidden": false,
+              "isMdms": false,
+              "tooltip": "",
+              "helpText": "",
+              "infoText": "",
+              "readOnly": false,
+              "required": true,
+              "fieldName": "polio",
+              "mandatory": true,
+              "deleteFlag": false,
+              "innerLabel": "",
+              "schemaCode": null,
+              "systemDate": false,
+              "validations": [
+                {
+                  "type": "required",
+                  "value": true,
+                  "message": "APPONE_ELIGIBILITYCHECKLIST_POLIO_REQUIRED_MESSAGE"
+                }
+              ],
+              "errorMessage": "",
+              "includeInForm": true,
+              "isMultiSelect": false,
+              "includeInSummary": true,
+              "required.message": "APPONE_ELIGIBILITYCHECKLIST_POLIO_REQUIRED_MESSAGE"
+            },
+            {
+              "type": "string",
+              "label": "APPONE_ELIGIBILITYCHECKLIST_POLIO_DATE_LABEL",
+              "order": 9,
+              "value": "",
+              "format": "date",
+              "hidden": false,
+              "isMdms": false,
+              "tooltip": "",
+              "helpText": "",
+              "infoText": "",
+              "readOnly": false,
+              "required": true,
+              "fieldName": "polioDate",
+              "mandatory": true,
+              "deleteFlag": false,
+              "innerLabel": "",
+              "schemaCode": null,
+              "systemDate": false,
+              "validations": [
+                {
+                  "type": "required",
+                  "value": true,
+                  "message": "APPONE_ELIGIBILITYCHECKLIST_POLIO_DATE_REQUIRED_MESSAGE"
+                },
+                {
+                  "type": "endDate",
+                  "value": "today",
+                  "message": "APPONE_ELIGIBILITYCHECKLIST_POLIO_DATE_FUTURE_MESSAGE"
+                }
+              ],
+              "errorMessage": "",
+              "isMultiSelect": false,
+              "includeInSummary": true,
+              "required.message": "APPONE_ELIGIBILITYCHECKLIST_POLIO_DATE_REQUIRED_MESSAGE",
+              "visibilityCondition": {
+                "expression": [
+                  {
+                    "condition": "eligibilityChecklist.polio==YES"
+                  }
+                ]
+              }
+            },
+            {
+              "type": "string",
+              "enums": [
+                {
+                  "code": "YES",
+                  "name": "QUESTION_1_YES"
+                },
+                {
+                  "code": "NO",
+                  "name": "QUESTION_1_NO"
+                }
+              ],
+              "label": "APPONE_ELIGIBILITYCHECKLIST_MEASLES_RUBELLA_LABEL",
+              "order": 10,
+              "value": "",
+              "format": "radio",
+              "hidden": false,
+              "isMdms": false,
+              "tooltip": "",
+              "helpText": "",
+              "infoText": "",
+              "readOnly": false,
+              "required": true,
+              "fieldName": "measlesRubella",
+              "mandatory": true,
+              "deleteFlag": false,
+              "innerLabel": "",
+              "schemaCode": null,
+              "systemDate": false,
+              "validations": [
+                {
+                  "type": "required",
+                  "value": true,
+                  "message": "APPONE_ELIGIBILITYCHECKLIST_MEASLES_RUBELLA_REQUIRED_MESSAGE"
+                }
+              ],
+              "errorMessage": "",
+              "includeInForm": true,
+              "isMultiSelect": false,
+              "includeInSummary": true,
+              "required.message": "APPONE_ELIGIBILITYCHECKLIST_MEASLES_RUBELLA_REQUIRED_MESSAGE"
+            },
+            {
+              "type": "string",
+              "label": "APPONE_ELIGIBILITYCHECKLIST_MEASLES_RUBELLA_DATE_LABEL",
+              "order": 11,
+              "value": "",
+              "format": "date",
+              "hidden": false,
+              "isMdms": false,
+              "tooltip": "",
+              "helpText": "",
+              "infoText": "",
+              "readOnly": false,
+              "required": true,
+              "fieldName": "measlesRubellaDate",
+              "mandatory": true,
+              "deleteFlag": false,
+              "innerLabel": "",
+              "schemaCode": null,
+              "systemDate": false,
+              "validations": [
+                {
+                  "type": "required",
+                  "value": true,
+                  "message": "APPONE_ELIGIBILITYCHECKLIST_MEASLES_RUBELLA_DATE_REQUIRED_MESSAGE"
+                },
+                {
+                  "type": "endDate",
+                  "value": "today",
+                  "message": "APPONE_ELIGIBILITYCHECKLIST_MEASLES_RUBELLA_DATE_FUTURE_MESSAGE"
+                }
+              ],
+              "errorMessage": "",
+              "isMultiSelect": false,
+              "includeInSummary": true,
+              "required.message": "APPONE_ELIGIBILITYCHECKLIST_MEASLES_RUBELLA_DATE_REQUIRED_MESSAGE",
+              "visibilityCondition": {
+                "expression": [
+                  {
+                    "condition": "eligibilityChecklist.measlesRubella==YES"
+                  }
+                ]
+              }
             }
           ],
           "actionLabel": "APPONE_REGISTRATION_DELIVERYDETAILS_ACTION_BUTTON_LABEL_1",
@@ -5469,6 +6257,38 @@
                     "value": "{{eligibilityChecklist.ec5}}"
                   },
                   {
+                    "key": "malariaVaccine",
+                    "value": "{{eligibilityChecklist.malariaVaccine}}"
+                  },
+                  {
+                    "key": "malariaVaccineDate",
+                    "value": "{{eligibilityChecklist.malariaVaccineDate}}"
+                  },
+                  {
+                    "key": "smc",
+                    "value": "{{eligibilityChecklist.smc}}"
+                  },
+                  {
+                    "key": "smcDate",
+                    "value": "{{eligibilityChecklist.smcDate}}"
+                  },
+                  {
+                    "key": "polio",
+                    "value": "{{eligibilityChecklist.polio}}"
+                  },
+                  {
+                    "key": "polioDate",
+                    "value": "{{eligibilityChecklist.polioDate}}"
+                  },
+                  {
+                    "key": "measlesRubella",
+                    "value": "{{eligibilityChecklist.measlesRubella}}"
+                  },
+                  {
+                    "key": "measlesRubellaDate",
+                    "value": "{{eligibilityChecklist.measlesRubellaDate}}"
+                  },
+                  {
                     "key": "latitude",
                     "value": "{{navigation.latitude}}"
                   },
@@ -5566,6 +6386,38 @@
                   {
                     "key": "ec5",
                     "value": "{{eligibilityChecklist.ec5}}"
+                  },
+                  {
+                    "key": "malariaVaccine",
+                    "value": "{{eligibilityChecklist.malariaVaccine}}"
+                  },
+                  {
+                    "key": "malariaVaccineDate",
+                    "value": "{{eligibilityChecklist.malariaVaccineDate}}"
+                  },
+                  {
+                    "key": "smc",
+                    "value": "{{eligibilityChecklist.smc}}"
+                  },
+                  {
+                    "key": "smcDate",
+                    "value": "{{eligibilityChecklist.smcDate}}"
+                  },
+                  {
+                    "key": "polio",
+                    "value": "{{eligibilityChecklist.polio}}"
+                  },
+                  {
+                    "key": "polioDate",
+                    "value": "{{eligibilityChecklist.polioDate}}"
+                  },
+                  {
+                    "key": "measlesRubella",
+                    "value": "{{eligibilityChecklist.measlesRubella}}"
+                  },
+                  {
+                    "key": "measlesRubellaDate",
+                    "value": "{{eligibilityChecklist.measlesRubellaDate}}"
                   },
                   {
                     "key": "latitude",
@@ -5675,6 +6527,38 @@
                     "value": "{{eligibilityChecklist.ec5}}"
                   },
                   {
+                    "key": "malariaVaccine",
+                    "value": "{{eligibilityChecklist.malariaVaccine}}"
+                  },
+                  {
+                    "key": "malariaVaccineDate",
+                    "value": "{{eligibilityChecklist.malariaVaccineDate}}"
+                  },
+                  {
+                    "key": "smc",
+                    "value": "{{eligibilityChecklist.smc}}"
+                  },
+                  {
+                    "key": "smcDate",
+                    "value": "{{eligibilityChecklist.smcDate}}"
+                  },
+                  {
+                    "key": "polio",
+                    "value": "{{eligibilityChecklist.polio}}"
+                  },
+                  {
+                    "key": "polioDate",
+                    "value": "{{eligibilityChecklist.polioDate}}"
+                  },
+                  {
+                    "key": "measlesRubella",
+                    "value": "{{eligibilityChecklist.measlesRubella}}"
+                  },
+                  {
+                    "key": "measlesRubellaDate",
+                    "value": "{{eligibilityChecklist.measlesRubellaDate}}"
+                  },
+                  {
                     "key": "latitude",
                     "value": "{{navigation.latitude}}"
                   },
@@ -5776,6 +6660,38 @@
                     "value": "{{eligibilityChecklist.ec5}}"
                   },
                   {
+                    "key": "malariaVaccine",
+                    "value": "{{eligibilityChecklist.malariaVaccine}}"
+                  },
+                  {
+                    "key": "malariaVaccineDate",
+                    "value": "{{eligibilityChecklist.malariaVaccineDate}}"
+                  },
+                  {
+                    "key": "smc",
+                    "value": "{{eligibilityChecklist.smc}}"
+                  },
+                  {
+                    "key": "smcDate",
+                    "value": "{{eligibilityChecklist.smcDate}}"
+                  },
+                  {
+                    "key": "polio",
+                    "value": "{{eligibilityChecklist.polio}}"
+                  },
+                  {
+                    "key": "polioDate",
+                    "value": "{{eligibilityChecklist.polioDate}}"
+                  },
+                  {
+                    "key": "measlesRubella",
+                    "value": "{{eligibilityChecklist.measlesRubella}}"
+                  },
+                  {
+                    "key": "measlesRubellaDate",
+                    "value": "{{eligibilityChecklist.measlesRubellaDate}}"
+                  },
+                  {
                     "key": "latitude",
                     "value": "{{navigation.latitude}}"
                   },
@@ -5833,6 +6749,38 @@
                   {
                     "key": "ec5",
                     "value": "{{eligibilityChecklist.ec5}}"
+                  },
+                  {
+                    "key": "malariaVaccine",
+                    "value": "{{eligibilityChecklist.malariaVaccine}}"
+                  },
+                  {
+                    "key": "malariaVaccineDate",
+                    "value": "{{eligibilityChecklist.malariaVaccineDate}}"
+                  },
+                  {
+                    "key": "smc",
+                    "value": "{{eligibilityChecklist.smc}}"
+                  },
+                  {
+                    "key": "smcDate",
+                    "value": "{{eligibilityChecklist.smcDate}}"
+                  },
+                  {
+                    "key": "polio",
+                    "value": "{{eligibilityChecklist.polio}}"
+                  },
+                  {
+                    "key": "polioDate",
+                    "value": "{{eligibilityChecklist.polioDate}}"
+                  },
+                  {
+                    "key": "measlesRubella",
+                    "value": "{{eligibilityChecklist.measlesRubella}}"
+                  },
+                  {
+                    "key": "measlesRubellaDate",
+                    "value": "{{eligibilityChecklist.measlesRubellaDate}}"
                   },
                   {
                     "key": "sourceFlow",
@@ -7264,6 +8212,38 @@
               {
                 "key": "ec5",
                 "value": "{{navigation.ec5}}"
+              },
+              {
+                "key": "malariaVaccine",
+                "value": "{{navigation.malariaVaccine}}"
+              },
+              {
+                "key": "malariaVaccineDate",
+                "value": "{{navigation.malariaVaccineDate}}"
+              },
+              {
+                "key": "smc",
+                "value": "{{navigation.smc}}"
+              },
+              {
+                "key": "smcDate",
+                "value": "{{navigation.smcDate}}"
+              },
+              {
+                "key": "polio",
+                "value": "{{navigation.polio}}"
+              },
+              {
+                "key": "polioDate",
+                "value": "{{navigation.polioDate}}"
+              },
+              {
+                "key": "measlesRubella",
+                "value": "{{navigation.measlesRubella}}"
+              },
+              {
+                "key": "measlesRubellaDate",
+                "value": "{{navigation.measlesRubellaDate}}"
               },
               {
                 "key": "referralReasons",
