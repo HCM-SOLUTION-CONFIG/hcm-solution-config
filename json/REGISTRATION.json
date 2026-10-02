@@ -580,6 +580,10 @@
                   {
                     "key": "measlesRubellaDate",
                     "value": "{{navigation.measlesRubellaDate}}"
+                  },
+                  {
+                    "key": "administrationStartTime",
+                    "value": "{{fn:startAdministrationTimer()}}"
                   }
                 ],
                 "name": "DELIVERY",
@@ -3188,6 +3192,18 @@
                   {
                     "key": "measlesRubellaDate",
                     "value": "{{navigation.measlesRubellaDate}}"
+                  },
+                  {
+                    "key": "administrationStartTime",
+                    "value": "{{navigation.administrationStartTime}}"
+                  },
+                  {
+                    "key": "administrationEndTime",
+                    "value": "{{fn:administrationEndTime()}}"
+                  },
+                  {
+                    "key": "administrationTimeFlag",
+                    "value": "{{fn:administrationTimeFlag(navigation.administrationStartTime)}}"
                   }
                 ],
                 "onError": [
@@ -3714,6 +3730,18 @@
               {
                 "key": "measlesRubellaDate",
                 "value": "{{navigation.measlesRubellaDate}}"
+              },
+              {
+                "key": "administrationStartTime",
+                "value": "{{navigation.administrationStartTime}}"
+              },
+              {
+                "key": "administrationEndTime",
+                "value": "{{fn:administrationEndTime()}}"
+              },
+              {
+                "key": "administrationTimeFlag",
+                "value": "{{fn:administrationTimeFlag(navigation.administrationStartTime)}}"
               }
             ],
             "onError": [
