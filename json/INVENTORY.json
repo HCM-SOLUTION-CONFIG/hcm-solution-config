@@ -1178,16 +1178,16 @@
             },
             {
               "type": "integer",
-              "label": "APPONE_INVENTORY_QUANTITY_WASTAGE_LABEL",
+              "label": "APPONE_INVENTORY_QUANTITY_EMPTY_BOTTLE_LABEL",
               "order": 5,
               "value": "",
               "format": "text",
-              "hidden": true,
+              "hidden": false,
               "tooltip": "",
               "helpText": "",
               "infoText": "",
               "readOnly": false,
-              "fieldName": "quantityWastage",
+              "fieldName": "emptyBottle",
               "deleteFlag": false,
               "innerLabel": "",
               "visibilityCondition": {
@@ -1203,7 +1203,7 @@
                 {
                   "type": "required",
                   "value": true,
-                  "message": "QUANTITY_WASTAGE_REQUIRED_ERROR_MESSAGE"
+                  "message": "QUANTITY_EMPTY_BOTTLE_REQUIRED_ERROR_MESSAGE"
                 },
                 {
                   "type": "regex",
@@ -1239,6 +1239,51 @@
               },
               "systemDate": false,
               "validations": [
+                {
+                  "type": "regex",
+                  "value": "^[0-9]+$",
+                  "message": "QUANTITY_VALID_NUMBER_ERROR_MESSAGE"
+                }
+              ],
+              "errorMessage": "",
+              "isMultiSelect": false,
+              "enums": null
+            },
+            {
+              "type": "integer",
+              "label": "APPONE_INVENTORY_QUANTITY_WASTAGE_LABEL",
+              "order": 5,
+              "value": "",
+              "format": "text",
+              "hidden": false,
+              "tooltip": "",
+              "helpText": "",
+              "infoText": "",
+              "readOnly": false,
+              "fieldName": "quantityWastage",
+              "deleteFlag": false,
+              "innerLabel": "",
+              "visibilityCondition": {
+                "expression": [
+                  {
+                    "condition": "navigation.stockEntryType == 'RETURNED' && navigation.isDistributor",
+                    "type": "custom"
+                  }
+                ]
+              },
+              "autoFillCondition": [
+                {
+                  "value": "{{fn:calculateWastage(quantityReturned_$tabIndex, quantityPartialUsed_$tabIndex, currentEntity.id)}}",
+                  "expression": "navigation.stockEntryType == 'RETURNED' && navigation.isDistributor"
+                }
+              ],
+              "systemDate": false,
+              "validations": [
+                {
+                  "type": "required",
+                  "value": true,
+                  "message": "QUANTITY_WASTAGE_REQUIRED_ERROR_MESSAGE"
+                },
                 {
                   "type": "regex",
                   "value": "^[0-9]+$",
@@ -1405,6 +1450,11 @@
             "configName": "stock",
             "data": [
               {
+                "key": "quantityPartialML",
+                "perEntity": true,
+                "value": "{{fn:calculatePartial(formData.stockProductDetails.quantityReturned, formData.stockProductDetails.quantityPartialUsed, formData.stockDetails.productdetail.id)}}"
+              },
+              {
                 "key": "stockEntryType",
                 "value": "{{navigation.stockEntryType}}"
               },
@@ -1435,6 +1485,11 @@
               {
                 "key": "teamCode",
                 "value": "{{fn:getTeamCode(formData.warehouseDetails.teamCode)}}"
+              },
+              {
+                "key": "quantityWastage",
+                "perEntity": true,
+                "value": "{{fn:calculateWastage(formData.stockProductDetails.quantityReturned, formData.stockProductDetails.quantityPartialUsed, formData.stockDetails.productdetail.id)}}"
               },
               {
                 "key": "deliveryTeamName",

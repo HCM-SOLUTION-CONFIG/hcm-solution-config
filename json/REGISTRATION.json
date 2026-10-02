@@ -393,7 +393,7 @@
           "label": "RECORD_CYCLE_DOSE",
           "format": "actionPopup",
           "fieldName": "insufficientStockPopUp",
-          "visible": "{{fn:hasStockForDelivery(contextData.0.eligibleProductVariants)}} == false",
+          "visible": "{{fn:hasStockForDelivery(contextData.0.eligibleProductVariants)}} == false && {{fn:isDelivered(contextData.0.task)}} == false",
           "properties": {
             "icon": "Warning",
             "size": "large",
@@ -494,6 +494,14 @@
                     "value": "{{navigation.gender}}"
                   },
                   {
+                    "key": "height",
+                    "value": "{{navigation.height}}"
+                  },
+                  {
+                    "key": "weight",
+                    "value": "{{navigation.weight}}"
+                  },
+                  {
                     "key": "headName",
                     "value": "{{navigation.headName}}"
                   },
@@ -540,6 +548,38 @@
                   {
                     "key": "ec5",
                     "value": "{{navigation.ec5}}"
+                  },
+                  {
+                    "key": "malariaVaccine",
+                    "value": "{{navigation.malariaVaccine}}"
+                  },
+                  {
+                    "key": "malariaVaccineDate",
+                    "value": "{{navigation.malariaVaccineDate}}"
+                  },
+                  {
+                    "key": "smc",
+                    "value": "{{navigation.smc}}"
+                  },
+                  {
+                    "key": "smcDate",
+                    "value": "{{navigation.smcDate}}"
+                  },
+                  {
+                    "key": "polio",
+                    "value": "{{navigation.polio}}"
+                  },
+                  {
+                    "key": "polioDate",
+                    "value": "{{navigation.polioDate}}"
+                  },
+                  {
+                    "key": "measlesRubella",
+                    "value": "{{navigation.measlesRubella}}"
+                  },
+                  {
+                    "key": "measlesRubellaDate",
+                    "value": "{{navigation.measlesRubellaDate}}"
                   }
                 ],
                 "name": "DELIVERY",
@@ -1211,7 +1251,7 @@
                     "type": "template",
                     "label": "NOT_ELIGIBLE",
                     "format": "tag",
-                    "visible": "{{fn:checkEligibilityForAgeAndSideEffect(item.individual.0, item.task, contextData.0.currentRunningCycle)}}==false && && {{fn:length(item.hFReferral)}}>0 && {{fn:isHead(item.member)}}==false && {{fn:hasSMCReferralForCurrentCycle(item.hFReferral)}}==false",
+                    "visible": "{{fn:checkEligibilityForAgeAndSideEffect(item.individual.0, item.task, contextData.0.currentRunningCycle)}}==false && {{fn:length(item.hFReferral)}}>0 && {{fn:isHead(item.member)}}==false && {{fn:hasSMCReferralForCurrentCycle(item.hFReferral)}}==false",
                     "fieldName": "notEligible",
                     "properties": {
                       "tagType": "error",
@@ -1281,7 +1321,7 @@
                     "type": "template",
                     "label": "DELIVERY",
                     "format": "button",
-                    "visible": "{{fn:checkEligibilityForAgeAndSideEffect(item.individual.0, item.task,contextData.0.currentRunningCycle)}} == true  && {{fn:checkAllDoseDelivered(item.task)}} == false && {{fn:hasSMCReferralForCurrentCycle(item.hFReferral)}}==false && {{fn:isHead(item.member)}} == false",
+                    "visible": "{{fn:checkEligibilityForAgeAndSideEffect(item.individual.0, item.task,contextData.0.currentRunningCycle)}} == true  && {{fn:isDelivered(item.task)}} == false && {{fn:hasSMCReferralForCurrentCycle(item.hFReferral)}}==false && {{fn:isHead(item.member)}} == false",
                     "onAction": [
                       {
                         "actionType": "NAVIGATION",
@@ -1332,6 +1372,14 @@
                               "value": "{{fn:str(item.individual.0.gender)}}"
                             },
                             {
+                              "key": "height",
+                              "value": "{{fn:str(item.individual.0.additionalFields.fields.height)}}"
+                            },
+                            {
+                              "key": "weight",
+                              "value": "{{fn:str(item.individual.0.additionalFields.fields.weight)}}"
+                            },
+                            {
                               "key": "headName",
                               "value": "{{fn:fullName(contextData.0.headIndividual.IndividualModel.name)}}"
                             },
@@ -1376,7 +1424,7 @@
                     "type": "template",
                     "label": "HOUSEHOLD_OVERVIEW_UNABLE_TO_DELIVER_LABEL",
                     "format": "button",
-                    "visible": "{{fn:checkEligibilityForAgeAndSideEffect(item.individual.0, item.task,contextData.0.currentRunningCycle)}} == true  && {{fn:checkAllDoseDelivered(item.task)}} == false && {{fn:hasSMCReferralForCurrentCycle(item.hFReferral)}}==false && {{fn:isHead(item.member)}} == false",
+                    "visible": "{{fn:checkEligibilityForAgeAndSideEffect(item.individual.0, item.task,contextData.0.currentRunningCycle)}} == true  && {{fn:isDelivered(item.task)}} == false && {{fn:hasSMCReferralForCurrentCycle(item.hFReferral)}}==false && {{fn:isHead(item.member)}} == false",
                     "onAction": [
                       {
                         "actionType": "NAVIGATION",
@@ -1447,7 +1495,7 @@
                     "type": "template",
                     "label": "REGISTRATION_VIEW_DETAILS",
                     "format": "button",
-                    "visible": "{{fn:checkEligibilityForAgeAndSideEffect(item.individual.0, item.task,contextData.0.currentRunningCycle)}} == true &&  {{fn:checkAllDoseDelivered(item.task)}} == true && {{fn:hasSMCReferralForCurrentCycle(item.hFReferral)}}==false",
+                    "visible": "{{fn:checkEligibilityForAgeAndSideEffect(item.individual.0, item.task,contextData.0.currentRunningCycle)}} == true &&  {{fn:isDelivered(item.task)}} == true && {{fn:hasSMCReferralForCurrentCycle(item.hFReferral)}}==false",
                     "onAction": [
                       {
                         "actionType": "NAVIGATION",
@@ -1494,6 +1542,14 @@
                               "value": "{{fn:str(item.individual.0.gender)}}"
                             },
                             {
+                              "key": "height",
+                              "value": "{{fn:str(item.individual.0.additionalFields.fields.height)}}"
+                            },
+                            {
+                              "key": "weight",
+                              "value": "{{fn:str(item.individual.0.additionalFields.fields.weight)}}"
+                            },
+                            {
                               "key": "headName",
                               "value": "{{fn:fullName(contextData.0.headIndividual.IndividualModel.name)}}"
                             },
@@ -1525,7 +1581,7 @@
                     "label": "REDOSE_ADMINISTRATION",
                     "format": "actionPopup",
                     "fieldName": "redoseInsufficientStockPopUp",
-                    "visible": "{{fn:checkEligibilityForAgeAndSideEffect(item.individual.0, item.task,contextData.0.currentRunningCycle)}} == true && {{fn:checkAllDoseDelivered(item.task)}} == true && {{fn:hasSMCReferralForCurrentCycle(item.hFReferral)}}==false && {{fn:hasStockForRedose(item.task)}} == false",
+                    "visible": "{{fn:checkEligibilityForAgeAndSideEffect(item.individual.0, item.task,contextData.0.currentRunningCycle)}} == true && {{fn:isDelivered(item.task)}} == true && {{fn:hasSMCReferralForCurrentCycle(item.hFReferral)}}==false && {{fn:hasStockForRedose(item.task)}} == false",
                     "disabled": "{{fn:isRedoseWindowExpired(item.task)}}==true || {{fn:isRedoseCompleted(item.task)}}==true",
                     "properties": {
                       "icon": "Warning",
@@ -1588,7 +1644,7 @@
                     "type": "template",
                     "label": "REDOSE_ADMINISTRATION",
                     "format": "button",
-                    "visible": "{{fn:checkEligibilityForAgeAndSideEffect(item.individual.0, item.task,contextData.0.currentRunningCycle)}} == true && {{fn:checkAllDoseDelivered(item.task)}} == true && {{fn:hasSMCReferralForCurrentCycle(item.hFReferral)}}==false && {{fn:hasStockForRedose(item.task)}} == true",
+                    "visible": "{{fn:checkEligibilityForAgeAndSideEffect(item.individual.0, item.task,contextData.0.currentRunningCycle)}} == true && {{fn:isDelivered(item.task)}} == true && {{fn:hasSMCReferralForCurrentCycle(item.hFReferral)}}==false && {{fn:hasStockForRedose(item.task)}} == true",
                     "disabled": "{{fn:isRedoseWindowExpired(item.task)}}==true || {{fn:isRedoseCompleted(item.task)}}==true",
                     "onAction": [
                       {
@@ -1638,6 +1694,14 @@
                             {
                               "key": "gender",
                               "value": "{{fn:str(item.individual.0.gender)}}"
+                            },
+                            {
+                              "key": "height",
+                              "value": "{{fn:str(item.individual.0.additionalFields.fields.height)}}"
+                            },
+                            {
+                              "key": "weight",
+                              "value": "{{fn:str(item.individual.0.additionalFields.fields.weight)}}"
                             },
                             {
                               "key": "headName",
@@ -1719,6 +1783,10 @@
                             "value": "{{contextData.0.household.HouseholdModel.clientReferenceId}}"
                           },
                           {
+                            "key": "isHead",
+                            "value": "false"
+                          },
+                          {
                             "key": "UNIQUE_BENEFICIARY_ID",
                             "value": "{{latestBeneficiaryId}}"
                           }
@@ -1792,6 +1860,10 @@
                                   {
                                     "key": "HouseholdClientReferenceId",
                                     "value": "{{contextData.0.household.HouseholdModel.clientReferenceId}}"
+                                  },
+                                  {
+                                    "key": "isHead",
+                                    "value": "false"
                                   },
                                   {
                                     "key": "UNIQUE_BENEFICIARY_ID",
@@ -2975,382 +3047,6 @@
         {
           "body": null,
           "flow": "DELIVERY",
-          "page": "DeliveryChecklist",
-          "type": "object",
-          "label": "APPONE_DELIVERYFLOW_DELIVERYDETAILS_ACTIONS_SCREEN_HEADING",
-          "order": 2,
-          "footer": [
-            {
-              "label": "APPONE_DELIVERYFLOW_DELIVERYDETAILS_ACTIONS_SUBMIT_LABEL",
-              "format": "button",
-              "fieldName": "deliveryChecklistSubmitButton",
-              "onAction": [
-                {
-                  "actionType": "NAVIGATION",
-                  "properties": {
-                    "name": "household-acknowledgement",
-                    "type": "template"
-                  }
-                }
-              ],
-              "properties": {
-                "size": "large",
-                "type": "primary",
-                "mainAxisSize": "max",
-                "mainAxisAlignment": "center"
-              }
-            }
-          ],
-          "module": "REGISTRATION",
-          "heading": "APPONE_DELIVERYFLOW_DELIVERYDETAILS_ACTIONS_SCREEN_HEADING",
-          "summary": false,
-          "version": 1,
-          "onAction": [
-            {
-              "actionType": "FETCH_TRANSFORMER_CONFIG",
-              "properties": {
-                "data": [
-                  {
-                    "key": "ProjectBeneficiaryClientReferenceId",
-                    "value": "{{navigation.ProjectBeneficiaryClientReferenceId}}"
-                  },
-                  {
-                    "key": "HouseholdClientReferenceId",
-                    "value": "{{navigation.HouseholdClientReferenceId}}"
-                  },
-                  {
-                    "key": "memberCount",
-                    "value": "{{navigation.memberCount}}"
-                  },
-                  {
-                    "key": "individualClientReferenceId",
-                    "value": "{{navigation.individualClientReferenceId}}"
-                  },
-                  {
-                    "key": "beneficiaryId",
-                    "value": "{{navigation.beneficiaryId}}"
-                  },
-                  {
-                    "key": "childName",
-                    "value": "{{navigation.childName}}"
-                  },
-                  {
-                    "key": "ageInMonths",
-                    "value": "{{navigation.ageInMonths}}"
-                  },
-                  {
-                    "key": "gender",
-                    "value": "{{navigation.gender}}"
-                  },
-                  {
-                    "key": "headName",
-                    "value": "{{navigation.headName}}"
-                  },
-                  {
-                    "key": "headMobileNumber",
-                    "value": "{{navigation.headMobileNumber}}"
-                  },
-                  {
-                    "key": "cycleIndex",
-                    "value": "{{navigation.cycleIndex}}"
-                  },
-                  {
-                    "key": "doseIndex",
-                    "value": "{{navigation.doseIndex}}"
-                  },
-                  {
-                    "key": "deliveryStrategy",
-                    "value": "{{navigation.deliveryStrategy}}"
-                  },
-                  {
-                    "key": "ec1",
-                    "value": "{{navigation.ec1}}"
-                  },
-                  {
-                    "key": "ec2",
-                    "value": "{{navigation.ec2}}"
-                  },
-                  {
-                    "key": "ec3",
-                    "value": "{{navigation.ec3}}"
-                  },
-                  {
-                    "key": "ec4",
-                    "value": "{{navigation.ec4}}"
-                  },
-                  {
-                    "key": "ec5",
-                    "value": "{{navigation.ec5}}"
-                  }
-                ],
-                "onError": [
-                  {
-                    "actionType": "SHOW_TOAST",
-                    "properties": {
-                      "message": "Failed to fetch config."
-                    }
-                  }
-                ],
-                "configName": "delivery"
-              }
-            },
-            {
-              "actionType": "CREATE_EVENT",
-              "properties": {
-                "onError": [
-                  {
-                    "actionType": "SHOW_TOAST",
-                    "properties": {
-                      "message": "Failed to create household."
-                    }
-                  }
-                ]
-              }
-            },
-            {
-              "actions": [
-                {
-                  "actionType": "FETCH_TRANSFORMER_CONFIG",
-                  "properties": {
-                    "data": [
-                      {
-                        "key": "ProjectBeneficiaryClientReferenceId",
-                        "value": "{{navigation.ProjectBeneficiaryClientReferenceId}}"
-                      },
-                      {
-                        "key": "HouseholdClientReferenceId",
-                        "value": "{{navigation.HouseholdClientReferenceId}}"
-                      },
-                      {
-                        "key": "memberCount",
-                        "value": "{{navigation.memberCount}}"
-                      },
-                      {
-                        "key": "individualClientReferenceId",
-                        "value": "{{navigation.individualClientReferenceId}}"
-                      },
-                      {
-                        "key": "beneficiaryId",
-                        "value": "{{navigation.beneficiaryId}}"
-                      },
-                      {
-                        "key": "childName",
-                        "value": "{{navigation.childName}}"
-                      },
-                      {
-                        "key": "ageInMonths",
-                        "value": "{{navigation.ageInMonths}}"
-                      },
-                      {
-                        "key": "gender",
-                        "value": "{{navigation.gender}}"
-                      },
-                      {
-                        "key": "headName",
-                        "value": "{{navigation.headName}}"
-                      },
-                      {
-                        "key": "latitude",
-                        "value": "{{navigation.latitude}}"
-                      },
-                      {
-                        "key": "longitude",
-                        "value": "{{navigation.longitude}}"
-                      },
-                      {
-                        "key": "headMobileNumber",
-                        "value": "{{navigation.headMobileNumber}}"
-                      },
-                      {
-                        "key": "cycleIndex",
-                        "value": "{{navigation.cycleIndex}}"
-                      },
-                      {
-                        "key": "deliveryStrategy",
-                        "value": "{{navigation.deliveryStrategy}}"
-                      },
-                      {
-                        "key": "futureDoses",
-                        "value": "{{navigation.futureDoses}}"
-                      },
-                      {
-                        "key": "ec1",
-                        "value": "{{navigation.ec1}}"
-                      },
-                      {
-                        "key": "ec2",
-                        "value": "{{navigation.ec2}}"
-                      },
-                      {
-                        "key": "ec3",
-                        "value": "{{navigation.ec3}}"
-                      },
-                      {
-                        "key": "ec4",
-                        "value": "{{navigation.ec4}}"
-                      },
-                      {
-                        "key": "ec5",
-                        "value": "{{navigation.ec5}}"
-                      }
-                    ],
-                    "onError": [
-                      {
-                        "actionType": "SHOW_TOAST",
-                        "properties": {
-                          "message": "Failed to fetch config for bulk delivery."
-                        }
-                      }
-                    ],
-                    "configName": "indirectBulkDelivery"
-                  }
-                },
-                {
-                  "actionType": "CREATE_EVENT",
-                  "properties": {
-                    "onError": [
-                      {
-                        "actionType": "SHOW_TOAST",
-                        "properties": {
-                          "message": "Failed to create bulk tasks."
-                        }
-                      }
-                    ]
-                  }
-                }
-              ],
-              "condition": {
-                "expression": "doseIndex == 1"
-              }
-            },
-            {
-              "actionType": "NAVIGATION",
-              "properties": {
-                "data": [
-                  {
-                    "key": "ProjectBeneficiaryClientReferenceId",
-                    "value": "{{navigation.ProjectBeneficiaryClientReferenceId}}"
-                  },
-                  {
-                    "key": "HouseholdClientReferenceId",
-                    "value": "{{navigation.HouseholdClientReferenceId}}"
-                  }
-                ],
-                "name": "deliverySuccess",
-                "type": "TEMPLATE",
-                "onError": [
-                  {
-                    "actionType": "SHOW_TOAST",
-                    "properties": {
-                      "message": "Navigation failed."
-                    }
-                  }
-                ],
-                "navigationMode": "popUntilAndPush",
-                "popUntilPageName": "searchBeneficiary"
-              }
-            }
-          ],
-          "navigateTo": {
-            "name": "household-acknowledgement",
-            "type": "template"
-          },
-          "properties": [
-            {
-              "type": "boolean",
-              "label": "APPONE_DELIVERYFLOW_DELIVERYDETAIL_ACTIONS_GIVE_TABLET",
-              "order": 1,
-              "value": "",
-              "format": "checkbox",
-              "hidden": false,
-              "isMdms": false,
-              "tooltip": "",
-              "helpText": "",
-              "infoText": "",
-              "readOnly": false,
-              "fieldName": "ACTION1",
-              "required": true,
-              "mandatory": true,
-              "deleteFlag": false,
-              "innerLabel": "",
-              "schemaCode": null,
-              "systemDate": true,
-              "validations": [
-                {
-                  "type": "required",
-                  "value": true,
-                  "message": "APPONE_DELIVERYFLOW_DELIVERYDETAIL_ACTIONS_REQUIRED_MESSAGE"
-                }
-              ],
-              "errorMessage": ""
-            },
-            {
-              "type": "boolean",
-              "label": "APPONE_DELIVERYFLOW_DELIVERYDETAIL_ACTIONS_WRITE_CODE",
-              "order": 1,
-              "value": "",
-              "format": "checkbox",
-              "hidden": false,
-              "isMdms": false,
-              "tooltip": "",
-              "helpText": "",
-              "infoText": "",
-              "readOnly": false,
-              "fieldName": "ACTION2",
-              "required": true,
-              "mandatory": true,
-              "deleteFlag": false,
-              "innerLabel": "",
-              "schemaCode": null,
-              "systemDate": true,
-              "validations": [
-                {
-                  "type": "required",
-                  "value": true,
-                  "message": "APPONE_DELIVERYFLOW_DELIVERYDETAIL_ACTIONS_REQUIRED_MESSAGE"
-                }
-              ],
-              "errorMessage": ""
-            },
-            {
-              "type": "boolean",
-              "label": "APPONE_DELIVERYFLOW_DELIVERYDETAIL_ACTIONS_SPAQ",
-              "order": 1,
-              "value": "",
-              "format": "checkbox",
-              "hidden": false,
-              "isMdms": false,
-              "tooltip": "",
-              "helpText": "",
-              "infoText": "",
-              "readOnly": false,
-              "fieldName": "ACTION3",
-              "required": true,
-              "mandatory": true,
-              "deleteFlag": false,
-              "innerLabel": "",
-              "schemaCode": null,
-              "systemDate": true,
-              "validations": [
-                {
-                  "type": "required",
-                  "value": true,
-                  "message": "APPONE_DELIVERYFLOW_DELIVERYDETAIL_ACTIONS_REQUIRED_MESSAGE"
-                }
-              ],
-              "errorMessage": ""
-            }
-          ],
-          "actionLabel": "APPONE_DELIVERYFLOW_DELIVERYDETAILS_ACTIONS_SUBMIT_LABEL",
-          "description": "APPONE_DELIVERYFLOW_DELIVERYDETAILS_ACTIONS_SCREEN_DESCRIPTION",
-          "showTabView": false,
-          "submitCondition": null,
-          "preventScreenCapture": false,
-          "conditionalNavigateTo": null
-        },
-        {
-          "body": null,
-          "flow": "DELIVERY",
           "page": "DeliveryDetails",
           "type": "object",
           "label": "APPONE_REGISTRATION_DELIVERYDETAILS_SCREEN_HEADING",
@@ -3419,6 +3115,14 @@
                     "value": "{{navigation.gender}}"
                   },
                   {
+                    "key": "height",
+                    "value": "{{navigation.height}}"
+                  },
+                  {
+                    "key": "weight",
+                    "value": "{{navigation.weight}}"
+                  },
+                  {
                     "key": "headName",
                     "value": "{{navigation.headName}}"
                   },
@@ -3457,6 +3161,38 @@
                   {
                     "key": "ec5",
                     "value": "{{navigation.ec5}}"
+                  },
+                  {
+                    "key": "malariaVaccine",
+                    "value": "{{navigation.malariaVaccine}}"
+                  },
+                  {
+                    "key": "malariaVaccineDate",
+                    "value": "{{navigation.malariaVaccineDate}}"
+                  },
+                  {
+                    "key": "smc",
+                    "value": "{{navigation.smc}}"
+                  },
+                  {
+                    "key": "smcDate",
+                    "value": "{{navigation.smcDate}}"
+                  },
+                  {
+                    "key": "polio",
+                    "value": "{{navigation.polio}}"
+                  },
+                  {
+                    "key": "polioDate",
+                    "value": "{{navigation.polioDate}}"
+                  },
+                  {
+                    "key": "measlesRubella",
+                    "value": "{{navigation.measlesRubella}}"
+                  },
+                  {
+                    "key": "measlesRubellaDate",
+                    "value": "{{navigation.measlesRubellaDate}}"
                   }
                 ],
                 "onError": [
@@ -3522,6 +3258,14 @@
                         "value": "{{navigation.gender}}"
                       },
                       {
+                        "key": "height",
+                        "value": "{{navigation.height}}"
+                      },
+                      {
+                        "key": "weight",
+                        "value": "{{navigation.weight}}"
+                      },
+                      {
                         "key": "headName",
                         "value": "{{navigation.headName}}"
                       },
@@ -3568,6 +3312,38 @@
                       {
                         "key": "ec5",
                         "value": "{{navigation.ec5}}"
+                      },
+                      {
+                        "key": "malariaVaccine",
+                        "value": "{{navigation.malariaVaccine}}"
+                      },
+                      {
+                        "key": "malariaVaccineDate",
+                        "value": "{{navigation.malariaVaccineDate}}"
+                      },
+                      {
+                        "key": "smc",
+                        "value": "{{navigation.smc}}"
+                      },
+                      {
+                        "key": "smcDate",
+                        "value": "{{navigation.smcDate}}"
+                      },
+                      {
+                        "key": "polio",
+                        "value": "{{navigation.polio}}"
+                      },
+                      {
+                        "key": "polioDate",
+                        "value": "{{navigation.polioDate}}"
+                      },
+                      {
+                        "key": "measlesRubella",
+                        "value": "{{navigation.measlesRubella}}"
+                      },
+                      {
+                        "key": "measlesRubellaDate",
+                        "value": "{{navigation.measlesRubellaDate}}"
                       }
                     ],
                     "onError": [
@@ -3610,6 +3386,10 @@
                   {
                     "key": "HouseholdClientReferenceId",
                     "value": "{{navigation.HouseholdClientReferenceId}}"
+                  },
+                  {
+                    "key": "height",
+                    "value": "{{navigation.height}}"
                   }
                 ],
                 "name": "deliverySuccess",
@@ -3869,6 +3649,14 @@
                 "value": "{{navigation.headMobileNumber}}"
               },
               {
+                "key": "height",
+                "value": "{{navigation.height}}"
+              },
+              {
+                "key": "weight",
+                "value": "{{navigation.weight}}"
+              },
+              {
                 "key": "cycleIndex",
                 "value": "{{navigation.cycleIndex}}"
               },
@@ -3899,6 +3687,38 @@
               {
                 "key": "ec5",
                 "value": "{{navigation.ec5}}"
+              },
+              {
+                "key": "malariaVaccine",
+                "value": "{{navigation.malariaVaccine}}"
+              },
+              {
+                "key": "malariaVaccineDate",
+                "value": "{{navigation.malariaVaccineDate}}"
+              },
+              {
+                "key": "smc",
+                "value": "{{navigation.smc}}"
+              },
+              {
+                "key": "smcDate",
+                "value": "{{navigation.smcDate}}"
+              },
+              {
+                "key": "polio",
+                "value": "{{navigation.polio}}"
+              },
+              {
+                "key": "polioDate",
+                "value": "{{navigation.polioDate}}"
+              },
+              {
+                "key": "measlesRubella",
+                "value": "{{navigation.measlesRubella}}"
+              },
+              {
+                "key": "measlesRubellaDate",
+                "value": "{{navigation.measlesRubellaDate}}"
               }
             ],
             "onError": [
@@ -3986,6 +3806,14 @@
                     "value": "{{navigation.headMobileNumber}}"
                   },
                   {
+                    "key": "height",
+                    "value": "{{navigation.height}}"
+                  },
+                  {
+                    "key": "weight",
+                    "value": "{{navigation.weight}}"
+                  },
+                  {
                     "key": "cycleIndex",
                     "value": "{{navigation.cycleIndex}}"
                   },
@@ -4016,6 +3844,38 @@
                   {
                     "key": "ec5",
                     "value": "{{navigation.ec5}}"
+                  },
+                  {
+                    "key": "malariaVaccine",
+                    "value": "{{navigation.malariaVaccine}}"
+                  },
+                  {
+                    "key": "malariaVaccineDate",
+                    "value": "{{navigation.malariaVaccineDate}}"
+                  },
+                  {
+                    "key": "smc",
+                    "value": "{{navigation.smc}}"
+                  },
+                  {
+                    "key": "smcDate",
+                    "value": "{{navigation.smcDate}}"
+                  },
+                  {
+                    "key": "polio",
+                    "value": "{{navigation.polio}}"
+                  },
+                  {
+                    "key": "polioDate",
+                    "value": "{{navigation.polioDate}}"
+                  },
+                  {
+                    "key": "measlesRubella",
+                    "value": "{{navigation.measlesRubella}}"
+                  },
+                  {
+                    "key": "measlesRubellaDate",
+                    "value": "{{navigation.measlesRubellaDate}}"
                   }
                 ],
                 "onError": [
@@ -4058,6 +3918,14 @@
               {
                 "key": "HouseholdClientReferenceId",
                 "value": "{{navigation.HouseholdClientReferenceId}}"
+              },
+              {
+                "key": "height",
+                "value": "{{navigation.height}}"
+              },
+              {
+                "key": "weight",
+                "value": "{{navigation.weight}}"
               }
             ],
             "name": "deliverySuccess",
@@ -4170,6 +4038,14 @@
                         "value": "{{navigation.gender}}"
                       },
                       {
+                        "key": "height",
+                        "value": "{{navigation.height}}"
+                      },
+                      {
+                        "key": "weight",
+                        "value": "{{navigation.weight}}"
+                      },
+                      {
                         "key": "headName",
                         "value": "{{navigation.headName}}"
                       },
@@ -4216,6 +4092,38 @@
                       {
                         "key": "ec5",
                         "value": "{{navigation.ec5}}"
+                      },
+                      {
+                        "key": "malariaVaccine",
+                        "value": "{{navigation.malariaVaccine}}"
+                      },
+                      {
+                        "key": "malariaVaccineDate",
+                        "value": "{{navigation.malariaVaccineDate}}"
+                      },
+                      {
+                        "key": "smc",
+                        "value": "{{navigation.smc}}"
+                      },
+                      {
+                        "key": "smcDate",
+                        "value": "{{navigation.smcDate}}"
+                      },
+                      {
+                        "key": "polio",
+                        "value": "{{navigation.polio}}"
+                      },
+                      {
+                        "key": "polioDate",
+                        "value": "{{navigation.polioDate}}"
+                      },
+                      {
+                        "key": "measlesRubella",
+                        "value": "{{navigation.measlesRubella}}"
+                      },
+                      {
+                        "key": "measlesRubellaDate",
+                        "value": "{{navigation.measlesRubellaDate}}"
                       }
                     ],
                     "onError": [
@@ -4497,6 +4405,14 @@
                 "value": "{{navigation.gender}}"
               },
               {
+                "key": "height",
+                "value": "{{navigation.height}}"
+              },
+              {
+                "key": "weight",
+                "value": "{{navigation.weight}}"
+              },
+              {
                 "key": "headName",
                 "value": "{{navigation.headName}}"
               },
@@ -4543,6 +4459,38 @@
               {
                 "key": "ec5",
                 "value": "{{navigation.ec5}}"
+              },
+              {
+                "key": "malariaVaccine",
+                "value": "{{navigation.malariaVaccine}}"
+              },
+              {
+                "key": "malariaVaccineDate",
+                "value": "{{navigation.malariaVaccineDate}}"
+              },
+              {
+                "key": "smc",
+                "value": "{{navigation.smc}}"
+              },
+              {
+                "key": "smcDate",
+                "value": "{{navigation.smcDate}}"
+              },
+              {
+                "key": "polio",
+                "value": "{{navigation.polio}}"
+              },
+              {
+                "key": "polioDate",
+                "value": "{{navigation.polioDate}}"
+              },
+              {
+                "key": "measlesRubella",
+                "value": "{{navigation.measlesRubella}}"
+              },
+              {
+                "key": "measlesRubellaDate",
+                "value": "{{navigation.measlesRubellaDate}}"
               }
             ],
             "onError": [
@@ -4692,6 +4640,14 @@
                         "value": "{{navigation.gender}}"
                       },
                       {
+                        "key": "height",
+                        "value": "{{navigation.height}}"
+                      },
+                      {
+                        "key": "weight",
+                        "value": "{{navigation.weight}}"
+                      },
+                      {
                         "key": "headName",
                         "value": "{{navigation.headName}}"
                       },
@@ -4718,6 +4674,38 @@
                       {
                         "key": "ec5",
                         "value": "{{eligibilityChecklist.ec5}}"
+                      },
+                      {
+                        "key": "malariaVaccine",
+                        "value": "{{eligibilityChecklist.malariaVaccine}}"
+                      },
+                      {
+                        "key": "malariaVaccineDate",
+                        "value": "{{eligibilityChecklist.malariaVaccineDate}}"
+                      },
+                      {
+                        "key": "smc",
+                        "value": "{{eligibilityChecklist.smc}}"
+                      },
+                      {
+                        "key": "smcDate",
+                        "value": "{{eligibilityChecklist.smcDate}}"
+                      },
+                      {
+                        "key": "polio",
+                        "value": "{{eligibilityChecklist.polio}}"
+                      },
+                      {
+                        "key": "polioDate",
+                        "value": "{{eligibilityChecklist.polioDate}}"
+                      },
+                      {
+                        "key": "measlesRubella",
+                        "value": "{{eligibilityChecklist.measlesRubella}}"
+                      },
+                      {
+                        "key": "measlesRubellaDate",
+                        "value": "{{eligibilityChecklist.measlesRubellaDate}}"
                       }
                     ],
                     "name": "beneficiaryDetails",
@@ -4775,6 +4763,14 @@
                         "value": "{{navigation.gender}}"
                       },
                       {
+                        "key": "height",
+                        "value": "{{navigation.height}}"
+                      },
+                      {
+                        "key": "weight",
+                        "value": "{{navigation.weight}}"
+                      },
+                      {
                         "key": "headName",
                         "value": "{{navigation.headName}}"
                       },
@@ -4801,6 +4797,38 @@
                       {
                         "key": "ec5",
                         "value": "{{eligibilityChecklist.ec5}}"
+                      },
+                      {
+                        "key": "malariaVaccine",
+                        "value": "{{eligibilityChecklist.malariaVaccine}}"
+                      },
+                      {
+                        "key": "malariaVaccineDate",
+                        "value": "{{eligibilityChecklist.malariaVaccineDate}}"
+                      },
+                      {
+                        "key": "smc",
+                        "value": "{{eligibilityChecklist.smc}}"
+                      },
+                      {
+                        "key": "smcDate",
+                        "value": "{{eligibilityChecklist.smcDate}}"
+                      },
+                      {
+                        "key": "polio",
+                        "value": "{{eligibilityChecklist.polio}}"
+                      },
+                      {
+                        "key": "polioDate",
+                        "value": "{{eligibilityChecklist.polioDate}}"
+                      },
+                      {
+                        "key": "measlesRubella",
+                        "value": "{{eligibilityChecklist.measlesRubella}}"
+                      },
+                      {
+                        "key": "measlesRubellaDate",
+                        "value": "{{eligibilityChecklist.measlesRubellaDate}}"
                       }
                     ],
                     "name": "beneficiaryDetails",
@@ -4898,6 +4926,38 @@
                         "value": "{{eligibilityChecklist.ec5}}"
                       },
                       {
+                        "key": "malariaVaccine",
+                        "value": "{{eligibilityChecklist.malariaVaccine}}"
+                      },
+                      {
+                        "key": "malariaVaccineDate",
+                        "value": "{{eligibilityChecklist.malariaVaccineDate}}"
+                      },
+                      {
+                        "key": "smc",
+                        "value": "{{eligibilityChecklist.smc}}"
+                      },
+                      {
+                        "key": "smcDate",
+                        "value": "{{eligibilityChecklist.smcDate}}"
+                      },
+                      {
+                        "key": "polio",
+                        "value": "{{eligibilityChecklist.polio}}"
+                      },
+                      {
+                        "key": "polioDate",
+                        "value": "{{eligibilityChecklist.polioDate}}"
+                      },
+                      {
+                        "key": "measlesRubella",
+                        "value": "{{eligibilityChecklist.measlesRubella}}"
+                      },
+                      {
+                        "key": "measlesRubellaDate",
+                        "value": "{{eligibilityChecklist.measlesRubellaDate}}"
+                      },
+                      {
                         "key": "latitude",
                         "value": "{{navigation.latitude}}"
                       },
@@ -4973,6 +5033,38 @@
                       {
                         "key": "ec5",
                         "value": "{{eligibilityChecklist.ec5}}"
+                      },
+                      {
+                        "key": "malariaVaccine",
+                        "value": "{{eligibilityChecklist.malariaVaccine}}"
+                      },
+                      {
+                        "key": "malariaVaccineDate",
+                        "value": "{{eligibilityChecklist.malariaVaccineDate}}"
+                      },
+                      {
+                        "key": "smc",
+                        "value": "{{eligibilityChecklist.smc}}"
+                      },
+                      {
+                        "key": "smcDate",
+                        "value": "{{eligibilityChecklist.smcDate}}"
+                      },
+                      {
+                        "key": "polio",
+                        "value": "{{eligibilityChecklist.polio}}"
+                      },
+                      {
+                        "key": "polioDate",
+                        "value": "{{eligibilityChecklist.polioDate}}"
+                      },
+                      {
+                        "key": "measlesRubella",
+                        "value": "{{eligibilityChecklist.measlesRubella}}"
+                      },
+                      {
+                        "key": "measlesRubellaDate",
+                        "value": "{{eligibilityChecklist.measlesRubellaDate}}"
                       }
                     ],
                     "name": "householdOverview",
@@ -5050,6 +5142,14 @@
                         "value": "{{navigation.headMobileNumber}}"
                       },
                       {
+                        "key": "height",
+                        "value": "{{navigation.height}}"
+                      },
+                      {
+                        "key": "weight",
+                        "value": "{{navigation.weight}}"
+                      },
+                      {
                         "key": "cycleIndex",
                         "value": "{{navigation.cycleIndex}}"
                       },
@@ -5072,6 +5172,38 @@
                       {
                         "key": "ec5",
                         "value": "{{eligibilityChecklist.ec5}}"
+                      },
+                      {
+                        "key": "malariaVaccine",
+                        "value": "{{eligibilityChecklist.malariaVaccine}}"
+                      },
+                      {
+                        "key": "malariaVaccineDate",
+                        "value": "{{eligibilityChecklist.malariaVaccineDate}}"
+                      },
+                      {
+                        "key": "smc",
+                        "value": "{{eligibilityChecklist.smc}}"
+                      },
+                      {
+                        "key": "smcDate",
+                        "value": "{{eligibilityChecklist.smcDate}}"
+                      },
+                      {
+                        "key": "polio",
+                        "value": "{{eligibilityChecklist.polio}}"
+                      },
+                      {
+                        "key": "polioDate",
+                        "value": "{{eligibilityChecklist.polioDate}}"
+                      },
+                      {
+                        "key": "measlesRubella",
+                        "value": "{{eligibilityChecklist.measlesRubella}}"
+                      },
+                      {
+                        "key": "measlesRubellaDate",
+                        "value": "{{eligibilityChecklist.measlesRubellaDate}}"
                       },
                       {
                         "key": "sourceFlow",
@@ -5369,6 +5501,346 @@
               ],
               "includeInSummary": true,
               "required.message": "APPONE_ELIGIBILITYCHECKLIST_QUESTION_5_LABEL_REQUIRED_MESSAGE"
+            },
+            {
+              "type": "string",
+              "enums": [
+                {
+                  "code": "YES",
+                  "name": "QUESTION_1_YES"
+                },
+                {
+                  "code": "NO",
+                  "name": "QUESTION_1_NO"
+                }
+              ],
+              "label": "APPONE_ELIGIBILITYCHECKLIST_MALARIA_VACCINE_LABEL",
+              "order": 4,
+              "value": "",
+              "format": "radio",
+              "hidden": false,
+              "isMdms": false,
+              "tooltip": "",
+              "helpText": "",
+              "infoText": "",
+              "readOnly": false,
+              "required": true,
+              "fieldName": "malariaVaccine",
+              "mandatory": true,
+              "deleteFlag": false,
+              "innerLabel": "",
+              "schemaCode": null,
+              "systemDate": false,
+              "validations": [
+                {
+                  "type": "required",
+                  "value": true,
+                  "message": "APPONE_ELIGIBILITYCHECKLIST_MALARIA_VACCINE_REQUIRED_MESSAGE"
+                }
+              ],
+              "errorMessage": "",
+              "includeInForm": true,
+              "isMultiSelect": false,
+              "includeInSummary": true,
+              "required.message": "APPONE_ELIGIBILITYCHECKLIST_MALARIA_VACCINE_REQUIRED_MESSAGE"
+            },
+            {
+              "type": "string",
+              "label": "APPONE_ELIGIBILITYCHECKLIST_MALARIA_VACCINE_DATE_LABEL",
+              "order": 5,
+              "value": "",
+              "format": "date",
+              "hidden": false,
+              "isMdms": false,
+              "tooltip": "",
+              "helpText": "",
+              "infoText": "",
+              "readOnly": false,
+              "required": true,
+              "fieldName": "malariaVaccineDate",
+              "mandatory": true,
+              "deleteFlag": false,
+              "innerLabel": "",
+              "schemaCode": null,
+              "systemDate": false,
+              "validations": [
+                {
+                  "type": "required",
+                  "value": true,
+                  "message": "APPONE_ELIGIBILITYCHECKLIST_MALARIA_VACCINE_DATE_REQUIRED_MESSAGE"
+                },
+                {
+                  "type": "endDate",
+                  "value": "today",
+                  "message": "APPONE_ELIGIBILITYCHECKLIST_MALARIA_VACCINE_DATE_FUTURE_MESSAGE"
+                }
+              ],
+              "errorMessage": "",
+              "isMultiSelect": false,
+              "includeInSummary": true,
+              "required.message": "APPONE_ELIGIBILITYCHECKLIST_MALARIA_VACCINE_DATE_REQUIRED_MESSAGE",
+              "visibilityCondition": {
+                "expression": [
+                  {
+                    "condition": "eligibilityChecklist.malariaVaccine==YES"
+                  }
+                ]
+              }
+            },
+            {
+              "type": "string",
+              "enums": [
+                {
+                  "code": "YES",
+                  "name": "QUESTION_1_YES"
+                },
+                {
+                  "code": "NO",
+                  "name": "QUESTION_1_NO"
+                }
+              ],
+              "label": "APPONE_ELIGIBILITYCHECKLIST_SMC_LABEL",
+              "order": 6,
+              "value": "",
+              "format": "radio",
+              "hidden": false,
+              "isMdms": false,
+              "tooltip": "",
+              "helpText": "",
+              "infoText": "",
+              "readOnly": false,
+              "required": true,
+              "fieldName": "smc",
+              "mandatory": true,
+              "deleteFlag": false,
+              "innerLabel": "",
+              "schemaCode": null,
+              "systemDate": false,
+              "validations": [
+                {
+                  "type": "required",
+                  "value": true,
+                  "message": "APPONE_ELIGIBILITYCHECKLIST_SMC_REQUIRED_MESSAGE"
+                }
+              ],
+              "errorMessage": "",
+              "includeInForm": true,
+              "isMultiSelect": false,
+              "includeInSummary": true,
+              "required.message": "APPONE_ELIGIBILITYCHECKLIST_SMC_REQUIRED_MESSAGE"
+            },
+            {
+              "type": "string",
+              "label": "APPONE_ELIGIBILITYCHECKLIST_SMC_DATE_LABEL",
+              "order": 7,
+              "value": "",
+              "format": "date",
+              "hidden": false,
+              "isMdms": false,
+              "tooltip": "",
+              "helpText": "",
+              "infoText": "",
+              "readOnly": false,
+              "required": true,
+              "fieldName": "smcDate",
+              "mandatory": true,
+              "deleteFlag": false,
+              "innerLabel": "",
+              "schemaCode": null,
+              "systemDate": false,
+              "validations": [
+                {
+                  "type": "required",
+                  "value": true,
+                  "message": "APPONE_ELIGIBILITYCHECKLIST_SMC_DATE_REQUIRED_MESSAGE"
+                },
+                {
+                  "type": "endDate",
+                  "value": "today",
+                  "message": "APPONE_ELIGIBILITYCHECKLIST_SMC_DATE_FUTURE_MESSAGE"
+                }
+              ],
+              "errorMessage": "",
+              "isMultiSelect": false,
+              "includeInSummary": true,
+              "required.message": "APPONE_ELIGIBILITYCHECKLIST_SMC_DATE_REQUIRED_MESSAGE",
+              "visibilityCondition": {
+                "expression": [
+                  {
+                    "condition": "eligibilityChecklist.smc==YES"
+                  }
+                ]
+              }
+            },
+            {
+              "type": "string",
+              "enums": [
+                {
+                  "code": "YES",
+                  "name": "QUESTION_1_YES"
+                },
+                {
+                  "code": "NO",
+                  "name": "QUESTION_1_NO"
+                }
+              ],
+              "label": "APPONE_ELIGIBILITYCHECKLIST_POLIO_LABEL",
+              "order": 8,
+              "value": "",
+              "format": "radio",
+              "hidden": false,
+              "isMdms": false,
+              "tooltip": "",
+              "helpText": "",
+              "infoText": "",
+              "readOnly": false,
+              "required": true,
+              "fieldName": "polio",
+              "mandatory": true,
+              "deleteFlag": false,
+              "innerLabel": "",
+              "schemaCode": null,
+              "systemDate": false,
+              "validations": [
+                {
+                  "type": "required",
+                  "value": true,
+                  "message": "APPONE_ELIGIBILITYCHECKLIST_POLIO_REQUIRED_MESSAGE"
+                }
+              ],
+              "errorMessage": "",
+              "includeInForm": true,
+              "isMultiSelect": false,
+              "includeInSummary": true,
+              "required.message": "APPONE_ELIGIBILITYCHECKLIST_POLIO_REQUIRED_MESSAGE"
+            },
+            {
+              "type": "string",
+              "label": "APPONE_ELIGIBILITYCHECKLIST_POLIO_DATE_LABEL",
+              "order": 9,
+              "value": "",
+              "format": "date",
+              "hidden": false,
+              "isMdms": false,
+              "tooltip": "",
+              "helpText": "",
+              "infoText": "",
+              "readOnly": false,
+              "required": true,
+              "fieldName": "polioDate",
+              "mandatory": true,
+              "deleteFlag": false,
+              "innerLabel": "",
+              "schemaCode": null,
+              "systemDate": false,
+              "validations": [
+                {
+                  "type": "required",
+                  "value": true,
+                  "message": "APPONE_ELIGIBILITYCHECKLIST_POLIO_DATE_REQUIRED_MESSAGE"
+                },
+                {
+                  "type": "endDate",
+                  "value": "today",
+                  "message": "APPONE_ELIGIBILITYCHECKLIST_POLIO_DATE_FUTURE_MESSAGE"
+                }
+              ],
+              "errorMessage": "",
+              "isMultiSelect": false,
+              "includeInSummary": true,
+              "required.message": "APPONE_ELIGIBILITYCHECKLIST_POLIO_DATE_REQUIRED_MESSAGE",
+              "visibilityCondition": {
+                "expression": [
+                  {
+                    "condition": "eligibilityChecklist.polio==YES"
+                  }
+                ]
+              }
+            },
+            {
+              "type": "string",
+              "enums": [
+                {
+                  "code": "YES",
+                  "name": "QUESTION_1_YES"
+                },
+                {
+                  "code": "NO",
+                  "name": "QUESTION_1_NO"
+                }
+              ],
+              "label": "APPONE_ELIGIBILITYCHECKLIST_MEASLES_RUBELLA_LABEL",
+              "order": 10,
+              "value": "",
+              "format": "radio",
+              "hidden": false,
+              "isMdms": false,
+              "tooltip": "",
+              "helpText": "",
+              "infoText": "",
+              "readOnly": false,
+              "required": true,
+              "fieldName": "measlesRubella",
+              "mandatory": true,
+              "deleteFlag": false,
+              "innerLabel": "",
+              "schemaCode": null,
+              "systemDate": false,
+              "validations": [
+                {
+                  "type": "required",
+                  "value": true,
+                  "message": "APPONE_ELIGIBILITYCHECKLIST_MEASLES_RUBELLA_REQUIRED_MESSAGE"
+                }
+              ],
+              "errorMessage": "",
+              "includeInForm": true,
+              "isMultiSelect": false,
+              "includeInSummary": true,
+              "required.message": "APPONE_ELIGIBILITYCHECKLIST_MEASLES_RUBELLA_REQUIRED_MESSAGE"
+            },
+            {
+              "type": "string",
+              "label": "APPONE_ELIGIBILITYCHECKLIST_MEASLES_RUBELLA_DATE_LABEL",
+              "order": 11,
+              "value": "",
+              "format": "date",
+              "hidden": false,
+              "isMdms": false,
+              "tooltip": "",
+              "helpText": "",
+              "infoText": "",
+              "readOnly": false,
+              "required": true,
+              "fieldName": "measlesRubellaDate",
+              "mandatory": true,
+              "deleteFlag": false,
+              "innerLabel": "",
+              "schemaCode": null,
+              "systemDate": false,
+              "validations": [
+                {
+                  "type": "required",
+                  "value": true,
+                  "message": "APPONE_ELIGIBILITYCHECKLIST_MEASLES_RUBELLA_DATE_REQUIRED_MESSAGE"
+                },
+                {
+                  "type": "endDate",
+                  "value": "today",
+                  "message": "APPONE_ELIGIBILITYCHECKLIST_MEASLES_RUBELLA_DATE_FUTURE_MESSAGE"
+                }
+              ],
+              "errorMessage": "",
+              "isMultiSelect": false,
+              "includeInSummary": true,
+              "required.message": "APPONE_ELIGIBILITYCHECKLIST_MEASLES_RUBELLA_DATE_REQUIRED_MESSAGE",
+              "visibilityCondition": {
+                "expression": [
+                  {
+                    "condition": "eligibilityChecklist.measlesRubella==YES"
+                  }
+                ]
+              }
             }
           ],
           "actionLabel": "APPONE_REGISTRATION_DELIVERYDETAILS_ACTION_BUTTON_LABEL_1",
@@ -5455,6 +5927,14 @@
                     "value": "{{navigation.headMobileNumber}}"
                   },
                   {
+                    "key": "height",
+                    "value": "{{navigation.height}}"
+                  },
+                  {
+                    "key": "weight",
+                    "value": "{{navigation.weight}}"
+                  },
+                  {
                     "key": "ec1",
                     "value": "{{eligibilityChecklist.ec1}}"
                   },
@@ -5473,18 +5953,6 @@
                   {
                     "key": "ec5",
                     "value": "{{eligibilityChecklist.ec5}}"
-                  },
-                  {
-                    "key": "latitude",
-                    "value": "{{navigation.latitude}}"
-                  },
-                  {
-                    "key": "longitude",
-                    "value": "{{navigation.longitude}}"
-                  },
-                  {
-                    "key": "locationAccuracy",
-                    "value": "{{navigation.locationAccuracy}}"
                   }
                 ],
                 "name": "beneficiaryDetails",
@@ -5554,6 +6022,14 @@
                     "value": "{{navigation.headMobileNumber}}"
                   },
                   {
+                    "key": "height",
+                    "value": "{{navigation.height}}"
+                  },
+                  {
+                    "key": "weight",
+                    "value": "{{navigation.weight}}"
+                  },
+                  {
                     "key": "ec1",
                     "value": "{{eligibilityChecklist.ec1}}"
                   },
@@ -5572,18 +6048,6 @@
                   {
                     "key": "ec5",
                     "value": "{{eligibilityChecklist.ec5}}"
-                  },
-                  {
-                    "key": "latitude",
-                    "value": "{{navigation.latitude}}"
-                  },
-                  {
-                    "key": "longitude",
-                    "value": "{{navigation.longitude}}"
-                  },
-                  {
-                    "key": "locationAccuracy",
-                    "value": "{{navigation.locationAccuracy}}"
                   }
                 ],
                 "name": "beneficiaryDetails",
@@ -5679,6 +6143,38 @@
                   {
                     "key": "ec5",
                     "value": "{{eligibilityChecklist.ec5}}"
+                  },
+                  {
+                    "key": "malariaVaccine",
+                    "value": "{{eligibilityChecklist.malariaVaccine}}"
+                  },
+                  {
+                    "key": "malariaVaccineDate",
+                    "value": "{{eligibilityChecklist.malariaVaccineDate}}"
+                  },
+                  {
+                    "key": "smc",
+                    "value": "{{eligibilityChecklist.smc}}"
+                  },
+                  {
+                    "key": "smcDate",
+                    "value": "{{eligibilityChecklist.smcDate}}"
+                  },
+                  {
+                    "key": "polio",
+                    "value": "{{eligibilityChecklist.polio}}"
+                  },
+                  {
+                    "key": "polioDate",
+                    "value": "{{eligibilityChecklist.polioDate}}"
+                  },
+                  {
+                    "key": "measlesRubella",
+                    "value": "{{eligibilityChecklist.measlesRubella}}"
+                  },
+                  {
+                    "key": "measlesRubellaDate",
+                    "value": "{{eligibilityChecklist.measlesRubellaDate}}"
                   },
                   {
                     "key": "latitude",
@@ -5780,18 +6276,6 @@
                   {
                     "key": "ec5",
                     "value": "{{eligibilityChecklist.ec5}}"
-                  },
-                  {
-                    "key": "latitude",
-                    "value": "{{navigation.latitude}}"
-                  },
-                  {
-                    "key": "longitude",
-                    "value": "{{navigation.longitude}}"
-                  },
-                  {
-                    "key": "locationAccuracy",
-                    "value": "{{navigation.locationAccuracy}}"
                   }
                 ],
                 "name": "householdOverview",
@@ -5839,6 +6323,38 @@
                   {
                     "key": "ec5",
                     "value": "{{eligibilityChecklist.ec5}}"
+                  },
+                  {
+                    "key": "malariaVaccine",
+                    "value": "{{eligibilityChecklist.malariaVaccine}}"
+                  },
+                  {
+                    "key": "malariaVaccineDate",
+                    "value": "{{eligibilityChecklist.malariaVaccineDate}}"
+                  },
+                  {
+                    "key": "smc",
+                    "value": "{{eligibilityChecklist.smc}}"
+                  },
+                  {
+                    "key": "smcDate",
+                    "value": "{{eligibilityChecklist.smcDate}}"
+                  },
+                  {
+                    "key": "polio",
+                    "value": "{{eligibilityChecklist.polio}}"
+                  },
+                  {
+                    "key": "polioDate",
+                    "value": "{{eligibilityChecklist.polioDate}}"
+                  },
+                  {
+                    "key": "measlesRubella",
+                    "value": "{{eligibilityChecklist.measlesRubella}}"
+                  },
+                  {
+                    "key": "measlesRubellaDate",
+                    "value": "{{eligibilityChecklist.measlesRubellaDate}}"
                   },
                   {
                     "key": "sourceFlow",
@@ -5905,12 +6421,864 @@
                     "value": "{{navigation.longitude}}"
                   },
                   {
-                    "key": "locationAccuracy",
-                    "value": "{{navigation.locationAccuracy}}"
+                    "key": "headMobileNumber",
+                    "value": "{{navigation.headMobileNumber}}"
+                  }
+                ],
+                "name": "REFER_BENEFICIARY",
+                "type": "FORM",
+                "onError": [
+                  {
+                    "actionType": "SHOW_TOAST",
+                    "properties": {
+                      "message": "Navigation failed."
+                    }
+                  }
+                ],
+                "navigationMode": "popUntilAndPush",
+                "popUntilPageName": "householdOverview"
+              }
+            }
+          ],
+          "condition": {
+            "expression": "DEFAULT"
+          }
+        }
+      ],
+      "screenType": "FORM",
+      "initActions": [],
+      "wrapperConfig": {},
+      "scrollListener": {}
+    },
+    {
+      "name": "RI_CHECKLIST",
+      "order": 7,
+      "pages": [
+        {
+          "body": null,
+          "flow": "RI_CHECKLIST",
+          "page": "riEligibilityChecklist",
+          "type": "object",
+          "label": "APPONE_RI_ELIGIBILITY_CHECKLIST_SCREEN_HEADING",
+          "order": 1,
+          "footer": [
+            {
+              "label": "APPONE_REGISTRATION_DELIVERYDETAILS_ACTION_BUTTON_LABEL_1",
+              "format": "button",
+              "fieldName": "riEligibilityChecklistSubmitButton",
+              "onAction": [
+                {
+                  "actionType": "NAVIGATION",
+                  "properties": {
+                    "name": "ACKNOWLEDGEMENT",
+                    "type": "template"
+                  }
+                }
+              ],
+              "properties": {
+                "size": "large",
+                "type": "primary",
+                "mainAxisSize": "max",
+                "mainAxisAlignment": "center"
+              }
+            }
+          ],
+          "module": "REGISTRATION",
+          "heading": "APPONE_RI_ELIGIBILITY_CHECKLIST_SCREEN_HEADING",
+          "summary": false,
+          "version": 1,
+          "onAction": [
+            {
+              "actionId": 1,
+              "actions": [
+                {
+                  "actionType": "FETCH_TRANSFORMER_CONFIG",
+                  "properties": {
+                    "data": [
+                      {
+                        "key": "selectedIndividualClientReferenceId",
+                        "value": "{{navigation.selectedIndividualClientReferenceId}}"
+                      },
+                      {
+                        "key": "individualClientReferenceId",
+                        "value": "{{navigation.selectedIndividualClientReferenceId}}"
+                      },
+                      {
+                        "key": "selectedIndividualIdentifierId",
+                        "value": "{{navigation.selectedIndividualIdentifierId}}"
+                      },
+                      {
+                        "key": "beneficiaryId",
+                        "value": "{{navigation.selectedIndividualIdentifierId}}"
+                      },
+                      {
+                        "key": "HouseholdClientReferenceId",
+                        "value": "{{ navigation.HouseholdClientReferenceId }}"
+                      },
+                      {
+                        "key": "memberCount",
+                        "value": "{{navigation.memberCount}}"
+                      },
+                      {
+                        "key": "childName",
+                        "value": "{{navigation.childName}}"
+                      },
+                      {
+                        "key": "ageInMonths",
+                        "value": "{{navigation.ageInMonths}}"
+                      },
+                      {
+                        "key": "gender",
+                        "value": "{{navigation.gender}}"
+                      },
+                      {
+                        "key": "headName",
+                        "value": "{{navigation.headName}}"
+                      },
+                      {
+                        "key": "headMobileNumber",
+                        "value": "{{navigation.headMobileNumber}}"
+                      },
+                      {
+                        "key": "ProjectBeneficiaryClientReferenceId",
+                        "value": "{{navigation.ProjectBeneficiaryClientReferenceId}}"
+                      },
+                      {
+                        "key": "latitude",
+                        "value": "{{navigation.latitude}}"
+                      },
+                      {
+                        "key": "longitude",
+                        "value": "{{navigation.longitude}}"
+                      },
+                      {
+                        "key": "locationAccuracy",
+                        "value": "{{navigation.locationAccuracy}}"
+                      }
+                    ],
+                    "onError": [
+                      {
+                        "actionType": "SHOW_TOAST",
+                        "properties": {
+                          "message": "Failed to fetch ineligible config."
+                        }
+                      }
+                    ],
+                    "configName": "riAdministrationConfig"
+                  }
+                },
+                {
+                  "actionType": "CREATE_EVENT",
+                  "properties": {
+                    "onError": [
+                      {
+                        "actionType": "SHOW_TOAST",
+                        "properties": {
+                          "message": "Failed to create task records."
+                        }
+                      }
+                    ]
+                  }
+                },
+                {
+                  "actionType": "NAVIGATION",
+                  "properties": {
+                    "data": [
+                      {
+                        "key": "selectedIndividualClientReferenceId",
+                        "value": "{{navigation.selectedIndividualClientReferenceId}}"
+                      },
+                      {
+                        "key": "selectedIndividualIdentifierId",
+                        "value": "{{navigation.selectedIndividualIdentifierId}}"
+                      },
+                      {
+                        "key": "HouseholdClientReferenceId",
+                        "value": "{{ navigation.HouseholdClientReferenceId }}"
+                      },
+                      {
+                        "key": "ProjectBeneficiaryClientReferenceId",
+                        "value": "{{navigation.ProjectBeneficiaryClientReferenceId}}"
+                      }
+                    ],
+                    "name": "ACKNOWLEDGEMENT",
+                    "type": "TEMPLATE",
+                    "onError": [
+                      {
+                        "actionType": "SHOW_TOAST",
+                        "properties": {
+                          "message": "Navigation failed."
+                        }
+                      }
+                    ],
+                    "navigationMode": "popUntilAndPush",
+                    "popUntilPageName": "householdOverview"
+                  }
+                }
+              ],
+              "condition": {
+                "expression": "riEligibilityChecklist.chcSeen==YES && riEligibilityChecklist.fullyImmunized==YES"
+              }
+            },
+            {
+              "actionId": 2,
+              "actions": [
+                {
+                  "actionType": "NAVIGATION",
+                  "properties": {
+                    "data": [
+                      {
+                        "key": "selectedIndividualClientReferenceId",
+                        "value": "{{navigation.selectedIndividualClientReferenceId}}"
+                      },
+                      {
+                        "key": "selectedIndividualIdentifierId",
+                        "value": "{{navigation.selectedIndividualIdentifierId}}"
+                      },
+                      {
+                        "key": "HouseholdClientReferenceId",
+                        "value": "{{ navigation.HouseholdClientReferenceId }}"
+                      },
+                      {
+                        "key": "ProjectBeneficiaryClientReferenceId",
+                        "value": "{{navigation.ProjectBeneficiaryClientReferenceId}}"
+                      },
+                      {
+                        "key": "selectedIndividualName",
+                        "value": "{{navigation.selectedIndividualName}}"
+                      },
+                      {
+                        "key": "selectedIndividualGender",
+                        "value": "{{navigation.selectedIndividualGender}}"
+                      },
+                      {
+                        "key": "selectedIndividualAgeInMonths",
+                        "value": "{{navigation.selectedIndividualAgeInMonths}}"
+                      },
+                      {
+                        "key": "childName",
+                        "value": "{{navigation.childName}}"
+                      },
+                      {
+                        "key": "ageInMonths",
+                        "value": "{{navigation.ageInMonths}}"
+                      },
+                      {
+                        "key": "gender",
+                        "value": "{{navigation.gender}}"
+                      },
+                      {
+                        "key": "headName",
+                        "value": "{{navigation.headName}}"
+                      },
+                      {
+                        "key": "headMobileNumber",
+                        "value": "{{navigation.headMobileNumber}}"
+                      },
+                      {
+                        "key": "cycleIndex",
+                        "value": "{{navigation.cycleIndex}}"
+                      },
+                      {
+                        "key": "chcSeen",
+                        "value": "{{riEligibilityChecklist.chcSeen}}"
+                      },
+                      {
+                        "key": "fullyImmunized",
+                        "value": "{{riEligibilityChecklist.fullyImmunized}}"
+                      },
+                      {
+                        "key": "partiallyImmunized",
+                        "value": "{{riEligibilityChecklist.partiallyImmunized}}"
+                      },
+                      {
+                        "key": "zeroDose",
+                        "value": "{{riEligibilityChecklist.zeroDose}}"
+                      },
+                      {
+                        "key": "unimmunized",
+                        "value": "{{riEligibilityChecklist.unimmunized}}"
+                      },
+                      {
+                        "key": "sourceFlow",
+                        "value": "RI_CHECKLIST"
+                      }
+                    ],
+                    "name": "REFER_BENEFICIARY",
+                    "type": "FORM",
+                    "onError": [
+                      {
+                        "actionType": "SHOW_TOAST",
+                        "properties": {
+                          "message": "Navigation failed."
+                        }
+                      }
+                    ],
+                    "navigationMode": "popUntilAndPush",
+                    "popUntilPageName": "householdOverview"
+                  }
+                }
+              ],
+              "condition": {
+                "expression": "DEFAULT"
+              }
+            }
+          ],
+          "navigateTo": {
+            "name": "ACKNOWLEDGEMENT",
+            "type": "template"
+          },
+          "properties": [
+            {
+              "type": "string",
+              "enums": [
+                {
+                  "code": "YES",
+                  "name": "QUESTION_1_YES"
+                },
+                {
+                  "code": "NO",
+                  "name": "QUESTION_1_NO"
+                }
+              ],
+              "label": "APPONE_RI_ELIGIBILITYCHECKLIST_QUESTION_1_LABEL",
+              "order": 1,
+              "value": "",
+              "format": "radio",
+              "hidden": false,
+              "isMdms": false,
+              "tooltip": "",
+              "helpText": "",
+              "infoText": "",
+              "readOnly": false,
+              "required": true,
+              "fieldName": "chcSeen",
+              "mandatory": true,
+              "deleteFlag": false,
+              "innerLabel": "",
+              "schemaCode": null,
+              "systemDate": true,
+              "validations": [
+                {
+                  "type": "required",
+                  "value": true,
+                  "message": "APPONE_RI_ELIGIBILITYCHECKLIST_QUESTION_1_LABEL_REQUIRED_MESSAGE"
+                }
+              ],
+              "errorMessage": "",
+              "includeInForm": true,
+              "isMultiSelect": false,
+              "dropDownOptions": [
+                {
+                  "code": "YES",
+                  "name": "QUESTION_1_YES"
+                },
+                {
+                  "code": "NO",
+                  "name": "QUESTION_1_NO"
+                }
+              ],
+              "includeInSummary": true,
+              "required.message": "APPONE_RI_ELIGIBILITYCHECKLIST_QUESTION_1_LABEL_REQUIRED_MESSAGE"
+            },
+            {
+              "type": "string",
+              "enums": [
+                {
+                  "code": "YES",
+                  "name": "QUESTION_2_YES"
+                },
+                {
+                  "code": "NO",
+                  "name": "QUESTION_2_NO"
+                }
+              ],
+              "label": "APPONE_RI_ELIGIBILITYCHECKLIST_QUESTION_2_LABEL",
+              "order": 2,
+              "value": "",
+              "format": "radio",
+              "hidden": false,
+              "isMdms": false,
+              "tooltip": "",
+              "helpText": "APPONE_RI_ELIGIBILITYCHECKLIST_QUESTION_2_HELP_TEXT",
+              "infoText": "",
+              "readOnly": false,
+              "required": true,
+              "fieldName": "fullyImmunized",
+              "mandatory": true,
+              "deleteFlag": false,
+              "innerLabel": "",
+              "schemaCode": null,
+              "systemDate": true,
+              "validations": [
+                {
+                  "type": "required",
+                  "value": true,
+                  "message": "APPONE_RI_ELIGIBILITYCHECKLIST_QUESTION_2_LABEL_REQUIRED_MESSAGE"
+                }
+              ],
+              "errorMessage": "",
+              "includeInForm": true,
+              "isMultiSelect": false,
+              "dropDownOptions": [
+                {
+                  "code": "YES",
+                  "name": "QUESTION_2_YES"
+                },
+                {
+                  "code": "NO",
+                  "name": "QUESTION_2_NO"
+                }
+              ],
+              "includeInSummary": true,
+              "required.message": "APPONE_RI_ELIGIBILITYCHECKLIST_QUESTION_2_LABEL_REQUIRED_MESSAGE",
+              "visibilityCondition": {
+                "expression": [
+                  {
+                    "condition": "riEligibilityChecklist.chcSeen==YES"
+                  }
+                ]
+              }
+            },
+            {
+              "type": "string",
+              "enums": [
+                {
+                  "code": "YES",
+                  "name": "QUESTION_3_YES"
+                },
+                {
+                  "code": "NO",
+                  "name": "QUESTION_3_NO"
+                }
+              ],
+              "label": "APPONE_RI_ELIGIBILITYCHECKLIST_QUESTION_3_LABEL",
+              "order": 3,
+              "value": "",
+              "format": "radio",
+              "hidden": false,
+              "isMdms": false,
+              "tooltip": "",
+              "helpText": "APPONE_RI_ELIGIBILITYCHECKLIST_QUESTION_3_HELP_TEXT",
+              "infoText": "",
+              "readOnly": false,
+              "required": true,
+              "fieldName": "partiallyImmunized",
+              "mandatory": true,
+              "deleteFlag": false,
+              "innerLabel": "",
+              "schemaCode": null,
+              "systemDate": true,
+              "validations": [
+                {
+                  "type": "required",
+                  "value": true,
+                  "message": "APPONE_RI_ELIGIBILITYCHECKLIST_QUESTION_3_LABEL_REQUIRED_MESSAGE"
+                }
+              ],
+              "errorMessage": "",
+              "includeInForm": true,
+              "isMultiSelect": false,
+              "dropDownOptions": [
+                {
+                  "code": "YES",
+                  "name": "QUESTION_3_YES"
+                },
+                {
+                  "code": "NO",
+                  "name": "QUESTION_3_NO"
+                }
+              ],
+              "includeInSummary": true,
+              "required.message": "APPONE_RI_ELIGIBILITYCHECKLIST_QUESTION_3_LABEL_REQUIRED_MESSAGE",
+              "visibilityCondition": {
+                "expression": [
+                  {
+                    "condition": "riEligibilityChecklist.chcSeen==YES && riEligibilityChecklist.fullyImmunized==NO"
+                  }
+                ]
+              }
+            },
+            {
+              "type": "string",
+              "enums": [
+                {
+                  "code": "YES",
+                  "name": "QUESTION_4_YES"
+                },
+                {
+                  "code": "NO",
+                  "name": "QUESTION_4_NO"
+                }
+              ],
+              "label": "APPONE_RI_ELIGIBILITYCHECKLIST_QUESTION_4_LABEL",
+              "order": 4,
+              "value": "",
+              "format": "radio",
+              "hidden": false,
+              "isMdms": false,
+              "tooltip": "",
+              "helpText": "",
+              "infoText": "",
+              "readOnly": false,
+              "required": true,
+              "fieldName": "zeroDose",
+              "mandatory": true,
+              "deleteFlag": false,
+              "innerLabel": "",
+              "schemaCode": null,
+              "systemDate": true,
+              "validations": [
+                {
+                  "type": "required",
+                  "value": true,
+                  "message": "APPONE_RI_ELIGIBILITYCHECKLIST_QUESTION_4_LABEL_REQUIRED_MESSAGE"
+                }
+              ],
+              "errorMessage": "",
+              "includeInForm": true,
+              "isMultiSelect": false,
+              "dropDownOptions": [
+                {
+                  "code": "YES",
+                  "name": "QUESTION_4_YES"
+                },
+                {
+                  "code": "NO",
+                  "name": "QUESTION_4_NO"
+                }
+              ],
+              "includeInSummary": true,
+              "required.message": "APPONE_RI_ELIGIBILITYCHECKLIST_QUESTION_4_LABEL_REQUIRED_MESSAGE",
+              "visibilityCondition": {
+                "expression": [
+                  {
+                    "condition": "riEligibilityChecklist.chcSeen==YES && riEligibilityChecklist.fullyImmunized==NO"
+                  }
+                ]
+              }
+            },
+            {
+              "type": "string",
+              "enums": [
+                {
+                  "code": "YES",
+                  "name": "QUESTION_5_YES"
+                },
+                {
+                  "code": "NO",
+                  "name": "QUESTION_5_NO"
+                }
+              ],
+              "label": "APPONE_RI_ELIGIBILITYCHECKLIST_QUESTION_5_LABEL",
+              "order": 5,
+              "value": "",
+              "format": "radio",
+              "hidden": false,
+              "isMdms": false,
+              "tooltip": "",
+              "helpText": "",
+              "infoText": "",
+              "readOnly": false,
+              "required": true,
+              "fieldName": "unimmunized",
+              "mandatory": true,
+              "deleteFlag": false,
+              "innerLabel": "",
+              "schemaCode": null,
+              "systemDate": true,
+              "validations": [
+                {
+                  "type": "required",
+                  "value": true,
+                  "message": "APPONE_RI_ELIGIBILITYCHECKLIST_QUESTION_5_LABEL_REQUIRED_MESSAGE"
+                }
+              ],
+              "errorMessage": "",
+              "includeInForm": true,
+              "isMultiSelect": false,
+              "dropDownOptions": [
+                {
+                  "code": "YES",
+                  "name": "QUESTION_5_YES"
+                },
+                {
+                  "code": "NO",
+                  "name": "QUESTION_5_NO"
+                }
+              ],
+              "includeInSummary": true,
+              "required.message": "APPONE_RI_ELIGIBILITYCHECKLIST_QUESTION_5_LABEL_REQUIRED_MESSAGE",
+              "visibilityCondition": {
+                "expression": [
+                  {
+                    "condition": "riEligibilityChecklist.chcSeen==YES && riEligibilityChecklist.fullyImmunized==NO"
+                  }
+                ]
+              }
+            }
+          ],
+          "actionLabel": "APPONE_REGISTRATION_DELIVERYDETAILS_ACTION_BUTTON_LABEL_1",
+          "showTabView": false,
+          "showAlertPopUp": {
+            "title": "APPONE_RI_ELIGIBILITYCHECKLIST_ALERT_TITLE",
+            "conditions": [
+              {
+                "value": "Fully immunized",
+                "expression": "riEligibilityChecklist.chcSeen==YES && riEligibilityChecklist.fullyImmunized==YES"
+              },
+              {
+                "value": "Refer",
+                "expression": "DEFAULT"
+              }
+            ],
+            "description": "APPONE_RI_ELIGIBILITYCHECKLIST_ALERT_DESCRIPTION",
+            "primaryActionLabel": "ACTION_SUBMIT",
+            "secondaryActionLabel": "ACTION_CANCEL"
+          },
+          "submitCondition": null,
+          "preventScreenCapture": false
+        }
+      ],
+      "summary": false,
+      "version": 1,
+      "category": "DELIVERY",
+      "disabled": false,
+      "onAction": [
+        {
+          "actionId": 1,
+          "actions": [
+            {
+              "actionType": "FETCH_TRANSFORMER_CONFIG",
+              "properties": {
+                "data": [
+                  {
+                    "key": "selectedIndividualClientReferenceId",
+                    "value": "{{navigation.selectedIndividualClientReferenceId}}"
+                  },
+                  {
+                    "key": "individualClientReferenceId",
+                    "value": "{{navigation.selectedIndividualClientReferenceId}}"
+                  },
+                  {
+                    "key": "selectedIndividualIdentifierId",
+                    "value": "{{navigation.selectedIndividualIdentifierId}}"
+                  },
+                  {
+                    "key": "beneficiaryId",
+                    "value": "{{navigation.selectedIndividualIdentifierId}}"
+                  },
+                  {
+                    "key": "HouseholdClientReferenceId",
+                    "value": "{{ navigation.HouseholdClientReferenceId }}"
+                  },
+                  {
+                    "key": "memberCount",
+                    "value": "{{navigation.memberCount}}"
+                  },
+                  {
+                    "key": "childName",
+                    "value": "{{navigation.childName}}"
+                  },
+                  {
+                    "key": "ageInMonths",
+                    "value": "{{navigation.ageInMonths}}"
+                  },
+                  {
+                    "key": "gender",
+                    "value": "{{navigation.gender}}"
+                  },
+                  {
+                    "key": "headName",
+                    "value": "{{navigation.headName}}"
                   },
                   {
                     "key": "headMobileNumber",
                     "value": "{{navigation.headMobileNumber}}"
+                  },
+                  {
+                    "key": "ProjectBeneficiaryClientReferenceId",
+                    "value": "{{navigation.ProjectBeneficiaryClientReferenceId}}"
+                  },
+                  {
+                    "key": "latitude",
+                    "value": "{{navigation.latitude}}"
+                  },
+                  {
+                    "key": "longitude",
+                    "value": "{{navigation.longitude}}"
+                  },
+                  {
+                    "key": "locationAccuracy",
+                    "value": "{{navigation.locationAccuracy}}"
+                  }
+                ],
+                "onError": [
+                  {
+                    "actionType": "SHOW_TOAST",
+                    "properties": {
+                      "message": "Failed to fetch ineligible config."
+                    }
+                  }
+                ],
+                "configName": "riAdministrationConfig"
+              }
+            },
+            {
+              "actionType": "CREATE_EVENT",
+              "properties": {
+                "onError": [
+                  {
+                    "actionType": "SHOW_TOAST",
+                    "properties": {
+                      "message": "Failed to create task records."
+                    }
+                  }
+                ]
+              }
+            },
+            {
+              "actionType": "NAVIGATION",
+              "properties": {
+                "data": [
+                  {
+                    "key": "selectedIndividualClientReferenceId",
+                    "value": "{{navigation.selectedIndividualClientReferenceId}}"
+                  },
+                  {
+                    "key": "selectedIndividualIdentifierId",
+                    "value": "{{navigation.selectedIndividualIdentifierId}}"
+                  },
+                  {
+                    "key": "HouseholdClientReferenceId",
+                    "value": "{{ navigation.HouseholdClientReferenceId }}"
+                  },
+                  {
+                    "key": "ProjectBeneficiaryClientReferenceId",
+                    "value": "{{navigation.ProjectBeneficiaryClientReferenceId}}"
+                  }
+                ],
+                "name": "ACKNOWLEDGEMENT",
+                "type": "TEMPLATE",
+                "onError": [
+                  {
+                    "actionType": "SHOW_TOAST",
+                    "properties": {
+                      "message": "Navigation failed."
+                    }
+                  }
+                ],
+                "navigationMode": "popUntilAndPush",
+                "popUntilPageName": "householdOverview"
+              }
+            }
+          ],
+          "condition": {
+            "expression": "riEligibilityChecklist.chcSeen==YES && riEligibilityChecklist.fullyImmunized==YES"
+          }
+        },
+        {
+          "actionId": 2,
+          "actions": [
+            {
+              "actionType": "NAVIGATION",
+              "properties": {
+                "data": [
+                  {
+                    "key": "chcSeen",
+                    "value": "{{riEligibilityChecklist.chcSeen}}"
+                  },
+                  {
+                    "key": "fullyImmunized",
+                    "value": "{{riEligibilityChecklist.fullyImmunized}}"
+                  },
+                  {
+                    "key": "partiallyImmunized",
+                    "value": "{{riEligibilityChecklist.partiallyImmunized}}"
+                  },
+                  {
+                    "key": "zeroDose",
+                    "value": "{{riEligibilityChecklist.zeroDose}}"
+                  },
+                  {
+                    "key": "unimmunized",
+                    "value": "{{riEligibilityChecklist.unimmunized}}"
+                  },
+                  {
+                    "key": "sourceFlow",
+                    "value": "RI_CHECKLIST"
+                  },
+                  {
+                    "key": "selectedIndividualClientReferenceId",
+                    "value": "{{navigation.selectedIndividualClientReferenceId}}"
+                  },
+                  {
+                    "key": "selectedIndividualIdentifierId",
+                    "value": "{{navigation.selectedIndividualIdentifierId}}"
+                  },
+                  {
+                    "key": "HouseholdClientReferenceId",
+                    "value": "{{ navigation.HouseholdClientReferenceId }}"
+                  },
+                  {
+                    "key": "ProjectBeneficiaryClientReferenceId",
+                    "value": "{{navigation.ProjectBeneficiaryClientReferenceId}}"
+                  },
+                  {
+                    "key": "selectedIndividualName",
+                    "value": "{{navigation.selectedIndividualName}}"
+                  },
+                  {
+                    "key": "selectedIndividualGender",
+                    "value": "{{navigation.selectedIndividualGender}}"
+                  },
+                  {
+                    "key": "selectedIndividualAgeInMonths",
+                    "value": "{{navigation.selectedIndividualAgeInMonths}}"
+                  },
+                  {
+                    "key": "cycleIndex",
+                    "value": "{{navigation.cycleIndex}}"
+                  },
+                  {
+                    "key": "memberCount",
+                    "value": "{{navigation.memberCount}}"
+                  },
+                  {
+                    "key": "childName",
+                    "value": "{{navigation.childName}}"
+                  },
+                  {
+                    "key": "ageInMonths",
+                    "value": "{{navigation.ageInMonths}}"
+                  },
+                  {
+                    "key": "gender",
+                    "value": "{{navigation.gender}}"
+                  },
+                  {
+                    "key": "headName",
+                    "value": "{{navigation.headName}}"
+                  },
+                  {
+                    "key": "headMobileNumber",
+                    "value": "{{navigation.headMobileNumber}}"
+                  },
+                  {
+                    "key": "referralReasons",
+                    "value": "RI"
+                  },
+                  {
+                    "key": "latitude",
+                    "value": "{{navigation.latitude}}"
+                  },
+                  {
+                    "key": "longitude",
+                    "value": "{{navigation.longitude}}"
+                  },
+                  {
+                    "key": "locationAccuracy",
+                    "value": "{{navigation.locationAccuracy}}"
                   }
                 ],
                 "name": "REFER_BENEFICIARY",
@@ -6468,8 +7836,44 @@
             },
             {
               "type": "string",
-              "label": "APPONE_REGISTRATION_BENEFICIARYDETAILS_label_phone_addmember",
+              "label": "APPONE_REGISTRATION_BENEFICIARYDETAILS_label_height_addmember",
               "order": 6,
+              "value": "",
+              "format": "text",
+              "visibilityCondition": {
+                "expression": [
+                  {
+                    "condition": "calculateAgeInMonths(beneficiaryDetails.dobPicker)>=12 && calculateAgeInMonths(beneficiaryDetails.dobPicker)<=59"
+                  }
+                ]
+              },
+              "isMdms": false,
+              "tooltip": "",
+              "helpText": "APPONE_REGISTRATION_BENEFICIARYDETAILS_label_height_helpText_addmember",
+              "infoText": "",
+              "readOnly": false,
+              "required": true,
+              "fieldName": "height",
+              "mandatory": true,
+              "deleteFlag": false,
+              "innerLabel": "",
+              "schemaCode": null,
+              "systemDate": false,
+              "validations": [
+                {
+                  "type": "required",
+                  "value": true,
+                  "message": "APPONE_REGISTRATION_BENEFICIARYDETAILS_label_height_mandatory_message_addmember"
+                }
+              ],
+              "errorMessage": "",
+              "isMultiSelect": false,
+              "required.message": "APPONE_REGISTRATION_BENEFICIARYDETAILS_label_height_mandatory_message_addmember"
+            },
+            {
+              "type": "string",
+              "label": "APPONE_REGISTRATION_BENEFICIARYDETAILS_label_phone_addmember",
+              "order": 7,
               "value": "",
               "format": "mobileNumber",
               "visibilityCondition": {
@@ -6520,7 +7924,7 @@
             {
               "type": "string",
               "label": "APPONE_REGISTRATION_BENEFICIARYDETAILS_label_scanner_addmember",
-              "order": 7,
+              "order": 8,
               "value": "",
               "format": "scanner",
               "hidden": true,
@@ -7270,6 +8674,38 @@
               {
                 "key": "ec5",
                 "value": "{{navigation.ec5}}"
+              },
+              {
+                "key": "malariaVaccine",
+                "value": "{{navigation.malariaVaccine}}"
+              },
+              {
+                "key": "malariaVaccineDate",
+                "value": "{{navigation.malariaVaccineDate}}"
+              },
+              {
+                "key": "smc",
+                "value": "{{navigation.smc}}"
+              },
+              {
+                "key": "smcDate",
+                "value": "{{navigation.smcDate}}"
+              },
+              {
+                "key": "polio",
+                "value": "{{navigation.polio}}"
+              },
+              {
+                "key": "polioDate",
+                "value": "{{navigation.polioDate}}"
+              },
+              {
+                "key": "measlesRubella",
+                "value": "{{navigation.measlesRubella}}"
+              },
+              {
+                "key": "measlesRubellaDate",
+                "value": "{{navigation.measlesRubellaDate}}"
               },
               {
                 "key": "referralReasons",
