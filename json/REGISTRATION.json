@@ -580,6 +580,10 @@
                   {
                     "key": "measlesRubellaDate",
                     "value": "{{navigation.measlesRubellaDate}}"
+                  },
+                  {
+                    "key": "administrationStartTime",
+                    "value": "{{fn:startAdministrationTimer()}}"
                   }
                 ],
                 "name": "DELIVERY",
@@ -920,7 +924,6 @@
       "submitCondition": null,
       "preventScreenCapture": false
     },
-   
     {
       "body": [
         {
@@ -1258,7 +1261,7 @@
                       "bottomGap": 16
                     }
                   },
-                 {
+                  {
                     "type": "template",
                     "label": "ADMINISTERED_SUCCESS",
                     "format": "tag",
@@ -1277,7 +1280,7 @@
                     "fieldName": "notEligible",
                     "properties": {
                       "tagType": "error",
-                  "bottomGap": 16
+                      "bottomGap": 16
                     }
                   },
                   {
@@ -1289,7 +1292,7 @@
                     "fieldName": "beneficiaryReferred",
                     "properties": {
                       "tagType": "error",
-                  "bottomGap": 16
+                      "bottomGap": 16
                     }
                   },
                   {
@@ -1303,7 +1306,6 @@
                       "bottomGap": 16
                     }
                   },
-                  
                   {
                     "type": "template",
                     "label": "NOT_VISITED",
@@ -1315,8 +1317,6 @@
                       "bottomGap": 16
                     }
                   },
-                  
-               
                   {
                     "type": "template",
                     "label": "DELIVERY",
@@ -1419,7 +1419,6 @@
                       "bottomGap": 16
                     }
                   },
-                 
                   {
                     "type": "template",
                     "label": "HOUSEHOLD_OVERVIEW_UNABLE_TO_DELIVER_LABEL",
@@ -3193,6 +3192,18 @@
                   {
                     "key": "measlesRubellaDate",
                     "value": "{{navigation.measlesRubellaDate}}"
+                  },
+                  {
+                    "key": "administrationStartTime",
+                    "value": "{{navigation.administrationStartTime}}"
+                  },
+                  {
+                    "key": "administrationEndTime",
+                    "value": "{{fn:administrationEndTime()}}"
+                  },
+                  {
+                    "key": "administrationTimeFlag",
+                    "value": "{{fn:administrationTimeFlag(navigation.administrationStartTime)}}"
                   }
                 ],
                 "onError": [
@@ -3719,6 +3730,18 @@
               {
                 "key": "measlesRubellaDate",
                 "value": "{{navigation.measlesRubellaDate}}"
+              },
+              {
+                "key": "administrationStartTime",
+                "value": "{{navigation.administrationStartTime}}"
+              },
+              {
+                "key": "administrationEndTime",
+                "value": "{{fn:administrationEndTime()}}"
+              },
+              {
+                "key": "administrationTimeFlag",
+                "value": "{{fn:administrationTimeFlag(navigation.administrationStartTime)}}"
               }
             ],
             "onError": [
@@ -3949,7 +3972,6 @@
       "wrapperConfig": {},
       "scrollListener": {}
     },
-   
     {
       "name": "REDOSE",
       "order": 12,
