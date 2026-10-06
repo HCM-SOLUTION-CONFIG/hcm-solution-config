@@ -1243,6 +1243,16 @@
                   "type": "regex",
                   "value": "^[0-9]+$",
                   "message": "QUANTITY_VALID_NUMBER_ERROR_MESSAGE"
+                },
+                {
+                  "type": "min",
+                  "value": 0,
+                  "message": "QUANTITY_VALID_NUMBER_ERROR_MESSAGE"
+                },
+                {
+                  "type": "max",
+                  "value": 1,
+                  "message": "QUANTITY_VALID_NUMBER_ERROR_MESSAGE"
                 }
               ],
               "errorMessage": "",
