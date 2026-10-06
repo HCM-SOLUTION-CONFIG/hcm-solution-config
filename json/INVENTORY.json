@@ -1163,7 +1163,7 @@
                 },
                 {
                   "type": "min",
-                  "value": 1,
+                  "value": 0,
                   "message": "QUANTITY_RETURN_MIN_REQUIRED_ERROR_MESSAGE"
                 },
                 {
