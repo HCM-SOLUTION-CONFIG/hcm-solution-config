@@ -6792,6 +6792,11 @@
                   "type": "required",
                   "value": true,
                   "message": "APPONE_REGISTRATION_BENEFICIARYDETAILS_label_height_mandatory_message_addmember"
+                },
+                {
+                  "type": "pattern",
+                  "value": "^\\d+",
+                  "message": "MB_ONLY_NUMBERS"
                 }
               ],
               "errorMessage": "",
