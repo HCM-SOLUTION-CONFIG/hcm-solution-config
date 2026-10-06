@@ -1272,12 +1272,18 @@
               "infoText": "",
               "readOnly": false,
               "fieldName": "sideEffectPQ4",
-              "mandatory": false,
+              "mandatory": true,
               "deleteFlag": false,
               "innerLabel": "",
               "schemaCode": "",
               "systemDate": false,
-              "validations": [],
+              "validations": [
+                {
+                  "type": "required",
+                  "value": true,
+                  "message": "HFREFERRAL_SIDEEFFECTFROMPREVIOUSCYCLE_sideEffectPQ4_REQUIRED_ERROR"
+                }
+              ],
               "errorMessage": "",
               "isMultiSelect": true,
               "dropDownOptions": [
@@ -1565,17 +1571,11 @@
               "readOnly": false,
               "required": true,
               "fieldName": "beneficiaryId",
-              "mandatory": true,
+              "mandatory": false,
               "deleteFlag": false,
               "innerLabel": "",
               "systemDate": false,
-              "validations": [
-                {
-                  "type": "required",
-                  "value": true,
-                  "message": "HFREFERRAL_REFERRAL_DETAILS_beneficiaryId_REQUIRED_ERROR"
-                }
-              ],
+              "validations": [],
               "errorMessage": "",
               "isMultiSelect": false,
               "required.message": "HFREFERRAL_REFERRAL_DETAILS_beneficiaryId_REQUIRED_ERROR",
