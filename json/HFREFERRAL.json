@@ -757,7 +757,7 @@
               "label": "HFREFERRAL_SIDEEFFECTFROMSICK_sickQ4_LABEL",
               "order": 2,
               "value": "",
-              "format": "text",
+              "format": "textArea",
               "hidden": false,
               "isMdms": false,
               "tooltip": "",
@@ -925,6 +925,36 @@
                 }
               ],
               "required.message": "HFREFERRAL_SIDEEFFECTFROMSICK_sickQ3_REQUIRED_ERROR"
+            },
+            {
+              "type": "string",
+              "label": "HFREFERRAL_SIDEEFFECTFROMSICK_sickQ6_LABEL",
+              "order": 6,
+              "value": "",
+              "format": "textArea",
+              "hidden": false,
+              "isMdms": false,
+              "tooltip": "",
+              "helpText": "",
+              "infoText": "",
+              "readOnly": false,
+              "required": true,
+              "fieldName": "sickQ6",
+              "mandatory": true,
+              "deleteFlag": false,
+              "innerLabel": "",
+              "schemaCode": "",
+              "systemDate": false,
+              "validations": [
+                {
+                  "type": "required",
+                  "value": true,
+                  "message": "HFREFERRAL_SIDEEFFECTFROMSICK_sickQ6_REQUIRED_ERROR"
+                }
+              ],
+              "errorMessage": "",
+              "isMultiSelect": false,
+              "required.message": "HFREFERRAL_SIDEEFFECTFROMSICK_sickQ6_REQUIRED_ERROR"
             }
           ],
           "actionLabel": "HFREFERRAL_SIDEEFFECTFROMSICK_ACTION_LABEL",
@@ -1203,6 +1233,88 @@
               "type": "string",
               "enums": [
                 {
+                  "code": "NAUSEA",
+                  "name": "SIDE_EFFECT_PREQ4_NAUSEA"
+                },
+                {
+                  "code": "VOMITING",
+                  "name": "SIDE_EFFECT_PREQ4_VOMITING"
+                },
+                {
+                  "code": "DIARRHOEA",
+                  "name": "SIDE_EFFECT_PREQ4_DIARRHOEA"
+                },
+                {
+                  "code": "FLATULENCE",
+                  "name": "SIDE_EFFECT_PREQ4_FLATULENCE"
+                },
+                {
+                  "code": "HEADACHE",
+                  "name": "SIDE_EFFECT_PREQ4_HEADACHE"
+                },
+                {
+                  "code": "STOMACH_PAIN",
+                  "name": "SIDE_EFFECT_PREQ4_STOMACH_PAIN"
+                },
+                {
+                  "code": "OTHERS",
+                  "name": "SIDE_EFFECT_PREQ4_OTHERS"
+                }
+              ],
+              "label": "HFREFERRAL_SIDEEFFECTFROMPREVIOUSCYCLE_sideEffectPQ4_LABEL",
+              "order": 3,
+              "value": "",
+              "format": "checkbox",
+              "hidden": false,
+              "isMdms": false,
+              "tooltip": "",
+              "helpText": "",
+              "infoText": "",
+              "readOnly": false,
+              "fieldName": "sideEffectPQ4",
+              "mandatory": false,
+              "deleteFlag": false,
+              "innerLabel": "",
+              "schemaCode": "",
+              "systemDate": false,
+              "validations": [],
+              "errorMessage": "",
+              "isMultiSelect": true,
+              "dropDownOptions": [
+                {
+                  "code": "NAUSEA",
+                  "name": "SIDE_EFFECT_PREQ4_NAUSEA"
+                },
+                {
+                  "code": "VOMITING",
+                  "name": "SIDE_EFFECT_PREQ4_VOMITING"
+                },
+                {
+                  "code": "DIARRHOEA",
+                  "name": "SIDE_EFFECT_PREQ4_DIARRHOEA"
+                },
+                {
+                  "code": "FLATULENCE",
+                  "name": "SIDE_EFFECT_PREQ4_FLATULENCE"
+                },
+                {
+                  "code": "HEADACHE",
+                  "name": "SIDE_EFFECT_PREQ4_HEADACHE"
+                },
+                {
+                  "code": "STOMACH_PAIN",
+                  "name": "SIDE_EFFECT_PREQ4_STOMACH_PAIN"
+                },
+                {
+                  "code": "OTHERS",
+                  "name": "SIDE_EFFECT_PREQ4_OTHERS"
+                }
+              ]
+            },
+            {
+              "type": "string",
+              "enums": [
+                {
                   "code": "YES",
                   "name": "SIDE_EFFECT_PREQ3_YES"
                 },
@@ -1212,7 +1324,7 @@
                 }
               ],
               "label": "HFREFERRAL_SIDEEFFECTFROMPREVIOUSCYCLE_sideEffectPQ3_LABEL",
-              "order": 3,
+              "order": 4,
               "value": "",
               "format": "radio",
               "hidden": false,
@@ -1248,6 +1360,36 @@
                 }
               ],
               "required.message": "HFREFERRAL_SIDEEFFECTFROMPREVIOUSCYCLE_sideEffectPQ3_REQUIRED_ERROR"
+            },
+            {
+              "type": "string",
+              "label": "HFREFERRAL_SIDEEFFECTFROMPREVIOUSCYCLE_sideEffectPQ5_LABEL",
+              "order": 5,
+              "value": "",
+              "format": "text",
+              "hidden": false,
+              "isMdms": false,
+              "tooltip": "",
+              "helpText": "",
+              "infoText": "",
+              "readOnly": false,
+              "required": true,
+              "fieldName": "sideEffectPQ5",
+              "mandatory": true,
+              "deleteFlag": false,
+              "innerLabel": "",
+              "schemaCode": "",
+              "systemDate": false,
+              "validations": [
+                {
+                  "type": "required",
+                  "value": true,
+                  "message": "HFREFERRAL_SIDEEFFECTFROMPREVIOUSCYCLE_sideEffectPQ5_REQUIRED_ERROR"
+                }
+              ],
+              "errorMessage": "",
+              "isMultiSelect": false,
+              "required.message": "HFREFERRAL_SIDEEFFECTFROMPREVIOUSCYCLE_sideEffectPQ5_REQUIRED_ERROR"
             }
           ],
           "actionLabel": "HFREFERRAL_SIDEEFFECTFROMPREVIOUSCYCLE_ACTION_LABEL",
@@ -1421,14 +1563,22 @@
               "helpText": "",
               "infoText": "",
               "readOnly": false,
+              "required": true,
               "fieldName": "beneficiaryId",
-              "mandatory": false,
+              "mandatory": true,
               "deleteFlag": false,
               "innerLabel": "",
               "systemDate": false,
-              "validations": [],
+              "validations": [
+                {
+                  "type": "required",
+                  "value": true,
+                  "message": "HFREFERRAL_REFERRAL_DETAILS_beneficiaryId_REQUIRED_ERROR"
+                }
+              ],
               "errorMessage": "",
               "isMultiSelect": false,
+              "required.message": "HFREFERRAL_REFERRAL_DETAILS_beneficiaryId_REQUIRED_ERROR",
               "autoFillCondition": [
                 {
                   "value": "{{beneficiaryId}}",
@@ -1576,20 +1726,16 @@
               "type": "string",
               "enums": [
                 {
-                  "code": "DRUG_SE_CC",
-                  "name": "DRUG_SE_CC"
-                },
-                {
-                  "code": "DRUG_SE_PC",
-                  "name": "DRUG_SE_PC"
+                  "code": "SICK",
+                  "name": "SICK"
                 },
                 {
                   "code": "FEVER",
                   "name": "FEVER"
                 },
                 {
-                  "code": "SICK",
-                  "name": "SICK"
+                  "code": "DRUG_SE_PC",
+                  "name": "DRUG_SE_PC"
                 }
               ],
               "label": "HFREFERRAL_REFERRAL_DETAILS_referralReason_LABEL",
@@ -1597,7 +1743,7 @@
               "value": "",
               "format": "radio",
               "hidden": false,
-              "isMdms": true,
+              "isMdms": false,
               "tooltip": "",
               "helpText": "",
               "infoText": "",
@@ -1607,7 +1753,6 @@
               "mandatory": true,
               "deleteFlag": false,
               "innerLabel": "",
-              "schemaCode": "HCM.REFERRAL_REASONS",
               "systemDate": false,
               "validations": [
                 {
@@ -1620,20 +1765,16 @@
               "isMultiSelect": false,
               "dropDownOptions": [
                 {
-                  "code": "DRUG_SE_CC",
-                  "name": "DRUG_SE_CC"
-                },
-                {
-                  "code": "DRUG_SE_PC",
-                  "name": "DRUG_SE_PC"
+                  "code": "SICK",
+                  "name": "SICK"
                 },
                 {
                   "code": "FEVER",
                   "name": "FEVER"
                 },
                 {
-                  "code": "SICK",
-                  "name": "SICK"
+                  "code": "DRUG_SE_PC",
+                  "name": "DRUG_SE_PC"
                 }
               ],
               "required.message": "HFREFERRAL_REFERRAL_DETAILS_referralReason_REQUIRED_ERROR",
@@ -2096,63 +2237,6 @@
               "enums": [
                 {
                   "code": "YES",
-                  "name": "FEVERQ3_YES"
-                },
-                {
-                  "code": "NO",
-                  "name": "FEVERQ2_NO"
-                }
-              ],
-              "label": "HFREFERRAL_SIDEEFFECTFROMFEVER_feverQ3_LABEL",
-              "order": 3,
-              "value": "",
-              "format": "radio",
-              "hidden": false,
-              "isMdms": false,
-              "tooltip": "",
-              "helpText": "",
-              "infoText": "",
-              "readOnly": false,
-              "required": true,
-              "fieldName": "feverQ3",
-              "mandatory": true,
-              "deleteFlag": false,
-              "innerLabel": "",
-              "schemaCode": "",
-              "systemDate": false,
-              "validations": [
-                {
-                  "type": "required",
-                  "value": true,
-                  "message": "HFREFERRAL_SIDEEFFECTFROMFEVER_feverQ3_REQUIRED_ERROR"
-                }
-              ],
-              "errorMessage": "",
-              "isMultiSelect": false,
-              "dropDownOptions": [
-                {
-                  "code": "YES",
-                  "name": "FEVERQ3_YES"
-                },
-                {
-                  "code": "NO",
-                  "name": "FEVERQ2_NO"
-                }
-              ],
-              "required.message": "HFREFERRAL_SIDEEFFECTFROMFEVER_feverQ3_REQUIRED_ERROR",
-              "visibilityCondition": {
-                "expression": [
-                  {
-                    "condition": "sideEffectFever.feverQ2==NEGATIVE"
-                  }
-                ]
-              }
-            },
-            {
-              "type": "string",
-              "enums": [
-                {
-                  "code": "YES",
                   "name": "FEVERQ4_YES"
                 },
                 {
@@ -2298,6 +2382,36 @@
                   }
                 ]
               }
+            },
+            {
+              "type": "string",
+              "label": "HFREFERRAL_SIDEEFFECTFROMFEVER_feverQ7_LABEL",
+              "order": 7,
+              "value": "",
+              "format": "text",
+              "hidden": false,
+              "isMdms": false,
+              "tooltip": "",
+              "helpText": "",
+              "infoText": "",
+              "readOnly": false,
+              "required": true,
+              "fieldName": "feverQ7",
+              "mandatory": true,
+              "deleteFlag": false,
+              "innerLabel": "",
+              "schemaCode": "",
+              "systemDate": false,
+              "validations": [
+                {
+                  "type": "required",
+                  "value": true,
+                  "message": "HFREFERRAL_SIDEEFFECTFROMFEVER_feverQ7_REQUIRED_ERROR"
+                }
+              ],
+              "errorMessage": "",
+              "isMultiSelect": false,
+              "required.message": "HFREFERRAL_SIDEEFFECTFROMFEVER_feverQ7_REQUIRED_ERROR"
             }
           ],
           "actionLabel": "HFREFERRAL_SIDEEFFECTFROMFEVER_ACTION_LABEL",
