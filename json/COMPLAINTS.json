@@ -69,10 +69,6 @@
                               "complaintNumber",
                               "mobileNumber"
                             ],
-                            "filterKeys": [
-                              "serviceRequestId",
-                              "mobileNumber"
-                            ],
                             "triggerSearch": true
                           }
                         }
@@ -120,6 +116,26 @@
                                 "root": "pgrComplainant",
                                 "value": "{{mobileNumber}}",
                                 "operation": "contains"
+                              },
+                              {
+                                "key": "name",
+                                "root": "pgrComplainant",
+                                "value": "{{singleton.loggedInUser.name}}",
+                                "applyIf": "{{ assignTo }} == ASSIGN_TO_ME",
+                                "operation": "equals"
+                              },
+                              {
+                                "key": "serviceCode",
+                                "value": "{{complaintType }}",
+                                "applyIf": "{{complaintType }} !=null && {{complaintType }} !=null",
+                                "operation": "equals"
+                              },
+                              {
+                                "key": "localityBoundaryCode",
+                                "root": "address",
+                                "value": "{{ locality }}",
+                                "applyIf": "{{locality }} !=null && {{locality }} !=null",
+                                "operation": "equals"
                               }
                             ],
                             "name": "pgrService"
@@ -266,6 +282,18 @@
                           "properties": {
                             "data": [
                               {
+                                "key": "serviceRequestId",
+                                "root": "pgrService",
+                                "value": "{{complaintNumber}}",
+                                "operation": "contains"
+                              },
+                              {
+                                "key": "mobileNumber",
+                                "root": "pgrComplainant",
+                                "value": "{{mobileNumber}}",
+                                "operation": "contains"
+                              },
+                              {
                                 "key": "name",
                                 "root": "pgrComplainant",
                                 "value": "{{singleton.loggedInUser.name}}",
@@ -378,6 +406,38 @@
                               {
                                 "key": "tenantId",
                                 "value": "{{singleton.selectedProject.tenantId}}",
+                                "operation": "equals"
+                              },
+                              {
+                                "key": "serviceRequestId",
+                                "root": "pgrService",
+                                "value": "{{complaintNumber}}",
+                                "operation": "contains"
+                              },
+                              {
+                                "key": "mobileNumber",
+                                "root": "pgrComplainant",
+                                "value": "{{mobileNumber}}",
+                                "operation": "contains"
+                              },
+                              {
+                                "key": "name",
+                                "root": "pgrComplainant",
+                                "value": "{{singleton.loggedInUser.name}}",
+                                "applyIf": "{{ assignTo }} == ASSIGN_TO_ME",
+                                "operation": "equals"
+                              },
+                              {
+                                "key": "serviceCode",
+                                "value": "{{complaintType }}",
+                                "applyIf": "{{complaintType }} !=null && {{complaintType }} !=null",
+                                "operation": "equals"
+                              },
+                              {
+                                "key": "localityBoundaryCode",
+                                "root": "address",
+                                "value": "{{ locality }}",
+                                "applyIf": "{{locality }} !=null && {{locality }} !=null",
                                 "operation": "equals"
                               }
                             ],
@@ -760,7 +820,7 @@
               "format": "mobileNumber",
               "hidden": false,
               "tooltip": "",
-              "pattern": "^\\d+$",
+              "pattern": "^0\\d{9}$",
               "helpText": "",
               "infoText": "",
               "readOnly": false,
@@ -785,10 +845,15 @@
                   "type": "maxLength",
                   "value": 10,
                   "message": "MOBILE_LENGTH_10_DIGIT"
+                },
+                {
+                  "type": "pattern",
+                  "value": "^0\\d{9}$",
+                  "message": "MOBILE_NUMBER_START_WITH_ZERO_ERROR"
                 }
               ],
               "errorMessage": "",
-              "pattern.message": "MB_ONLY_NUMBERS",
+              "pattern.message": "MOBILE_NUMBER_START_WITH_ZERO_ERROR",
               "isMultiSelect": false,
               "autoFillCondition": [
                 {
@@ -839,7 +904,7 @@
               "value": "",
               "format": "mobileNumber",
               "hidden": false,
-              "pattern": "^\\d+$",
+              "pattern": "^0\\d{9}$",
               "tooltip": "",
               "helpText": "",
               "infoText": "",
@@ -857,12 +922,17 @@
                 },
                 {
                   "type": "maxLength",
-                  "value": 11,
-                  "message": "MOBILE_LENGTH_11_DIGITS"
+                  "value": 10,
+                  "message": "MOBILE_LENGTH_10_DIGITS"
+                },
+                {
+                  "type": "pattern",
+                  "value": "^0\\d{9}$",
+                  "message": "MOBILE_NUMBER_START_WITH_ZERO_ERROR"
                 }
               ],
               "errorMessage": "",
-              "pattern.message": "MB_ONLY_NUMBERS",
+              "pattern.message": "MOBILE_NUMBER_START_WITH_ZERO_ERROR",
               "isMultiSelect": false
             },
             {

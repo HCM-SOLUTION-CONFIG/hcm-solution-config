@@ -149,7 +149,7 @@
               "validations": [
                 {
                   "type": "minLength",
-                  "value": "1",
+                  "value": "3",
                   "message": "CLOSEHOUSEHOLD_CLOSEHOUSEHOLDDETAILS_lastName_MIN_LENGTH_ERROR"
                 }
               ],
@@ -349,7 +349,7 @@
                 "value": "{{entities.HouseholdModel.clientReferenceId}}"
               },
               {
-                "key": "test0012",
+                "key": "ProjectBeneficiaryClientReferenceId",
                 "value": "{{entities.ProjectBeneficiaryModel.clientReferenceId}}"
               },
               {
@@ -441,7 +441,7 @@
                 },
                 {
                   "key": "CLOSEHOUSEHOLD_CLOSEHOUSEHOLDDETAILS_GPS_ACCURACY_LABEL",
-                  "value": "{{contextData.0.HouseholdModel.address.locationAccuracy}}",
+                  "value": "{{fn:formatAccuracy(contextData.0.HouseholdModel.address.locationAccuracy)}}",
                   "isActive": true
                 }
               ],
@@ -471,7 +471,7 @@
                 "data": [
                   {
                     "key": "ProjectBeneficiaryClientReferenceId",
-                    "value": "{{navigation.test0012}}"
+                    "value": "{{navigation.ProjectBeneficiaryClientReferenceId}}"
                   },
                   {
                     "key": "HouseholdClientReferenceId",
@@ -681,7 +681,7 @@
                 },
                 {
                   "key": "CLOSEHOUSEHOLD_CLOSEHOUSEHOLDDETAILS_GPS_ACCURACY_LABEL",
-                  "value": "{{contextData.0.HouseholdModel.address.locationAccuracy}}",
+                  "value": "{{fn:formatAccuracy(contextData.0.HouseholdModel.address.locationAccuracy)}}",
                   "isActive": true
                 }
               ],

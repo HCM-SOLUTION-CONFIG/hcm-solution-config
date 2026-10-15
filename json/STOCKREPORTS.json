@@ -119,6 +119,14 @@
           "properties": {
             "icon": "Assessment"
           },
+          "visibilityCondition": {
+            "expression": [
+              {
+                "condition": "singleton.userRole != 'DISTRIBUTOR'",
+                "type": "custom"
+              }
+            ]
+          },
           "onAction": [
             {
               "actionType": "NAVIGATION",
@@ -184,6 +192,14 @@
           "format": "menu_card",
           "hidden": true,
           "heading": "STOCKREPORTS_VIEW_REPORTS_STOCK_DAMAGED_HEADING",
+          "visibilityCondition": {
+            "expression": [
+              {
+                "condition": "singleton.userRole != 'DISTRIBUTOR'",
+                "type": "custom"
+              }
+            ]
+          },
           "onAction": [
             {
               "actionType": "NAVIGATION",
@@ -220,6 +236,14 @@
           "format": "menu_card",
           "hidden": true,
           "heading": "STOCKREPORTS_VIEW_REPORTS_STOCK_LOSS_HEADING",
+          "visibilityCondition": {
+            "expression": [
+              {
+                "condition": "singleton.userRole != 'DISTRIBUTOR'",
+                "type": "custom"
+              }
+            ]
+          },
           "onAction": [
             {
               "actionType": "NAVIGATION",
@@ -743,7 +767,7 @@
               },
               {
                 "header": "STOCKRECON_REPORT_DETAILS_TABLE_HEADER_4_LABEL",
-                "cellValue": "{{item.additionalFields.fields.stockReturned}}"
+                "cellValue": "{{fn:absoluteValue(item.additionalFields.fields.stockReturned)}}"
               },
               {
                 "header": "STOCKRECON_REPORT_DETAILS_TABLE_HEADER_7_LABEL",
