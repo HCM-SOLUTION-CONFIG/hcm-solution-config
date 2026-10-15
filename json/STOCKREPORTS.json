@@ -119,6 +119,14 @@
           "properties": {
             "icon": "Assessment"
           },
+          "visibilityCondition": {
+            "expression": [
+              {
+                "condition": "singleton.userRole != 'DISTRIBUTOR'",
+                "type": "custom"
+              }
+            ]
+          },
           "onAction": [
             {
               "actionType": "NAVIGATION",
@@ -184,6 +192,14 @@
           "format": "menu_card",
           "hidden": true,
           "heading": "STOCKREPORTS_VIEW_REPORTS_STOCK_DAMAGED_HEADING",
+          "visibilityCondition": {
+            "expression": [
+              {
+                "condition": "singleton.userRole != 'DISTRIBUTOR'",
+                "type": "custom"
+              }
+            ]
+          },
           "onAction": [
             {
               "actionType": "NAVIGATION",
@@ -220,6 +236,14 @@
           "format": "menu_card",
           "hidden": true,
           "heading": "STOCKREPORTS_VIEW_REPORTS_STOCK_LOSS_HEADING",
+          "visibilityCondition": {
+            "expression": [
+              {
+                "condition": "singleton.userRole != 'DISTRIBUTOR'",
+                "type": "custom"
+              }
+            ]
+          },
           "onAction": [
             {
               "actionType": "NAVIGATION",
@@ -552,7 +576,7 @@
               },
               {
                 "header": "STOCKREPORTS_REPORT_DETAILS_TABLE_HEADER_4_LABEL",
-                "cellValue": "{{item.quantity}}"
+                "cellValue": "{{fn:absoluteValue(item.quantity)}}"
               }
             ],
             "rows": "{{contextData.0.StockModel}}"
@@ -743,7 +767,7 @@
               },
               {
                 "header": "STOCKRECON_REPORT_DETAILS_TABLE_HEADER_4_LABEL",
-                "cellValue": "{{item.additionalFields.fields.stockReturned}}"
+                "cellValue": "{{fn:absoluteValue(item.additionalFields.fields.stockReturned)}}"
               },
               {
                 "header": "STOCKRECON_REPORT_DETAILS_TABLE_HEADER_7_LABEL",
@@ -752,6 +776,10 @@
               {
                 "header": "STOCKRECON_REPORT_DETAILS_TABLE_HEADER_8_LABEL",
                 "cellValue": "{{item.calculatedCount}}"
+              },
+              {
+                "header": "STOCKRECON_REPORT_DETAILS_TABLE_HEADER_UNACCOUNTED_LABEL",
+                "cellValue": "{{fn:subtractQuantity(item.calculatedCount, item.physicalCount)}}"
               }
             ],
             "rows": "{{contextData.0.StockReconciliationModel}}"
