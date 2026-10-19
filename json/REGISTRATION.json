@@ -1711,7 +1711,7 @@
           ],
           "fieldName": "idSearchBar",
           "mandatory": true,
-          "allowedCharacters": "a-zA-Z0-9",
+          "allowedCharacters": "a-zA-Z0-9_",
           "validations": [
             {"type": "minSearchChars", "value": 2}
           ],

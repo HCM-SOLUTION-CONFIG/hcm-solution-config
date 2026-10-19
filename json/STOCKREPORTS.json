@@ -94,7 +94,11 @@
                 "data": [
                   {
                     "key": "reportType",
-                    "value": "ISSUED"
+                    "value": "receipt"
+                  },
+                  {
+                    "key": "reportDetailsHeading",
+                    "value": "INVENTORY_STOCK_RECEIPT_DETAILS_HEADING"
                   },
                   {
                     "key": "facilities",
@@ -139,6 +143,10 @@
                     "value": "dispatch"
                   },
                   {
+                    "key": "reportDetailsHeading",
+                    "value": "INVENTORY_STOCK_ISSUE_DETAILS_HEADING"
+                  },
+                  {
                     "key": "facilities",
                     "value": "{{fn:getCurrentFacilities(ProjectFacilityModel)}}"
                   },
@@ -173,6 +181,10 @@
                     "value": "returned"
                   },
                   {
+                    "key": "reportDetailsHeading",
+                    "value": "INVENTORY_STOCK_RETURN_DETAILS_HEADING"
+                  },
+                  {
                     "key": "facilities",
                     "value": "{{fn:getCurrentFacilities(ProjectFacilityModel)}}"
                   },
@@ -190,7 +202,6 @@
           "type": "template",
           "label": "STOCKREPORTS_VIEW_REPORTS_STOCK_DAMAGED_HEADING",
           "format": "menu_card",
-          "hidden": true,
           "heading": "STOCKREPORTS_VIEW_REPORTS_STOCK_DAMAGED_HEADING",
           "visibilityCondition": {
             "expression": [
@@ -208,6 +219,10 @@
                   {
                     "key": "reportType",
                     "value": "damage"
+                  },
+                  {
+                    "key": "reportDetailsHeading",
+                    "value": "INVENTORY_STOCK_DAMAGED_DETAILS_HEADING"
                   },
                   {
                     "key": "facilities",
@@ -254,6 +269,10 @@
                     "value": "loss"
                   },
                   {
+                    "key": "reportDetailsHeading",
+                    "value": "INVENTORY_STOCK_LOSS_DETAILS_HEADING"
+                  },
+                  {
                     "key": "facilities",
                     "value": "{{FacilityModel}}"
                   },
@@ -289,6 +308,10 @@
                     "value": "excess"
                   },
                   {
+                    "key": "reportDetailsHeading",
+                    "value": "INVENTORY_REPORT_DETAILS_EXCESS_REPORT_TITLE"
+                  },
+                  {
                     "key": "facilities",
                     "value": "{{FacilityModel}}"
                   },
@@ -322,6 +345,10 @@
                   {
                     "key": "reportType",
                     "value": "less"
+                  },
+                  {
+                    "key": "reportDetailsHeading",
+                    "value": "INVENTORY_REPORT_DETAILS_LESS_REPORT_TITLE"
                   },
                   {
                     "key": "facilities",
@@ -382,7 +409,7 @@
     {
       "screenType": "TEMPLATE",
       "name": "reportDetails",
-      "heading": "STOCKREPORTS_REPORT_DETAILS_HEADING",
+      "heading": "{{navigation.reportDetailsHeading}}",
       "description": "STOCKREPORTS_REPORT_DETAILS_DESCRIPTION",
       "initActions": [],
       "wrapperConfig": {

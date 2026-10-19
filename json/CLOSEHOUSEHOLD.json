@@ -124,6 +124,11 @@
                   "type": "minLength",
                   "value": "3",
                   "message": "CLOSEHOUSEHOLD_CLOSEHOUSEHOLDDETAILS_headName_MIN_LENGTH_ERROR"
+                },
+                {
+                  "type": "maxLength",
+                  "value": "200",
+                  "message": "CLOSEHOUSEHOLD_CLOSEHOUSEHOLDDETAILS_headName_MAX_LENGTH_ERROR"
                 }
               ],
               "errorMessage": "",

@@ -2376,6 +2376,11 @@
                           "value":
                               "{{item.items[0].additionalFields.fields.stockEntryType}}"
                         },
+                        {
+                          "key": "discrepancyReason",
+                          "value":
+                              "{{item.items[0].additionalFields.fields.discrepancyReason}}"
+                        },
                         {"key": "transactionType", "value": "RECEIVED"},
                         {"key": "primaryRole", "value": "RECEIVER"},
                         {"key": "secondaryRole", "value": "SENDER"},
@@ -2587,9 +2592,71 @@
         },
         {
           "condition": {
+            "expression": "navigation.incomingStockEntryType == 'RETURNED' && navigation.discrepancyReason == 'STOCK_LOSS'"
+          },
+          "actions": [
+            {
+              "actionType": "UPDATE_EVENT",
+              "properties": {
+                "source": "existingModels",
+                "entity": "StockModel",
+                "modify": [
+                  {
+                    "key": "StockModel.additionalFields.fields.status",
+                    "value": "ACCEPTED"
+                  },
+                  {
+                    "key": "StockModel.additionalFields.fields.actualQuantityReceived",
+                    "value": "0"
+                  },
+                  {
+                    "key": "StockModel.quantity",
+                    "value": "0"
+                  },
+                  {
+                    "key": "StockModel.transactionReason",
+                    "value": "STOCK_LOSS"
+                  }
+                ]
+              }
+            },
+            {
+              "actionType": "SHOW_TOAST",
+              "properties": {
+                "message": "INVENTORY_STOCK_LOSS_RECORDED_SUCCESS",
+                "type": "success"
+              }
+            },
+            {
+              "actionType": "NAVIGATION",
+              "properties": {
+                "type": "TEMPLATE",
+                "name": "manageStock",
+                "navigationMode": "popUntilAndReplace",
+                "popUntilPageName": "manageStock"
+              }
+            }
+          ]
+        },
+        {
+          "condition": {
             "expression": "navigation.incomingStockEntryType == 'RETURNED'"
           },
           "actions": [
+            {
+              "actionType": "UPDATE_STOCK_BALANCE",
+              "properties": {
+                "entity": "STOCK",
+                "onError": [
+                  {
+                    "actionType": "SHOW_TOAST",
+                    "properties": {
+                      "message": "INVENTORY_UPDATE_STOCK_BALANCE_FAILED_MESSAGE"
+                    }
+                  }
+                ]
+              }
+            },
             {
               "actionType": "FETCH_TRANSFORMER_CONFIG",
               "properties": {
@@ -2622,6 +2689,10 @@
                   {
                     "key": "originalIssueClientReferenceId",
                     "value": "{{navigation.clientReferenceId}}"
+                  },
+                  {
+                    "key": "discrepancyReason",
+                    "value": "{{navigation.discrepancyReason}}"
                   }
                 ],
                 "onError": [
@@ -2629,6 +2700,19 @@
                     "actionType": "SHOW_TOAST",
                     "properties": {
                       "message": "INVENTORY_FETCH_CONFIG_FAILED_MESSAGE"
+                    }
+                  }
+                ]
+              }
+            },
+            {
+              "actionType": "CREATE_EVENT",
+              "properties": {
+                "onError": [
+                  {
+                    "actionType": "SHOW_TOAST",
+                    "properties": {
+                      "message": "INVENTORY_CREATE_STOCK_FAILED_MESSAGE"
                     }
                   }
                 ]
