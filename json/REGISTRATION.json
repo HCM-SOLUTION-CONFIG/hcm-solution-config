@@ -2094,7 +2094,7 @@
                                   "value": "{{ item.HouseholdModel.clientReferenceId }}"
                                 },
                                 {
-                                  "key": "projectBeneficiaryClientReferenceId",
+                                  "key": "ProjectBeneficiaryClientReferenceId",
                                   "value": "{{ item.projectBeneficiaries.ProjectBeneficiaryModel.clientReferenceId }}"
                                 },
                                 {
@@ -2209,6 +2209,10 @@
                                 {
                                   "key": "HouseholdClientReferenceId",
                                   "value": "{{ item.HouseholdModel.clientReferenceId }}"
+                                },
+                                {
+                                  "key": "ProjectBeneficiaryClientReferenceId",
+                                  "value": "{{ item.projectBeneficiaries.ProjectBeneficiaryModel.clientReferenceId }}"
                                 },
                                 {
                                   "key": "nameOfIndividual",
@@ -3531,7 +3535,10 @@
                         }
                       }
                     ],
-                    "configName": "beneficiaryRegistration"
+                    "configName": "beneficiaryRegistration",
+                    "createEntities": [
+                      "ProjectBeneficiaryModel"
+                    ]
                   }
                 },
                 {
@@ -3596,7 +3603,10 @@
                         }
                       }
                     ],
-                    "configName": "beneficiaryRegistration"
+                    "configName": "beneficiaryRegistration",
+                    "createEntities": [
+                      "ProjectBeneficiaryModel"
+                    ]
                   }
                 },
                 {
@@ -3655,7 +3665,10 @@
                         }
                       }
                     ],
-                    "configName": "beneficiaryRegistration"
+                    "configName": "beneficiaryRegistration",
+                    "createEntities": [
+                      "ProjectBeneficiaryModel"
+                    ]
                   }
                 },
                 {
@@ -4167,7 +4180,10 @@
                         }
                       }
                     ],
-                    "configName": "beneficiaryRegistration"
+                    "configName": "beneficiaryRegistration",
+                    "createEntities": [
+                      "ProjectBeneficiaryModel"
+                    ]
                   }
                 },
                 {
@@ -4232,7 +4248,10 @@
                         }
                       }
                     ],
-                    "configName": "beneficiaryRegistration"
+                    "configName": "beneficiaryRegistration",
+                    "createEntities": [
+                      "ProjectBeneficiaryModel"
+                    ]
                   }
                 },
                 {
@@ -4291,7 +4310,10 @@
                         }
                       }
                     ],
-                    "configName": "beneficiaryRegistration"
+                    "configName": "beneficiaryRegistration",
+                    "createEntities": [
+                      "ProjectBeneficiaryModel"
+                    ]
                   }
                 },
                 {
@@ -4680,7 +4702,10 @@
                     }
                   }
                 ],
-                "configName": "beneficiaryRegistration"
+                "configName": "beneficiaryRegistration",
+                "createEntities": [
+                  "ProjectBeneficiaryModel"
+                ]
               }
             },
             {
@@ -4763,7 +4788,10 @@
                     }
                   }
                 ],
-                "configName": "beneficiaryRegistration"
+                "configName": "beneficiaryRegistration",
+                "createEntities": [
+                  "ProjectBeneficiaryModel"
+                ]
               }
             },
             {
