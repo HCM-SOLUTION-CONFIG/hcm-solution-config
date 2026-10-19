@@ -113,7 +113,7 @@
           "onAction": [
             {
               "condition": {
-                "expression": "{{fn:hasRole('WAREHOUSE_MANAGER')}} == true"
+                "expression": "{{fn:hasRole('WAREHOUSE_MANAGER')}} == true || {{fn:hasRole('DISTRIBUTOR')}} == true"
               },
               "actions": [
                 {
@@ -149,7 +149,7 @@
             },
             {
               "condition": {
-                "expression": "{{fn:hasRole('WAREHOUSE_MANAGER')}} == false"
+                "expression": "{{fn:hasRole('WAREHOUSE_MANAGER')}} == false && {{fn:hasRole('DISTRIBUTOR')}} == false"
               },
               "actions": [
                 {
