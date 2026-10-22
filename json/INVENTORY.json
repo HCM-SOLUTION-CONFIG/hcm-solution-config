@@ -2240,7 +2240,7 @@
                   "data": [
                     {
                       "key": "selectedStock",
-                      "value": "{{navigation.mrnNumber}}"
+                      "value": "{{fn:getCommentValue(navigation.mrnNumber, navigation.selectedTransactionMrn)}}"
                     },
                     {
                       "key": "clientReferenceId",
@@ -2303,10 +2303,12 @@
             "data": [
               {
                 "key": "additionalFields",
-                "value": "{{navigation.selectedStock}}",
+                "value": "{{fn:getCommentValue(navigation.selectedStock, \"__NO_MATCHING_STOCK_MRN__\")}}",
                 "operation": "contains"
               }
-            ]
+            ],
+            "awaitResults": true,
+            "skipAccumulatedFilters": true
           }
         }
       ],
@@ -2372,11 +2374,13 @@
                   },
                   {
                     "key": "INVENTORY_WAYBILL_NUMBER_LABEL",
-                    "value": "{{item.additionalFields.fields.wayBillNumber}}"
+                    "value": "{{fn:getWayBillNumber(item.wayBillNumber, item.additionalFields.fields.wayBillNumber)}}",
+                    "hideIfNull": true
                   },
                   {
                     "key": "INVENTORY_BATCH_NUMBER_LABEL",
-                    "value": "{{item.additionalFields.fields.batchNumber}}"
+                    "value": "{{item.additionalFields.fields.batchNumber}}",
+                    "hideIfNull": true
                   },
                   {
                     "key": "{{fn:getStockQuantityLabel(item.additionalFields.fields.stockEntryType)}}",
@@ -2399,7 +2403,18 @@
                   },
                   {
                     "key": "INVENTORY_COMMENTS_LABEL",
-                    "value": "{{fn:safeString(item.additionalFields.fields.comments)}}"
+                    "value": "{{fn:safeString(item.additionalFields.fields.comments)}}",
+                    "hideIfNull": true
+                  },
+                  {
+                    "key": "APPONE_INVENTORY_TRANSPORT_LABEL",
+                    "value": "{{item.additionalFields.fields.transportType}}",
+                    "hideIfNull": true
+                  },
+                  {
+                    "key": "APPONE_INVENTORY_VEHICLE_NUMBER_LABEL",
+                    "value": "{{item.additionalFields.fields.vehicle_number}}",
+                    "hideIfNull": true
                   }
                 ]
               }
@@ -2644,7 +2659,7 @@
                         },
                         {
                           "key": "mrnNumber",
-                          "value": "{{item.items[0].additionalFields.fields.mrnNumber}}"
+                          "value": "{{fn:getCommentValue(item.items[0].additionalFields.fields.mrnNumber, fn:generateUniqueMaterialNoteNumber())}}"
                         },
                         {
                           "key": "isEdit",
@@ -2664,7 +2679,7 @@
                         },
                         {
                           "key": "wayBillNumber",
-                          "value": "{{item.items[0].additionalFields.fields.wayBillNumber}}"
+                          "value": "{{fn:getWayBillNumber(item.items[0].wayBillNumber, item.items[0].additionalFields.fields.wayBillNumber)}}"
                         },
                         {
                           "key": "productVariantId",
@@ -2685,6 +2700,26 @@
                         {
                           "key": "clientReferenceId",
                           "value": "{{item.items[0].clientReferenceId}}"
+                        },
+                        {
+                          "key": "originalIssueClientReferenceId",
+                          "value": "{{item.items[0].additionalFields.fields.originalIssueClientReferenceId}}"
+                        },
+                        {
+                          "key": "selectedTransactionMrn",
+                          "value": "{{item.items[0].additionalFields.fields.mrnNumber}}"
+                        },
+                        {
+                          "key": "transportType",
+                          "value": "{{item.items[0].additionalFields.fields.transportType}}"
+                        },
+                        {
+                          "key": "vehicleNumber",
+                          "value": "{{item.items[0].additionalFields.fields.vehicle_number}}"
+                        },
+                        {
+                          "key": "originalComment",
+                          "value": "{{item.items[0].additionalFields.fields.comments}}"
                         }
                       ]
                     }
@@ -2746,7 +2781,7 @@
               },
               {
                 "key": "mrnNumber",
-                "value": "{{navigation.mrnNumber}}"
+                "value": "{{fn:getCommentValue(navigation.mrnNumber, navigation.selectedTransactionMrn)}}"
               },
               {
                 "key": "senderFacilityId",
@@ -2771,6 +2806,22 @@
               {
                 "key": "quantity",
                 "value": "{{navigation.quantity}}"
+              },
+              {
+                "key": "wayBillNumber",
+                "value": "{{navigation.wayBillNumber}}"
+              },
+              {
+                "key": "batchNumber",
+                "value": "{{navigation.batchNumber}}"
+              },
+              {
+                "key": "transportType",
+                "value": "{{navigation.transportType}}"
+              },
+              {
+                "key": "vehicleNumber",
+                "value": "{{navigation.vehicleNumber}}"
               }
             ],
             "onError": [
@@ -2795,7 +2846,7 @@
               },
               {
                 "key": "StockModel.additionalFields.fields.mrnNumber",
-                "value": "{{navigation.mrnNumber}}"
+                "value": "{{fn:getCommentValue(navigation.mrnNumber, navigation.selectedTransactionMrn)}}"
               },
               {
                 "key": "StockModel.additionalFields.fields.comments",
@@ -2856,7 +2907,7 @@
                   },
                   {
                     "key": "transactionDetailsHeading",
-                    "value": "{{fn:getViewTransactionHeadingCode(navigation.incomingStockEntryType, 'RECEIVED')}}"
+                    "value": "{{fn:getViewTransactionHeadingCode(navigation.incomingStockEntryType, 'RECEIVED', navigation.discrepancyReason)}}"
                   }
                 ]
               }
@@ -2885,6 +2936,10 @@
                   {
                     "key": "StockModel.transactionReason",
                     "value": "STOCK_LOSS"
+                  },
+                  {
+                    "key": "StockModel.additionalFields.fields.stockEntryType",
+                    "value": "LOSS"
                   }
                 ]
               }
@@ -2907,7 +2962,7 @@
                   },
                   {
                     "key": "transactionDetailsHeading",
-                    "value": "{{fn:getViewTransactionHeadingCode(navigation.incomingStockEntryType, 'RECEIVED')}}"
+                    "value": "{{fn:getViewTransactionHeadingCode(navigation.incomingStockEntryType, 'RECEIVED', navigation.discrepancyReason)}}"
                   }
                 ]
               }
@@ -2916,7 +2971,7 @@
         },
         {
           "condition": {
-            "expression": "navigation.incomingStockEntryType == 'RETURNED'"
+            "expression": "navigation.incomingStockEntryType == 'RETURNED' && ((navigation.originalIssueClientReferenceId != null && navigation.originalIssueClientReferenceId != '') || (navigation.discrepancyReason != null && navigation.discrepancyReason != '' && navigation.discrepancyReason != 'null'))"
           },
           "actions": [
             {
@@ -2985,6 +3040,22 @@
                   {
                     "key": "discrepancyReason",
                     "value": "{{navigation.discrepancyReason}}"
+                  },
+                  {
+                    "key": "wayBillNumber",
+                    "value": "{{navigation.wayBillNumber}}"
+                  },
+                  {
+                    "key": "batchNumber",
+                    "value": "{{navigation.batchNumber}}"
+                  },
+                  {
+                    "key": "transportType",
+                    "value": "{{navigation.transportType}}"
+                  },
+                  {
+                    "key": "vehicleNumber",
+                    "value": "{{navigation.vehicleNumber}}"
                   }
                 ],
                 "onError": [
@@ -3051,7 +3122,7 @@
               },
               {
                 "key": "transactionDetailsHeading",
-                "value": "{{fn:getViewTransactionHeadingCode(navigation.incomingStockEntryType, 'RECEIVED')}}"
+                "value": "{{fn:getViewTransactionHeadingCode(navigation.incomingStockEntryType, 'RECEIVED', navigation.discrepancyReason)}}"
               }
             ]
           }
@@ -3060,7 +3131,7 @@
       "onSecondaryAction": [
         {
           "condition": {
-            "expression": "navigation.incomingStockEntryType == 'RETURNED'"
+            "expression": "navigation.incomingStockEntryType == 'RETURNED' && ((navigation.originalIssueClientReferenceId != null && navigation.originalIssueClientReferenceId != '') || (navigation.discrepancyReason != null && navigation.discrepancyReason != '' && navigation.discrepancyReason != 'null'))"
           },
           "actions": [
             {
@@ -3074,7 +3145,7 @@
         },
         {
           "condition": {
-            "expression": "navigation.incomingStockEntryType != 'RETURNED' && (actualQuantityReceived <= 0 || actualQuantityReceived >= quantity)"
+            "expression": "(navigation.incomingStockEntryType != 'RETURNED' || (navigation.originalIssueClientReferenceId == null && (navigation.discrepancyReason == null || navigation.discrepancyReason == '' || navigation.discrepancyReason == 'null'))) && (actualQuantityReceived <= 0 || actualQuantityReceived >= quantity)"
           },
           "actions": [
             {
@@ -3115,7 +3186,7 @@
                   },
                   {
                     "key": "mrnNumber",
-                    "value": "{{navigation.mrnNumber}}"
+                    "value": "{{fn:getCommentValue(navigation.mrnNumber, navigation.selectedTransactionMrn)}}"
                   },
                   {
                     "key": "senderFacilityId",
@@ -3140,6 +3211,22 @@
                   {
                     "key": "comment",
                     "value": "{{fn:safeString(formData.rejectComment)}}"
+                  },
+                  {
+                    "key": "wayBillNumber",
+                    "value": "{{navigation.wayBillNumber}}"
+                  },
+                  {
+                    "key": "batchNumber",
+                    "value": "{{navigation.batchNumber}}"
+                  },
+                  {
+                    "key": "transportType",
+                    "value": "{{navigation.transportType}}"
+                  },
+                  {
+                    "key": "vehicleNumber",
+                    "value": "{{navigation.vehicleNumber}}"
                   }
                 ],
                 "onError": [
@@ -3164,7 +3251,7 @@
                   },
                   {
                     "key": "StockModel.additionalFields.fields.mrnNumber",
-                    "value": "{{navigation.mrnNumber}}"
+                    "value": "{{fn:getCommentValue(navigation.mrnNumber, navigation.selectedTransactionMrn)}}"
                   },
                   {
                     "key": "StockModel.additionalFields.fields.comments",
@@ -3260,6 +3347,22 @@
                   {
                     "key": "comment",
                     "value": "{{fn:safeString(formData.rejectComment)}}"
+                  },
+                  {
+                    "key": "wayBillNumber",
+                    "value": "{{navigation.wayBillNumber}}"
+                  },
+                  {
+                    "key": "batchNumber",
+                    "value": "{{navigation.batchNumber}}"
+                  },
+                  {
+                    "key": "transportType",
+                    "value": "{{navigation.transportType}}"
+                  },
+                  {
+                    "key": "vehicleNumber",
+                    "value": "{{navigation.vehicleNumber}}"
                   }
                 ],
                 "onError": [
@@ -3303,7 +3406,7 @@
                   },
                   {
                     "key": "transactionDetailsHeading",
-                    "value": "{{fn:getViewTransactionHeadingCode(navigation.incomingStockEntryType, 'RECEIVED')}}"
+                    "value": "{{fn:getViewTransactionHeadingCode(navigation.incomingStockEntryType, 'RECEIVED', navigation.discrepancyReason)}}"
                   }
                 ]
               }

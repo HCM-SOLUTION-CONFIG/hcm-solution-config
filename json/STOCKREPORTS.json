@@ -448,12 +448,7 @@
                         "operation": "containsAny"
                       },
                       {
-                        "key": "additionalFields",
-                        "value": "{{fn:getReportStatusFilter(navigation.reportType)}}",
-                        "operation": "contains"
-                      },
-                      {
-                        "key": "transactionReason",
+                        "key": "{{fn:getReportTransactionReasonFilterKey(navigation.reportType)}}",
                         "value": "{{fn:getReportTransactionReasonFilter(navigation.reportType)}}",
                         "operation": "containsAny"
                       },
@@ -461,6 +456,12 @@
                         "key": "{{fn:getSenderOrReceiver(navigation.reportType)}}",
                         "value": "{{fn:getReportFacilityId(navigation.reportType, selectedFacility)}}",
                         "operation": "equalsAny"
+                      },
+                      {
+                        "key": "additionalFields",
+                        "value": "\"key\":\"status\",\"value\":\"ACCEPTED\"",
+                        "operation": "contains",
+                        "applyIf": "{{fn:isResolvedDamageReport(navigation.reportType)}}"
                       }
                     ]
                   }
@@ -502,12 +503,7 @@
                         "operation": "containsAny"
                       },
                       {
-                        "key": "additionalFields",
-                        "value": "{{fn:getReportStatusFilter(navigation.reportType)}}",
-                        "operation": "contains"
-                      },
-                      {
-                        "key": "transactionReason",
+                        "key": "{{fn:getReportTransactionReasonFilterKey(navigation.reportType)}}",
                         "value": "{{fn:getReportTransactionReasonFilter(navigation.reportType)}}",
                         "operation": "containsAny"
                       },
@@ -515,6 +511,12 @@
                         "key": "{{fn:getSenderOrReceiver(navigation.reportType)}}",
                         "value": "{{fn:getReportFacilityId(navigation.reportType, selectedFacility)}}",
                         "operation": "equalsAny"
+                      },
+                      {
+                        "key": "additionalFields",
+                        "value": "\"key\":\"status\",\"value\":\"ACCEPTED\"",
+                        "operation": "contains",
+                        "applyIf": "{{fn:isResolvedDamageReport(navigation.reportType)}}"
                       }
                     ]
                   }
@@ -570,7 +572,7 @@
               },
               {
                 "header": "STOCKREPORTS_REPORT_DETAILS_TABLE_HEADER_4_LABEL",
-                "cellValue": "{{fn:absoluteValue(item.quantity)}}"
+                "cellValue": "{{fn:getReportStockQuantity(navigation.reportType, item)}}"
               }
             ],
             "rows": "{{contextData.0.StockModel}}"
