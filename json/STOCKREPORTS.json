@@ -204,14 +204,6 @@
           "format": "menu_card",
           "hidden": false,
           "heading": "STOCKREPORTS_VIEW_REPORTS_STOCK_DAMAGED_HEADING",
-          "visibilityCondition": {
-            "expression": [
-              {
-                "condition": "singleton.userRole != 'DISTRIBUTOR'",
-                "type": "custom"
-              }
-            ]
-          },
           "onAction": [
             {
               "actionType": "NAVIGATION",
@@ -227,7 +219,7 @@
                   },
                   {
                     "key": "facilities",
-                    "value": "{{FacilityModel}}"
+                    "value": "{{fn:getCurrentFacilities(ProjectFacilityModel)}}"
                   },
                   {
                     "key": "productVariants",
@@ -252,14 +244,6 @@
           "format": "menu_card",
           "hidden": false,
           "heading": "STOCKREPORTS_VIEW_REPORTS_STOCK_LOSS_HEADING",
-          "visibilityCondition": {
-            "expression": [
-              {
-                "condition": "singleton.userRole != 'DISTRIBUTOR'",
-                "type": "custom"
-              }
-            ]
-          },
           "onAction": [
             {
               "actionType": "NAVIGATION",
@@ -275,7 +259,7 @@
                   },
                   {
                     "key": "facilities",
-                    "value": "{{FacilityModel}}"
+                    "value": "{{fn:getCurrentFacilities(ProjectFacilityModel)}}"
                   },
                   {
                     "key": "productVariants",
@@ -423,7 +407,11 @@
           "primary": "stock",
           "select": [
             "stock"
-          ]
+          ],
+          "orderBy": {
+            "field": "clientCreatedTime",
+            "order": "DESC"
+          }
         }
       },
       "header": [
@@ -505,8 +493,8 @@
                       },
                       {
                         "key": "{{fn:getSenderOrReceiver(navigation.reportType)}}",
-                        "value": "{{selectedFacility}}",
-                        "operation": "equals"
+                        "value": "{{fn:getReportFacilityId(navigation.reportType, selectedFacility)}}",
+                        "operation": "equalsAny"
                       }
                     ]
                   }
@@ -547,8 +535,8 @@
                       },
                       {
                         "key": "{{fn:getSenderOrReceiver(navigation.reportType)}}",
-                        "value": "{{selectedFacility}}",
-                        "operation": "equals"
+                        "value": "{{fn:getReportFacilityId(navigation.reportType, selectedFacility)}}",
+                        "operation": "equalsAny"
                       }
                     ]
                   }
@@ -566,7 +554,7 @@
             "type": "info"
           },
           "fieldName": "infoCardReportDetails",
-          "visible": "{{fn:isEmpty(selectedFacility)}} && {{fn:isEmpty(selectedProduct)}}"
+          "visible": "{{fn:isEmpty(fn:getReportFacilityId(navigation.reportType, selectedFacility))}} && {{fn:isEmpty(selectedProduct)}}"
         },
         {
           "type": "template",
@@ -577,12 +565,13 @@
             "type": "info"
           },
           "fieldName": "noRecordFoundInfoReportDetails",
-          "visible": "{{fn:isEmpty(stock)}} && {{fn:isNotEmpty(selectedFacility)}}"
+          "visible": "{{fn:isEmpty(stock)}} && {{fn:isNotEmpty(fn:getReportFacilityId(navigation.reportType, selectedFacility))}} && {{fn:isNotEmpty(selectedProduct)}}"
         },
         {
           "type": "template",
           "format": "table",
           "fieldName": "tableInfoReportDetails",
+          "fitToContent": true,
           "data": {
             "source": "StockModel",
             "columns": [
@@ -628,7 +617,11 @@
           "primary": "stockReconciliation",
           "select": [
             "stockReconciliation"
-          ]
+          ],
+          "orderBy": {
+            "field": "clientCreatedTime",
+            "order": "DESC"
+          }
         }
       },
       "header": [
@@ -778,6 +771,7 @@
           "type": "template",
           "format": "table",
           "fieldName": "tableInfoReckonReportDetails",
+          "fitToContent": true,
           "data": {
             "source": "StockReconciliationModel",
             "columns": [

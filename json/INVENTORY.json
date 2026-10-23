@@ -1594,7 +1594,7 @@
               },
               {
                 "key": "teamCode",
-                "value": "{{fn:getStockTeamCode(navigation.stockEntryType, navigation.primaryRole, formData.warehouseDetails.teamCode, formData.stockDetails.deliveryTeam)}}"
+                "value": "{{fn:getStockTeamCode(navigation.stockEntryType, navigation.primaryRole, formData.warehouseDetails.teamCode, formData.warehouseDetails.facilityToWhich, formData.stockDetails.facilityFromWhich, formData.stockDetails.deliveryTeam)}}"
               },
               {
                 "key": "senderId",
@@ -2561,7 +2561,7 @@
                         },
                         {
                           "key": "transactionDetailsHeading",
-                          "value": "{{fn:getViewTransactionHeadingCode(item.items[0].additionalFields.fields.stockEntryType)}}"
+                          "value": "{{fn:getViewTransactionHeadingCode(item.items[0].additionalFields.fields)}}"
                         }
                       ]
                     }
@@ -2681,7 +2681,7 @@
                     "value": "{{item.additionalFields.fields.vehicleNumber}}"
                   },
                   {
-                    "key": "{{fn:getQuantityLabel(item.additionalFields.fields.sku)}}",
+                    "key": "{{fn:getStockQuantityLabel(item.additionalFields.fields)}}",
                     "value": "{{item.quantity}}"
                   }
                 ]
@@ -2935,7 +2935,7 @@
                       "data": [
                         {
                           "key": "stockEntryType",
-                          "value": "{{item.items[0].additionalFields.fields.stockEntryType}}"
+                          "value": "{{fn:getStockEntryTypeFromFields(item.items[0].additionalFields.fields)}}"
                         },
                         {
                           "key": "transactionType",
