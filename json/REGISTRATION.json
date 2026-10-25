@@ -26,7 +26,7 @@
               "data": [
                 {
                   "key": "E_TOKEN",
-                  "value": "{{contextData.0.headIndividual.IndividualModel.identifiers.0.identifierId}}"
+                  "value": "{{fn:getBeneficiaryId(contextData.0.headIndividual.IndividualModel.identifiers)}}"
                 }
               ]
             }
@@ -538,6 +538,11 @@
                   "key": "MEMBER_COUNT",
                   "value": "{{contextData.0.household.HouseholdModel.memberCount}}",
                   "isActive": true
+                },
+                {
+                  "key": "APPONE_REGISTRATION_HOUSEHOLDDETAILS_label_childrenCount",
+                  "value": "{{contextData.0.household.HouseholdModel.additionalFields.fields.childrenCount}}",
+                  "isActive": true
                 }
               ],
               "type": "template",
@@ -564,7 +569,7 @@
                 },
                 {
                   "key": "E_TOKEN",
-                  "value": "{{contextData.0.headIndividual.IndividualModel.identifiers.0.identifierId}}",
+                  "value": "{{fn:getBeneficiaryId(contextData.0.headIndividual.IndividualModel.identifiers)}}",
                   "isActive": true
                 }
               ],
@@ -1080,7 +1085,7 @@
                       },
                       {
                         "key": "beneficiaryId",
-                        "value": "{{contextData.0.headIndividual.IndividualModel.identifiers.0.identifierId}}"
+                        "value": "{{fn:getBeneficiaryId(contextData.0.headIndividual.IndividualModel.identifiers)}}"
                       }
                     ],
                     "name": "DELIVERY",
@@ -1484,6 +1489,11 @@
                   "key": "MEMBER_COUNT",
                   "value": "{{contextData.0.household.HouseholdModel.memberCount}}",
                   "isActive": true
+                },
+                {
+                  "key": "APPONE_REGISTRATION_HOUSEHOLDDETAILS_label_childrenCount",
+                  "value": "{{contextData.0.household.HouseholdModel.additionalFields.fields.childrenCount}}",
+                  "isActive": true
                 }
               ],
               "type": "template",
@@ -1510,7 +1520,7 @@
                 },
                 {
                   "key": "E_TOKEN",
-                  "value": "{{contextData.0.headIndividual.IndividualModel.identifiers.0.identifierId}}",
+                  "value": "{{fn:getBeneficiaryId(contextData.0.headIndividual.IndividualModel.identifiers)}}",
                   "isActive": true
                 }
               ],
@@ -1968,6 +1978,7 @@
                 "data": [
                   {
                     "key": "",
+                    "root": "address",
                     "value": 5,
                     "operation": "within"
                   },
@@ -2058,7 +2069,7 @@
           "child": {
             "type": "template",
             "format": "card",
-            "visible": true,
+            "visible": "{{fn:hasRole('DISTRIBUTOR')}} == false || {{fn:hasRole('REGISTRAR')}} == true || {{fn:isHouseholdMarkedClosed(item.tasks, item.HouseholdModel)}} == false",
             "children": [
               {
                 "type": "template",
@@ -2136,6 +2147,14 @@
                                 {
                                   "key": "lastName",
                                   "value": "{{item.headIndividual.0.name.familyName}}"
+                                },
+                                {
+                                  "key": "UNIQUE_BENEFICIARY_ID",
+                                  "value": "{{latestBeneficiaryId}}"
+                                },
+                                {
+                                  "key": "uniqueBeneficiaryIdModel",
+                                  "value": "{{latestBeneficiaryIdModel}}"
                                 }
                               ],
                               "name": "HOUSEHOLD",
@@ -2906,6 +2925,11 @@
                 {
                   "type": "scanLimit",
                   "value": 4
+                },
+                {
+                  "type": "pattern",
+                  "value": "^[A-Z0-9][A-Z0-9-]{7,}$",
+                  "message": "SCANNER_INVALID_CODE_MESSAGE"
                 }
               ],
               "errorMessage": "",
@@ -4610,16 +4634,7 @@
                   }
                 ]
               },
-              "validations": [
-                {
-                  "type": "required",
-                  "value": true,
-                  "message": "APPONE_REGISTRATION_BENEFICIARYDETAILS_label_nameOfIndividual_mandatory_message",
-                  "condition": {
-                    "expression": "caregiverConsent.consentToParticipate == FALSE"
-                  }
-                }
-              ]
+              "validations": []
             },
             {
               "type": "string",
@@ -4637,16 +4652,7 @@
                   }
                 ]
               },
-              "validations": [
-                {
-                  "type": "required",
-                  "value": true,
-                  "message": "APPONE_REGISTRATION_BENEFICIARYDETAILS_label_nameOfIndividual_mandatory_message",
-                  "condition": {
-                    "expression": "caregiverConsent.consentToParticipate == FALSE"
-                  }
-                }
-              ]
+              "validations": []
             }
           ],
           "actionLabel": "APPONE_REGISTRATION_CAREGIVER_CONSENT_ACTION_BUTTON_LABEL_1",
