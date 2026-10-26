@@ -791,6 +791,26 @@
                       {
                         "key": "beneficiaryId",
                         "value": "{{fn:getUniqueBeneficiaryId(contextData.0.headIndividual.IndividualModel.identifiers)}}"
+                      },
+                      {
+                        "key": "childrenCount",
+                        "value": "{{fn:getAdditionalFieldValue(contextData.0.household.HouseholdModel.additionalFields.fields, 'childrenCount')}}"
+                      },
+                      {
+                        "key": "pregnantWomenCount",
+                        "value": "{{fn:getAdditionalFieldValue(contextData.0.household.HouseholdModel.additionalFields.fields, 'pregnantWomenCount')}}"
+                      },
+                      {
+                        "key": "identificationType",
+                        "value": "{{contextData.0.headIndividual.IndividualModel.identifiers.0.identifierType}}"
+                      },
+                      {
+                        "key": "identificationNumber",
+                        "value": "{{contextData.0.headIndividual.IndividualModel.identifiers.0.identifierId}}"
+                      },
+                      {
+                        "key": "isDelivered",
+                        "value": "{{fn:isDelivered(contextData.0.tasks)}}"
                       }
                     ],
                     "name": "DELIVERY",
@@ -817,7 +837,7 @@
           "label": "CORE_COMMON_SAVE",
           "format": "button",
           "visible": "{{fn:hasRole('REGISTRAR')}} == true",
-          "disabled": "{{fn:isClosedHousehold(contextData.0.tasks)}} == true",
+          "disabled": "{{fn:isClosedHousehold(contextData.0.tasks)}} == true || {{fn:isChecklistCompleted(contextData.0.household.HouseholdModel.additionalFields.fields)}} == true",
           "onAction": [
             {
               "actionType": "NAVIGATION",
@@ -1613,6 +1633,7 @@
                 "data": [
                   {
                     "key": "",
+                    "root": "address",
                     "value": 5,
                     "operation": "within"
                   },
@@ -2258,7 +2279,8 @@
           "properties": {
             "spacing": "spacer4"
           },
-          "schemaCode": null
+          "schemaCode": null,
+          "itemFilter": "{{fn:hasRole('DISTRIBUTOR')}} == false || {{fn:hasRole('REGISTRAR')}} == true || {{fn:isHouseholdMarkedClosed(item.tasks)}} == false"
         }
       ],
       "name": "searchBeneficiary",
@@ -2630,6 +2652,34 @@
               "fieldName": "registrationHealthTalkSubmitButton",
               "onAction": [
                 {
+                  "actionType": "FETCH_TRANSFORMER_CONFIG",
+                  "properties": {
+                    "configName": "beneficiaryRegistration",
+                    "onError": [
+                      {
+                        "actionType": "SHOW_TOAST",
+                        "properties": {
+                          "message": "Failed to fetch config."
+                        }
+                      }
+                    ]
+                  }
+                },
+                {
+                  "actionType": "UPDATE_EVENT",
+                  "properties": {
+                    "entity": "HouseholdModel",
+                    "onError": [
+                      {
+                        "actionType": "SHOW_TOAST",
+                        "properties": {
+                          "message": "Failed to save the checklist."
+                        }
+                      }
+                    ]
+                  }
+                },
+                {
                   "actionType": "NAVIGATION",
                   "properties": {
                     "data": [
@@ -2896,6 +2946,73 @@
       "isSelected": true,
       "onAction": [
         {
+          "actionType": "SEARCH_EVENT",
+          "properties": {
+            "data": [
+              {
+                "key": "clientReferenceId",
+                "value": "{{navigation.HouseholdClientReferenceId}}",
+                "operation": "equals"
+              }
+            ],
+            "name": "household",
+            "type": "SEARCH_EVENT",
+            "awaitResults": true,
+            "onError": [
+              {
+                "actionType": "SHOW_TOAST",
+                "properties": {
+                  "message": "Failed to load the household."
+                }
+              }
+            ]
+          }
+        },
+        {
+          "actionType": "UPDATE_EVENT",
+          "properties": {
+            "entity": "HouseholdModel",
+            "modify": [
+              {
+                "key": "HouseholdModel.additionalFields.fields.ACTION1",
+                "value": "{{formData.registrationHealthTalkChecklist.ACTION1}}"
+              },
+              {
+                "key": "HouseholdModel.additionalFields.fields.ACTION2",
+                "value": "{{formData.registrationHealthTalkChecklist.ACTION2}}"
+              },
+              {
+                "key": "HouseholdModel.additionalFields.fields.ACTION3",
+                "value": "{{formData.registrationHealthTalkChecklist.ACTION3}}"
+              },
+              {
+                "key": "HouseholdModel.additionalFields.fields.ACTION4",
+                "value": "{{formData.registrationHealthTalkChecklist.ACTION4}}"
+              },
+              {
+                "key": "HouseholdModel.additionalFields.fields.ACTION5",
+                "value": "{{formData.registrationHealthTalkChecklist.ACTION5}}"
+              },
+              {
+                "key": "HouseholdModel.additionalFields.fields.ACTION6",
+                "value": "{{formData.registrationHealthTalkChecklist.ACTION6}}"
+              },
+              {
+                "key": "HouseholdModel.additionalFields.fields.ACTION7",
+                "value": "{{formData.registrationHealthTalkChecklist.ACTION7}}"
+              }
+            ],
+            "onError": [
+              {
+                "actionType": "SHOW_TOAST",
+                "properties": {
+                  "message": "Failed to save the checklist."
+                }
+              }
+            ]
+          }
+        },
+        {
           "actionType": "NAVIGATION",
           "properties": {
             "data": [
@@ -2927,8 +3044,41 @@
       "summary": false,
       "version": 1,
       "screenType": "FORM",
-      "wrapperConfig": {},
-      "initActions": []
+      "wrapperConfig": {
+        "filters": [],
+        "relations": [
+          {
+            "name": "household",
+            "match": {
+              "field": "clientReferenceId",
+              "equalsFrom": "clientReferenceId"
+            },
+            "entity": "HouseholdModel"
+          }
+        ],
+        "searchConfig": {
+          "select": [
+            "household"
+          ],
+          "primary": "household"
+        }
+      },
+      "initActions": [
+        {
+          "actionType": "SEARCH_EVENT",
+          "properties": {
+            "data": [
+              {
+                "key": "clientReferenceId",
+                "value": "{{navigation.HouseholdClientReferenceId}}",
+                "operation": "equals"
+              }
+            ],
+            "name": "household",
+            "type": "SEARCH_EVENT"
+          }
+        }
+      ]
     },
     {
       "body": [
@@ -3412,7 +3562,7 @@
                 },
                 {
                   "type": "manualSerialPattern",
-                  "value": "^[!-~]{1,20}$",
+                  "value": "^[A-Z0-9][A-Z0-9-]{7,}$",
                   "message": "APPONE_REGISTRATION_DELIVERYDETAILS_label_scanner_serial_pattern_message"
                 }
               ],
