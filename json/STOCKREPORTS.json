@@ -453,15 +453,15 @@
                         "operation": "containsAny"
                       },
                       {
-                        "key": "{{fn:getSenderOrReceiver(navigation.reportType)}}",
-                        "value": "{{fn:getReportFacilityId(navigation.reportType, selectedFacility)}}",
-                        "operation": "equalsAny"
-                      },
-                      {
                         "key": "additionalFields",
                         "value": "\"key\":\"status\",\"value\":\"ACCEPTED\"",
                         "operation": "contains",
                         "applyIf": "{{fn:isResolvedDamageReport(navigation.reportType)}}"
+                      },
+                      {
+                        "key": "{{fn:getSenderOrReceiver(navigation.reportType)}}",
+                        "value": "{{fn:getReportFacilityId(navigation.reportType, selectedFacility)}}",
+                        "operation": "equalsAny"
                       }
                     ]
                   }
@@ -508,15 +508,15 @@
                         "operation": "containsAny"
                       },
                       {
-                        "key": "{{fn:getSenderOrReceiver(navigation.reportType)}}",
-                        "value": "{{fn:getReportFacilityId(navigation.reportType, selectedFacility)}}",
-                        "operation": "equalsAny"
-                      },
-                      {
                         "key": "additionalFields",
                         "value": "\"key\":\"status\",\"value\":\"ACCEPTED\"",
                         "operation": "contains",
                         "applyIf": "{{fn:isResolvedDamageReport(navigation.reportType)}}"
+                      },
+                      {
+                        "key": "{{fn:getSenderOrReceiver(navigation.reportType)}}",
+                        "value": "{{fn:getReportFacilityId(navigation.reportType, selectedFacility)}}",
+                        "operation": "equalsAny"
                       }
                     ]
                   }
@@ -551,6 +551,7 @@
           "type": "template",
           "format": "table",
           "fieldName": "tableInfoReportDetails",
+          "fitToContent": true,
           "data": {
             "source": "StockModel",
             "columns": [
@@ -751,6 +752,7 @@
           "format": "table",
           "fieldName": "tableInfoReckonReportDetails",
           "visible": "{{fn:hasRole('DISTRIBUTOR')}} == false",
+          "fitToContent": true,
           "data": {
             "source": "StockReconciliationModel",
             "columns": [
@@ -791,6 +793,7 @@
           "format": "table",
           "fieldName": "distributorTableInfoReckonReportDetails",
           "visible": "{{fn:hasRole('DISTRIBUTOR')}} == true",
+          "fitToContent": true,
           "data": {
             "source": "StockReconciliationModel",
             "columns": [
