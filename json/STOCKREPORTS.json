@@ -783,6 +783,10 @@
               {
                 "header": "STOCKRECON_REPORT_DETAILS_TABLE_HEADER_7_LABEL",
                 "cellValue": "{{item.physicalCount}}"
+              },
+              {
+                "header": "STOCKRECON_REPORT_DETAILS_TABLE_HEADER_COMMENTS_LABEL",
+                "cellValue": "{{fn:safeString(item.commentsOnReconciliation)}}"
               }
             ],
             "rows": "{{contextData.0.StockReconciliationModel}}"
@@ -824,6 +828,10 @@
               {
                 "header": "STOCKRECON_REPORT_DETAILS_TABLE_HEADER_7_LABEL",
                 "cellValue": "{{item.physicalCount}}"
+              },
+              {
+                "header": "STOCKRECON_REPORT_DETAILS_TABLE_HEADER_COMMENTS_LABEL",
+                "cellValue": "{{fn:safeString(item.commentsOnReconciliation)}}"
               }
             ],
             "rows": "{{contextData.0.StockReconciliationModel}}"
