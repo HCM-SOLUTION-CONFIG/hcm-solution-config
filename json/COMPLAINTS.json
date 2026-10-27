@@ -64,8 +64,12 @@
                           "properties": {
                             "name": "pgrService",
                             "filterKeys": [
+                              "serviceRequestId",
+                              "mobileNumber"
+                            ],
+                            "widgetKeys": [
                               "complaintNumber",
-                              "complainantMobileNumber"
+                              "mobileNumber"
                             ]
                           }
                         },
@@ -82,17 +86,20 @@
                               {
                                 "key": "tenantId",
                                 "value": "{{singleton.selectedProject.tenantId}}",
-                                "operation": "equals"
+                                "operation": "equals",
+                                "root": "pgrService"
                               },
                               {
-                                "key": "complaintNumber",
+                                "key": "serviceRequestId",
                                 "value": "{{complaintNumber}}",
-                                "operation": "contains"
+                                "operation": "contains",
+                                "root": "pgrService"
                               },
                               {
-                                "key": "complainantMobileNumber",
+                                "key": "mobileNumber",
                                 "value": "{{mobileNumber}}",
-                                "operation": "contains"
+                                "operation": "contains",
+                                "root": "pgrComplainant"
                               },
                               {
                                 "key": "complaintAssignedTo",
@@ -107,16 +114,18 @@
                                 "operation": "equals"
                               },
                               {
-                                "key": "complaintTypeCode",
+                                "key": "serviceCode",
                                 "value": "{{complaintType}}",
                                 "applyIf": "{{complaintType}} != null && {{complaintType}} != ''",
-                                "operation": "equals"
+                                "operation": "equals",
+                                "root": "pgrService"
                               },
                               {
-                                "key": "locality",
+                                "key": "boundary",
                                 "value": "{{locality}}",
                                 "applyIf": "{{locality}} != null && {{locality}} != ''",
-                                "operation": "equals"
+                                "operation": "equals",
+                                "root": "address"
                               }
                             ],
                             "name": "pgrService"
@@ -218,7 +227,11 @@
                             "filterKeys": [
                               "complaintAssignedTo",
                               "currentUserName",
-                              "complaintTypeCode",
+                              "serviceCode",
+                              "boundary"
+                            ],
+                            "widgetKeys": [
+                              "complaintType",
                               "locality"
                             ]
                           }
@@ -236,17 +249,20 @@
                               {
                                 "key": "tenantId",
                                 "value": "{{singleton.selectedProject.tenantId}}",
-                                "operation": "equals"
+                                "operation": "equals",
+                                "root": "pgrService"
                               },
                               {
-                                "key": "complaintNumber",
+                                "key": "serviceRequestId",
                                 "value": "{{complaintNumber}}",
-                                "operation": "contains"
+                                "operation": "contains",
+                                "root": "pgrService"
                               },
                               {
-                                "key": "complainantMobileNumber",
+                                "key": "mobileNumber",
                                 "value": "{{mobileNumber}}",
-                                "operation": "contains"
+                                "operation": "contains",
+                                "root": "pgrComplainant"
                               },
                               {
                                 "key": "complaintAssignedTo",
@@ -261,16 +277,18 @@
                                 "operation": "equals"
                               },
                               {
-                                "key": "complaintTypeCode",
+                                "key": "serviceCode",
                                 "value": "{{complaintType}}",
                                 "applyIf": "{{complaintType}} != null && {{complaintType}} != ''",
-                                "operation": "equals"
+                                "operation": "equals",
+                                "root": "pgrService"
                               },
                               {
-                                "key": "locality",
+                                "key": "boundary",
                                 "value": "{{locality}}",
                                 "applyIf": "{{locality}} != null && {{locality}} != ''",
-                                "operation": "equals"
+                                "operation": "equals",
+                                "root": "address"
                               }
                             ],
                             "name": "pgrService"
@@ -365,17 +383,20 @@
                               {
                                 "key": "tenantId",
                                 "value": "{{singleton.selectedProject.tenantId}}",
-                                "operation": "equals"
+                                "operation": "equals",
+                                "root": "pgrService"
                               },
                               {
-                                "key": "complaintNumber",
+                                "key": "serviceRequestId",
                                 "value": "{{complaintNumber}}",
-                                "operation": "contains"
+                                "operation": "contains",
+                                "root": "pgrService"
                               },
                               {
-                                "key": "complainantMobileNumber",
+                                "key": "mobileNumber",
                                 "value": "{{mobileNumber}}",
-                                "operation": "contains"
+                                "operation": "contains",
+                                "root": "pgrComplainant"
                               },
                               {
                                 "key": "complaintAssignedTo",
@@ -390,16 +411,18 @@
                                 "operation": "equals"
                               },
                               {
-                                "key": "complaintTypeCode",
+                                "key": "serviceCode",
                                 "value": "{{complaintType}}",
                                 "applyIf": "{{complaintType}} != null && {{complaintType}} != ''",
-                                "operation": "equals"
+                                "operation": "equals",
+                                "root": "pgrService"
                               },
                               {
-                                "key": "locality",
+                                "key": "boundary",
                                 "value": "{{locality}}",
                                 "applyIf": "{{locality}} != null && {{locality}} != ''",
-                                "operation": "equals"
+                                "operation": "equals",
+                                "root": "address"
                               }
                             ],
                             "name": "pgrService",
@@ -558,7 +581,8 @@
               {
                 "key": "tenantId",
                 "value": "{{singleton.selectedProject.tenantId}}",
-                "operation": "equals"
+                "operation": "equals",
+                "root": "pgrService"
               }
             ],
             "name": "pgrService",
