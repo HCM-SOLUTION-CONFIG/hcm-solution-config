@@ -4575,7 +4575,7 @@
                 },
                 {
                   "type": "maxField",
-                  "value": "memberCount",
+                  "value": {"field": "memberCount", "offset": -1},
                   "message": "APPONE_REGISTRATION_HOUSEHOLDDETAILS_label_childrenCount_maxField_message"
                 },
                 {
