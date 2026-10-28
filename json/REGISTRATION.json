@@ -802,15 +802,19 @@
                       },
                       {
                         "key": "identificationType",
-                        "value": "{{contextData.0.headIndividual.IndividualModel.identifiers.0.identifierType}}"
+                        "value": "{{fn:getCapturedIdentifierValue(contextData.0.headIndividual.IndividualModel.identifiers, 'identifierType')}}"
                       },
                       {
                         "key": "identificationNumber",
-                        "value": "{{contextData.0.headIndividual.IndividualModel.identifiers.0.identifierId}}"
+                        "value": "{{fn:getCapturedIdentifierValue(contextData.0.headIndividual.IndividualModel.identifiers, 'identifierId')}}"
                       },
                       {
                         "key": "isDelivered",
                         "value": "{{fn:isDelivered(contextData.0.tasks)}}"
+                      },
+                      {
+                        "key": "headMobileNumber",
+                        "value": "{{contextData.0.headIndividual.IndividualModel.mobileNumber}}"
                       }
                     ],
                     "name": "DELIVERY",
@@ -2239,8 +2243,8 @@
                 "fieldName": "nationalIdDisplay",
                 "data": [
                   {
-                    "key": "{{ item.headIndividual.0.identifiers.1.identifierType }}",
-                    "value": "{{ item.headIndividual.0.identifiers.1.identifierId }}",
+                    "key": "{{fn:getCapturedIdentifierValue(item.headIndividual.0.identifiers, 'identifierType')}}",
+                    "value": "{{fn:getCapturedIdentifierValue(item.headIndividual.0.identifiers, 'identifierId')}}",
                     "isActive": true,
                     "hideIfNull": true
                   }
@@ -2599,20 +2603,20 @@
           ],
           "primary": "household",
           "pagination": {
-            "limit": 5,
-            "maxItems": 15
+            "limit": 20,
+            "maxItems": 200
           }
         }
       },
       "scrollListener": {
-        "debounceMs": 0,
+        "debounceMs": 300,
         "onScrollUp": [
           {
             "actionType": "REFRESH_SEARCH",
             "properties": {
               "pagination": {
-                "limit": 5,
-                "maxItems": 15
+                "limit": 20,
+                "maxItems": 200
               }
             }
           }
@@ -2623,8 +2627,8 @@
             "actionType": "REFRESH_SEARCH",
             "properties": {
               "pagination": {
-                "limit": 5,
-                "maxItems": 15
+                "limit": 20,
+                "maxItems": 200
               }
             }
           }
@@ -3663,6 +3667,46 @@
                   {
                     "key": "deliveryStrategy",
                     "value": "{{navigation.deliveryStrategy}}"
+                  },
+                  {
+                    "key": "HouseholdClientReferenceId",
+                    "value": "{{navigation.HouseholdClientReferenceId}}"
+                  },
+                  {
+                    "key": "memberCount",
+                    "value": "{{navigation.memberCount}}"
+                  },
+                  {
+                    "key": "beneficiaryId",
+                    "value": "{{navigation.beneficiaryId}}"
+                  },
+                  {
+                    "key": "headName",
+                    "value": "{{fn:fullName(navigation.nameOfIndividual, navigation.lastName)}}"
+                  },
+                  {
+                    "key": "headMobileNumber",
+                    "value": "{{navigation.headMobileNumber}}"
+                  },
+                  {
+                    "key": "childrenCount",
+                    "value": "{{navigation.childrenCount}}"
+                  },
+                  {
+                    "key": "pregnantWomenCount",
+                    "value": "{{navigation.pregnantWomenCount}}"
+                  },
+                  {
+                    "key": "identificationType",
+                    "value": "{{navigation.identificationType}}"
+                  },
+                  {
+                    "key": "identificationNumber",
+                    "value": "{{navigation.identificationNumber}}"
+                  },
+                  {
+                    "key": "isDelivered",
+                    "value": "true"
                   }
                 ],
                 "onError": [
@@ -3955,6 +3999,46 @@
               {
                 "key": "deliveryComment",
                 "value": "{{navigation.deliveryComment}}"
+              },
+              {
+                "key": "HouseholdClientReferenceId",
+                "value": "{{navigation.HouseholdClientReferenceId}}"
+              },
+              {
+                "key": "memberCount",
+                "value": "{{navigation.memberCount}}"
+              },
+              {
+                "key": "beneficiaryId",
+                "value": "{{navigation.beneficiaryId}}"
+              },
+              {
+                "key": "headName",
+                "value": "{{fn:fullName(navigation.nameOfIndividual, navigation.lastName)}}"
+              },
+              {
+                "key": "headMobileNumber",
+                "value": "{{navigation.headMobileNumber}}"
+              },
+              {
+                "key": "childrenCount",
+                "value": "{{navigation.childrenCount}}"
+              },
+              {
+                "key": "pregnantWomenCount",
+                "value": "{{navigation.pregnantWomenCount}}"
+              },
+              {
+                "key": "identificationType",
+                "value": "{{navigation.identificationType}}"
+              },
+              {
+                "key": "identificationNumber",
+                "value": "{{navigation.identificationNumber}}"
+              },
+              {
+                "key": "isDelivered",
+                "value": "true"
               }
             ],
             "onError": [
@@ -4575,7 +4659,10 @@
                 },
                 {
                   "type": "maxField",
-                  "value": {"field": "memberCount", "offset": -1},
+                  "value": {
+                    "field": "memberCount",
+                    "offset": -1
+                  },
                   "message": "APPONE_REGISTRATION_HOUSEHOLDDETAILS_label_childrenCount_maxField_message"
                 },
                 {
