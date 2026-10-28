@@ -781,6 +781,14 @@
                 "cellValue": "{{item.additionalFields.fields.stockDamaged}}"
               },
               {
+                "header": "STOCKRECON_REPORT_DETAILS_TABLE_HEADER_DAMAGED_LOWER_LABEL",
+                "cellValue": "{{item.additionalFields.fields.lowerFacilityDamagedShortfall}}"
+              },
+              {
+                "header": "STOCKRECON_REPORT_DETAILS_TABLE_HEADER_LOST_LOWER_LABEL",
+                "cellValue": "{{item.additionalFields.fields.lowerFacilityLostShortfall}}"
+              },
+              {
                 "header": "STOCKRECON_REPORT_DETAILS_TABLE_HEADER_7_LABEL",
                 "cellValue": "{{item.physicalCount}}"
               },
