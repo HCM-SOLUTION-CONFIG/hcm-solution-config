@@ -2640,6 +2640,10 @@
                           "value": "{{fn:getStockDiscrepancyReason(item.items)}}"
                         },
                         {
+                          "key": "discrepancyReasonDisplay",
+                          "value": "{{fn:getDiscrepancyReasonDisplayCode(fn:getStockDiscrepancyReason(item.items))}}"
+                        },
+                        {
                           "key": "originalIssueClientReferenceId",
                           "value": "{{item.items[0].additionalFields.fields.originalIssueClientReferenceId}}"
                         },
@@ -3125,21 +3129,7 @@
       "onSecondaryAction": [
         {
           "condition": {
-            "expression": "navigation.incomingStockEntryType == 'RETURNED' && ((navigation.originalIssueClientReferenceId != null && navigation.originalIssueClientReferenceId != '') || (navigation.discrepancyReason != null && navigation.discrepancyReason != '' && navigation.discrepancyReason != 'null'))"
-          },
-          "actions": [
-            {
-              "actionType": "SHOW_TOAST",
-              "properties": {
-                "message": "INVENTORY_RETURN_RESOLVED_VIA_ACCEPT",
-                "type": "error"
-              }
-            }
-          ]
-        },
-        {
-          "condition": {
-            "expression": "(navigation.incomingStockEntryType != 'RETURNED' || (navigation.originalIssueClientReferenceId == null && (navigation.discrepancyReason == null || navigation.discrepancyReason == '' || navigation.discrepancyReason == 'null'))) && (actualQuantityReceived <= 0 || actualQuantityReceived >= quantity)"
+            "expression": "actualQuantityReceived < 0 || actualQuantityReceived >= quantity"
           },
           "actions": [
             {
@@ -3153,7 +3143,270 @@
         },
         {
           "condition": {
-            "expression": "actualQuantityReceived > 0 && actualQuantityReceived < quantity"
+            "expression": "actualQuantityReceived >= 0 && actualQuantityReceived < quantity && navigation.incomingStockEntryType == 'RETURNED' && navigation.discrepancyReason == 'IN_TRANSIT'"
+          },
+          "actions": [
+            {
+              "actionType": "UPDATE_EVENT",
+              "properties": {
+                "source": "existingModels",
+                "entity": "StockModel",
+                "modify": [
+                  {
+                    "key": "StockModel.additionalFields.fields.status",
+                    "value": "ACCEPTED"
+                  },
+                  {
+                    "key": "StockModel.additionalFields.fields.mrnNumber",
+                    "value": "{{fn:getCommentValue(navigation.mrnNumber, navigation.selectedTransactionMrn)}}"
+                  },
+                  {
+                    "key": "StockModel.additionalFields.fields.comments",
+                    "value": "{{fn:safeString(formData.rejectComment)}}"
+                  },
+                  {
+                    "key": "StockModel.additionalFields.fields.actualQuantityReceived",
+                    "value": "{{fn:safeString(formData.actualQuantityReceived)}}"
+                  },
+                  {
+                    "key": "StockModel.additionalFields.fields.originalQuantityReceived",
+                    "value": "{{fn:safeString(navigation.quantity)}}"
+                  },
+                  {
+                    "key": "StockModel.additionalFields.fields.discrepancyReason",
+                    "value": "IN_TRANSIT"
+                  },
+                  {
+                    "key": "StockModel.transactionReason",
+                    "value": "IN_TRANSIT"
+                  }
+                ]
+              }
+            },
+            {
+              "actionType": "FETCH_TRANSFORMER_CONFIG",
+              "properties": {
+                "configName": "shortfallTransaction",
+                "forceCreate": true,
+                "data": [
+                  {
+                    "key": "stockEntryType",
+                    "value": "ISSUED"
+                  },
+                  {
+                    "key": "senderFacilityId",
+                    "value": "{{fn:getUserFacilityId()}}"
+                  },
+                  {
+                    "key": "receiverFacilityId",
+                    "value": "{{navigation.senderFacilityId}}"
+                  },
+                  {
+                    "key": "senderPartyType",
+                    "value": "{{fn:getUserPartyType()}}"
+                  },
+                  {
+                    "key": "receiverPartyType",
+                    "value": "{{fn:getPartyTypeForFacilityId(navigation.senderFacilityId)}}"
+                  },
+                  {
+                    "key": "productVariantId",
+                    "value": "{{navigation.productVariantId}}"
+                  },
+                  {
+                    "key": "userFacilityId",
+                    "value": "{{fn:getUserFacilityId()}}"
+                  },
+                  {
+                    "key": "sku",
+                    "value": "{{navigation.sku}}"
+                  },
+                  {
+                    "key": "wayBillNumber",
+                    "value": "{{navigation.wayBillNumber}}"
+                  },
+                  {
+                    "key": "batchNumber",
+                    "value": "{{navigation.batchNumber}}"
+                  },
+                  {
+                    "key": "transportType",
+                    "value": "{{navigation.transportType}}"
+                  },
+                  {
+                    "key": "vehicleNumber",
+                    "value": "{{navigation.vehicleNumber}}"
+                  },
+                  {
+                    "key": "quantity",
+                    "value": "{{formData.actualQuantityReceived}}"
+                  },
+                  {
+                    "key": "mrnNumber",
+                    "value": "{{fn:generateUniqueMaterialNoteNumber()}}"
+                  },
+                  {
+                    "key": "originalIssueClientReferenceId",
+                    "value": "{{navigation.clientReferenceId}}"
+                  },
+                  {
+                    "key": "discrepancyReason",
+                    "value": "IN_TRANSIT"
+                  },
+                  {
+                    "key": "comment",
+                    "value": "{{fn:safeString(formData.rejectComment)}}"
+                  }
+                ],
+                "onError": [
+                  {
+                    "actionType": "SHOW_TOAST",
+                    "properties": {
+                      "message": "INVENTORY_FETCH_CONFIG_FAILED_MESSAGE"
+                    }
+                  }
+                ]
+              }
+            },
+            {
+              "actionType": "CREATE_EVENT",
+              "properties": {
+                "onError": [
+                  {
+                    "actionType": "SHOW_TOAST",
+                    "properties": {
+                      "message": "INVENTORY_CREATE_STOCK_FAILED_MESSAGE"
+                    }
+                  }
+                ]
+              }
+            },
+            {
+              "actionType": "FETCH_TRANSFORMER_CONFIG",
+              "properties": {
+                "configName": "shortfallTransaction",
+                "forceCreate": true,
+                "data": [
+                  {
+                    "key": "stockEntryType",
+                    "value": "ISSUED"
+                  },
+                  {
+                    "key": "senderFacilityId",
+                    "value": "{{fn:getUserFacilityId()}}"
+                  },
+                  {
+                    "key": "receiverFacilityId",
+                    "value": "{{navigation.senderFacilityId}}"
+                  },
+                  {
+                    "key": "senderPartyType",
+                    "value": "{{fn:getUserPartyType()}}"
+                  },
+                  {
+                    "key": "receiverPartyType",
+                    "value": "{{fn:getPartyTypeForFacilityId(navigation.senderFacilityId)}}"
+                  },
+                  {
+                    "key": "productVariantId",
+                    "value": "{{navigation.productVariantId}}"
+                  },
+                  {
+                    "key": "userFacilityId",
+                    "value": "{{fn:getUserFacilityId()}}"
+                  },
+                  {
+                    "key": "sku",
+                    "value": "{{navigation.sku}}"
+                  },
+                  {
+                    "key": "wayBillNumber",
+                    "value": "{{navigation.wayBillNumber}}"
+                  },
+                  {
+                    "key": "batchNumber",
+                    "value": "{{navigation.batchNumber}}"
+                  },
+                  {
+                    "key": "transportType",
+                    "value": "{{navigation.transportType}}"
+                  },
+                  {
+                    "key": "vehicleNumber",
+                    "value": "{{navigation.vehicleNumber}}"
+                  },
+                  {
+                    "key": "quantity",
+                    "value": "{{fn:subtractQuantity(navigation.quantity, formData.actualQuantityReceived)}}"
+                  },
+                  {
+                    "key": "mrnNumber",
+                    "value": "{{fn:generateUniqueMaterialNoteNumber()}}"
+                  },
+                  {
+                    "key": "originalIssueClientReferenceId",
+                    "value": "{{navigation.clientReferenceId}}"
+                  },
+                  {
+                    "key": "discrepancyReason",
+                    "value": "IN_TRANSIT"
+                  },
+                  {
+                    "key": "comment",
+                    "value": "{{fn:safeString(formData.rejectComment)}}"
+                  }
+                ],
+                "onError": [
+                  {
+                    "actionType": "SHOW_TOAST",
+                    "properties": {
+                      "message": "INVENTORY_FETCH_CONFIG_FAILED_MESSAGE"
+                    }
+                  }
+                ]
+              }
+            },
+            {
+              "actionType": "CREATE_EVENT",
+              "properties": {
+                "onError": [
+                  {
+                    "actionType": "SHOW_TOAST",
+                    "properties": {
+                      "message": "INVENTORY_CREATE_STOCK_FAILED_MESSAGE"
+                    }
+                  }
+                ]
+              }
+            },
+            {
+              "actionType": "NAVIGATION",
+              "properties": {
+                "type": "TEMPLATE",
+                "name": "stockSuccess",
+                "navigationMode": "popUntilAndPush",
+                "popUntilPageName": "manageStock",
+                "data": [
+                  {
+                    "key": "mrnNumber",
+                    "value": "{{fn:getCommentValue(navigation.mrnNumber, navigation.selectedTransactionMrn)}}"
+                  },
+                  {
+                    "key": "clientReferenceId",
+                    "value": "{{navigation.clientReferenceId}}"
+                  },
+                  {
+                    "key": "transactionDetailsHeading",
+                    "value": "{{fn:getViewTransactionHeadingCode(navigation.incomingStockEntryType, 'RECEIVED', navigation.discrepancyReason)}}"
+                  }
+                ]
+              }
+            }
+          ]
+        },
+        {
+          "condition": {
+            "expression": "actualQuantityReceived >= 0 && actualQuantityReceived < quantity"
           },
           "actions": [
             {
@@ -3260,12 +3513,16 @@
                     "value": "{{fn:safeString(navigation.quantity)}}"
                   },
                   {
-                    "key": "StockModel.quantity",
-                    "value": "{{fn:safeString(formData.actualQuantityReceived)}}"
+                    "key": "StockModel.additionalFields.fields.discrepancyReason",
+                    "value": "{{fn:safeString(formData.discrepancyReason)}}"
+                  },
+                  {
+                    "key": "StockModel.additionalFields.fields.stockEntryType",
+                    "value": "{{fn:getPartialAcceptStockEntryType(navigation.incomingStockEntryType, formData.discrepancyReason)}}"
                   },
                   {
                     "key": "StockModel.transactionReason",
-                    "value": "RECEIVED"
+                    "value": "{{fn:getPartialAcceptTransactionReason(navigation.incomingStockEntryType, formData.discrepancyReason)}}"
                   }
                 ]
               }
@@ -3292,7 +3549,7 @@
                 "data": [
                   {
                     "key": "stockEntryType",
-                    "value": "RETURNED"
+                    "value": "{{fn:getShortfallEntryType(navigation.incomingStockEntryType)}}"
                   },
                   {
                     "key": "senderFacilityId",
@@ -3492,7 +3749,7 @@
                   },
                   {
                     "type": "min",
-                    "value": 1,
+                    "value": 0,
                     "message": "INVENTORY_PARTIAL_ACCEPT_QUANTITY_INVALID"
                   }
                 ]

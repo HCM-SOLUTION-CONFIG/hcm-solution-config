@@ -472,35 +472,6 @@
           "description": "CAREGIVER_CONSENT_DECLINED_PANEL_DESC",
           "primaryAction": {
             "type": "template",
-            "label": "VIEW_HOUSEHOLD_DETAILS",
-            "format": "button",
-            "hidden": false,
-            "onAction": [
-              {
-                "actionType": "NAVIGATION",
-                "properties": {
-                  "data": [
-                    {
-                      "key": "HouseholdClientReferenceId",
-                      "value": "{{navigation.HouseholdClientReferenceId}}"
-                    }
-                  ],
-                  "name": "householdOverview",
-                  "type": "TEMPLATE",
-                  "navigationMode": "popUntilAndPush",
-                  "popUntilPageName": "searchBeneficiary"
-                }
-              }
-            ],
-            "fieldName": "viewHouseholdDetails",
-            "mandatory": true,
-            "properties": {
-              "type": "primary"
-            }
-          },
-          "primaryActionLabel": "VIEW_HOUSEHOLD_DETAILS",
-          "secondaryAction": {
-            "type": "template",
             "label": "Back to Search",
             "format": "button",
             "hidden": false,
@@ -524,10 +495,10 @@
             "fieldName": "backToSearch",
             "mandatory": true,
             "properties": {
-              "type": "secondary"
+              "type": "primary"
             }
           },
-          "secondaryActionLabel": "Back to Search"
+          "primaryActionLabel": "Back to Search"
         }
       ],
       "name": "caregiverAcknowledgement",
@@ -793,12 +764,20 @@
                         "value": "{{fn:getUniqueBeneficiaryId(contextData.0.headIndividual.IndividualModel.identifiers)}}"
                       },
                       {
+                        "key": "headName",
+                        "value": "{{fn:fullName(contextData.0.headIndividual.IndividualModel.name.givenName, contextData.0.headIndividual.IndividualModel.name.familyName)}}"
+                      },
+                      {
                         "key": "childrenCount",
                         "value": "{{fn:getAdditionalFieldValue(contextData.0.household.HouseholdModel.additionalFields.fields, 'childrenCount')}}"
                       },
                       {
                         "key": "pregnantWomenCount",
                         "value": "{{fn:getAdditionalFieldValue(contextData.0.household.HouseholdModel.additionalFields.fields, 'pregnantWomenCount')}}"
+                      },
+                      {
+                        "key": "headMobileNumber",
+                        "value": "{{contextData.0.headIndividual.IndividualModel.mobileNumber}}"
                       },
                       {
                         "key": "identificationType",
@@ -811,10 +790,6 @@
                       {
                         "key": "isDelivered",
                         "value": "{{fn:isDelivered(contextData.0.tasks)}}"
-                      },
-                      {
-                        "key": "headMobileNumber",
-                        "value": "{{contextData.0.headIndividual.IndividualModel.mobileNumber}}"
                       }
                     ],
                     "name": "DELIVERY",
@@ -838,26 +813,80 @@
         },
         {
           "type": "template",
-          "label": "CORE_COMMON_SAVE",
+          "label": "ACTION_SUBMIT",
           "format": "button",
           "visible": "{{fn:hasRole('REGISTRAR')}} == true",
-          "disabled": "{{fn:isClosedHousehold(contextData.0.tasks)}} == true || {{fn:isChecklistCompleted(contextData.0.household.HouseholdModel.additionalFields.fields)}} == true",
+          "disabled": "{{fn:isClosedHousehold(contextData.0.tasks)}} == true || ('{{navigation.isNewRegistration}}' != 'true' && {{fn:isChecklistCompleted(contextData.0.household.HouseholdModel.additionalFields.fields)}} == true)",
           "onAction": [
             {
-              "actionType": "NAVIGATION",
+              "actionType": "OPEN_POPUP",
               "properties": {
-                "data": [
-                  {
-                    "key": "HouseholdClientReferenceId",
-                    "value": "{{navigation.HouseholdClientReferenceId}}"
-                  },
-                  {
-                    "key": "ProjectBeneficiaryClientReferenceId",
-                    "value": "{{navigation.ProjectBeneficiaryClientReferenceId}}"
-                  }
-                ],
-                "name": "registrationHealthTalk",
-                "type": "FORM"
+                "size": "large",
+                "type": "primary",
+                "popupConfig": {
+                  "title": "APPONE_ELIGIBILITYCHECKLIST_ALERT_TITLE",
+                  "description": "HOUSEHOLD_CHECKLIST_SUBMIT_DESCRIPTION",
+                  "type": "alert",
+                  "footerActions": [
+                    {
+                      "type": "template",
+                      "label": "ACTION_CANCEL",
+                      "format": "button",
+                      "fieldName": "cancelHouseholdOverviewPopUp",
+                      "properties": {
+                        "type": "secondary",
+                        "size": "medium"
+                      },
+                      "onAction": [
+                        {
+                          "actionType": "CLOSE_POPUP",
+                          "properties": {
+                            "parentScreenKey": "householdOverview"
+                          }
+                        }
+                      ]
+                    },
+                    {
+                      "type": "template",
+                      "label": "ACTION_SUBMIT",
+                      "format": "button",
+                      "fieldName": "submitHouseholdOverviewPopUp",
+                      "properties": {
+                        "type": "primary",
+                        "size": "medium"
+                      },
+                      "onAction": [
+                        {
+                          "actionType": "CLOSE_POPUP",
+                          "properties": {
+                            "parentScreenKey": "householdOverview"
+                          }
+                        },
+                        {
+                          "actionType": "NAVIGATION",
+                          "properties": {
+                            "data": [
+                              {
+                                "key": "HouseholdClientReferenceId",
+                                "value": "{{navigation.HouseholdClientReferenceId}}"
+                              },
+                              {
+                                "key": "ProjectBeneficiaryClientReferenceId",
+                                "value": "{{navigation.ProjectBeneficiaryClientReferenceId}}"
+                              }
+                            ],
+                            "name": "registrationHealthTalkSuccess",
+                            "type": "TEMPLATE",
+                            "navigationMode": "popUntilAndPush",
+                            "popUntilPageName": "searchBeneficiary"
+                          }
+                        }
+                      ]
+                    }
+                  ],
+                  "showCloseButton": true,
+                  "barrierDismissible": true
+                }
               }
             }
           ],
@@ -1990,6 +2019,7 @@
         {
           "data": "members",
           "type": "template",
+          "itemFilter": "{{fn:hasRole('DISTRIBUTOR')}} == false || {{fn:hasRole('REGISTRAR')}} == true || {{fn:isHouseholdMarkedClosed(item.tasks)}} == false",
           "child": {
             "type": "template",
             "format": "card",
@@ -2283,8 +2313,7 @@
           "properties": {
             "spacing": "spacer4"
           },
-          "schemaCode": null,
-          "itemFilter": "{{fn:hasRole('DISTRIBUTOR')}} == false || {{fn:hasRole('REGISTRAR')}} == true || {{fn:isHouseholdMarkedClosed(item.tasks)}} == false"
+          "schemaCode": null
         }
       ],
       "name": "searchBeneficiary",
@@ -2656,34 +2685,6 @@
               "fieldName": "registrationHealthTalkSubmitButton",
               "onAction": [
                 {
-                  "actionType": "FETCH_TRANSFORMER_CONFIG",
-                  "properties": {
-                    "configName": "beneficiaryRegistration",
-                    "onError": [
-                      {
-                        "actionType": "SHOW_TOAST",
-                        "properties": {
-                          "message": "Failed to fetch config."
-                        }
-                      }
-                    ]
-                  }
-                },
-                {
-                  "actionType": "UPDATE_EVENT",
-                  "properties": {
-                    "entity": "HouseholdModel",
-                    "onError": [
-                      {
-                        "actionType": "SHOW_TOAST",
-                        "properties": {
-                          "message": "Failed to save the checklist."
-                        }
-                      }
-                    ]
-                  }
-                },
-                {
                   "actionType": "NAVIGATION",
                   "properties": {
                     "data": [
@@ -2736,7 +2737,7 @@
           "properties": [
             {
               "type": "boolean",
-              "label": "APPONE_DELIVERYFLOW_DELIVERYDETAIL_ACTIONS_RECEIVE_NET",
+              "label": "APPONE_DELIVERYFLOW_DELIVERYDETAIL_ACTIONS_ACTION1",
               "order": 1,
               "value": "",
               "format": "checkbox",
@@ -2764,8 +2765,8 @@
             },
             {
               "type": "boolean",
-              "label": "APPONE_DELIVERYFLOW_DELIVERYDETAIL_ACTIONS_TRUCK_IN_THE_NET",
-              "order": 1,
+              "label": "APPONE_DELIVERYFLOW_DELIVERYDETAIL_ACTIONS_ACTION2",
+              "order": 2,
               "value": "",
               "format": "checkbox",
               "hidden": false,
@@ -2792,8 +2793,8 @@
             },
             {
               "type": "boolean",
-              "label": "APPONE_DELIVERYFLOW_DELIVERYDETAIL_ACTIONS_ROLL_UP_NET",
-              "order": 1,
+              "label": "APPONE_DELIVERYFLOW_DELIVERYDETAIL_ACTIONS_ACTION3",
+              "order": 3,
               "value": "",
               "format": "checkbox",
               "hidden": false,
@@ -2820,8 +2821,8 @@
             },
             {
               "type": "boolean",
-              "label": "APPONE_DELIVERYFLOW_DELIVERYDETAIL_ACTIONS_NET_IS_DIRTY",
-              "order": 1,
+              "label": "APPONE_DELIVERYFLOW_DELIVERYDETAIL_ACTIONS_ACTION4",
+              "order": 4,
               "value": "",
               "format": "checkbox",
               "hidden": false,
@@ -2848,8 +2849,8 @@
             },
             {
               "type": "boolean",
-              "label": "APPONE_DELIVERYFLOW_DELIVERYDETAIL_ACTIONS_MEND_YOUR_NETS",
-              "order": 1,
+              "label": "APPONE_DELIVERYFLOW_DELIVERYDETAIL_ACTIONS_ACTION5",
+              "order": 5,
               "value": "",
               "format": "checkbox",
               "hidden": false,
@@ -2876,8 +2877,8 @@
             },
             {
               "type": "boolean",
-              "label": "APPONE_DELIVERYFLOW_DELIVERYDETAIL_ACTIONS_THE_NET_PROTECTS",
-              "order": 1,
+              "label": "APPONE_DELIVERYFLOW_DELIVERYDETAIL_ACTIONS_ACTION6",
+              "order": 6,
               "value": "",
               "format": "checkbox",
               "hidden": false,
@@ -2904,8 +2905,8 @@
             },
             {
               "type": "boolean",
-              "label": "APPONE_DELIVERYFLOW_DELIVERYDETAIL_ACTIONS_PROTECT_FROM_MALERIA",
-              "order": 1,
+              "label": "APPONE_DELIVERYFLOW_DELIVERYDETAIL_ACTIONS_ACTION7",
+              "order": 7,
               "value": "",
               "format": "checkbox",
               "hidden": false,
@@ -2915,6 +2916,118 @@
               "infoText": "",
               "readOnly": false,
               "fieldName": "ACTION7",
+              "required": true,
+              "mandatory": true,
+              "deleteFlag": false,
+              "innerLabel": "",
+              "schemaCode": null,
+              "systemDate": true,
+              "validations": [
+                {
+                  "type": "required",
+                  "value": true,
+                  "message": "APPONE_DELIVERYFLOW_DELIVERYDETAIL_ACTIONS_REQUIRED_MESSAGE"
+                }
+              ],
+              "errorMessage": ""
+            },
+            {
+              "type": "boolean",
+              "label": "APPONE_DELIVERYFLOW_DELIVERYDETAIL_ACTIONS_ACTION8",
+              "order": 8,
+              "value": "",
+              "format": "checkbox",
+              "hidden": false,
+              "isMdms": false,
+              "tooltip": "",
+              "helpText": "",
+              "infoText": "",
+              "readOnly": false,
+              "fieldName": "ACTION8",
+              "required": true,
+              "mandatory": true,
+              "deleteFlag": false,
+              "innerLabel": "",
+              "schemaCode": null,
+              "systemDate": true,
+              "validations": [
+                {
+                  "type": "required",
+                  "value": true,
+                  "message": "APPONE_DELIVERYFLOW_DELIVERYDETAIL_ACTIONS_REQUIRED_MESSAGE"
+                }
+              ],
+              "errorMessage": ""
+            },
+            {
+              "type": "boolean",
+              "label": "APPONE_DELIVERYFLOW_DELIVERYDETAIL_ACTIONS_ACTION9",
+              "order": 9,
+              "value": "",
+              "format": "checkbox",
+              "hidden": false,
+              "isMdms": false,
+              "tooltip": "",
+              "helpText": "",
+              "infoText": "",
+              "readOnly": false,
+              "fieldName": "ACTION9",
+              "required": true,
+              "mandatory": true,
+              "deleteFlag": false,
+              "innerLabel": "",
+              "schemaCode": null,
+              "systemDate": true,
+              "validations": [
+                {
+                  "type": "required",
+                  "value": true,
+                  "message": "APPONE_DELIVERYFLOW_DELIVERYDETAIL_ACTIONS_REQUIRED_MESSAGE"
+                }
+              ],
+              "errorMessage": ""
+            },
+            {
+              "type": "boolean",
+              "label": "APPONE_DELIVERYFLOW_DELIVERYDETAIL_ACTIONS_ACTION10",
+              "order": 10,
+              "value": "",
+              "format": "checkbox",
+              "hidden": false,
+              "isMdms": false,
+              "tooltip": "",
+              "helpText": "",
+              "infoText": "",
+              "readOnly": false,
+              "fieldName": "ACTION10",
+              "required": true,
+              "mandatory": true,
+              "deleteFlag": false,
+              "innerLabel": "",
+              "schemaCode": null,
+              "systemDate": true,
+              "validations": [
+                {
+                  "type": "required",
+                  "value": true,
+                  "message": "APPONE_DELIVERYFLOW_DELIVERYDETAIL_ACTIONS_REQUIRED_MESSAGE"
+                }
+              ],
+              "errorMessage": ""
+            },
+            {
+              "type": "boolean",
+              "label": "APPONE_DELIVERYFLOW_DELIVERYDETAIL_ACTIONS_ACTION11",
+              "order": 11,
+              "value": "",
+              "format": "checkbox",
+              "hidden": false,
+              "isMdms": false,
+              "tooltip": "",
+              "helpText": "",
+              "infoText": "",
+              "readOnly": false,
+              "fieldName": "ACTION11",
               "required": true,
               "mandatory": true,
               "deleteFlag": false,
@@ -3004,6 +3117,22 @@
               {
                 "key": "HouseholdModel.additionalFields.fields.ACTION7",
                 "value": "{{formData.registrationHealthTalkChecklist.ACTION7}}"
+              },
+              {
+                "key": "HouseholdModel.additionalFields.fields.ACTION8",
+                "value": "{{formData.registrationHealthTalkChecklist.ACTION8}}"
+              },
+              {
+                "key": "HouseholdModel.additionalFields.fields.ACTION9",
+                "value": "{{formData.registrationHealthTalkChecklist.ACTION9}}"
+              },
+              {
+                "key": "HouseholdModel.additionalFields.fields.ACTION10",
+                "value": "{{formData.registrationHealthTalkChecklist.ACTION10}}"
+              },
+              {
+                "key": "HouseholdModel.additionalFields.fields.ACTION11",
+                "value": "{{formData.registrationHealthTalkChecklist.ACTION11}}"
               }
             ],
             "onError": [
@@ -3566,7 +3695,7 @@
                 },
                 {
                   "type": "manualSerialPattern",
-                  "value": "^[A-Z0-9][A-Z0-9-]{7,}$",
+                  "value": "^[A-Z0-9][A-Z0-9-]{7}$",
                   "message": "APPONE_REGISTRATION_DELIVERYDETAILS_label_scanner_serial_pattern_message"
                 }
               ],
@@ -3653,22 +3782,6 @@
               "properties": {
                 "data": [
                   {
-                    "key": "ProjectBeneficiaryClientReferenceId",
-                    "value": "{{navigation.ProjectBeneficiaryClientReferenceId}}"
-                  },
-                  {
-                    "key": "cycleIndex",
-                    "value": "{{navigation.cycleIndex}}"
-                  },
-                  {
-                    "key": "doseIndex",
-                    "value": "{{navigation.doseIndex}}"
-                  },
-                  {
-                    "key": "deliveryStrategy",
-                    "value": "{{navigation.deliveryStrategy}}"
-                  },
-                  {
                     "key": "HouseholdClientReferenceId",
                     "value": "{{navigation.HouseholdClientReferenceId}}"
                   },
@@ -3707,6 +3820,22 @@
                   {
                     "key": "isDelivered",
                     "value": "true"
+                  },
+                  {
+                    "key": "ProjectBeneficiaryClientReferenceId",
+                    "value": "{{navigation.ProjectBeneficiaryClientReferenceId}}"
+                  },
+                  {
+                    "key": "cycleIndex",
+                    "value": "{{navigation.cycleIndex}}"
+                  },
+                  {
+                    "key": "doseIndex",
+                    "value": "{{navigation.doseIndex}}"
+                  },
+                  {
+                    "key": "deliveryStrategy",
+                    "value": "{{navigation.deliveryStrategy}}"
                   }
                 ],
                 "onError": [
@@ -3774,7 +3903,7 @@
           "properties": [
             {
               "type": "boolean",
-              "label": "APPONE_DELIVERYFLOW_DELIVERYDETAIL_ACTIONS_RECEIVE_NET",
+              "label": "APPONE_DELIVERYFLOW_DELIVERYDETAIL_ACTIONS_ACTION1",
               "order": 1,
               "value": "",
               "format": "checkbox",
@@ -3802,8 +3931,8 @@
             },
             {
               "type": "boolean",
-              "label": "APPONE_DELIVERYFLOW_DELIVERYDETAIL_ACTIONS_TRUCK_IN_THE_NET",
-              "order": 1,
+              "label": "APPONE_DELIVERYFLOW_DELIVERYDETAIL_ACTIONS_ACTION2",
+              "order": 2,
               "value": "",
               "format": "checkbox",
               "hidden": false,
@@ -3830,8 +3959,8 @@
             },
             {
               "type": "boolean",
-              "label": "APPONE_DELIVERYFLOW_DELIVERYDETAIL_ACTIONS_ROLL_UP_NET",
-              "order": 1,
+              "label": "APPONE_DELIVERYFLOW_DELIVERYDETAIL_ACTIONS_ACTION3",
+              "order": 3,
               "value": "",
               "format": "checkbox",
               "hidden": false,
@@ -3858,8 +3987,8 @@
             },
             {
               "type": "boolean",
-              "label": "APPONE_DELIVERYFLOW_DELIVERYDETAIL_ACTIONS_NET_IS_DIRTY",
-              "order": 1,
+              "label": "APPONE_DELIVERYFLOW_DELIVERYDETAIL_ACTIONS_ACTION4",
+              "order": 4,
               "value": "",
               "format": "checkbox",
               "hidden": false,
@@ -3886,8 +4015,8 @@
             },
             {
               "type": "boolean",
-              "label": "APPONE_DELIVERYFLOW_DELIVERYDETAIL_ACTIONS_MEND_YOUR_NETS",
-              "order": 1,
+              "label": "APPONE_DELIVERYFLOW_DELIVERYDETAIL_ACTIONS_ACTION5",
+              "order": 5,
               "value": "",
               "format": "checkbox",
               "hidden": false,
@@ -3914,8 +4043,8 @@
             },
             {
               "type": "boolean",
-              "label": "APPONE_DELIVERYFLOW_DELIVERYDETAIL_ACTIONS_THE_NET_PROTECTS",
-              "order": 1,
+              "label": "APPONE_DELIVERYFLOW_DELIVERYDETAIL_ACTIONS_ACTION6",
+              "order": 6,
               "value": "",
               "format": "checkbox",
               "hidden": false,
@@ -3942,8 +4071,8 @@
             },
             {
               "type": "boolean",
-              "label": "APPONE_DELIVERYFLOW_DELIVERYDETAIL_ACTIONS_PROTECT_FROM_MALERIA",
-              "order": 1,
+              "label": "APPONE_DELIVERYFLOW_DELIVERYDETAIL_ACTIONS_ACTION7",
+              "order": 7,
               "value": "",
               "format": "checkbox",
               "hidden": false,
@@ -3953,6 +4082,118 @@
               "infoText": "",
               "readOnly": false,
               "fieldName": "ACTION7",
+              "required": true,
+              "mandatory": true,
+              "deleteFlag": false,
+              "innerLabel": "",
+              "schemaCode": null,
+              "systemDate": true,
+              "validations": [
+                {
+                  "type": "required",
+                  "value": true,
+                  "message": "APPONE_DELIVERYFLOW_DELIVERYDETAIL_ACTIONS_REQUIRED_MESSAGE"
+                }
+              ],
+              "errorMessage": ""
+            },
+            {
+              "type": "boolean",
+              "label": "APPONE_DELIVERYFLOW_DELIVERYDETAIL_ACTIONS_ACTION8",
+              "order": 8,
+              "value": "",
+              "format": "checkbox",
+              "hidden": false,
+              "isMdms": false,
+              "tooltip": "",
+              "helpText": "",
+              "infoText": "",
+              "readOnly": false,
+              "fieldName": "ACTION8",
+              "required": true,
+              "mandatory": true,
+              "deleteFlag": false,
+              "innerLabel": "",
+              "schemaCode": null,
+              "systemDate": true,
+              "validations": [
+                {
+                  "type": "required",
+                  "value": true,
+                  "message": "APPONE_DELIVERYFLOW_DELIVERYDETAIL_ACTIONS_REQUIRED_MESSAGE"
+                }
+              ],
+              "errorMessage": ""
+            },
+            {
+              "type": "boolean",
+              "label": "APPONE_DELIVERYFLOW_DELIVERYDETAIL_ACTIONS_ACTION9",
+              "order": 9,
+              "value": "",
+              "format": "checkbox",
+              "hidden": false,
+              "isMdms": false,
+              "tooltip": "",
+              "helpText": "",
+              "infoText": "",
+              "readOnly": false,
+              "fieldName": "ACTION9",
+              "required": true,
+              "mandatory": true,
+              "deleteFlag": false,
+              "innerLabel": "",
+              "schemaCode": null,
+              "systemDate": true,
+              "validations": [
+                {
+                  "type": "required",
+                  "value": true,
+                  "message": "APPONE_DELIVERYFLOW_DELIVERYDETAIL_ACTIONS_REQUIRED_MESSAGE"
+                }
+              ],
+              "errorMessage": ""
+            },
+            {
+              "type": "boolean",
+              "label": "APPONE_DELIVERYFLOW_DELIVERYDETAIL_ACTIONS_ACTION10",
+              "order": 10,
+              "value": "",
+              "format": "checkbox",
+              "hidden": false,
+              "isMdms": false,
+              "tooltip": "",
+              "helpText": "",
+              "infoText": "",
+              "readOnly": false,
+              "fieldName": "ACTION10",
+              "required": true,
+              "mandatory": true,
+              "deleteFlag": false,
+              "innerLabel": "",
+              "schemaCode": null,
+              "systemDate": true,
+              "validations": [
+                {
+                  "type": "required",
+                  "value": true,
+                  "message": "APPONE_DELIVERYFLOW_DELIVERYDETAIL_ACTIONS_REQUIRED_MESSAGE"
+                }
+              ],
+              "errorMessage": ""
+            },
+            {
+              "type": "boolean",
+              "label": "APPONE_DELIVERYFLOW_DELIVERYDETAIL_ACTIONS_ACTION11",
+              "order": 11,
+              "value": "",
+              "format": "checkbox",
+              "hidden": false,
+              "isMdms": false,
+              "tooltip": "",
+              "helpText": "",
+              "infoText": "",
+              "readOnly": false,
+              "fieldName": "ACTION11",
               "required": true,
               "mandatory": true,
               "deleteFlag": false,
@@ -3993,14 +4234,6 @@
           "properties": {
             "data": [
               {
-                "key": "ProjectBeneficiaryClientReferenceId",
-                "value": "{{navigation.ProjectBeneficiaryClientReferenceId}}"
-              },
-              {
-                "key": "deliveryComment",
-                "value": "{{navigation.deliveryComment}}"
-              },
-              {
                 "key": "HouseholdClientReferenceId",
                 "value": "{{navigation.HouseholdClientReferenceId}}"
               },
@@ -4039,6 +4272,14 @@
               {
                 "key": "isDelivered",
                 "value": "true"
+              },
+              {
+                "key": "ProjectBeneficiaryClientReferenceId",
+                "value": "{{navigation.ProjectBeneficiaryClientReferenceId}}"
+              },
+              {
+                "key": "deliveryComment",
+                "value": "{{navigation.deliveryComment}}"
               }
             ],
             "onError": [
@@ -4133,7 +4374,7 @@
           "page": "householdDetails",
           "type": "object",
           "label": "APPONE_REGISTRATION_HOUSEHOLDDETAILS_SCREEN_HEADING",
-          "order": 4,
+          "order": 3,
           "footer": [
             {
               "label": "APPONE_REGISTRATION_HOUSEHOLDDETAILS_ACTION_BUTTON_LABEL_1",
@@ -4143,7 +4384,7 @@
                 {
                   "actionType": "NAVIGATION",
                   "properties": {
-                    "name": "beneficiaryDetails",
+                    "name": "registrationHealthTalkChecklist",
                     "type": "form"
                   }
                 }
@@ -4221,7 +4462,7 @@
                         "value": "true"
                       },
                       {
-                        "key": "registrationPendingHealthTalk",
+                        "key": "isNewRegistration",
                         "value": "true"
                       }
                     ],
@@ -4312,64 +4553,10 @@
             {
               "actions": [
                 {
-                  "actionType": "FETCH_TRANSFORMER_CONFIG",
-                  "properties": {
-                    "onError": [
-                      {
-                        "actionType": "SHOW_TOAST",
-                        "properties": {
-                          "message": "Failed to fetch config."
-                        }
-                      }
-                    ],
-                    "configName": "beneficiaryRegistration",
-                    "createEntities": [
-                      "ProjectBeneficiaryModel"
-                    ]
-                  }
-                },
-                {
-                  "actionType": "CREATE_EVENT",
-                  "properties": {
-                    "onError": [
-                      {
-                        "actionType": "SHOW_TOAST",
-                        "properties": {
-                          "message": "Failed to create household."
-                        }
-                      }
-                    ]
-                  }
-                },
-                {
                   "actionType": "NAVIGATION",
                   "properties": {
-                    "data": [
-                      {
-                        "key": "HouseholdClientReferenceId",
-                        "value": "{{contextData.entities.HouseholdModel.clientReferenceId}}"
-                      },
-                      {
-                        "key": "ProjectBeneficiaryClientReferenceId",
-                        "value": "{{contextData.entities.ProjectBeneficiaryModel.clientReferenceId}}"
-                      },
-                      {
-                        "key": "registrationPendingHealthTalk",
-                        "value": "true"
-                      }
-                    ],
-                    "name": "householdOverview",
-                    "type": "TEMPLATE",
-                    "onError": [
-                      {
-                        "actionType": "SHOW_TOAST",
-                        "properties": {
-                          "message": "Navigation failed."
-                        }
-                      }
-                    ],
-                    "navigationMode": "popUntilAndPush",
-                    "popUntilPageName": "searchBeneficiary"
+                    "name": "registrationHealthTalkChecklist",
+                    "type": "form"
                   }
                 }
               ],
@@ -4379,7 +4566,7 @@
             }
           ],
           "navigateTo": {
-            "name": "beneficiaryDetails",
+            "name": "registrationHealthTalkChecklist",
             "type": "form"
           },
           "properties": [
@@ -4582,6 +4769,8 @@
                 "min": "1",
                 "errorMessage": "APPONE_REGISTRATION_HOUSEHOLDDETAILS_label_memberCount_max_message"
               },
+              "maxValue": 30,
+              "minValue": 1,
               "value": "1",
               "format": "numeric",
               "hidden": false,
@@ -4911,10 +5100,19 @@
           "submitCondition": {
             "expression": [
               {
-                "condition": "isEdit == true"
+                "condition": "isEdit == true && isClosedHousehold != true"
               }
             ]
           },
+          "conditionalNavigateTo": [
+            {
+              "condition": "isEdit != true || isClosedHousehold == true",
+              "navigateTo": {
+                "name": "registrationHealthTalkChecklist",
+                "type": "form"
+              }
+            }
+          ],
           "preventScreenCapture": false
         },
         {
@@ -5562,6 +5760,394 @@
               }
             }
           ]
+        },
+        {
+          "body": null,
+          "flow": "HOUSEHOLD",
+          "page": "registrationHealthTalkChecklist",
+          "type": "object",
+          "label": "APPONE_DELIVERYFLOW_DELIVERYDETAILS_ACTIONS_SCREEN_HEADING",
+          "order": 4,
+          "footer": [
+            {
+              "label": "APPONE_DELIVERYFLOW_DELIVERYDETAILS_ACTIONS_SUBMIT_LABEL",
+              "format": "button",
+              "fieldName": "registrationHealthTalkSubmitButton",
+              "onAction": [
+                {
+                  "actionType": "NAVIGATION",
+                  "properties": {
+                    "data": [
+                      {
+                        "key": "HouseholdClientReferenceId",
+                        "value": "{{contextData.entities.HouseholdModel.clientReferenceId}}"
+                      },
+                      {
+                        "key": "ProjectBeneficiaryClientReferenceId",
+                        "value": "{{contextData.entities.ProjectBeneficiaryModel.clientReferenceId}}"
+                      },
+                      {
+                        "key": "isNewRegistration",
+                        "value": "true"
+                      }
+                    ],
+                    "name": "householdOverview",
+                    "type": "TEMPLATE",
+                    "navigationMode": "popUntilAndPush",
+                    "popUntilPageName": "searchBeneficiary"
+                  }
+                }
+              ],
+              "properties": {
+                "size": "large",
+                "type": "primary",
+                "mainAxisSize": "max",
+                "mainAxisAlignment": "center"
+              }
+            }
+          ],
+          "module": "REGISTRATION",
+          "heading": "APPONE_DELIVERYFLOW_DELIVERYDETAILS_ACTIONS_SCREEN_HEADING",
+          "summary": false,
+          "version": 1,
+          "onAction": [
+            {
+              "actionType": "NAVIGATION",
+              "properties": {
+                "data": [
+                  {
+                    "key": "HouseholdClientReferenceId",
+                    "value": "{{contextData.entities.HouseholdModel.clientReferenceId}}"
+                  },
+                  {
+                    "key": "ProjectBeneficiaryClientReferenceId",
+                    "value": "{{contextData.entities.ProjectBeneficiaryModel.clientReferenceId}}"
+                  }
+                ],
+                "name": "householdOverview",
+                "type": "TEMPLATE",
+                "navigationMode": "popUntilAndPush",
+                "popUntilPageName": "searchBeneficiary"
+              }
+            }
+          ],
+          "navigateTo": null,
+          "properties": [
+            {
+              "type": "boolean",
+              "label": "APPONE_DELIVERYFLOW_DELIVERYDETAIL_ACTIONS_ACTION1",
+              "order": 1,
+              "value": "",
+              "format": "checkbox",
+              "hidden": false,
+              "isMdms": false,
+              "tooltip": "",
+              "helpText": "",
+              "infoText": "",
+              "readOnly": false,
+              "fieldName": "ACTION1",
+              "required": true,
+              "mandatory": true,
+              "deleteFlag": false,
+              "innerLabel": "",
+              "schemaCode": null,
+              "systemDate": true,
+              "validations": [
+                {
+                  "type": "required",
+                  "value": true,
+                  "message": "APPONE_DELIVERYFLOW_DELIVERYDETAIL_ACTIONS_REQUIRED_MESSAGE"
+                }
+              ],
+              "errorMessage": ""
+            },
+            {
+              "type": "boolean",
+              "label": "APPONE_DELIVERYFLOW_DELIVERYDETAIL_ACTIONS_ACTION2",
+              "order": 2,
+              "value": "",
+              "format": "checkbox",
+              "hidden": false,
+              "isMdms": false,
+              "tooltip": "",
+              "helpText": "",
+              "infoText": "",
+              "readOnly": false,
+              "fieldName": "ACTION2",
+              "required": true,
+              "mandatory": true,
+              "deleteFlag": false,
+              "innerLabel": "",
+              "schemaCode": null,
+              "systemDate": true,
+              "validations": [
+                {
+                  "type": "required",
+                  "value": true,
+                  "message": "APPONE_DELIVERYFLOW_DELIVERYDETAIL_ACTIONS_REQUIRED_MESSAGE"
+                }
+              ],
+              "errorMessage": ""
+            },
+            {
+              "type": "boolean",
+              "label": "APPONE_DELIVERYFLOW_DELIVERYDETAIL_ACTIONS_ACTION3",
+              "order": 3,
+              "value": "",
+              "format": "checkbox",
+              "hidden": false,
+              "isMdms": false,
+              "tooltip": "",
+              "helpText": "",
+              "infoText": "",
+              "readOnly": false,
+              "fieldName": "ACTION3",
+              "required": true,
+              "mandatory": true,
+              "deleteFlag": false,
+              "innerLabel": "",
+              "schemaCode": null,
+              "systemDate": true,
+              "validations": [
+                {
+                  "type": "required",
+                  "value": true,
+                  "message": "APPONE_DELIVERYFLOW_DELIVERYDETAIL_ACTIONS_REQUIRED_MESSAGE"
+                }
+              ],
+              "errorMessage": ""
+            },
+            {
+              "type": "boolean",
+              "label": "APPONE_DELIVERYFLOW_DELIVERYDETAIL_ACTIONS_ACTION4",
+              "order": 4,
+              "value": "",
+              "format": "checkbox",
+              "hidden": false,
+              "isMdms": false,
+              "tooltip": "",
+              "helpText": "",
+              "infoText": "",
+              "readOnly": false,
+              "fieldName": "ACTION4",
+              "required": true,
+              "mandatory": true,
+              "deleteFlag": false,
+              "innerLabel": "",
+              "schemaCode": null,
+              "systemDate": true,
+              "validations": [
+                {
+                  "type": "required",
+                  "value": true,
+                  "message": "APPONE_DELIVERYFLOW_DELIVERYDETAIL_ACTIONS_REQUIRED_MESSAGE"
+                }
+              ],
+              "errorMessage": ""
+            },
+            {
+              "type": "boolean",
+              "label": "APPONE_DELIVERYFLOW_DELIVERYDETAIL_ACTIONS_ACTION5",
+              "order": 5,
+              "value": "",
+              "format": "checkbox",
+              "hidden": false,
+              "isMdms": false,
+              "tooltip": "",
+              "helpText": "",
+              "infoText": "",
+              "readOnly": false,
+              "fieldName": "ACTION5",
+              "required": true,
+              "mandatory": true,
+              "deleteFlag": false,
+              "innerLabel": "",
+              "schemaCode": null,
+              "systemDate": true,
+              "validations": [
+                {
+                  "type": "required",
+                  "value": true,
+                  "message": "APPONE_DELIVERYFLOW_DELIVERYDETAIL_ACTIONS_REQUIRED_MESSAGE"
+                }
+              ],
+              "errorMessage": ""
+            },
+            {
+              "type": "boolean",
+              "label": "APPONE_DELIVERYFLOW_DELIVERYDETAIL_ACTIONS_ACTION6",
+              "order": 6,
+              "value": "",
+              "format": "checkbox",
+              "hidden": false,
+              "isMdms": false,
+              "tooltip": "",
+              "helpText": "",
+              "infoText": "",
+              "readOnly": false,
+              "fieldName": "ACTION6",
+              "required": true,
+              "mandatory": true,
+              "deleteFlag": false,
+              "innerLabel": "",
+              "schemaCode": null,
+              "systemDate": true,
+              "validations": [
+                {
+                  "type": "required",
+                  "value": true,
+                  "message": "APPONE_DELIVERYFLOW_DELIVERYDETAIL_ACTIONS_REQUIRED_MESSAGE"
+                }
+              ],
+              "errorMessage": ""
+            },
+            {
+              "type": "boolean",
+              "label": "APPONE_DELIVERYFLOW_DELIVERYDETAIL_ACTIONS_ACTION7",
+              "order": 7,
+              "value": "",
+              "format": "checkbox",
+              "hidden": false,
+              "isMdms": false,
+              "tooltip": "",
+              "helpText": "",
+              "infoText": "",
+              "readOnly": false,
+              "fieldName": "ACTION7",
+              "required": true,
+              "mandatory": true,
+              "deleteFlag": false,
+              "innerLabel": "",
+              "schemaCode": null,
+              "systemDate": true,
+              "validations": [
+                {
+                  "type": "required",
+                  "value": true,
+                  "message": "APPONE_DELIVERYFLOW_DELIVERYDETAIL_ACTIONS_REQUIRED_MESSAGE"
+                }
+              ],
+              "errorMessage": ""
+            },
+            {
+              "type": "boolean",
+              "label": "APPONE_DELIVERYFLOW_DELIVERYDETAIL_ACTIONS_ACTION8",
+              "order": 8,
+              "value": "",
+              "format": "checkbox",
+              "hidden": false,
+              "isMdms": false,
+              "tooltip": "",
+              "helpText": "",
+              "infoText": "",
+              "readOnly": false,
+              "fieldName": "ACTION8",
+              "required": true,
+              "mandatory": true,
+              "deleteFlag": false,
+              "innerLabel": "",
+              "schemaCode": null,
+              "systemDate": true,
+              "validations": [
+                {
+                  "type": "required",
+                  "value": true,
+                  "message": "APPONE_DELIVERYFLOW_DELIVERYDETAIL_ACTIONS_REQUIRED_MESSAGE"
+                }
+              ],
+              "errorMessage": ""
+            },
+            {
+              "type": "boolean",
+              "label": "APPONE_DELIVERYFLOW_DELIVERYDETAIL_ACTIONS_ACTION9",
+              "order": 9,
+              "value": "",
+              "format": "checkbox",
+              "hidden": false,
+              "isMdms": false,
+              "tooltip": "",
+              "helpText": "",
+              "infoText": "",
+              "readOnly": false,
+              "fieldName": "ACTION9",
+              "required": true,
+              "mandatory": true,
+              "deleteFlag": false,
+              "innerLabel": "",
+              "schemaCode": null,
+              "systemDate": true,
+              "validations": [
+                {
+                  "type": "required",
+                  "value": true,
+                  "message": "APPONE_DELIVERYFLOW_DELIVERYDETAIL_ACTIONS_REQUIRED_MESSAGE"
+                }
+              ],
+              "errorMessage": ""
+            },
+            {
+              "type": "boolean",
+              "label": "APPONE_DELIVERYFLOW_DELIVERYDETAIL_ACTIONS_ACTION10",
+              "order": 10,
+              "value": "",
+              "format": "checkbox",
+              "hidden": false,
+              "isMdms": false,
+              "tooltip": "",
+              "helpText": "",
+              "infoText": "",
+              "readOnly": false,
+              "fieldName": "ACTION10",
+              "required": true,
+              "mandatory": true,
+              "deleteFlag": false,
+              "innerLabel": "",
+              "schemaCode": null,
+              "systemDate": true,
+              "validations": [
+                {
+                  "type": "required",
+                  "value": true,
+                  "message": "APPONE_DELIVERYFLOW_DELIVERYDETAIL_ACTIONS_REQUIRED_MESSAGE"
+                }
+              ],
+              "errorMessage": ""
+            },
+            {
+              "type": "boolean",
+              "label": "APPONE_DELIVERYFLOW_DELIVERYDETAIL_ACTIONS_ACTION11",
+              "order": 11,
+              "value": "",
+              "format": "checkbox",
+              "hidden": false,
+              "isMdms": false,
+              "tooltip": "",
+              "helpText": "",
+              "infoText": "",
+              "readOnly": false,
+              "fieldName": "ACTION11",
+              "required": true,
+              "mandatory": true,
+              "deleteFlag": false,
+              "innerLabel": "",
+              "schemaCode": null,
+              "systemDate": true,
+              "validations": [
+                {
+                  "type": "required",
+                  "value": true,
+                  "message": "APPONE_DELIVERYFLOW_DELIVERYDETAIL_ACTIONS_REQUIRED_MESSAGE"
+                }
+              ],
+              "errorMessage": ""
+            }
+          ],
+          "actionLabel": "APPONE_DELIVERYFLOW_DELIVERYDETAILS_ACTIONS_SUBMIT_LABEL",
+          "description": "APPONE_DELIVERYFLOW_DELIVERYDETAILS_ACTIONS_SCREEN_DESCRIPTION",
+          "showTabView": false,
+          "submitCondition": null,
+          "preventScreenCapture": false,
+          "conditionalNavigateTo": null
         }
       ],
       "summary": false,
@@ -5732,10 +6318,10 @@
                   },
                   {
                     "key": "ProjectBeneficiaryClientReferenceId",
-                    "value": "{{navigation.projectBeneficiaryClientReferenceId}}"
+                    "value": "{{contextData.entities.ProjectBeneficiaryModel.clientReferenceId}}"
                   },
                   {
-                    "key": "registrationPendingHealthTalk",
+                    "key": "isNewRegistration",
                     "value": "true"
                   }
                 ],
@@ -5820,6 +6406,72 @@
         {
           "actions": [
             {
+              "actionType": "FETCH_TRANSFORMER_CONFIG",
+              "properties": {
+                "onError": [
+                  {
+                    "actionType": "SHOW_TOAST",
+                    "properties": {
+                      "message": "Failed to fetch config."
+                    }
+                  }
+                ],
+                "configName": "beneficiaryRegistration",
+                "createEntities": [
+                  "ProjectBeneficiaryModel"
+                ]
+              }
+            },
+            {
+              "actionType": "UPDATE_EVENT",
+              "properties": {
+                "entity": "HouseholdModel, IndividualModel",
+                "onError": [
+                  {
+                    "actionType": "SHOW_TOAST",
+                    "properties": {
+                      "message": "Failed to update household."
+                    }
+                  }
+                ]
+              }
+            },
+            {
+              "actionType": "NAVIGATION",
+              "properties": {
+                "data": [
+                  {
+                    "key": "HouseholdClientReferenceId",
+                    "value": "{{contextData.entities.HouseholdModel.clientReferenceId}}"
+                  },
+                  {
+                    "key": "ProjectBeneficiaryClientReferenceId",
+                    "value": "{{contextData.entities.ProjectBeneficiaryModel.clientReferenceId}}"
+                  }
+                ],
+                "name": "householdOverview",
+                "type": "TEMPLATE",
+                "onError": [
+                  {
+                    "actionType": "SHOW_TOAST",
+                    "properties": {
+                      "message": "Navigation failed."
+                    }
+                  }
+                ],
+                "navigationMode": "popUntilAndPush",
+                "popUntilPageName": "searchBeneficiary"
+              }
+            }
+          ],
+          "condition": {
+            "type": "custom",
+            "expression": "isEdit==true"
+          }
+        },
+        {
+          "actions": [
+            {
               "actionType": "GENERATE_LOCAL_BENEFICIARY_ID"
             },
             {
@@ -5879,7 +6531,7 @@
                     "value": "{{contextData.entities.ProjectBeneficiaryModel.clientReferenceId}}"
                   },
                   {
-                    "key": "registrationPendingHealthTalk",
+                    "key": "isNewRegistration",
                     "value": "true"
                   }
                 ],
