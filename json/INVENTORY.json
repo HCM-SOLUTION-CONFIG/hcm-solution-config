@@ -767,6 +767,11 @@
               "includeInForm": true,
               "validations": [
                 {
+                  "type": "regex",
+                  "value": "^(?:[^|]+\\|\\|)?[0-9a-fA-F]{8}-[0-9a-fA-F]{4}-[0-9a-fA-F]{4}-[0-9a-fA-F]{4}-[0-9a-fA-F]{12}$",
+                  "message": "INVENTORY_DELIVERY_TEAM_QR_INVALID"
+                },
+                {
                   "type": "required",
                   "value": true,
                   "message": "APPONE_MANAGESTOCK_WAREHOUSE_label_facilityToWhich_mandatory_message"
@@ -1518,11 +1523,11 @@
               },
               {
                 "key": "teamCode",
-                "value": "{{fn:getTeamCode(formData.warehouseDetails.teamCode)}}"
+                "value": "{{fn:getStockTeamCode(formData.warehouseDetails.teamCode, formData.stockDetails.deliveryTeam, formData.warehouseDetails.facilityFromWhich)}}"
               },
               {
                 "key": "deliveryTeamName",
-                "value": "{{fn:getTeamName(formData.warehouseDetails.teamCode)}}"
+                "value": "{{fn:getStockTeamName(formData.warehouseDetails.teamCode, formData.stockDetails.deliveryTeam, formData.warehouseDetails.facilityFromWhich)}}"
               },
               {
                 "key": "mrnNumber",
@@ -1822,6 +1827,11 @@
               "includeInSummary": true,
               "validations": [
                 {
+                  "type": "regex",
+                  "value": "^(?:[^|]+\\|\\|)?[0-9a-fA-F]{8}-[0-9a-fA-F]{4}-[0-9a-fA-F]{4}-[0-9a-fA-F]{4}-[0-9a-fA-F]{12}$",
+                  "message": "INVENTORY_DELIVERY_TEAM_QR_INVALID"
+                },
+                {
                   "type": "required",
                   "value": true,
                   "message": "APPONE_MANAGESTOCK_WAREHOUSE_label_facilityToWhich_mandatory_message"
@@ -2092,6 +2102,33 @@
               "errorMessage": "",
               "isMultiSelect": false,
               "enums": null
+            },
+            {
+              "type": "string",
+              "label": "APPONE_INVENTORY_WAYBILL_LABEL",
+              "order": 7,
+              "value": "",
+              "format": "text",
+              "hidden": false,
+              "tooltip": "",
+              "helpText": "",
+              "infoText": "",
+              "readOnly": false,
+              "fieldName": "wayBillNumber",
+              "mandatory": false,
+              "deleteFlag": false,
+              "innerLabel": "",
+              "systemDate": false,
+              "validations": [
+                {
+                  "type": "pattern",
+                  "value": "^[A-Za-z0-9]*$",
+                  "message": "INVENTORY_WAYBILL_NUMBER_REQUIRED_ERROR_MESSAGE"
+                }
+              ],
+              "errorMessage": "",
+              "isMultiSelect": false,
+              "enums": null
             }
           ],
           "value": null,
@@ -2250,7 +2287,9 @@
                       "key": "transactionDetailsHeading",
                       "value": "{{navigation.transactionDetailsHeading}}"
                     }
-                  ]
+                  ],
+                  "popUntilPageName": "manageStock",
+                  "navigationMode": "popUntilAndPush"
                 }
               }
             ]
@@ -2284,11 +2323,8 @@
           "label": "CORE_COMMON_BACK",
           "onAction": [
             {
-              "actionType": "NAVIGATION",
-              "properties": {
-                "type": "TEMPLATE",
-                "name": "manageStock"
-              }
+              "actionType": "BACK_NAVIGATION",
+              "properties": {}
             }
           ]
         }
@@ -2387,17 +2423,17 @@
                     "hideIfNull": true
                   },
                   {
-                    "key": "{{fn:getStockQuantityLabel(item.additionalFields.fields.stockEntryType)}}",
+                    "key": "{{fn:getDetailsPrimaryQuantityLabel(item.additionalFields.fields.stockEntryType, item.transactionReason, item.additionalFields.fields.discrepancyReason, item.additionalFields.fields.originalQuantityReceived, item.additionalFields.fields.actualQuantityReceived, item.quantity, item.additionalFields.fields.originalIssueClientReferenceId, item.additionalFields.fields.status, item.senderId, item.receiverId)}}",
                     "value": "{{fn:coalesceQuantity(item.additionalFields.fields.originalQuantityReceived, item.quantity)}}"
                   },
                   {
-                    "key": "INVENTORY_ACTUAL_QUANTITY_RECEIVED_LABEL",
-                    "value": "{{item.additionalFields.fields.actualQuantityReceived}}",
+                    "key": "{{fn:getDetailsConfirmedQuantityLabel(item.additionalFields.fields.stockEntryType, item.transactionReason, item.additionalFields.fields.discrepancyReason, item.additionalFields.fields.originalQuantityReceived, item.additionalFields.fields.actualQuantityReceived, item.quantity, item.additionalFields.fields.originalIssueClientReferenceId, item.additionalFields.fields.status, item.senderId, item.receiverId)}}",
+                    "value": "{{fn:getDetailsConfirmedQuantity(item.additionalFields.fields.stockEntryType, item.transactionReason, item.additionalFields.fields.discrepancyReason, item.additionalFields.fields.originalQuantityReceived, item.additionalFields.fields.actualQuantityReceived, item.quantity, item.additionalFields.fields.originalIssueClientReferenceId, item.additionalFields.fields.status, item.senderId, item.receiverId)}}",
                     "hideIfNull": true
                   },
                   {
-                    "key": "INVENTORY_SHORTFALL_QUANTITY_LABEL",
-                    "value": "{{fn:subtractQuantity(item.additionalFields.fields.originalQuantityReceived, item.additionalFields.fields.actualQuantityReceived)}}",
+                    "key": "{{fn:getDetailsDifferenceLabel(item.additionalFields.fields.stockEntryType, item.transactionReason, item.additionalFields.fields.discrepancyReason, item.additionalFields.fields.originalQuantityReceived, item.additionalFields.fields.actualQuantityReceived, item.quantity, item.additionalFields.fields.originalIssueClientReferenceId, item.additionalFields.fields.status, item.senderId, item.receiverId)}}",
+                    "value": "{{fn:getDetailsDifference(item.additionalFields.fields.stockEntryType, item.transactionReason, item.additionalFields.fields.discrepancyReason, item.additionalFields.fields.originalQuantityReceived, item.additionalFields.fields.actualQuantityReceived, item.quantity, item.additionalFields.fields.originalIssueClientReferenceId, item.additionalFields.fields.status, item.senderId, item.receiverId)}}",
                     "hideIfNull": true
                   },
                   {
@@ -2648,6 +2684,10 @@
                           "value": "{{item.items[0].additionalFields.fields.originalIssueClientReferenceId}}"
                         },
                         {
+                          "key": "partial_flow",
+                          "value": "{{item.items[0].additionalFields.fields.partial_flow}}"
+                        },
+                        {
                           "key": "transactionType",
                           "value": "RECEIVED"
                         },
@@ -2678,6 +2718,14 @@
                         {
                           "key": "senderFacilityId",
                           "value": "{{item.items[0].senderId}}"
+                        },
+                        {
+                          "key": "receivedFromName",
+                          "value": "{{fn:resolveTeamName(item.items[0].additionalFields.fields)}}"
+                        },
+                        {
+                          "key": "senderPartyType",
+                          "value": "{{item.items[0].senderType}}"
                         },
                         {
                           "key": "quantity",
@@ -2762,6 +2810,10 @@
             "forceCreate": true,
             "data": [
               {
+                "key": "partial_flow",
+                "value": "{{fn:isPartialStockFlow(navigation.originalIssueClientReferenceId, navigation.partial_flow)}}"
+              },
+              {
                 "key": "stockEntryType",
                 "value": "RECEIPT"
               },
@@ -2788,6 +2840,14 @@
               {
                 "key": "receivedFromName",
                 "value": "{{navigation.receivedFromName}}"
+              },
+              {
+                "key": "senderPartyType",
+                "value": "{{navigation.senderPartyType}}"
+              },
+              {
+                "key": "receiverPartyType",
+                "value": "{{fn:getUserPartyType()}}"
               },
               {
                 "key": "productVariantId",
@@ -2838,6 +2898,14 @@
             "source": "existingModels",
             "entity": "StockModel",
             "modify": [
+              {
+                "key": "StockModel.additionalFields.fields.partial_flow",
+                "value": "{{fn:isPartialStockFlow(navigation.originalIssueClientReferenceId, navigation.partial_flow)}}"
+              },
+              {
+                "key": "StockModel.additionalFields.fields.actualQuantityReceived",
+                "value": "{{navigation.quantity}}"
+              },
               {
                 "key": "StockModel.additionalFields.fields.status",
                 "value": "ACCEPTED"
@@ -2905,7 +2973,7 @@
                   },
                   {
                     "key": "transactionDetailsHeading",
-                    "value": "{{fn:getViewTransactionHeadingCode(navigation.incomingStockEntryType, 'RECEIVED', navigation.discrepancyReason)}}"
+                    "value": "{{fn:getAcceptedTransactionHeadingCode(navigation.incomingStockEntryType, navigation.discrepancyReason)}}"
                   }
                 ]
               }
@@ -2960,7 +3028,7 @@
                   },
                   {
                     "key": "transactionDetailsHeading",
-                    "value": "{{fn:getViewTransactionHeadingCode(navigation.incomingStockEntryType, 'RECEIVED', navigation.discrepancyReason)}}"
+                    "value": "{{fn:getAcceptedTransactionHeadingCode(navigation.incomingStockEntryType, navigation.discrepancyReason)}}"
                   }
                 ]
               }
@@ -3120,7 +3188,7 @@
               },
               {
                 "key": "transactionDetailsHeading",
-                "value": "{{fn:getViewTransactionHeadingCode(navigation.incomingStockEntryType, 'RECEIVED', navigation.discrepancyReason)}}"
+                "value": "{{fn:getAcceptedTransactionHeadingCode(navigation.incomingStockEntryType, navigation.discrepancyReason)}}"
               }
             ]
           }
@@ -3152,6 +3220,10 @@
                 "source": "existingModels",
                 "entity": "StockModel",
                 "modify": [
+                  {
+                    "key": "StockModel.additionalFields.fields.partial_flow",
+                    "value": true
+                  },
                   {
                     "key": "StockModel.additionalFields.fields.status",
                     "value": "ACCEPTED"
@@ -3397,7 +3469,7 @@
                   },
                   {
                     "key": "transactionDetailsHeading",
-                    "value": "{{fn:getViewTransactionHeadingCode(navigation.incomingStockEntryType, 'RECEIVED', navigation.discrepancyReason)}}"
+                    "value": "{{fn:getAcceptedTransactionHeadingCode(navigation.incomingStockEntryType, navigation.discrepancyReason)}}"
                   }
                 ]
               }
@@ -3415,6 +3487,10 @@
                 "configName": "stockReceipt",
                 "forceCreate": true,
                 "data": [
+                  {
+                    "key": "partial_flow",
+                    "value": true
+                  },
                   {
                     "key": "stockEntryType",
                     "value": "RECEIPT"
@@ -3492,6 +3568,10 @@
                 "source": "existingModels",
                 "entity": "StockModel",
                 "modify": [
+                  {
+                    "key": "StockModel.additionalFields.fields.partial_flow",
+                    "value": true
+                  },
                   {
                     "key": "StockModel.additionalFields.fields.status",
                     "value": "ACCEPTED"
@@ -3657,7 +3737,7 @@
                   },
                   {
                     "key": "transactionDetailsHeading",
-                    "value": "{{fn:getViewTransactionHeadingCode(navigation.incomingStockEntryType, 'RECEIVED', navigation.discrepancyReason)}}"
+                    "value": "{{fn:getAcceptedTransactionHeadingCode(navigation.incomingStockEntryType, navigation.discrepancyReason)}}"
                   }
                 ]
               }
@@ -3731,13 +3811,13 @@
           },
           "showSecondaryAlertPopUp": {
             "title": "INVENTORY_REJECT_CONFIRMATION_TITLE",
-            "description": "INVENTORY_REJECT_CONFIRMATION_DESCRIPTION",
+            "description": "{{fn:getPartialAcceptDescription(navigation.incomingStockEntryType, navigation.discrepancyReason)}}",
             "primaryActionLabel": "INVENTORY_REJECT_CONFIRM_ACTION",
             "secondaryActionLabel": "INVENTORY_REJECT_CANCEL_ACTION",
             "body": [
               {
                 "type": "integer",
-                "label": "INVENTORY_ACTUAL_QUANTITY_RECEIVED_LABEL",
+                "label": "{{fn:getPartialAcceptQuantityLabel(navigation.incomingStockEntryType, navigation.discrepancyReason)}}",
                 "format": "numeric",
                 "fieldName": "actualQuantityReceived",
                 "mandatory": true,
@@ -3807,7 +3887,7 @@
               "type": "string",
               "label": "INVENTORY_RECEIVED_FROM_LABEL",
               "order": 3,
-              "value": "{{senderFacilityId}}",
+              "value": "{{fn:teamPartyDisplay(navigation.receivedFromName, senderFacilityId)}}",
               "format": "text",
               "fieldName": "receivedFrom",
               "displayOnly": true
@@ -3908,7 +3988,7 @@
               "type": "string",
               "label": "INVENTORY_COMMENTS_LABEL",
               "order": 8,
-              "value": "",
+              "value": "{{navigation.originalComment}}",
               "format": "textArea",
               "hidden": false,
               "tooltip": "",
@@ -4122,10 +4202,15 @@
                 "fieldName": "viewTransactionGroupedItemsList",
                 "dataSource": "item.items",
                 "child": {
-                  "format": "textTemplate",
+                  "format": "labelPairList",
                   "type": "template",
                   "fieldName": "viewTransactionGroupedItemText",
-                  "value": "{{item.additionalFields.fields.sku}}: {{item.quantity}}"
+                  "data": [
+                    {
+                      "key": "{{fn:getViewTransactionQuantityLabel(item)}}",
+                      "value": "{{item.additionalFields.fields.sku}}: {{fn:getViewTransactionQuantity(item)}}"
+                    }
+                  ]
                 }
               },
               {
@@ -4166,7 +4251,7 @@
                         },
                         {
                           "key": "transactionDetailsHeading",
-                          "value": "{{fn:getViewTransactionHeadingCode(item.items[0].additionalFields.fields.stockEntryType, item.items[0].transactionReason)}}"
+                          "value": "{{fn:getViewTransactionHeadingCode(item.items[0].additionalFields.fields.stockEntryType, item.items[0].transactionReason, item.items[0].additionalFields.fields.discrepancyReason, item.items[0].additionalFields.fields.originalIssueClientReferenceId)}}"
                         }
                       ]
                     }
