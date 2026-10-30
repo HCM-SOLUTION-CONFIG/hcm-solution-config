@@ -1316,7 +1316,7 @@
           "type": "template",
           "label": "REGISTER_NEW_BENEFICIARY",
           "format": "button",
-          "visible": true,
+          "visible": "{{fn:hasRole('REGISTRAR')}} == true",
           "onAction": [
             {
               "actionType": "BACK_NAVIGATION",
@@ -1906,7 +1906,6 @@
           ],
           "fieldName": "idSearchBar",
           "mandatory": true,
-          "allowedCharacters": "a-zA-Z0-9_",
           "validations": [
             {
               "type": "minSearchChars",
@@ -2320,100 +2319,22 @@
       "order": 1,
       "footer": [
         {
-          "icon": "FilterAlt",
           "type": "template",
           "label": "DOWNLOAD_BENEFICIARY_IDS",
-          "hidden": true,
-          "format": "actionPopup",
-          "visible": "{{fn:hasMinimumBeneficiaryId(singleton.beneficiaryIdMinCount, uniqueIdPoolCount)}}==false && {{fn:hasRole('DISTRIBUTOR')}}==false",
-          "disabled": "false",
+          "format": "button",
           "fieldName": "beneficiaryIdMinCheck",
+          "visible": "{{fn:hasRole('REGISTRAR')}} == true",
           "properties": {
-            "icon": "FilterAlt",
             "size": "large",
-            "type": "primary",
-            "popupConfig": {
-              "body": [],
-              "type": "alert",
-              "title": "REGISTRATION_SEARCH_BENEFICIARY_MIN_BENEFICIARY_ID_LEFT_TITLE",
-              "description": "REGISTRATION_SEARCH_BENEFICIARY_MIN_BENEFICIARY_ID_LEFT_DESCRIPTION",
-              "footerActions": [
-                {
-                  "type": "template",
-                  "label": "REGISTRATION_SEARCH_BENEFICIARY_SKIP_CONTINUE_LABEL",
-                  "format": "button",
-                  "onAction": [
-                    {
-                      "actionType": "CLOSE_POPUP",
-                      "properties": {
-                        "parentScreenKey": "searchBeneficiary"
-                      }
-                    },
-                    {
-                      "actionType": "NAVIGATION",
-                      "properties": {
-                        "data": [
-                          {
-                            "key": "nameOfIndividual",
-                            "value": "{{searchBar}}"
-                          },
-                          {
-                            "key": "UNIQUE_BENEFICIARY_ID",
-                            "value": "{{latestBeneficiaryId}}"
-                          },
-                          {
-                            "key": "uniqueBeneficiaryIdModel",
-                            "value": "{{latestBeneficiaryIdModel}}"
-                          },
-                          {
-                            "key": "deferFormRoutePop",
-                            "value": "true"
-                          }
-                        ],
-                        "name": "HOUSEHOLD",
-                        "type": "FORM"
-                      }
-                    }
-                  ],
-                  "fieldName": "skip",
-                  "properties": {
-                    "size": "large",
-                    "type": "secondary",
-                    "mainAxisSize": "max"
-                  },
-                  "visible": "{{fn:hasRole('DISTRIBUTOR')}} == false"
-                },
-                {
-                  "type": "template",
-                  "label": "REGISTRATION_SEARCH_BENEFICIARY_DOWNLOAD_ID",
-                  "format": "button",
-                  "onAction": [
-                    {
-                      "actionType": "CLOSE_POPUP",
-                      "properties": {
-                        "parentScreenKey": "searchBeneficiary"
-                      }
-                    },
-                    {
-                      "actionType": "NAVIGATE_TO_BENEFICIARY_ID_DOWN_SYNC",
-                      "properties": {}
-                    }
-                  ],
-                  "fieldName": "downloadID",
-                  "properties": {
-                    "size": "large",
-                    "type": "primary",
-                    "mainAxisSize": "max"
-                  }
-                }
-              ],
-              "showCloseButton": true,
-              "barrierDismissible": true
-            },
-            "mainAxisSize": "max",
-            "mainAxisAlignment": "center"
+            "type": "secondary",
+            "mainAxisSize": "max"
           },
-          "schemaCode": null
+          "onAction": [
+            {
+              "actionType": "NAVIGATE_TO_BENEFICIARY_ID_DOWN_SYNC",
+              "properties": {}
+            }
+          ]
         },
         {
           "type": "template",
@@ -2421,6 +2342,12 @@
           "format": "button",
           "fieldName": "registerNewBeneficiary",
           "onAction": [
+            {
+              "actionType": "LOAD_UNIQUE_ID_POOL",
+              "properties": {
+                "requireAvailable": true
+              }
+            },
             {
               "actions": [
                 {
@@ -2470,7 +2397,7 @@
                 }
               ],
               "condition": {
-                "expression": "{{fn:hasStockForRegistration()}}==false"
+                "expression": "{{fn:hasRole('REGISTRAR')}} == false && {{fn:hasStockForRegistration()}}==false"
               }
             },
             {
@@ -2502,9 +2429,7 @@
                 }
               ],
               "condition": {
-                "condition": {
-                  "expression": "DEFAULT"
-                }
+                "expression": "DEFAULT"
               }
             }
           ],
@@ -2515,12 +2440,13 @@
             "mainAxisSize": "max",
             "mainAxisAlignment": "center"
           },
-          "visible": "{{fn:hasRole('DISTRIBUTOR')}} == false"
+          "visible": "{{fn:hasRole('REGISTRAR')}} == true",
+          "disabled": "{{fn:hasMinimumBeneficiaryId(1, uniqueIdPoolCount)}} == false"
         }
       ],
       "header": [
         {
-          "label": "BACK",
+          "label": "CORE_COMMON_BACK",
           "format": "backLink",
           "onAction": [
             {
@@ -2665,7 +2591,12 @@
         "showLoadingIndicator": true
       },
       "submitCondition": null,
-      "preventScreenCapture": false
+      "preventScreenCapture": false,
+      "initActions": [
+        {
+          "actionType": "LOAD_UNIQUE_ID_POOL"
+        }
+      ]
     },
     {
       "name": "registrationHealthTalk",
@@ -5152,6 +5083,37 @@
             {
               "actions": [
                 {
+                  "actionType": "NAVIGATION",
+                  "properties": {
+                    "data": [
+                      {
+                        "key": "HouseholdClientReferenceId",
+                        "value": "{{navigation.HouseholdClientReferenceId}}"
+                      }
+                    ],
+                    "name": "caregiverAcknowledgement",
+                    "type": "TEMPLATE",
+                    "onError": [
+                      {
+                        "actionType": "SHOW_TOAST",
+                        "properties": {
+                          "message": "Navigation failed."
+                        }
+                      }
+                    ],
+                    "navigationMode": "popUntilAndPush",
+                    "popUntilPageName": "searchBeneficiary"
+                  }
+                }
+              ],
+              "condition": {
+                "type": "custom",
+                "expression": "isEdit==true && isClosedHousehold==true && caregiverConsent.consentToParticipate==FALSE"
+              }
+            },
+            {
+              "actions": [
+                {
                   "actionType": "FETCH_TRANSFORMER_CONFIG",
                   "properties": {
                     "onError": [
@@ -6158,7 +6120,11 @@
         {
           "actions": [
             {
-              "actionType": "GENERATE_LOCAL_BENEFICIARY_ID"
+              "actionType": "LOAD_UNIQUE_ID_POOL",
+              "properties": {
+                "allocate": true,
+                "stopOnError": true
+              }
             },
             {
               "actionType": "FETCH_TRANSFORMER_CONFIG",
@@ -6178,20 +6144,6 @@
               }
             },
             {
-              "actionType": "UPDATE_IDENTIFIER_STATUS",
-              "properties": {
-                "identifierType": "UNIQUE_BENEFICIARY_ID",
-                "onError": [
-                  {
-                    "actionType": "SHOW_TOAST",
-                    "properties": {
-                      "message": "Failed to update beneficiary id status."
-                    }
-                  }
-                ]
-              }
-            },
-            {
               "actionType": "CREATE_EVENT",
               "properties": {
                 "entity": "ProjectBeneficiaryModel, IndividualModel",
@@ -6202,7 +6154,9 @@
                       "message": "Failed to update closed household."
                     }
                   }
-                ]
+                ],
+                "stopOnError": true,
+                "awaitPersistence": true
               }
             },
             {
@@ -6214,6 +6168,21 @@
                     "actionType": "SHOW_TOAST",
                     "properties": {
                       "message": "Failed to update closed household."
+                    }
+                  }
+                ],
+                "stopOnError": true
+              }
+            },
+            {
+              "actionType": "UPDATE_IDENTIFIER_STATUS",
+              "properties": {
+                "identifierType": "UNIQUE_BENEFICIARY_ID",
+                "onError": [
+                  {
+                    "actionType": "SHOW_TOAST",
+                    "properties": {
+                      "message": "Failed to update beneficiary id status."
                     }
                   }
                 ]
@@ -6255,7 +6224,42 @@
         {
           "actions": [
             {
-              "actionType": "GENERATE_LOCAL_BENEFICIARY_ID"
+              "actionType": "NAVIGATION",
+              "properties": {
+                "data": [
+                  {
+                    "key": "HouseholdClientReferenceId",
+                    "value": "{{navigation.HouseholdClientReferenceId}}"
+                  }
+                ],
+                "name": "caregiverAcknowledgement",
+                "type": "TEMPLATE",
+                "onError": [
+                  {
+                    "actionType": "SHOW_TOAST",
+                    "properties": {
+                      "message": "Navigation failed."
+                    }
+                  }
+                ],
+                "navigationMode": "popUntilAndPush",
+                "popUntilPageName": "searchBeneficiary"
+              }
+            }
+          ],
+          "condition": {
+            "type": "custom",
+            "expression": "isEdit==true && isClosedHousehold==true && caregiverConsent.consentToParticipate==FALSE"
+          }
+        },
+        {
+          "actions": [
+            {
+              "actionType": "LOAD_UNIQUE_ID_POOL",
+              "properties": {
+                "allocate": true,
+                "stopOnError": true
+              }
             },
             {
               "actionType": "FETCH_TRANSFORMER_CONFIG",
@@ -6275,20 +6279,6 @@
               }
             },
             {
-              "actionType": "UPDATE_IDENTIFIER_STATUS",
-              "properties": {
-                "identifierType": "UNIQUE_BENEFICIARY_ID",
-                "onError": [
-                  {
-                    "actionType": "SHOW_TOAST",
-                    "properties": {
-                      "message": "Failed to update beneficiary id status."
-                    }
-                  }
-                ]
-              }
-            },
-            {
               "actionType": "UPDATE_EVENT",
               "properties": {
                 "entity": "HouseholdModel, IndividualModel, TaskModel",
@@ -6303,6 +6293,21 @@
                     "actionType": "SHOW_TOAST",
                     "properties": {
                       "message": "Failed to update closed household."
+                    }
+                  }
+                ],
+                "stopOnError": true
+              }
+            },
+            {
+              "actionType": "UPDATE_IDENTIFIER_STATUS",
+              "properties": {
+                "identifierType": "UNIQUE_BENEFICIARY_ID",
+                "onError": [
+                  {
+                    "actionType": "SHOW_TOAST",
+                    "properties": {
+                      "message": "Failed to update beneficiary id status."
                     }
                   }
                 ]
@@ -6371,7 +6376,9 @@
                       "message": "Failed to save household."
                     }
                   }
-                ]
+                ],
+                "stopOnError": true,
+                "awaitPersistence": true
               }
             },
             {
@@ -6433,7 +6440,8 @@
                       "message": "Failed to update household."
                     }
                   }
-                ]
+                ],
+                "stopOnError": true
               }
             },
             {
@@ -6472,7 +6480,11 @@
         {
           "actions": [
             {
-              "actionType": "GENERATE_LOCAL_BENEFICIARY_ID"
+              "actionType": "LOAD_UNIQUE_ID_POOL",
+              "properties": {
+                "allocate": true,
+                "stopOnError": true
+              }
             },
             {
               "actionType": "FETCH_TRANSFORMER_CONFIG",
@@ -6492,6 +6504,21 @@
               }
             },
             {
+              "actionType": "CREATE_EVENT",
+              "properties": {
+                "onError": [
+                  {
+                    "actionType": "SHOW_TOAST",
+                    "properties": {
+                      "message": "Failed to create household."
+                    }
+                  }
+                ],
+                "stopOnError": true,
+                "awaitPersistence": true
+              }
+            },
+            {
               "actionType": "UPDATE_IDENTIFIER_STATUS",
               "properties": {
                 "identifierType": "UNIQUE_BENEFICIARY_ID",
@@ -6500,19 +6527,6 @@
                     "actionType": "SHOW_TOAST",
                     "properties": {
                       "message": "Failed to update beneficiary id status."
-                    }
-                  }
-                ]
-              }
-            },
-            {
-              "actionType": "CREATE_EVENT",
-              "properties": {
-                "onError": [
-                  {
-                    "actionType": "SHOW_TOAST",
-                    "properties": {
-                      "message": "Failed to create household."
                     }
                   }
                 ]
