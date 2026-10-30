@@ -1824,6 +1824,7 @@
                   "footerActions": [
                     {
                       "type": "template",
+                      "visible": "{{fn:hasMinimumBeneficiaryId(1, uniqueIdPoolCount)}}==true",
                       "label": "REGISTRATION_SEARCH_BENEFICIARY_SKIP_CONTINUE_LABEL",
                       "format": "button",
                       "onAction": [
@@ -2713,6 +2714,7 @@
               "footerActions": [
                 {
                   "type": "template",
+                  "visible": "{{fn:hasMinimumBeneficiaryId(1, uniqueIdPoolCount)}}==true",
                   "label": "REGISTRATION_SEARCH_BENEFICIARY_SKIP_CONTINUE_LABEL",
                   "format": "button",
                   "onAction": [
@@ -6929,6 +6931,21 @@
         {
           "actions": [
             {
+              "actionType": "UPDATE_IDENTIFIER_STATUS",
+              "properties": {
+                "mode": "edit",
+                "identifierType": "UNIQUE_BENEFICIARY_ID",
+                "onError": [
+                  {
+                    "actionType": "SHOW_TOAST",
+                    "properties": {
+                      "message": "Failed to update beneficiary id status."
+                    }
+                  }
+                ]
+              }
+            },
+            {
               "actionType": "UPDATE_EVENT",
               "properties": {
                 "entity": "IndividualModel, ProjectBeneficiaryModel"
@@ -9353,6 +9370,21 @@
               }
             },
             {
+              "actionType": "UPDATE_IDENTIFIER_STATUS",
+              "properties": {
+                "mode": "edit",
+                "identifierType": "UNIQUE_BENEFICIARY_ID",
+                "onError": [
+                  {
+                    "actionType": "SHOW_TOAST",
+                    "properties": {
+                      "message": "Failed to update beneficiary id status."
+                    }
+                  }
+                ]
+              }
+            },
+            {
               "actionType": "CREATE_EVENT",
               "properties": {
                 "entity": "ProjectBeneficiaryModel",
@@ -9478,6 +9510,21 @@
               }
             },
             {
+              "actionType": "UPDATE_IDENTIFIER_STATUS",
+              "properties": {
+                "mode": "edit",
+                "identifierType": "UNIQUE_BENEFICIARY_ID",
+                "onError": [
+                  {
+                    "actionType": "SHOW_TOAST",
+                    "properties": {
+                      "message": "Failed to update beneficiary id status."
+                    }
+                  }
+                ]
+              }
+            },
+            {
               "actionType": "UPDATE_EVENT",
               "properties": {
                 "entity": "HouseholdModel, TaskModel",
@@ -9540,6 +9587,21 @@
                   }
                 ],
                 "configName": "beneficiaryRegistration"
+              }
+            },
+            {
+              "actionType": "UPDATE_IDENTIFIER_STATUS",
+              "properties": {
+                "mode": "edit",
+                "identifierType": "UNIQUE_BENEFICIARY_ID",
+                "onError": [
+                  {
+                    "actionType": "SHOW_TOAST",
+                    "properties": {
+                      "message": "Failed to update beneficiary id status."
+                    }
+                  }
+                ]
               }
             },
             {
