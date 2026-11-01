@@ -2323,7 +2323,7 @@
           "label": "DOWNLOAD_BENEFICIARY_IDS",
           "format": "button",
           "fieldName": "beneficiaryIdMinCheck",
-          "visible": "{{fn:hasRole('REGISTRAR')}} == true",
+          "visible": "{{fn:hasRole('REGISTRAR')}} == true && {{fn:hasMinimumBeneficiaryId(1, uniqueIdPoolCount)}} == false",
           "properties": {
             "size": "large",
             "type": "secondary",
@@ -3679,11 +3679,11 @@
           "flow": "DELIVERY",
           "page": "DeliveryChecklist",
           "type": "object",
-          "label": "APPONE_DELIVERYFLOW_DELIVERYDETAILS_ACTIONS_SCREEN_HEADING",
+          "label": "APPONE_DISTRIBUTOR_DELIVERY_CHECKLIST_HEADING",
           "order": 2,
           "footer": [
             {
-              "label": "APPONE_DELIVERYFLOW_DELIVERYDETAILS_ACTIONS_SUBMIT_LABEL",
+              "label": "APPONE_DISTRIBUTOR_DELIVERY_CHECKLIST_SUBMIT_LABEL",
               "format": "button",
               "fieldName": "deliveryChecklistSubmitButton",
               "onAction": [
@@ -3704,7 +3704,7 @@
             }
           ],
           "module": "REGISTRATION",
-          "heading": "APPONE_DELIVERYFLOW_DELIVERYDETAILS_ACTIONS_SCREEN_HEADING",
+          "heading": "APPONE_DISTRIBUTOR_DELIVERY_CHECKLIST_HEADING",
           "summary": false,
           "version": 1,
           "onAction": [
@@ -3834,7 +3834,7 @@
           "properties": [
             {
               "type": "boolean",
-              "label": "APPONE_DELIVERYFLOW_DELIVERYDETAIL_ACTIONS_ACTION1",
+              "label": "APPONE_DISTRIBUTOR_DELIVERY_CHECKLIST_ACTION1",
               "order": 1,
               "value": "",
               "format": "checkbox",
@@ -3855,14 +3855,14 @@
                 {
                   "type": "required",
                   "value": true,
-                  "message": "APPONE_DELIVERYFLOW_DELIVERYDETAIL_ACTIONS_REQUIRED_MESSAGE"
+                  "message": "APPONE_DISTRIBUTOR_DELIVERY_CHECKLIST_REQUIRED_MESSAGE"
                 }
               ],
               "errorMessage": ""
             },
             {
               "type": "boolean",
-              "label": "APPONE_DELIVERYFLOW_DELIVERYDETAIL_ACTIONS_ACTION2",
+              "label": "APPONE_DISTRIBUTOR_DELIVERY_CHECKLIST_ACTION2",
               "order": 2,
               "value": "",
               "format": "checkbox",
@@ -3883,14 +3883,14 @@
                 {
                   "type": "required",
                   "value": true,
-                  "message": "APPONE_DELIVERYFLOW_DELIVERYDETAIL_ACTIONS_REQUIRED_MESSAGE"
+                  "message": "APPONE_DISTRIBUTOR_DELIVERY_CHECKLIST_REQUIRED_MESSAGE"
                 }
               ],
               "errorMessage": ""
             },
             {
               "type": "boolean",
-              "label": "APPONE_DELIVERYFLOW_DELIVERYDETAIL_ACTIONS_ACTION3",
+              "label": "APPONE_DISTRIBUTOR_DELIVERY_CHECKLIST_ACTION3",
               "order": 3,
               "value": "",
               "format": "checkbox",
@@ -3911,14 +3911,14 @@
                 {
                   "type": "required",
                   "value": true,
-                  "message": "APPONE_DELIVERYFLOW_DELIVERYDETAIL_ACTIONS_REQUIRED_MESSAGE"
+                  "message": "APPONE_DISTRIBUTOR_DELIVERY_CHECKLIST_REQUIRED_MESSAGE"
                 }
               ],
               "errorMessage": ""
             },
             {
               "type": "boolean",
-              "label": "APPONE_DELIVERYFLOW_DELIVERYDETAIL_ACTIONS_ACTION4",
+              "label": "APPONE_DISTRIBUTOR_DELIVERY_CHECKLIST_ACTION4",
               "order": 4,
               "value": "",
               "format": "checkbox",
@@ -3939,14 +3939,14 @@
                 {
                   "type": "required",
                   "value": true,
-                  "message": "APPONE_DELIVERYFLOW_DELIVERYDETAIL_ACTIONS_REQUIRED_MESSAGE"
+                  "message": "APPONE_DISTRIBUTOR_DELIVERY_CHECKLIST_REQUIRED_MESSAGE"
                 }
               ],
               "errorMessage": ""
             },
             {
               "type": "boolean",
-              "label": "APPONE_DELIVERYFLOW_DELIVERYDETAIL_ACTIONS_ACTION5",
+              "label": "APPONE_DISTRIBUTOR_DELIVERY_CHECKLIST_ACTION5",
               "order": 5,
               "value": "",
               "format": "checkbox",
@@ -3967,14 +3967,14 @@
                 {
                   "type": "required",
                   "value": true,
-                  "message": "APPONE_DELIVERYFLOW_DELIVERYDETAIL_ACTIONS_REQUIRED_MESSAGE"
+                  "message": "APPONE_DISTRIBUTOR_DELIVERY_CHECKLIST_REQUIRED_MESSAGE"
                 }
               ],
               "errorMessage": ""
             },
             {
               "type": "boolean",
-              "label": "APPONE_DELIVERYFLOW_DELIVERYDETAIL_ACTIONS_ACTION6",
+              "label": "APPONE_DISTRIBUTOR_DELIVERY_CHECKLIST_ACTION6",
               "order": 6,
               "value": "",
               "format": "checkbox",
@@ -3995,14 +3995,14 @@
                 {
                   "type": "required",
                   "value": true,
-                  "message": "APPONE_DELIVERYFLOW_DELIVERYDETAIL_ACTIONS_REQUIRED_MESSAGE"
+                  "message": "APPONE_DISTRIBUTOR_DELIVERY_CHECKLIST_REQUIRED_MESSAGE"
                 }
               ],
               "errorMessage": ""
             },
             {
               "type": "boolean",
-              "label": "APPONE_DELIVERYFLOW_DELIVERYDETAIL_ACTIONS_ACTION7",
+              "label": "APPONE_DISTRIBUTOR_DELIVERY_CHECKLIST_ACTION7",
               "order": 7,
               "value": "",
               "format": "checkbox",
@@ -4023,14 +4023,14 @@
                 {
                   "type": "required",
                   "value": true,
-                  "message": "APPONE_DELIVERYFLOW_DELIVERYDETAIL_ACTIONS_REQUIRED_MESSAGE"
+                  "message": "APPONE_DISTRIBUTOR_DELIVERY_CHECKLIST_REQUIRED_MESSAGE"
                 }
               ],
               "errorMessage": ""
             },
             {
               "type": "boolean",
-              "label": "APPONE_DELIVERYFLOW_DELIVERYDETAIL_ACTIONS_ACTION8",
+              "label": "APPONE_DISTRIBUTOR_DELIVERY_CHECKLIST_ACTION8",
               "order": 8,
               "value": "",
               "format": "checkbox",
@@ -4051,98 +4051,14 @@
                 {
                   "type": "required",
                   "value": true,
-                  "message": "APPONE_DELIVERYFLOW_DELIVERYDETAIL_ACTIONS_REQUIRED_MESSAGE"
-                }
-              ],
-              "errorMessage": ""
-            },
-            {
-              "type": "boolean",
-              "label": "APPONE_DELIVERYFLOW_DELIVERYDETAIL_ACTIONS_ACTION9",
-              "order": 9,
-              "value": "",
-              "format": "checkbox",
-              "hidden": false,
-              "isMdms": false,
-              "tooltip": "",
-              "helpText": "",
-              "infoText": "",
-              "readOnly": false,
-              "fieldName": "ACTION9",
-              "required": true,
-              "mandatory": true,
-              "deleteFlag": false,
-              "innerLabel": "",
-              "schemaCode": null,
-              "systemDate": true,
-              "validations": [
-                {
-                  "type": "required",
-                  "value": true,
-                  "message": "APPONE_DELIVERYFLOW_DELIVERYDETAIL_ACTIONS_REQUIRED_MESSAGE"
-                }
-              ],
-              "errorMessage": ""
-            },
-            {
-              "type": "boolean",
-              "label": "APPONE_DELIVERYFLOW_DELIVERYDETAIL_ACTIONS_ACTION10",
-              "order": 10,
-              "value": "",
-              "format": "checkbox",
-              "hidden": false,
-              "isMdms": false,
-              "tooltip": "",
-              "helpText": "",
-              "infoText": "",
-              "readOnly": false,
-              "fieldName": "ACTION10",
-              "required": true,
-              "mandatory": true,
-              "deleteFlag": false,
-              "innerLabel": "",
-              "schemaCode": null,
-              "systemDate": true,
-              "validations": [
-                {
-                  "type": "required",
-                  "value": true,
-                  "message": "APPONE_DELIVERYFLOW_DELIVERYDETAIL_ACTIONS_REQUIRED_MESSAGE"
-                }
-              ],
-              "errorMessage": ""
-            },
-            {
-              "type": "boolean",
-              "label": "APPONE_DELIVERYFLOW_DELIVERYDETAIL_ACTIONS_ACTION11",
-              "order": 11,
-              "value": "",
-              "format": "checkbox",
-              "hidden": false,
-              "isMdms": false,
-              "tooltip": "",
-              "helpText": "",
-              "infoText": "",
-              "readOnly": false,
-              "fieldName": "ACTION11",
-              "required": true,
-              "mandatory": true,
-              "deleteFlag": false,
-              "innerLabel": "",
-              "schemaCode": null,
-              "systemDate": true,
-              "validations": [
-                {
-                  "type": "required",
-                  "value": true,
-                  "message": "APPONE_DELIVERYFLOW_DELIVERYDETAIL_ACTIONS_REQUIRED_MESSAGE"
+                  "message": "APPONE_DISTRIBUTOR_DELIVERY_CHECKLIST_REQUIRED_MESSAGE"
                 }
               ],
               "errorMessage": ""
             }
           ],
-          "actionLabel": "APPONE_DELIVERYFLOW_DELIVERYDETAILS_ACTIONS_SUBMIT_LABEL",
-          "description": "APPONE_DELIVERYFLOW_DELIVERYDETAILS_ACTIONS_SCREEN_DESCRIPTION",
+          "actionLabel": "APPONE_DISTRIBUTOR_DELIVERY_CHECKLIST_SUBMIT_LABEL",
+          "description": "APPONE_DISTRIBUTOR_DELIVERY_CHECKLIST_DESCRIPTION",
           "showTabView": false,
           "submitCondition": null,
           "preventScreenCapture": false,
@@ -6223,6 +6139,35 @@
         },
         {
           "actions": [
+            {
+              "actionType": "FETCH_TRANSFORMER_CONFIG",
+              "properties": {
+                "configName": "householdConsentDeclinedRegistration",
+                "onError": [
+                  {
+                    "actionType": "SHOW_TOAST",
+                    "properties": {
+                      "message": "Failed to fetch config."
+                    }
+                  }
+                ]
+              }
+            },
+            {
+              "actionType": "UPDATE_EVENT",
+              "properties": {
+                "stopOnError": true,
+                "entity": "IndividualModel",
+                "onError": [
+                  {
+                    "actionType": "SHOW_TOAST",
+                    "properties": {
+                      "message": "Failed to update beneficiary name."
+                    }
+                  }
+                ]
+              }
+            },
             {
               "actionType": "NAVIGATION",
               "properties": {
