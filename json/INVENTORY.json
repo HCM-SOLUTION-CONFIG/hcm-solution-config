@@ -123,6 +123,10 @@
                     "name": "RECORDSTOCK",
                     "data": [
                       {
+                        "key": "stockUnit",
+                        "value": "{{fn:stockUnitForRole()}}"
+                      },
+                      {
                         "key": "stockEntryType",
                         "value": "RECEIPT"
                       },
@@ -197,6 +201,10 @@
                 "name": "RECORDSTOCK",
                 "data": [
                   {
+                    "key": "stockUnit",
+                    "value": "{{fn:stockUnitForRole()}}"
+                  },
+                  {
                     "key": "stockEntryType",
                     "value": "DAMAGED"
                   },
@@ -239,6 +247,10 @@
                 "type": "FORM",
                 "name": "RECORDSTOCK",
                 "data": [
+                  {
+                    "key": "stockUnit",
+                    "value": "{{fn:stockUnitForRole()}}"
+                  },
                   {
                     "key": "stockEntryType",
                     "value": "LOSS"
@@ -335,6 +347,10 @@
                     "name": "RECORDSTOCK",
                     "data": [
                       {
+                        "key": "stockUnit",
+                        "value": "{{fn:stockUnitForRole()}}"
+                      },
+                      {
                         "key": "stockEntryType",
                         "value": "ISSUED"
                       },
@@ -374,6 +390,10 @@
                     "type": "FORM",
                     "name": "RECORDSTOCK",
                     "data": [
+                      {
+                        "key": "stockUnit",
+                        "value": "{{fn:stockUnitForRole()}}"
+                      },
                       {
                         "key": "stockEntryType",
                         "value": "RETURNED"
@@ -484,6 +504,10 @@
                   "name": "RECORDSTOCK",
                   "data": [
                     {
+                      "key": "stockUnit",
+                      "value": "{{fn:stockUnitForRole()}}"
+                    },
+                    {
                       "key": "stockEntryType",
                       "value": "RECEIPT"
                     },
@@ -569,6 +593,10 @@
                 "type": "FORM",
                 "name": "RECORDSTOCK",
                 "data": [
+                  {
+                    "key": "stockUnit",
+                    "value": "{{fn:stockUnitForRole()}}"
+                  },
                   {
                     "key": "stockEntryType",
                     "value": "RECEIPT"
@@ -1122,6 +1150,16 @@
             {
               "type": "integer",
               "label": "APPONE_INVENTORY_QUANTITY_SENT_LABEL",
+              "labelConditions": [
+                {
+                  "condition": "navigation.stockUnit == 'BALES'",
+                  "label": "APPONE_INVENTORY_QUANTITY_SENT_LABEL_BALES"
+                },
+                {
+                  "condition": "navigation.stockUnit == 'PIECES'",
+                  "label": "APPONE_INVENTORY_QUANTITY_SENT_LABEL_PIECES"
+                }
+              ],
               "order": 4,
               "value": "",
               "format": "text",
@@ -1171,6 +1209,16 @@
             {
               "type": "integer",
               "label": "APPONE_INVENTORY_QUANTITY_LOST_LABEL",
+              "labelConditions": [
+                {
+                  "condition": "navigation.stockUnit == 'BALES'",
+                  "label": "APPONE_INVENTORY_QUANTITY_LOST_LABEL_BALES"
+                },
+                {
+                  "condition": "navigation.stockUnit == 'PIECES'",
+                  "label": "APPONE_INVENTORY_QUANTITY_LOST_LABEL_PIECES"
+                }
+              ],
               "order": 4,
               "value": "",
               "format": "text",
@@ -1310,6 +1358,16 @@
             {
               "type": "integer",
               "label": "APPONE_INVENTORY_QUANTITY_DAMAGED_LABEL",
+              "labelConditions": [
+                {
+                  "condition": "navigation.stockUnit == 'BALES'",
+                  "label": "APPONE_INVENTORY_QUANTITY_DAMAGED_LABEL_BALES"
+                },
+                {
+                  "condition": "navigation.stockUnit == 'PIECES'",
+                  "label": "APPONE_INVENTORY_QUANTITY_DAMAGED_LABEL_PIECES"
+                }
+              ],
               "order": 4,
               "value": "",
               "format": "text",
@@ -1402,6 +1460,16 @@
             {
               "type": "integer",
               "label": "APPONE_INVENTORY_QUANTITY_RETURNED_LABEL",
+              "labelConditions": [
+                {
+                  "condition": "navigation.stockUnit == 'BALES'",
+                  "label": "APPONE_INVENTORY_QUANTITY_RETURNED_LABEL_BALES"
+                },
+                {
+                  "condition": "navigation.stockUnit == 'PIECES'",
+                  "label": "APPONE_INVENTORY_QUANTITY_RETURNED_LABEL_PIECES"
+                }
+              ],
               "order": 4,
               "value": "",
               "format": "text",
@@ -1451,6 +1519,16 @@
             {
               "type": "integer",
               "label": "APPONE_INVENTORY_QUANTITY_RECEIVED_LABEL",
+              "labelConditions": [
+                {
+                  "condition": "navigation.stockUnit == 'BALES'",
+                  "label": "APPONE_INVENTORY_QUANTITY_RECEIVED_LABEL_BALES"
+                },
+                {
+                  "condition": "navigation.stockUnit == 'PIECES'",
+                  "label": "APPONE_INVENTORY_QUANTITY_RECEIVED_LABEL_PIECES"
+                }
+              ],
               "order": 4,
               "value": "",
               "format": "text",
@@ -2733,6 +2811,10 @@
                 "navigationMode": "popUntilAndPush",
                 "popUntilPageName": "RECORDSTOCK",
                 "data": [
+                  {
+                    "key": "stockUnit",
+                    "value": "{{fn:stockUnitForRole()}}"
+                  },
                   {
                     "key": "stockEntryType",
                     "value": "RECEIPT"
