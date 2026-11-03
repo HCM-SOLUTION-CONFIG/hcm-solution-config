@@ -393,7 +393,7 @@
           "label": "RECORD_CYCLE_DOSE",
           "format": "actionPopup",
           "fieldName": "insufficientStockPopUp",
-          "visible": "{{fn:hasStockForDelivery(contextData.0.eligibleProductVariants)}} == false && {{fn:isDelivered(contextData.0.task)}} == false",
+          "visible": "{{fn:canRecordDelivery(contextData.0.nextCycleId)}}==true && {{fn:hasStockForDelivery(contextData.0.eligibleProductVariants)}} == false",
           "properties": {
             "icon": "Warning",
             "size": "large",
