@@ -78,12 +78,6 @@
             "hidden": false,
             "onAction": [
               {
-                "actionType": "REFRESH_SEARCH",
-                "properties": {
-                  "screenName": "searchBeneficiary"
-                }
-              },
-              {
                 "actionType": "NAVIGATION",
                 "properties": {
                   "name": "searchBeneficiary",
@@ -108,12 +102,6 @@
       "footer": [],
       "onSystemBack": [
         {
-          "actionType": "REFRESH_SEARCH",
-          "properties": {
-            "screenName": "searchBeneficiary"
-          }
-        },
-        {
           "actionType": "NAVIGATION",
           "properties": {
             "name": "searchBeneficiary",
@@ -129,12 +117,6 @@
           "label": "DELIVERY_BACK",
           "format": "backLink",
           "onAction": [
-            {
-              "actionType": "REFRESH_SEARCH",
-              "properties": {
-                "screenName": "searchBeneficiary"
-              }
-            },
             {
               "actionType": "NAVIGATION",
               "properties": {
@@ -492,6 +474,17 @@
       ],
       "name": "caregiverAcknowledgement",
       "order": 13,
+      "onSystemBack": [
+        {
+          "actionType": "NAVIGATION",
+          "properties": {
+            "name": "searchBeneficiary",
+            "type": "TEMPLATE",
+            "navigationMode": "popUntilAndReplace",
+            "popUntilPageName": "searchBeneficiary"
+          }
+        }
+      ],
       "footer": [],
       "header": [
         {
@@ -964,6 +957,17 @@
       ],
       "name": "householdOverview",
       "order": 3,
+      "onSystemBack": [
+        {
+          "actionType": "NAVIGATION",
+          "properties": {
+            "name": "searchBeneficiary",
+            "type": "TEMPLATE",
+            "navigationMode": "popUntilAndReplace",
+            "popUntilPageName": "searchBeneficiary"
+          }
+        }
+      ],
       "footer": [
         {
           "type": "template",
@@ -1538,6 +1542,17 @@
       ],
       "name": "previewScreen",
       "order": 12,
+      "onSystemBack": [
+        {
+          "actionType": "NAVIGATION",
+          "properties": {
+            "name": "searchBeneficiary",
+            "type": "TEMPLATE",
+            "navigationMode": "popUntilAndReplace",
+            "popUntilPageName": "searchBeneficiary"
+          }
+        }
+      ],
       "footer": [
         {
           "type": "template",
@@ -1550,7 +1565,9 @@
               "properties": {
                 "data": [],
                 "name": "searchBeneficiary",
-                "type": "TEMPLATE"
+                "type": "TEMPLATE",
+                "navigationMode": "popUntilAndReplace",
+                "popUntilPageName": "searchBeneficiary"
               }
             }
           ],
@@ -1573,7 +1590,9 @@
               "actionType": "NAVIGATION",
               "properties": {
                 "name": "searchBeneficiary",
-                "type": "TEMPLATE"
+                "type": "TEMPLATE",
+                "navigationMode": "popUntilAndReplace",
+                "popUntilPageName": "searchBeneficiary"
               }
             }
           ]
@@ -2249,7 +2268,19 @@
                       }
                     ],
                     "fieldName": "openMemberCard",
-                    "disabled": "{{fn:isDelivered(item.tasks)}} == true",
+                    "disabled": {
+                      "@condition": [
+                        {
+                          "when": "{{fn:isDelivered(item.tasks)}} == true",
+                          "value": true
+                        },
+                        {
+                          "when": "{{fn:hasRole('REGISTRAR')}} == true && {{fn:isHouseholdMarkedClosed(item.tasks, item.HouseholdModel)}} == true && {{fn:hasMinimumBeneficiaryId(singleton.beneficiaryIdMinCount, widgetData.uniqueIdPoolCount)}} == false",
+                          "value": true
+                        }
+                      ],
+                      "@default": false
+                    },
                     "properties": {
                       "size": "medium",
                       "type": "secondary"
@@ -2281,9 +2312,17 @@
               },
               {
                 "type": "template",
+                "value": "SEARCH_HOUSEHOLD_STATUS_CLOSED",
+                "format": "textTemplate",
+                "visible": "{{fn:isDelivered(item.tasks)}} == false && {{fn:isHouseholdMarkedClosed(item.tasks, item.HouseholdModel)}} == true",
+                "fieldName": "statusClosedHousehold",
+                "properties": {}
+              },
+              {
+                "type": "template",
                 "value": "SEARCH_HOUSEHOLD_STATUS_NOT_VISITED",
                 "format": "textTemplate",
-                "visible": "{{fn:isDelivered(item.tasks)}} == false",
+                "visible": "{{fn:isDelivered(item.tasks)}} == false && {{fn:isHouseholdMarkedClosed(item.tasks, item.HouseholdModel)}} == false",
                 "fieldName": "statusNotVisited",
                 "properties": {}
               }
@@ -2306,6 +2345,26 @@
       ],
       "name": "searchBeneficiary",
       "order": 1,
+      "onReturn": [
+        {
+          "actionType": "NAVIGATION",
+          "properties": {
+            "name": "searchBeneficiary",
+            "type": "TEMPLATE",
+            "navigationMode": "popUntilAndReplace",
+            "popUntilPageName": "searchBeneficiary"
+          }
+        }
+      ],
+      "onSystemBack": [
+        {
+          "actionType": "BACK_NAVIGATION",
+          "properties": {
+            "name": "HOME",
+            "type": "HOME"
+          }
+        }
+      ],
       "footer": [
         {
           "icon": "FilterAlt",
@@ -4682,7 +4741,7 @@
             {
               "actionType": "FETCH_TRANSFORMER_CONFIG",
               "properties": {
-                "configName": "beneficiaryRegistration",
+                "configName": "householdConsentDeclinedUpdate",
                 "onError": [
                   {
                     "actionType": "SHOW_TOAST",
