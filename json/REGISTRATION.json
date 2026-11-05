@@ -2925,11 +2925,6 @@
                 {
                   "type": "scanLimit",
                   "value": 4
-                },
-                {
-                  "type": "pattern",
-                  "value": "^[A-Z0-9][A-Z0-9-]{7,}$",
-                  "message": "SCANNER_INVALID_CODE_MESSAGE"
                 }
               ],
               "errorMessage": "",
