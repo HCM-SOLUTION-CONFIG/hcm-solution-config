@@ -6130,7 +6130,7 @@
                   },
                   {
                     "key": "malariaVaccineDate",
-                    "value": "{{fn:toTimestamp(eligibilityChecklist.malariaVaccineDate)}}"
+                    "value": "{{fn:toTimestamp(formData.eligibilityChecklist.malariaVaccineDate)}}"
                   },
                   {
                     "key": "smc",
@@ -6138,7 +6138,7 @@
                   },
                   {
                     "key": "smcDate",
-                    "value": "{{fn:toTimestamp(eligibilityChecklist.smcDate)}}"
+                    "value": "{{fn:toTimestamp(formData.eligibilityChecklist.smcDate)}}"
                   },
                   {
                     "key": "polio",
@@ -6146,7 +6146,7 @@
                   },
                   {
                     "key": "polioDate",
-                    "value": "{{fn:toTimestamp(eligibilityChecklist.polioDate)}}"
+                    "value": "{{fn:toTimestamp(formData.eligibilityChecklist.polioDate)}}"
                   },
                   {
                     "key": "measlesRubella",
@@ -6154,7 +6154,7 @@
                   },
                   {
                     "key": "measlesRubellaDate",
-                    "value": "{{fn:toTimestamp(eligibilityChecklist.measlesRubellaDate)}}"
+                    "value": "{{fn:toTimestamp(formData.eligibilityChecklist.measlesRubellaDate)}}"
                   },
                   {
                     "key": "sourceFlow",
