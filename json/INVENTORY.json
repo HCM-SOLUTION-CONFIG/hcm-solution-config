@@ -767,6 +767,11 @@
               "includeInForm": true,
               "validations": [
                 {
+                  "type": "regex",
+                  "value": "^(?:[^|]+\\|\\|)?[0-9a-fA-F]{8}-[0-9a-fA-F]{4}-[0-9a-fA-F]{4}-[0-9a-fA-F]{4}-[0-9a-fA-F]{12}$",
+                  "message": "INVENTORY_DELIVERY_TEAM_QR_INVALID"
+                },
+                {
                   "type": "required",
                   "value": true,
                   "message": "APPONE_MANAGESTOCK_WAREHOUSE_label_facilityToWhich_mandatory_message"
@@ -1546,6 +1551,7 @@
         {
           "actionType": "CREATE_EVENT",
           "properties": {
+            "awaitPersistence": true,
             "onError": [
               {
                 "actionType": "SHOW_TOAST",
@@ -1589,6 +1595,10 @@
               {
                 "key": "mrnNumber",
                 "value": "{{navigation.mrnNumber}}"
+              },
+              {
+                "key": "selectedStockRefs",
+                "value": "{{fn:pluckJoin(contextData.entities, 'clientReferenceId')}}"
               },
               {
                 "key": "transactionDetailsHeading",
@@ -1821,6 +1831,11 @@
               "systemDate": false,
               "includeInSummary": true,
               "validations": [
+                {
+                  "type": "regex",
+                  "value": "^(?:[^|]+\\|\\|)?[0-9a-fA-F]{8}-[0-9a-fA-F]{4}-[0-9a-fA-F]{4}-[0-9a-fA-F]{4}-[0-9a-fA-F]{12}$",
+                  "message": "INVENTORY_DELIVERY_TEAM_QR_INVALID"
+                },
                 {
                   "type": "required",
                   "value": true,
@@ -2187,6 +2202,7 @@
         {
           "actionType": "CREATE_EVENT",
           "properties": {
+            "awaitPersistence": true,
             "onError": [
               {
                 "actionType": "SHOW_TOAST",
@@ -2232,6 +2248,10 @@
                 "value": "{{navigation.mrnNumber}}"
               },
               {
+                "key": "selectedStockRefs",
+                "value": "{{fn:pluckJoin(contextData.entities, 'clientReferenceId')}}"
+              },
+              {
                 "key": "transactionDetailsHeading",
                 "value": "{{fn:getViewTransactionHeadingCode(formData.lessExcessDetails.recordType)}}"
               }
@@ -2264,14 +2284,12 @@
                 "properties": {
                   "type": "TEMPLATE",
                   "name": "viewTransactionDetails",
+                  "navigationMode": "popUntilAndPush",
+                  "popUntilPageName": "manageStock",
                   "data": [
                     {
-                      "key": "selectedStock",
-                      "value": "{{navigation.mrnNumber}}"
-                    },
-                    {
-                      "key": "clientReferenceId",
-                      "value": "{{navigation.clientReferenceId}}"
+                      "key": "selectedStockRefs",
+                      "value": "{{navigation.selectedStockRefs}}"
                     },
                     {
                       "key": "transactionDetailsHeading",
@@ -2303,6 +2321,7 @@
       "screenType": "TEMPLATE",
       "category": "INVENTORY",
       "name": "viewTransactionDetails",
+      "seedFromNavigation": false,
       "heading": "{{navigation.transactionDetailsHeading}}",
       "description": "",
       "header": [
@@ -2311,11 +2330,8 @@
           "label": "CORE_COMMON_BACK",
           "onAction": [
             {
-              "actionType": "NAVIGATION",
-              "properties": {
-                "type": "TEMPLATE",
-                "name": "manageStock"
-              }
+              "actionType": "BACK_NAVIGATION",
+              "properties": {}
             }
           ]
         }
@@ -2331,9 +2347,10 @@
             "skipAccumulatedFilters": true,
             "data": [
               {
-                "key": "additionalFields",
-                "value": "{{fn:getCommentValue(navigation.selectedStock, '__NO_MATCHING_STOCK_MRN__')}}",
-                "operation": "contains"
+                "key": "clientReferenceId",
+                "value": "{{navigation.selectedStockRefs}}",
+                "operation": "in",
+                "applyIf": "\"{{navigation.selectedStockRefs}}\" != \"\" && \"{{navigation.selectedStockRefs}}\" != \"null\""
               }
             ]
           }
@@ -2392,7 +2409,8 @@
                   },
                   {
                     "key": "INVENTORY_MRN_NUMBER_LABEL",
-                    "value": "{{item.additionalFields.fields.mrnNumber}}"
+                    "value": "{{item.additionalFields.fields.mrnNumber}}",
+                    "hideIfNull": true
                   },
                   {
                     "key": "INVENTORY_WAYBILL_NUMBER_LABEL",
@@ -2414,17 +2432,17 @@
                     "hideIfNull": true
                   },
                   {
-                    "key": "{{fn:getStockQuantityLabel(item.additionalFields.fields.stockEntryType)}}",
+                    "key": "{{fn:getDetailsPrimaryQuantityLabel(item.additionalFields.fields.stockEntryType, item.transactionReason, item.additionalFields.fields.discrepancyReason, item.additionalFields.fields.originalQuantityReceived, item.additionalFields.fields.actualQuantityReceived, item.quantity, item.additionalFields.fields.originalIssueClientReferenceId, item.additionalFields.fields.status, item.senderId, item.receiverId)}}",
                     "value": "{{fn:coalesceQuantity(item.additionalFields.fields.originalQuantityReceived, item.quantity)}}"
                   },
                   {
-                    "key": "INVENTORY_ACTUAL_QUANTITY_RECEIVED_LABEL",
-                    "value": "{{item.additionalFields.fields.actualQuantityReceived}}",
+                    "key": "{{fn:getDetailsConfirmedQuantityLabel(item.additionalFields.fields.stockEntryType, item.transactionReason, item.additionalFields.fields.discrepancyReason, item.additionalFields.fields.originalQuantityReceived, item.additionalFields.fields.actualQuantityReceived, item.quantity, item.additionalFields.fields.originalIssueClientReferenceId, item.additionalFields.fields.status, item.senderId, item.receiverId)}}",
+                    "value": "{{fn:getDetailsConfirmedQuantity(item.additionalFields.fields.stockEntryType, item.transactionReason, item.additionalFields.fields.discrepancyReason, item.additionalFields.fields.originalQuantityReceived, item.additionalFields.fields.actualQuantityReceived, item.quantity, item.additionalFields.fields.originalIssueClientReferenceId, item.additionalFields.fields.status, item.senderId, item.receiverId)}}",
                     "hideIfNull": true
                   },
                   {
-                    "key": "INVENTORY_SHORTFALL_QUANTITY_LABEL",
-                    "value": "{{fn:subtractQuantity(item.additionalFields.fields.originalQuantityReceived, item.additionalFields.fields.actualQuantityReceived)}}",
+                    "key": "{{fn:getDetailsDifferenceLabel(item.additionalFields.fields.stockEntryType, item.transactionReason, item.additionalFields.fields.discrepancyReason, item.additionalFields.fields.originalQuantityReceived, item.additionalFields.fields.actualQuantityReceived, item.quantity, item.additionalFields.fields.originalIssueClientReferenceId, item.additionalFields.fields.status, item.senderId, item.receiverId)}}",
+                    "value": "{{fn:getDetailsDifference(item.additionalFields.fields.stockEntryType, item.transactionReason, item.additionalFields.fields.discrepancyReason, item.additionalFields.fields.originalQuantityReceived, item.additionalFields.fields.actualQuantityReceived, item.quantity, item.additionalFields.fields.originalIssueClientReferenceId, item.additionalFields.fields.status, item.senderId, item.receiverId)}}",
                     "hideIfNull": true
                   },
                   {
@@ -2509,6 +2527,7 @@
         "groupByType": true,
         "rootEntity": "StockModel",
         "groupBy": "additionalFields.fields.mrnNumber",
+        "groupByFallback": "clientReferenceId",
         "filters": [],
         "relations": [
           {
@@ -2565,7 +2584,7 @@
                     "format": "tag",
                     "type": "template",
                     "fieldName": "incomingTransactionsMrnTag",
-                    "label": "MRN {{item.groupKey}}"
+                    "label": "{{fn:transactionTag(item.items[0].additionalFields.fields.mrnNumber, item.items[0].dateOfEntry)}}"
                   },
                   {
                     "format": "textTemplate",
@@ -2632,7 +2651,7 @@
                   "format": "textTemplate",
                   "type": "template",
                   "fieldName": "incomingTransactionsGroupedItemText",
-                  "value": "{{item.additionalFields.fields.sku}}: {{item.quantity}}"
+                  "value": "{{fn:localizeStockSku(item.additionalFields.fields.sku)}}: {{item.quantity}}"
                 }
               },
               {
@@ -2675,6 +2694,10 @@
                           "value": "{{item.items[0].additionalFields.fields.originalIssueClientReferenceId}}"
                         },
                         {
+                          "key": "partial_flow",
+                          "value": "{{item.items[0].additionalFields.fields.partial_flow}}"
+                        },
+                        {
                           "key": "transactionType",
                           "value": "RECEIVED"
                         },
@@ -2709,6 +2732,10 @@
                         {
                           "key": "receivedFromName",
                           "value": "{{fn:resolveTeamName(item.items[0].additionalFields.fields)}}"
+                        },
+                        {
+                          "key": "senderPartyType",
+                          "value": "{{item.items[0].senderType}}"
                         },
                         {
                           "key": "quantity",
@@ -2793,6 +2820,10 @@
             "forceCreate": true,
             "data": [
               {
+                "key": "partial_flow",
+                "value": "{{fn:isPartialStockFlow(navigation.originalIssueClientReferenceId, navigation.partial_flow)}}"
+              },
+              {
                 "key": "stockEntryType",
                 "value": "RECEIPT"
               },
@@ -2819,6 +2850,14 @@
               {
                 "key": "receivedFromName",
                 "value": "{{navigation.receivedFromName}}"
+              },
+              {
+                "key": "senderPartyType",
+                "value": "{{navigation.senderPartyType}}"
+              },
+              {
+                "key": "receiverPartyType",
+                "value": "{{fn:getUserPartyType()}}"
               },
               {
                 "key": "productVariantId",
@@ -2869,6 +2908,14 @@
             "source": "existingModels",
             "entity": "StockModel",
             "modify": [
+              {
+                "key": "StockModel.additionalFields.fields.partial_flow",
+                "value": "{{fn:isPartialStockFlow(navigation.originalIssueClientReferenceId, navigation.partial_flow)}}"
+              },
+              {
+                "key": "StockModel.additionalFields.fields.actualQuantityReceived",
+                "value": "{{navigation.quantity}}"
+              },
               {
                 "key": "StockModel.additionalFields.fields.status",
                 "value": "ACCEPTED"
@@ -2931,12 +2978,12 @@
                     "value": "{{fn:getCommentValue(navigation.mrnNumber, navigation.selectedTransactionMrn)}}"
                   },
                   {
-                    "key": "clientReferenceId",
+                    "key": "selectedStockRefs",
                     "value": "{{navigation.clientReferenceId}}"
                   },
                   {
                     "key": "transactionDetailsHeading",
-                    "value": "{{fn:getViewTransactionHeadingCode(navigation.incomingStockEntryType, 'RECEIVED', navigation.discrepancyReason)}}"
+                    "value": "{{fn:getAcceptedTransactionHeadingCode(navigation.incomingStockEntryType, navigation.discrepancyReason)}}"
                   }
                 ]
               }
@@ -2986,12 +3033,12 @@
                     "value": "{{fn:getCommentValue(navigation.mrnNumber, navigation.selectedTransactionMrn)}}"
                   },
                   {
-                    "key": "clientReferenceId",
+                    "key": "selectedStockRefs",
                     "value": "{{navigation.clientReferenceId}}"
                   },
                   {
                     "key": "transactionDetailsHeading",
-                    "value": "{{fn:getViewTransactionHeadingCode(navigation.incomingStockEntryType, 'RECEIVED', navigation.discrepancyReason)}}"
+                    "value": "{{fn:getAcceptedTransactionHeadingCode(navigation.incomingStockEntryType, navigation.discrepancyReason)}}"
                   }
                 ]
               }
@@ -3146,12 +3193,12 @@
                 "value": "{{fn:getCommentValue(navigation.mrnNumber, navigation.selectedTransactionMrn)}}"
               },
               {
-                "key": "clientReferenceId",
+                "key": "selectedStockRefs",
                 "value": "{{navigation.clientReferenceId}}"
               },
               {
                 "key": "transactionDetailsHeading",
-                "value": "{{fn:getViewTransactionHeadingCode(navigation.incomingStockEntryType, 'RECEIVED', navigation.discrepancyReason)}}"
+                "value": "{{fn:getAcceptedTransactionHeadingCode(navigation.incomingStockEntryType, navigation.discrepancyReason)}}"
               }
             ]
           }
@@ -3183,6 +3230,10 @@
                 "source": "existingModels",
                 "entity": "StockModel",
                 "modify": [
+                  {
+                    "key": "StockModel.additionalFields.fields.partial_flow",
+                    "value": true
+                  },
                   {
                     "key": "StockModel.additionalFields.fields.status",
                     "value": "ACCEPTED"
@@ -3423,12 +3474,12 @@
                     "value": "{{fn:getCommentValue(navigation.mrnNumber, navigation.selectedTransactionMrn)}}"
                   },
                   {
-                    "key": "clientReferenceId",
+                    "key": "selectedStockRefs",
                     "value": "{{navigation.clientReferenceId}}"
                   },
                   {
                     "key": "transactionDetailsHeading",
-                    "value": "{{fn:getViewTransactionHeadingCode(navigation.incomingStockEntryType, 'RECEIVED', navigation.discrepancyReason)}}"
+                    "value": "{{fn:getAcceptedTransactionHeadingCode(navigation.incomingStockEntryType, navigation.discrepancyReason)}}"
                   }
                 ]
               }
@@ -3446,6 +3497,10 @@
                 "configName": "stockReceipt",
                 "forceCreate": true,
                 "data": [
+                  {
+                    "key": "partial_flow",
+                    "value": true
+                  },
                   {
                     "key": "stockEntryType",
                     "value": "RECEIPT"
@@ -3523,6 +3578,10 @@
                 "source": "existingModels",
                 "entity": "StockModel",
                 "modify": [
+                  {
+                    "key": "StockModel.additionalFields.fields.partial_flow",
+                    "value": true
+                  },
                   {
                     "key": "StockModel.additionalFields.fields.status",
                     "value": "ACCEPTED"
@@ -3683,12 +3742,12 @@
                     "value": "{{fn:getCommentValue(navigation.mrnNumber, navigation.selectedTransactionMrn)}}"
                   },
                   {
-                    "key": "clientReferenceId",
+                    "key": "selectedStockRefs",
                     "value": "{{navigation.clientReferenceId}}"
                   },
                   {
                     "key": "transactionDetailsHeading",
-                    "value": "{{fn:getViewTransactionHeadingCode(navigation.incomingStockEntryType, 'RECEIVED', navigation.discrepancyReason)}}"
+                    "value": "{{fn:getAcceptedTransactionHeadingCode(navigation.incomingStockEntryType, navigation.discrepancyReason)}}"
                   }
                 ]
               }
@@ -3754,6 +3813,16 @@
           "description": "",
           "actionLabel": "INVENTORY_ACCEPT_STOCK_LABEL",
           "secondaryActionLabel": "INVENTORY_PARTIALLY_ACCEPT_STOCK_LABEL",
+          "secondaryActionVisibility": {
+            "expression": [
+              {
+                "condition": "navigation.incomingStockEntryType != 'RETURNED'"
+              },
+              {
+                "condition": "navigation.discrepancyReason != ''"
+              }
+            ]
+          },
           "showAlertPopUp": {
             "title": "INVENTORY_ACCEPT_CONFIRMATION_TITLE",
             "description": "INVENTORY_ACCEPT_CONFIRMATION_DESCRIPTION",
@@ -3762,13 +3831,13 @@
           },
           "showSecondaryAlertPopUp": {
             "title": "INVENTORY_REJECT_CONFIRMATION_TITLE",
-            "description": "INVENTORY_REJECT_CONFIRMATION_DESCRIPTION",
+            "description": "{{fn:getPartialAcceptDescription(navigation.incomingStockEntryType, navigation.discrepancyReason)}}",
             "primaryActionLabel": "INVENTORY_REJECT_CONFIRM_ACTION",
             "secondaryActionLabel": "INVENTORY_REJECT_CANCEL_ACTION",
             "body": [
               {
                 "type": "integer",
-                "label": "INVENTORY_ACTUAL_QUANTITY_RECEIVED_LABEL",
+                "label": "{{fn:getPartialAcceptQuantityLabel(navigation.incomingStockEntryType, navigation.discrepancyReason)}}",
                 "format": "numeric",
                 "fieldName": "actualQuantityReceived",
                 "mandatory": true,
@@ -3939,7 +4008,7 @@
               "type": "string",
               "label": "INVENTORY_COMMENTS_LABEL",
               "order": 8,
-              "value": "",
+              "value": "{{navigation.originalComment}}",
               "format": "textArea",
               "hidden": false,
               "tooltip": "",
@@ -4011,6 +4080,7 @@
         "groupByType": true,
         "rootEntity": "StockModel",
         "groupBy": "additionalFields.fields.mrnNumber",
+        "groupByFallback": "clientReferenceId",
         "filters": [],
         "relations": [
           {
@@ -4064,7 +4134,7 @@
                     "format": "tag",
                     "type": "template",
                     "fieldName": "viewTransactionMrnTag",
-                    "label": "MRN {{item.groupKey}}"
+                    "label": "{{fn:transactionTag(item.items[0].additionalFields.fields.mrnNumber, item.items[0].dateOfEntry)}}"
                   },
                   {
                     "format": "textTemplate",
@@ -4153,10 +4223,15 @@
                 "fieldName": "viewTransactionGroupedItemsList",
                 "dataSource": "item.items",
                 "child": {
-                  "format": "textTemplate",
+                  "format": "labelPairList",
                   "type": "template",
                   "fieldName": "viewTransactionGroupedItemText",
-                  "value": "{{item.additionalFields.fields.sku}}: {{fn:coalesceQuantity(item.additionalFields.fields.actualQuantityReceived, item.quantity)}}"
+                  "data": [
+                    {
+                      "key": "{{fn:getViewTransactionQuantityLabel(item)}}",
+                      "value": "{{fn:localizeStockSku(item.additionalFields.fields.sku)}}: {{fn:getViewTransactionQuantity(item)}}"
+                    }
+                  ]
                 }
               },
               {
@@ -4180,24 +4255,12 @@
                       "popUntilPageName": "manageStock",
                       "data": [
                         {
-                          "key": "item",
-                          "value": "{{item}}"
-                        },
-                        {
-                          "key": "item2",
-                          "value": "{{item.items[0]}}"
-                        },
-                        {
-                          "key": "selectedStock",
-                          "value": "{{item.groupKey}}"
-                        },
-                        {
-                          "key": "clientReferenceId",
-                          "value": "{{item.items[0].clientReferenceId}}"
+                          "key": "selectedStockRefs",
+                          "value": "{{fn:pluckJoin(item.items, 'clientReferenceId')}}"
                         },
                         {
                           "key": "transactionDetailsHeading",
-                          "value": "{{fn:getViewTransactionHeadingCode(item.items[0].additionalFields.fields.stockEntryType, item.items[0].transactionReason)}}"
+                          "value": "{{fn:getViewTransactionHeadingCode(item.items[0].additionalFields.fields.stockEntryType, item.items[0].transactionReason, item.items[0].additionalFields.fields.discrepancyReason, item.items[0].additionalFields.fields.originalIssueClientReferenceId)}}"
                         }
                       ]
                     }

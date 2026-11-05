@@ -582,7 +582,7 @@
                 },
                 {
                   "key": "NUMBER_OF_ITN_FOR_DELIVERY",
-                  "value": "{{fn:itnsForMemberCount(contextData.0.household.HouseholdModel.memberCount)}}",
+                  "value": "{{fn:itnQuantityFromConfig(contextData.0.eligibleProductVariants)}}",
                   "isActive": true
                 }
               ],
@@ -640,6 +640,20 @@
       ],
       "name": "householdOverview",
       "order": 3,
+      "onSystemBack": [
+        {
+          "actionType": "BACK_NAVIGATION",
+          "properties": {
+            "forcePop": true
+          }
+        },
+        {
+          "actionType": "REFRESH_SEARCH",
+          "properties": {
+            "screenName": "searchBeneficiary"
+          }
+        }
+      ],
       "footer": [
         {
           "type": "template",
@@ -749,7 +763,7 @@
                       },
                       {
                         "key": "qty",
-                        "value": "{{fn:itnsForMemberCount(contextData.0.household.HouseholdModel.memberCount)}}"
+                        "value": "{{fn:itnQuantityFromConfig(contextData.0.eligibleProductVariants)}}"
                       },
                       {
                         "key": "nameOfIndividual",
@@ -819,74 +833,22 @@
           "disabled": "{{fn:isClosedHousehold(contextData.0.tasks)}} == true || ('{{navigation.isNewRegistration}}' != 'true' && {{fn:isChecklistCompleted(contextData.0.household.HouseholdModel.additionalFields.fields)}} == true)",
           "onAction": [
             {
-              "actionType": "OPEN_POPUP",
+              "actionType": "NAVIGATION",
               "properties": {
-                "size": "large",
-                "type": "primary",
-                "popupConfig": {
-                  "title": "APPONE_ELIGIBILITYCHECKLIST_ALERT_TITLE",
-                  "description": "HOUSEHOLD_CHECKLIST_SUBMIT_DESCRIPTION",
-                  "type": "alert",
-                  "footerActions": [
-                    {
-                      "type": "template",
-                      "label": "ACTION_CANCEL",
-                      "format": "button",
-                      "fieldName": "cancelHouseholdOverviewPopUp",
-                      "properties": {
-                        "type": "secondary",
-                        "size": "medium"
-                      },
-                      "onAction": [
-                        {
-                          "actionType": "CLOSE_POPUP",
-                          "properties": {
-                            "parentScreenKey": "householdOverview"
-                          }
-                        }
-                      ]
-                    },
-                    {
-                      "type": "template",
-                      "label": "ACTION_SUBMIT",
-                      "format": "button",
-                      "fieldName": "submitHouseholdOverviewPopUp",
-                      "properties": {
-                        "type": "primary",
-                        "size": "medium"
-                      },
-                      "onAction": [
-                        {
-                          "actionType": "CLOSE_POPUP",
-                          "properties": {
-                            "parentScreenKey": "householdOverview"
-                          }
-                        },
-                        {
-                          "actionType": "NAVIGATION",
-                          "properties": {
-                            "data": [
-                              {
-                                "key": "HouseholdClientReferenceId",
-                                "value": "{{navigation.HouseholdClientReferenceId}}"
-                              },
-                              {
-                                "key": "ProjectBeneficiaryClientReferenceId",
-                                "value": "{{navigation.ProjectBeneficiaryClientReferenceId}}"
-                              }
-                            ],
-                            "name": "registrationHealthTalkSuccess",
-                            "type": "TEMPLATE",
-                            "navigationMode": "popUntilAndPush",
-                            "popUntilPageName": "searchBeneficiary"
-                          }
-                        }
-                      ]
-                    }
-                  ],
-                  "showCloseButton": true,
-                  "barrierDismissible": true
-                }
+                "data": [
+                  {
+                    "key": "HouseholdClientReferenceId",
+                    "value": "{{navigation.HouseholdClientReferenceId}}"
+                  },
+                  {
+                    "key": "ProjectBeneficiaryClientReferenceId",
+                    "value": "{{navigation.ProjectBeneficiaryClientReferenceId}}"
+                  }
+                ],
+                "name": "registrationHealthTalkSuccess",
+                "type": "TEMPLATE",
+                "navigationMode": "popUntilAndPush",
+                "popUntilPageName": "searchBeneficiary"
               }
             }
           ],
@@ -908,7 +870,8 @@
             {
               "actionType": "BACK_NAVIGATION",
               "properties": {
-                "name": "householdDetails"
+                "name": "householdDetails",
+                "forcePop": true
               }
             },
             {
@@ -1265,7 +1228,7 @@
                 },
                 {
                   "key": "NUMBER_OF_ITN_FOR_DELIVERY",
-                  "value": "{{fn:itnsForMemberCount(contextData.0.household.HouseholdModel.memberCount)}}",
+                  "value": "{{fn:itnQuantityFromConfig(contextData.0.eligibleProductVariants)}}",
                   "isActive": true
                 }
               ],
@@ -2046,7 +2009,19 @@
                     "type": "template",
                     "label": "OPEN",
                     "format": "button",
-                    "disabled": "{{fn:isClosedHousehold(item.tasks)}} == true",
+                    "disabled": {
+                      "@condition": [
+                        {
+                          "when": "{{fn:isClosedHousehold(item.tasks)}} == true",
+                          "value": true
+                        },
+                        {
+                          "when": "{{fn:isHouseholdMarkedClosed(item.tasks)}} == true && {{fn:hasMinimumBeneficiaryId(1, widgetData.uniqueIdPoolCount)}} == false",
+                          "value": true
+                        }
+                      ],
+                      "@default": false
+                    },
                     "onAction": [
                       {
                         "actions": [
@@ -2095,6 +2070,73 @@
                         ],
                         "condition": {
                           "expression": "{{fn:isClosedHousehold(item.tasks)}} == true"
+                        }
+                      },
+                      {
+                        "actions": [
+                          {
+                            "actionType": "LOAD_UNIQUE_ID_POOL",
+                            "properties": {
+                              "requireAvailable": true
+                            }
+                          },
+                          {
+                            "actionType": "REVERSE_TRANSFORM",
+                            "properties": {
+                              "data": [
+                                {
+                                  "key": "entities",
+                                  "value": "{{item}}"
+                                }
+                              ],
+                              "configName": "beneficiaryRegistration",
+                              "entityTypes": [
+                                "HouseholdModel",
+                                "IndividualModel",
+                                "TaskModel"
+                              ]
+                            }
+                          },
+                          {
+                            "actionType": "NAVIGATION",
+                            "properties": {
+                              "data": [
+                                {
+                                  "key": "HouseholdClientReferenceId",
+                                  "value": "{{item.HouseholdModel.clientReferenceId}}"
+                                },
+                                {
+                                  "key": "ProjectBeneficiaryClientReferenceId",
+                                  "value": "{{item.projectBeneficiaries.ProjectBeneficiaryModel.clientReferenceId}}"
+                                },
+                                {
+                                  "key": "isEdit",
+                                  "value": "true"
+                                },
+                                {
+                                  "key": "isClosedHousehold",
+                                  "value": "true"
+                                },
+                                {
+                                  "key": "identifier",
+                                  "value": "{{item.headIndividual}}"
+                                },
+                                {
+                                  "key": "startPage",
+                                  "value": "caregiverConsent"
+                                },
+                                {
+                                  "key": "deferFormRoutePop",
+                                  "value": "true"
+                                }
+                              ],
+                              "name": "HOUSEHOLD",
+                              "type": "FORM"
+                            }
+                          }
+                        ],
+                        "condition": {
+                          "expression": "{{fn:isClosedHousehold(item.tasks)}} == false && {{fn:isHouseholdMarkedClosed(item.tasks)}} == true"
                         }
                       },
                       {
@@ -2156,67 +2198,6 @@
                         ],
                         "condition": {
                           "expression": "{{fn:isCaregiverConsentMissing(item.HouseholdModel)}} == true"
-                        }
-                      },
-                      {
-                        "actions": [
-                          {
-                            "actionType": "REVERSE_TRANSFORM",
-                            "properties": {
-                              "data": [
-                                {
-                                  "key": "entities",
-                                  "value": "{{item}}"
-                                }
-                              ],
-                              "configName": "beneficiaryRegistration",
-                              "entityTypes": [
-                                "HouseholdModel",
-                                "IndividualModel",
-                                "TaskModel"
-                              ]
-                            }
-                          },
-                          {
-                            "actionType": "NAVIGATION",
-                            "properties": {
-                              "data": [
-                                {
-                                  "key": "HouseholdClientReferenceId",
-                                  "value": "{{item.HouseholdModel.clientReferenceId}}"
-                                },
-                                {
-                                  "key": "ProjectBeneficiaryClientReferenceId",
-                                  "value": "{{item.projectBeneficiaries.ProjectBeneficiaryModel.clientReferenceId}}"
-                                },
-                                {
-                                  "key": "isEdit",
-                                  "value": "true"
-                                },
-                                {
-                                  "key": "isClosedHousehold",
-                                  "value": "true"
-                                },
-                                {
-                                  "key": "identifier",
-                                  "value": "{{item.headIndividual}}"
-                                },
-                                {
-                                  "key": "startPage",
-                                  "value": "caregiverConsent"
-                                },
-                                {
-                                  "key": "deferFormRoutePop",
-                                  "value": "true"
-                                }
-                              ],
-                              "name": "HOUSEHOLD",
-                              "type": "FORM"
-                            }
-                          }
-                        ],
-                        "condition": {
-                          "expression": "{{fn:isClosedHousehold(item.tasks)}} == false && {{fn:isHouseholdMarkedClosed(item.tasks)}} == true"
                         }
                       },
                       {
@@ -2317,6 +2298,11 @@
       ],
       "name": "searchBeneficiary",
       "order": 1,
+      "initActions": [
+        {
+          "actionType": "LOAD_UNIQUE_ID_POOL"
+        }
+      ],
       "footer": [
         {
           "type": "template",
@@ -2591,12 +2577,7 @@
         "showLoadingIndicator": true
       },
       "submitCondition": null,
-      "preventScreenCapture": false,
-      "initActions": [
-        {
-          "actionType": "LOAD_UNIQUE_ID_POOL"
-        }
-      ]
+      "preventScreenCapture": false
     },
     {
       "name": "registrationHealthTalk",
@@ -3210,12 +3191,10 @@
             "hidden": false,
             "onAction": [
               {
-                "actionType": "NAVIGATION",
+                "actionType": "BACK_NAVIGATION",
                 "properties": {
                   "name": "searchBeneficiary",
-                  "type": "TEMPLATE",
-                  "navigationMode": "popUntilAndReplace",
-                  "popUntilPageName": "searchBeneficiary"
+                  "forcePop": true
                 }
               },
               {
@@ -3240,12 +3219,10 @@
       "footer": [],
       "onSystemBack": [
         {
-          "actionType": "NAVIGATION",
+          "actionType": "BACK_NAVIGATION",
           "properties": {
             "name": "searchBeneficiary",
-            "type": "TEMPLATE",
-            "navigationMode": "popUntilAndReplace",
-            "popUntilPageName": "searchBeneficiary"
+            "forcePop": true
           }
         },
         {
@@ -3262,12 +3239,10 @@
           "format": "backLink",
           "onAction": [
             {
-              "actionType": "NAVIGATION",
+              "actionType": "BACK_NAVIGATION",
               "properties": {
                 "name": "searchBeneficiary",
-                "type": "TEMPLATE",
-                "navigationMode": "popUntilAndReplace",
-                "popUntilPageName": "searchBeneficiary"
+                "forcePop": true
               }
             },
             {
@@ -3623,11 +3598,6 @@
                 {
                   "type": "allowManualEntry",
                   "value": true
-                },
-                {
-                  "type": "manualSerialPattern",
-                  "value": "^[A-Z0-9][A-Z0-9-]{7}$",
-                  "message": "APPONE_REGISTRATION_DELIVERYDETAILS_label_scanner_serial_pattern_message"
                 }
               ],
               "errorMessage": "",
@@ -6025,7 +5995,13 @@
           "showTabView": false,
           "submitCondition": null,
           "preventScreenCapture": false,
-          "conditionalNavigateTo": null
+          "conditionalNavigateTo": null,
+          "showAlertPopUp": {
+            "title": "APPONE_ELIGIBILITYCHECKLIST_ALERT_TITLE",
+            "description": "HOUSEHOLD_CHECKLIST_SUBMIT_DESCRIPTION",
+            "primaryActionLabel": "ACTION_SUBMIT",
+            "secondaryActionLabel": "ACTION_CANCEL"
+          }
         }
       ],
       "summary": false,
@@ -6062,6 +6038,8 @@
             {
               "actionType": "CREATE_EVENT",
               "properties": {
+                "stopOnError": true,
+                "awaitPersistence": true,
                 "entity": "ProjectBeneficiaryModel, IndividualModel",
                 "onError": [
                   {
@@ -6070,14 +6048,13 @@
                       "message": "Failed to update closed household."
                     }
                   }
-                ],
-                "stopOnError": true,
-                "awaitPersistence": true
+                ]
               }
             },
             {
               "actionType": "UPDATE_EVENT",
               "properties": {
+                "stopOnError": true,
                 "entity": "HouseholdModel, IndividualModel, ProjectBeneficiaryModel",
                 "onError": [
                   {
@@ -6086,8 +6063,7 @@
                       "message": "Failed to update closed household."
                     }
                   }
-                ],
-                "stopOnError": true
+                ]
               }
             },
             {
@@ -6226,6 +6202,7 @@
             {
               "actionType": "UPDATE_EVENT",
               "properties": {
+                "stopOnError": true,
                 "entity": "HouseholdModel, IndividualModel, TaskModel",
                 "modify": [
                   {
@@ -6240,8 +6217,7 @@
                       "message": "Failed to update closed household."
                     }
                   }
-                ],
-                "stopOnError": true
+                ]
               }
             },
             {
@@ -6314,6 +6290,8 @@
             {
               "actionType": "CREATE_EVENT",
               "properties": {
+                "stopOnError": true,
+                "awaitPersistence": true,
                 "onError": [
                   {
                     "actionType": "SHOW_TOAST",
@@ -6321,9 +6299,7 @@
                       "message": "Failed to save household."
                     }
                   }
-                ],
-                "stopOnError": true,
-                "awaitPersistence": true
+                ]
               }
             },
             {
@@ -6377,6 +6353,7 @@
             {
               "actionType": "UPDATE_EVENT",
               "properties": {
+                "stopOnError": true,
                 "entity": "HouseholdModel, IndividualModel",
                 "onError": [
                   {
@@ -6385,8 +6362,7 @@
                       "message": "Failed to update household."
                     }
                   }
-                ],
-                "stopOnError": true
+                ]
               }
             },
             {
@@ -6451,6 +6427,8 @@
             {
               "actionType": "CREATE_EVENT",
               "properties": {
+                "stopOnError": true,
+                "awaitPersistence": true,
                 "onError": [
                   {
                     "actionType": "SHOW_TOAST",
@@ -6458,9 +6436,7 @@
                       "message": "Failed to create household."
                     }
                   }
-                ],
-                "stopOnError": true,
-                "awaitPersistence": true
+                ]
               }
             },
             {
