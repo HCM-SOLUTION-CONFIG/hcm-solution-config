@@ -3599,7 +3599,7 @@
                 },
                 {
                   "type": "allowManualEntry",
-                  "value": false
+                  "value": true
                 }
               ],
               "errorMessage": "",
