@@ -3593,11 +3593,12 @@
                 },
                 {
                   "type": "scanLimit",
-                  "value": 3
+                  "value": 3,
+                  "message": "APPONE_REGISTRATION_DELIVERYDETAILS_SCANNER_LIMIT_MESSAGE"
                 },
                 {
                   "type": "allowManualEntry",
-                  "value": true
+                  "value": false
                 }
               ],
               "errorMessage": "",
