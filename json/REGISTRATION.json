@@ -4916,6 +4916,18 @@
           "actionLabel": "APPONE_REGISTRATION_HOUSEHOLDDETAILS_ACTION_BUTTON_LABEL_1",
           "description": "APPONE_REGISTRATION_HOUSEHOLDDETAILS_SCREEN_DESCRIPTION",
           "showTabView": false,
+          "showNextAlertPopUp": {
+            "title": "REGISTRATION_ETOKEN_POPUP_TITLE",
+            "description": "REGISTRATION_ETOKEN_POPUP_DESCRIPTION",
+            "primaryActionLabel": "ACTION_SUBMIT",
+            "secondaryActionLabel": "ACTION_CANCEL",
+            "conditions": [
+              {
+                "expression": "DEFAULT",
+                "value": "{{navigation.beneficiaryId}}"
+              }
+            ]
+          },
           "submitCondition": {
             "expression": [
               {
