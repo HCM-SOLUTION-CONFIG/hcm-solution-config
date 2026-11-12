@@ -26,6 +26,7 @@
               "data": [
                 {
                   "key": "E_TOKEN",
+                  "valueBold": true,
                   "value": "{{fn:getUniqueBeneficiaryId(contextData.0.headIndividual.IndividualModel.identifiers)}}"
                 }
               ]
@@ -610,6 +611,7 @@
                 },
                 {
                   "key": "E_TOKEN",
+                  "valueBold": true,
                   "value": "{{fn:getUniqueBeneficiaryId(contextData.0.headIndividual.IndividualModel.identifiers)}}",
                   "isActive": true
                 },
@@ -1256,6 +1258,7 @@
                 },
                 {
                   "key": "E_TOKEN",
+                  "valueBold": true,
                   "value": "{{fn:getUniqueBeneficiaryId(contextData.0.headIndividual.IndividualModel.identifiers)}}",
                   "isActive": true
                 }
@@ -3147,6 +3150,7 @@
               "data": [
                 {
                   "key": "E_TOKEN",
+                  "valueBold": true,
                   "value": "{{fn:getUniqueBeneficiaryId(contextData.0.headIndividual.IndividualModel.identifiers)}}",
                   "hideIfNull": true
                 }
