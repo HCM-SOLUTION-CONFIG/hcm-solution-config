@@ -3142,6 +3142,10 @@
                     "value": "{{navigation.quantity}}"
                   },
                   {
+                    "key": "balesQuantity",
+                    "value": "{{fn:toBales(navigation.quantity, 50)}}"
+                  },
+                  {
                     "key": "mrnNumber",
                     "value": "{{fn:generateUniqueMaterialNoteNumber()}}"
                   },
@@ -3348,6 +3352,10 @@
                     "value": "{{formData.actualQuantityReceived}}"
                   },
                   {
+                    "key": "balesQuantity",
+                    "value": "{{fn:toBales(formData.actualQuantityReceived, 50)}}"
+                  },
+                  {
                     "key": "mrnNumber",
                     "value": "{{fn:generateUniqueMaterialNoteNumber()}}"
                   },
@@ -3444,6 +3452,10 @@
                   {
                     "key": "quantity",
                     "value": "{{fn:subtractQuantity(navigation.quantity, formData.actualQuantityReceived)}}"
+                  },
+                  {
+                    "key": "balesQuantity",
+                    "value": "{{fn:toBales(navigation.quantity, 50, formData.actualQuantityReceived)}}"
                   },
                   {
                     "key": "mrnNumber",
@@ -3716,6 +3728,10 @@
                   {
                     "key": "quantity",
                     "value": "{{fn:subtractQuantity(navigation.quantity, formData.actualQuantityReceived)}}"
+                  },
+                  {
+                    "key": "balesQuantity",
+                    "value": "{{fn:toBales(navigation.quantity, 50, formData.actualQuantityReceived)}}"
                   },
                   {
                     "key": "mrnNumber",
