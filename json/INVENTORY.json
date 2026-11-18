@@ -2631,7 +2631,7 @@
                           "format": "textTemplate",
                           "type": "template",
                           "fieldName": "incomingTransactionsSenderValueText",
-                          "value": "{{fn:getFacilityName(item.items[0].senderId)}}",
+                          "value": "{{fn:getFacilityName(item.items[0].senderId, item.items[0].additionalFields.fields)}}",
                           "maxLines": 2
                         }
                       ]
@@ -3118,6 +3118,10 @@
                     "value": "{{fn:getUserPartyType()}}"
                   },
                   {
+                    "key": "deliveryTeamName",
+                    "value": "{{fn:getShortfallTeamName(navigation.receivedFromName)}}"
+                  },
+                  {
                     "key": "receiverPartyType",
                     "value": "{{fn:getPartyTypeForFacilityId(navigation.senderFacilityId)}}"
                   },
@@ -3332,6 +3336,10 @@
                     "value": "{{fn:getUserPartyType()}}"
                   },
                   {
+                    "key": "deliveryTeamName",
+                    "value": "{{fn:getShortfallTeamName(navigation.receivedFromName)}}"
+                  },
+                  {
                     "key": "receiverPartyType",
                     "value": "{{fn:getPartyTypeForFacilityId(navigation.senderFacilityId)}}"
                   },
@@ -3432,6 +3440,10 @@
                   {
                     "key": "senderPartyType",
                     "value": "{{fn:getUserPartyType()}}"
+                  },
+                  {
+                    "key": "deliveryTeamName",
+                    "value": "{{fn:getShortfallTeamName(navigation.receivedFromName)}}"
                   },
                   {
                     "key": "receiverPartyType",
@@ -3712,6 +3724,10 @@
                   {
                     "key": "senderPartyType",
                     "value": "{{fn:getUserPartyType()}}"
+                  },
+                  {
+                    "key": "deliveryTeamName",
+                    "value": "{{fn:getShortfallTeamName(navigation.receivedFromName)}}"
                   },
                   {
                     "key": "receiverPartyType",
