@@ -1,0 +1,3 @@
+# Local working archives of the json/ configs, kept at the repo root.
+# They are snapshots for upload, not source - json/ is the source of truth.
+/*.zip
