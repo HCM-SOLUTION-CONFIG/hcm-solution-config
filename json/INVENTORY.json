@@ -3311,6 +3311,10 @@
                     "value": "{{fn:safeString(navigation.quantity)}}"
                   },
                   {
+                    "key": "StockModel.additionalFields.fields.originalBalesReceived",
+                    "value": "{{fn:toBales(navigation.quantity, 50)}}"
+                  },
+                  {
                     "key": "StockModel.additionalFields.fields.discrepancyReason",
                     "value": "IN_TRANSIT"
                   },
@@ -3681,6 +3685,10 @@
                   {
                     "key": "StockModel.additionalFields.fields.originalQuantityReceived",
                     "value": "{{fn:safeString(navigation.quantity)}}"
+                  },
+                  {
+                    "key": "StockModel.additionalFields.fields.originalBalesReceived",
+                    "value": "{{fn:toBales(navigation.quantity, 50)}}"
                   },
                   {
                     "key": "StockModel.additionalFields.fields.discrepancyReason",
