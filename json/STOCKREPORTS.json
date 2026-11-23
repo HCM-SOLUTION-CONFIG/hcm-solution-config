@@ -592,7 +592,7 @@
                 "cellValue": "{{item.additionalFields.fields.wayBillNumber}}"
               },
               {
-                "header": "{{fn:unitLabel('STOCKREPORTS_REPORT_DETAILS_TABLE_HEADER_4_LABEL')}}",
+                "header": "STOCKREPORTS_REPORT_DETAILS_TABLE_HEADER_4_LABEL_PIECES",
                 "cellValue": "{{item.quantity}}"
               }
             ],

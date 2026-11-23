@@ -1186,8 +1186,12 @@
               "label": "APPONE_INVENTORY_QUANTITY_SENT_LABEL",
               "labelConditions": [
                 {
-                  "condition": "navigation.stockUnit == 'BALES'",
+                  "condition": "navigation.stockUnit == 'BALES' && warehouseDetails.facilityToWhich != 'DELIVERY_TEAM' && stockDetails.facilityFromWhich != 'DELIVERY_TEAM'",
                   "label": "APPONE_INVENTORY_QUANTITY_SENT_LABEL_BALES"
+                },
+                {
+                  "condition": "navigation.stockUnit == 'BALES'",
+                  "label": "APPONE_INVENTORY_QUANTITY_SENT_LABEL_PIECES"
                 },
                 {
                   "condition": "navigation.stockUnit == 'PIECES'",
@@ -1241,12 +1245,49 @@
               }
             },
             {
+              "type": "string",
+              "label": "APPONE_INVENTORY_QUANTITY_SENT_LABEL_PIECES",
+              "order": 4.1,
+              "value": "",
+              "format": "text",
+              "hidden": false,
+              "tooltip": "",
+              "helpText": "",
+              "infoText": "",
+              "readOnly": false,
+              "fieldName": "quantitySentPieces",
+              "deleteFlag": false,
+              "innerLabel": "",
+              "systemDate": false,
+              "visibilityCondition": {
+                "expression": [
+                  {
+                    "condition": "navigation.stockEntryType == 'ISSUED' && navigation.stockUnit == 'BALES' && warehouseDetails.facilityToWhich != 'DELIVERY_TEAM' && stockDetails.facilityFromWhich != 'DELIVERY_TEAM'",
+                    "type": "custom"
+                  }
+                ]
+              },
+              "computedValue": {
+                "sourceField": "quantitySent",
+                "multiplyBy": 50,
+                "decimals": 0
+              },
+              "validations": [],
+              "errorMessage": "",
+              "isMultiSelect": false,
+              "enums": null
+            },
+            {
               "type": "integer",
               "label": "APPONE_INVENTORY_QUANTITY_LOST_LABEL",
               "labelConditions": [
                 {
-                  "condition": "navigation.stockUnit == 'BALES'",
+                  "condition": "navigation.stockUnit == 'BALES' && warehouseDetails.facilityToWhich != 'DELIVERY_TEAM' && stockDetails.facilityFromWhich != 'DELIVERY_TEAM'",
                   "label": "APPONE_INVENTORY_QUANTITY_LOST_LABEL_BALES"
+                },
+                {
+                  "condition": "navigation.stockUnit == 'BALES'",
+                  "label": "APPONE_INVENTORY_QUANTITY_LOST_LABEL_PIECES"
                 },
                 {
                   "condition": "navigation.stockUnit == 'PIECES'",
@@ -1298,6 +1339,39 @@
                   }
                 ]
               }
+            },
+            {
+              "type": "string",
+              "label": "APPONE_INVENTORY_QUANTITY_LOST_LABEL_PIECES",
+              "order": 4.1,
+              "value": "",
+              "format": "text",
+              "hidden": false,
+              "tooltip": "",
+              "helpText": "",
+              "infoText": "",
+              "readOnly": false,
+              "fieldName": "quantityLostPieces",
+              "deleteFlag": false,
+              "innerLabel": "",
+              "systemDate": false,
+              "visibilityCondition": {
+                "expression": [
+                  {
+                    "condition": "navigation.stockEntryType == 'LOSS' && navigation.stockUnit == 'BALES' && warehouseDetails.facilityToWhich != 'DELIVERY_TEAM' && stockDetails.facilityFromWhich != 'DELIVERY_TEAM'",
+                    "type": "custom"
+                  }
+                ]
+              },
+              "computedValue": {
+                "sourceField": "quantityLost",
+                "multiplyBy": 50,
+                "decimals": 0
+              },
+              "validations": [],
+              "errorMessage": "",
+              "isMultiSelect": false,
+              "enums": null
             },
             {
               "type": "string",
@@ -1394,8 +1468,12 @@
               "label": "APPONE_INVENTORY_QUANTITY_DAMAGED_LABEL",
               "labelConditions": [
                 {
-                  "condition": "navigation.stockUnit == 'BALES'",
+                  "condition": "navigation.stockUnit == 'BALES' && warehouseDetails.facilityToWhich != 'DELIVERY_TEAM' && stockDetails.facilityFromWhich != 'DELIVERY_TEAM'",
                   "label": "APPONE_INVENTORY_QUANTITY_DAMAGED_LABEL_BALES"
+                },
+                {
+                  "condition": "navigation.stockUnit == 'BALES'",
+                  "label": "APPONE_INVENTORY_QUANTITY_DAMAGED_LABEL_PIECES"
                 },
                 {
                   "condition": "navigation.stockUnit == 'PIECES'",
@@ -1450,6 +1528,39 @@
             },
             {
               "type": "string",
+              "label": "APPONE_INVENTORY_QUANTITY_DAMAGED_LABEL_PIECES",
+              "order": 4.1,
+              "value": "",
+              "format": "text",
+              "hidden": false,
+              "tooltip": "",
+              "helpText": "",
+              "infoText": "",
+              "readOnly": false,
+              "fieldName": "quantityDamagedPieces",
+              "deleteFlag": false,
+              "innerLabel": "",
+              "systemDate": false,
+              "visibilityCondition": {
+                "expression": [
+                  {
+                    "condition": "navigation.stockEntryType == 'DAMAGED' && navigation.stockUnit == 'BALES' && warehouseDetails.facilityToWhich != 'DELIVERY_TEAM' && stockDetails.facilityFromWhich != 'DELIVERY_TEAM'",
+                    "type": "custom"
+                  }
+                ]
+              },
+              "computedValue": {
+                "sourceField": "quantityDamaged",
+                "multiplyBy": 50,
+                "decimals": 0
+              },
+              "validations": [],
+              "errorMessage": "",
+              "isMultiSelect": false,
+              "enums": null
+            },
+            {
+              "type": "string",
               "label": "APPONE_INVENTORY_DAMAGE_REASON_LABEL",
               "order": 5,
               "value": "",
@@ -1492,15 +1603,58 @@
               ]
             },
             {
+              "type": "string",
+              "label": "APPONE_INVENTORY_RETURN_UNIT_LABEL",
+              "order": 3.9,
+              "value": "PIECES",
+              "format": "dropdown",
+              "hidden": false,
+              "tooltip": "",
+              "helpText": "",
+              "infoText": "",
+              "readOnly": false,
+              "fieldName": "returnUnit",
+              "deleteFlag": false,
+              "innerLabel": "",
+              "systemDate": false,
+              "visibilityCondition": {
+                "expression": [
+                  {
+                    "condition": "navigation.stockEntryType == 'RETURNED'",
+                    "type": "custom"
+                  }
+                ]
+              },
+              "validations": [
+                {
+                  "type": "required",
+                  "value": true,
+                  "message": "APPONE_INVENTORY_RETURN_UNIT_REQUIRED_MESSAGE"
+                }
+              ],
+              "errorMessage": "",
+              "isMultiSelect": false,
+              "enums": [
+                {
+                  "code": "BALES",
+                  "name": "APPONE_INVENTORY_UNIT_BALES"
+                },
+                {
+                  "code": "PIECES",
+                  "name": "APPONE_INVENTORY_UNIT_PIECES"
+                }
+              ]
+            },
+            {
               "type": "integer",
               "label": "APPONE_INVENTORY_QUANTITY_RETURNED_LABEL",
               "labelConditions": [
                 {
-                  "condition": "navigation.stockUnit == 'BALES'",
+                  "condition": "stockProductDetails.returnUnit_$tabIndex == 'BALES'",
                   "label": "APPONE_INVENTORY_QUANTITY_RETURNED_LABEL_BALES"
                 },
                 {
-                  "condition": "navigation.stockUnit == 'PIECES'",
+                  "condition": "stockProductDetails.returnUnit_$tabIndex == 'PIECES'",
                   "label": "APPONE_INVENTORY_QUANTITY_RETURNED_LABEL_PIECES"
                 }
               ],
@@ -1551,12 +1705,49 @@
               "enums": null
             },
             {
+              "type": "string",
+              "label": "APPONE_INVENTORY_QUANTITY_RETURNED_LABEL_PIECES",
+              "order": 4.1,
+              "value": "",
+              "format": "text",
+              "hidden": false,
+              "tooltip": "",
+              "helpText": "",
+              "infoText": "",
+              "readOnly": false,
+              "fieldName": "quantityReturnedPieces",
+              "deleteFlag": false,
+              "innerLabel": "",
+              "systemDate": false,
+              "visibilityCondition": {
+                "expression": [
+                  {
+                    "condition": "navigation.stockEntryType == 'RETURNED' && stockProductDetails.returnUnit_$tabIndex == 'BALES'",
+                    "type": "custom"
+                  }
+                ]
+              },
+              "computedValue": {
+                "sourceField": "quantityReturned",
+                "multiplyBy": 50,
+                "decimals": 0
+              },
+              "validations": [],
+              "errorMessage": "",
+              "isMultiSelect": false,
+              "enums": null
+            },
+            {
               "type": "integer",
               "label": "APPONE_INVENTORY_QUANTITY_RECEIVED_LABEL",
               "labelConditions": [
                 {
-                  "condition": "navigation.stockUnit == 'BALES'",
+                  "condition": "navigation.stockUnit == 'BALES' && warehouseDetails.facilityToWhich != 'DELIVERY_TEAM' && stockDetails.facilityFromWhich != 'DELIVERY_TEAM'",
                   "label": "APPONE_INVENTORY_QUANTITY_RECEIVED_LABEL_BALES"
+                },
+                {
+                  "condition": "navigation.stockUnit == 'BALES'",
+                  "label": "APPONE_INVENTORY_QUANTITY_RECEIVED_LABEL_PIECES"
                 },
                 {
                   "condition": "navigation.stockUnit == 'PIECES'",
@@ -1605,6 +1796,39 @@
                   "message": "QUANTITY_VALID_NUMBER_ERROR_MESSAGE"
                 }
               ],
+              "errorMessage": "",
+              "isMultiSelect": false,
+              "enums": null
+            },
+            {
+              "type": "string",
+              "label": "APPONE_INVENTORY_QUANTITY_RECEIVED_LABEL_PIECES",
+              "order": 4.1,
+              "value": "",
+              "format": "text",
+              "hidden": false,
+              "tooltip": "",
+              "helpText": "",
+              "infoText": "",
+              "readOnly": false,
+              "fieldName": "quantityReceivedPieces",
+              "deleteFlag": false,
+              "innerLabel": "",
+              "systemDate": false,
+              "visibilityCondition": {
+                "expression": [
+                  {
+                    "condition": "navigation.stockEntryType == 'RECEIPT' && navigation.stockUnit == 'BALES' && warehouseDetails.facilityToWhich != 'DELIVERY_TEAM' && stockDetails.facilityFromWhich != 'DELIVERY_TEAM'",
+                    "type": "custom"
+                  }
+                ]
+              },
+              "computedValue": {
+                "sourceField": "quantityReceived",
+                "multiplyBy": 50,
+                "decimals": 0
+              },
+              "validations": [],
               "errorMessage": "",
               "isMultiSelect": false,
               "enums": null
@@ -1731,6 +1955,10 @@
               {
                 "key": "vehicleNumber",
                 "value": "{{formData.stockDetails.vehicleNumber}}"
+              },
+              {
+                "key": "stockUnit",
+                "value": "{{fn:stockEntryUnit(navigation.stockUnit, formData.warehouseDetails.facilityToWhich, formData.stockDetails.facilityFromWhich)}}"
               }
             ],
             "onError": [
@@ -3052,6 +3280,10 @@
                       "name": "stockReceiptDetails",
                       "data": [
                         {
+                          "key": "receiptUnit",
+                          "value": "{{fn:stockReceiptUnit()}}"
+                        },
+                        {
                           "key": "stockEntryType",
                           "value": "{{fn:getStockEntryTypeFromFields(item.items[0].additionalFields.fields)}}"
                         },
@@ -3188,6 +3420,10 @@
               {
                 "key": "quantity",
                 "value": "{{fn:bottlesToMl(navigation.quantity)}}"
+              },
+              {
+                "key": "receiptUnit",
+                "value": "{{navigation.receiptUnit}}"
               },
               {
                 "key": "transactionReason",
@@ -3489,7 +3725,14 @@
               "deleteFlag": false,
               "innerLabel": "",
               "systemDate": false,
-              "visibilityCondition": {},
+              "visibilityCondition": {
+                "expression": [
+                  {
+                    "condition": "navigation.receiptUnit != 'PIECES'",
+                    "type": "custom"
+                  }
+                ]
+              },
               "validations": [
                 {
                   "type": "required",
@@ -3500,6 +3743,55 @@
                   "type": "regex",
                   "value": "^[0-9]+$",
                   "message": "INVENTORY_VALID_NUMBER_REQUIRED_MESSAGE"
+                }
+              ],
+              "errorMessage": "",
+              "isMultiSelect": false,
+              "enums": null
+            },
+            {
+              "type": "integer",
+              "label": "APPONE_INVENTORY_QUANTITY_RECEIVED_LABEL_PIECES",
+              "order": 7.05,
+              "value": "{{navigation.quantity}}",
+              "format": "text",
+              "hidden": false,
+              "tooltip": "",
+              "helpText": "",
+              "infoText": "",
+              "readOnly": false,
+              "fieldName": "quantityReceived",
+              "deleteFlag": false,
+              "innerLabel": "",
+              "systemDate": false,
+              "visibilityCondition": {
+                "expression": [
+                  {
+                    "condition": "navigation.receiptUnit == 'PIECES'",
+                    "type": "custom"
+                  }
+                ]
+              },
+              "validations": [
+                {
+                  "type": "required",
+                  "value": true,
+                  "message": "QUANTITY_RECEIVED_REQUIRED_ERROR_MESSAGE"
+                },
+                {
+                  "type": "min",
+                  "value": 1,
+                  "message": "QUANTITY_RECEIVED_MIN_REQUIRED_ERROR_MESSAGE"
+                },
+                {
+                  "type": "max",
+                  "value": 10000000,
+                  "message": "QUANTITY_MAX_ERROR_MESSAGE"
+                },
+                {
+                  "type": "regex",
+                  "value": "^[0-9]+$",
+                  "message": "QUANTITY_VALID_NUMBER_ERROR_MESSAGE"
                 }
               ],
               "errorMessage": "",
@@ -3521,7 +3813,14 @@
               "deleteFlag": false,
               "innerLabel": "",
               "systemDate": false,
-              "visibilityCondition": {},
+              "visibilityCondition": {
+                "expression": [
+                  {
+                    "condition": "navigation.receiptUnit != 'PIECES'",
+                    "type": "custom"
+                  }
+                ]
+              },
               "computedValue": {
                 "sourceField": "quantity",
                 "divideBy": 50,
