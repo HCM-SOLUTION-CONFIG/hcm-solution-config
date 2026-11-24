@@ -957,6 +957,7 @@
       ],
       "name": "householdOverview",
       "order": 3,
+      "disableSystemBack": "{{fn:hasRole('REGISTRAR')}} == true && {{fn:isUnder5CountMismatch(contextData.0.members, contextData.0.household)}} == true",
       "onSystemBack": [
         {
           "actionType": "NAVIGATION",
@@ -3379,7 +3380,7 @@
             {
               "type": "boolean",
               "label": "APPONE_DELIVERYFLOW_DELIVERYDETAIL_ACTIONS_PROTECT_FROM_MALERIA",
-              "order": 1,
+              "order": 7,
               "value": "",
               "format": "checkbox",
               "hidden": false,
@@ -3388,7 +3389,7 @@
               "helpText": "",
               "infoText": "",
               "readOnly": false,
-              "fieldName": "ACTION6",
+              "fieldName": "ACTION7",
               "required": true,
               "mandatory": true,
               "deleteFlag": false,
@@ -3915,7 +3916,6 @@
               "format": "mobileNumber",
               "hidden": false,
               "isMdms": false,
-              "pattern": "^0\\d{9}$",
               "tooltip": "APPONE_REGISTRATION_BENEFICIARYDETAILS_label_phone_tooltip",
               "helpText": "APPONE_REGISTRATION_BENEFICIARYDETAILS_label_phone_helpText",
               "infoText": "",
@@ -3928,31 +3928,25 @@
               "schemaCode": null,
               "systemDate": false,
               "lengthRange": {
-                "maxLength": 10,
-                "minLength": 10,
-                "errorMessage": "MOBILE_LENGTH_10_DIGIT_ERROR"
+                "maxLength": 9,
+                "minLength": 9,
+                "errorMessage": "MOBILE_LENGTH_9_DIGIT_ERROR"
               },
               "validations": [
                 {
-                  "type": "pattern",
-                  "value": "^0\\d{9}$",
-                  "message": "MOBILE_NUMBER_START_WITH_ZERO_ERROR"
-                },
-                {
                   "type": "minLength",
-                  "value": 10,
-                  "message": "MOBILE_LENGTH_10_DIGIT_ERROR"
+                  "value": 9,
+                  "message": "MOBILE_LENGTH_9_DIGIT_ERROR"
                 },
                 {
                   "type": "maxLength",
-                  "value": 10,
-                  "message": "MOBILE_LENGTH_10_DIGIT_ERROR"
+                  "value": 9,
+                  "message": "MOBILE_LENGTH_9_DIGIT_ERROR"
                 }
               ],
               "errorMessage": "",
               "isMultiSelect": false,
-              "required.message": "MOBILE_LENGTH_10_DIGIT_ERROR",
-              "pattern.message": "MOBILE_NUMBER_START_WITH_ZERO_ERROR"
+              "required.message": "MOBILE_LENGTH_9_DIGIT_ERROR"
             },
             {
               "type": "string",
