@@ -777,15 +777,7 @@
                     "hierarchyMapping": {
                       "Country": {
                         "forReceipt": [
-                          "Central Facility"
-                        ],
-                        "forIssue": [
-                          "County"
-                        ]
-                      },
-                      "County": {
-                        "forReceipt": [
-                          "Country"
+                          "IDA Foundation"
                         ],
                         "forIssue": [
                           "District"
@@ -793,15 +785,7 @@
                       },
                       "District": {
                         "forReceipt": [
-                          "County"
-                        ],
-                        "forIssue": [
-                          "Health Facility"
-                        ]
-                      },
-                      "Health Facility": {
-                        "forReceipt": [
-                          "District"
+                          "Country"
                         ],
                         "forIssue": [
                           "Distribution Point"
@@ -809,7 +793,7 @@
                       },
                       "Distribution Point": {
                         "forReceipt": [
-                          "Health Facility"
+                          "District"
                         ],
                         "forIssue": [
                           "DELIVERY_TEAM"
@@ -943,15 +927,7 @@
                     "hierarchyMapping": {
                       "Country": {
                         "forReceipt": [
-                          "Central Facility"
-                        ],
-                        "forIssue": [
-                          "County"
-                        ]
-                      },
-                      "County": {
-                        "forReceipt": [
-                          "Country"
+                          "IDA Foundation"
                         ],
                         "forIssue": [
                           "District"
@@ -959,15 +935,7 @@
                       },
                       "District": {
                         "forReceipt": [
-                          "County"
-                        ],
-                        "forIssue": [
-                          "Health Facility"
-                        ]
-                      },
-                      "Health Facility": {
-                        "forReceipt": [
-                          "District"
+                          "Country"
                         ],
                         "forIssue": [
                           "Distribution Point"
@@ -975,7 +943,7 @@
                       },
                       "Distribution Point": {
                         "forReceipt": [
-                          "Health Facility"
+                          "District"
                         ],
                         "forIssue": [
                           "DELIVERY_TEAM"
@@ -2161,15 +2129,7 @@
                     "hierarchyMapping": {
                       "Country": {
                         "forReceipt": [
-                          "Central Facility"
-                        ],
-                        "forIssue": [
-                          "County"
-                        ]
-                      },
-                      "County": {
-                        "forReceipt": [
-                          "Country"
+                          "IDA Foundation"
                         ],
                         "forIssue": [
                           "District"
@@ -2177,15 +2137,7 @@
                       },
                       "District": {
                         "forReceipt": [
-                          "County"
-                        ],
-                        "forIssue": [
-                          "Health Facility"
-                        ]
-                      },
-                      "Health Facility": {
-                        "forReceipt": [
-                          "District"
+                          "Country"
                         ],
                         "forIssue": [
                           "Distribution Point"
@@ -2193,7 +2145,7 @@
                       },
                       "Distribution Point": {
                         "forReceipt": [
-                          "Health Facility"
+                          "District"
                         ],
                         "forIssue": [
                           "DELIVERY_TEAM"
@@ -2356,15 +2308,7 @@
                     "hierarchyMapping": {
                       "Country": {
                         "forReceipt": [
-                          "Central Facility"
-                        ],
-                        "forIssue": [
-                          "County"
-                        ]
-                      },
-                      "County": {
-                        "forReceipt": [
-                          "Country"
+                          "IDA Foundation"
                         ],
                         "forIssue": [
                           "District"
@@ -2372,15 +2316,7 @@
                       },
                       "District": {
                         "forReceipt": [
-                          "County"
-                        ],
-                        "forIssue": [
-                          "Health Facility"
-                        ]
-                      },
-                      "Health Facility": {
-                        "forReceipt": [
-                          "District"
+                          "Country"
                         ],
                         "forIssue": [
                           "Distribution Point"
@@ -2388,7 +2324,7 @@
                       },
                       "Distribution Point": {
                         "forReceipt": [
-                          "Health Facility"
+                          "District"
                         ],
                         "forIssue": [
                           "DELIVERY_TEAM"
