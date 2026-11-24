@@ -1050,22 +1050,6 @@
               "isMultiSelect": false,
               "enums": [
                 {
-                  "code": "TRUCK",
-                  "name": "INVENTORY_TRANSPORT_TYPE_TRUCK"
-                },
-                {
-                  "code": "VAN",
-                  "name": "INVENTORY_TRANSPORT_TYPE_VAN"
-                },
-                {
-                  "code": "PICK_UP",
-                  "name": "INVENTORY_TRANSPORT_TYPE_PICK_UP"
-                },
-                {
-                  "code": "JEEP",
-                  "name": "INVENTORY_TRANSPORT_TYPE_JEEP"
-                },
-                {
                   "code": "CANOE",
                   "name": "INVENTORY_TRANSPORT_TYPE_CANOE"
                 },
@@ -1143,6 +1127,11 @@
                   "type": "required",
                   "value": true,
                   "message": "INVENTORY_WAYBILL_NUMBER_REQUIRED_MESSAGE"
+                },
+                {
+                  "type": "pattern",
+                  "value": "^[a-zA-Z0-9 ]+$",
+                  "message": "INVENTORY_WAYBILL_NUMBER_HELPTEXT"
                 }
               ]
             }
@@ -3703,6 +3692,11 @@
                   "type": "minLength",
                   "value": "3",
                   "message": "INVENTORY_TEXT_MIN_LENGTH_ERROR_MESSAGE"
+                },
+                {
+                  "type": "pattern",
+                  "value": "^[a-zA-Z0-9 ]+$",
+                  "message": "INVENTORY_WAYBILL_NUMBER_HELPTEXT"
                 }
               ],
               "errorMessage": "",
