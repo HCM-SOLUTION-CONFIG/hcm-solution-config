@@ -626,6 +626,72 @@
                                   "data": [
                                     {
                                       "key": "entities",
+                                      "value": "{{contextData.0.household}}"
+                                    },
+                                    {
+                                      "key": "entities",
+                                      "value": "{{item.individual}}"
+                                    },
+                                    {
+                                      "key": "entities",
+                                      "value": "{{contextData.0.projectBeneficiary}}"
+                                    }
+                                  ],
+                                  "configName": "beneficiaryRegistration",
+                                  "excludeFormFields": [
+                                    "nameOfIndividual",
+                                    "familyname"
+                                  ],
+                                  "entityTypes": [
+                                    "HouseholdModel",
+                                    "IndividualModel",
+                                    "ProjectBeneficiaryModel"
+                                  ]
+                                }
+                              },
+                              {
+                                "actionType": "NAVIGATION",
+                                "properties": {
+                                  "data": [
+                                    {
+                                      "key": "HouseholdClientReferenceId",
+                                      "value": "{{item.member.0.householdClientReferenceId}}"
+                                    },
+                                    {
+                                      "key": "isEdit",
+                                      "value": "true"
+                                    },
+                                    {
+                                      "key": "startPage",
+                                      "value": "householdDetails"
+                                    },
+                                    {
+                                      "key": "firstName",
+                                      "value": "{{item.individual.0.name.givenName}}"
+                                    },
+                                    {
+                                      "key": "lastName",
+                                      "value": "{{item.individual.0.name.familyName}}"
+                                    }
+                                  ],
+                                  "name": "HOUSEHOLD",
+                                  "type": "FORM"
+                                }
+                              }
+                            ],
+                            "condition": {
+                              "type": "custom",
+                              "expression": "{{fn:isHead(item.member)}} == true && {{fn:hasBeneficiaryId(item.individual.0.identifiers.0)}} == true"
+                            }
+                          },
+                          {
+                            "actions": [
+                              {
+                                "actionType": "REVERSE_TRANSFORM",
+                                "properties": {
+                                  "data": [
+                                    {
+                                      "key": "entities",
                                       "value": "{{item.individual}}"
                                     },
                                     {
@@ -1055,6 +1121,26 @@
                       {
                         "key": "memberCount",
                         "value": "{{contextData.0.household.HouseholdModel.memberCount}}"
+                      },
+                      {
+                        "key": "childrenCount",
+                        "value": "{{contextData.0.household.HouseholdModel.additionalFields.fields.childrenCount}}"
+                      },
+                      {
+                        "key": "headMobileNumber",
+                        "value": "{{contextData.0.headIndividual.IndividualModel.mobileNumber}}"
+                      },
+                      {
+                        "key": "householdLatitude",
+                        "value": "{{contextData.0.household.HouseholdModel.address.latitude}}"
+                      },
+                      {
+                        "key": "householdLongitude",
+                        "value": "{{contextData.0.household.HouseholdModel.address.longitude}}"
+                      },
+                      {
+                        "key": "householdLocationAccuracy",
+                        "value": "{{contextData.0.household.HouseholdModel.address.locationAccuracy}}"
                       },
                       {
                         "key": "cycleIndex",
@@ -2123,10 +2209,33 @@
                               "data": [
                                 {
                                   "key": "entities",
-                                  "value": "{{item}}"
+                                  "value": "{{item.HouseholdModel}}"
+                                },
+                                {
+                                  "key": "entities",
+                                  "value": "{{item.headIndividual}}"
+                                },
+                                {
+                                  "key": "entities",
+                                  "value": "{{item.headOfHousehold}}"
+                                },
+                                {
+                                  "key": "entities",
+                                  "value": "{{item.projectBeneficiaries}}"
+                                },
+                                {
+                                  "key": "entities",
+                                  "value": "{{item.tasks}}"
                                 }
                               ],
                               "configName": "beneficiaryRegistration",
+                              "excludeFormFields": [
+                                "consentToParticipate",
+                                "firstName",
+                                "lastName",
+                                "nameOfIndividual",
+                                "familyname"
+                              ],
                               "entityTypes": [
                                 "HouseholdModel",
                                 "IndividualModel",
@@ -2973,6 +3082,17 @@
               "fieldName": "scanner",
               "mandatory": false,
               "showLabel": false,
+              "comparisonConfig": {
+                "model": "task",
+                "extractKey": "scanResource",
+                "filters": [
+                  {
+                    "key": "additionalFields",
+                    "operation": "containsAll",
+                    "value": "scanResource"
+                  }
+                ]
+              },
               "deleteFlag": false,
               "innerLabel": "",
               "schemaCode": null,
@@ -2985,6 +3105,10 @@
                 {
                   "type": "scanLimit",
                   "value": 4
+                },
+                {
+                  "type": "allowManualEntry",
+                  "value": false
                 }
               ],
               "errorMessage": "",
@@ -3630,6 +3754,14 @@
                       {
                         "key": "TaskModel.status",
                         "value": "NOT_ADMINISTERED"
+                      },
+                      {
+                        "key": "HouseholdModel.additionalFields.fields.familyName",
+                        "value": "{{formData.householdDetails.familyname}}"
+                      },
+                      {
+                        "key": "TaskModel.additionalFields.fields.familyName",
+                        "value": "{{formData.householdDetails.familyname}}"
                       }
                     ],
                     "onError": [
@@ -3684,7 +3816,7 @@
                         }
                       }
                     ],
-                    "configName": "beneficiaryRegistration"
+                    "configName": "householdDetailsEdit"
                   }
                 },
                 {
@@ -4749,7 +4881,7 @@
             {
               "actionType": "UPDATE_EVENT",
               "properties": {
-                "entity": "HouseholdModel, IndividualModel",
+                "entity": "HouseholdModel, IndividualModel, TaskModel",
                 "onError": [
                   {
                     "actionType": "SHOW_TOAST",
@@ -4895,6 +5027,14 @@
                   {
                     "key": "TaskModel.status",
                     "value": "NOT_ADMINISTERED"
+                  },
+                  {
+                    "key": "HouseholdModel.additionalFields.fields.familyName",
+                    "value": "{{formData.householdDetails.familyname}}"
+                  },
+                  {
+                    "key": "TaskModel.additionalFields.fields.familyName",
+                    "value": "{{formData.householdDetails.familyname}}"
                   }
                 ],
                 "onError": [
