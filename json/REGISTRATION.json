@@ -57,7 +57,7 @@
                 "properties": {
                   "name": "searchBeneficiary",
                   "type": "TEMPLATE",
-                  "navigationMode": "popUntilAndPush",
+                  "navigationMode": "popUntilAndReplace",
                   "popUntilPageName": "searchBeneficiary"
                 }
               }
@@ -81,7 +81,7 @@
           "properties": {
             "name": "searchBeneficiary",
             "type": "TEMPLATE",
-            "navigationMode": "popUntilAndPush",
+            "navigationMode": "popUntilAndReplace",
             "popUntilPageName": "searchBeneficiary"
           }
         }
@@ -103,7 +103,7 @@
                 ],
                 "name": "searchBeneficiary",
                 "type": "TEMPLATE",
-                "navigationMode": "popUntilAndPush",
+                "navigationMode": "popUntilAndReplace",
                 "popUntilPageName": "searchBeneficiary"
               }
             }
@@ -2915,6 +2915,15 @@
               }
             }
           ]
+        }
+      ],
+      "onSystemBack": [
+        {
+          "actionType": "BACK_NAVIGATION",
+          "properties": {
+            "name": "HOME",
+            "type": "HOME"
+          }
         }
       ],
       "heading": "REGISTRATION_SEARCH_BENEFICIARY_HEADING",
