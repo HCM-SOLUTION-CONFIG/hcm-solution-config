@@ -839,6 +839,10 @@
               "includeInForm": true,
               "validations": [
                 {
+                  "type": "allowManualEntry",
+                  "value": false
+                },
+                {
                   "type": "required",
                   "value": true,
                   "message": "APPONE_MANAGESTOCK_WAREHOUSE_label_facilityToWhich_mandatory_message"
@@ -2193,6 +2197,10 @@
               "systemDate": false,
               "includeInSummary": true,
               "validations": [
+                {
+                  "type": "allowManualEntry",
+                  "value": false
+                },
                 {
                   "type": "required",
                   "value": true,
