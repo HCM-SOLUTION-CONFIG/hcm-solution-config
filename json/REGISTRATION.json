@@ -672,6 +672,10 @@
                                     {
                                       "key": "lastName",
                                       "value": "{{item.individual.0.name.familyName}}"
+                                    },
+                                    {
+                                      "key": "registeredChildCount",
+                                      "value": "{{fn:registeredChildCount(contextData.0.members)}}"
                                     }
                                   ],
                                   "name": "HOUSEHOLD",
@@ -4218,6 +4222,11 @@
                   "type": "maxField",
                   "value": "memberCount",
                   "message": "APPONE_REGISTRATION_HOUSEHOLDDETAILS_label_childrenCount_maxField_message"
+                },
+                {
+                  "type": "min",
+                  "value": "navigation.registeredChildCount",
+                  "message": "APPONE_REGISTRATION_HOUSEHOLDDETAILS_label_childrenCount_registered_min_message"
                 }
               ],
               "errorMessage": "",
@@ -5078,6 +5087,65 @@
           "condition": {
             "type": "custom",
             "expression": "isEdit==true && isClosedHousehold==true && caregiverConsent.consentToParticipate==TRUE"
+          }
+        },
+        {
+          "actions": [
+            {
+              "actionType": "FETCH_TRANSFORMER_CONFIG",
+              "properties": {
+                "onError": [
+                  {
+                    "actionType": "SHOW_TOAST",
+                    "properties": {
+                      "message": "Failed to fetch config."
+                    }
+                  }
+                ],
+                "configName": "householdDetailsEdit"
+              }
+            },
+            {
+              "actionType": "UPDATE_EVENT",
+              "properties": {
+                "entity": "HouseholdModel, IndividualModel",
+                "onError": [
+                  {
+                    "actionType": "SHOW_TOAST",
+                    "properties": {
+                      "message": "Failed to update household."
+                    }
+                  }
+                ]
+              }
+            },
+            {
+              "actionType": "NAVIGATION",
+              "properties": {
+                "data": [
+                  {
+                    "key": "HouseholdClientReferenceId",
+                    "value": "{{navigation.HouseholdClientReferenceId}}"
+                  }
+                ],
+                "name": "householdOverview",
+                "type": "TEMPLATE",
+                "onError": [
+                  {
+                    "actionType": "SHOW_TOAST",
+                    "properties": {
+                      "message": "Navigation failed."
+                    }
+                  }
+                ],
+                "navigationMode": "popUntilAndPush",
+                "popUntilPageName": "searchBeneficiary"
+              }
+            }
+          ],
+          "condition": {
+            "type": "custom",
+            "expression": "isEdit==true"
           }
         },
         {
@@ -6036,6 +6104,10 @@
   "disabled": false,
   "isSelected": true,
   "initialPage": "searchBeneficiary",
+  "dailyTarget": {
+    "registrar": 65,
+    "distributor": 65
+  },
   "isActive": true,
   "auditDetails": {
     "createdBy": "b43b260c-f620-45d3-a43f-f53148f87f15",
