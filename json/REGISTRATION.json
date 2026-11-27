@@ -631,6 +631,14 @@
                                     {
                                       "key": "entities",
                                       "value": "{{item.projectBeneficiary}}"
+                                    },
+                                    {
+                                      "key": "updateOnlyEntities",
+                                      "value": "{{item.member}}"
+                                    },
+                                    {
+                                      "key": "updateOnlyEntities",
+                                      "value": "{{contextData.0.household.HouseholdModel}}"
                                     }
                                   ],
                                   "configName": "individualRegistration",
@@ -684,6 +692,14 @@
                                     {
                                       "key": "entities",
                                       "value": "{{item.projectBeneficiary}}"
+                                    },
+                                    {
+                                      "key": "updateOnlyEntities",
+                                      "value": "{{item.member}}"
+                                    },
+                                    {
+                                      "key": "updateOnlyEntities",
+                                      "value": "{{contextData.0.household.HouseholdModel}}"
                                     }
                                   ],
                                   "configName": "individualRegistration",
@@ -5900,7 +5916,27 @@
             {
               "actionType": "UPDATE_EVENT",
               "properties": {
-                "entity": "IndividualModel, ProjectBeneficiaryModel"
+                "entity": "IndividualModel, ProjectBeneficiaryModel, HouseholdMemberModel, HouseholdModel",
+                "modify": [
+                  {
+                    "key": "HouseholdModel.additionalFields.fields.familyName",
+                    "value": "{{formData.beneficiaryDetails.familyname}}"
+                  }
+                ]
+              }
+            }
+          ],
+          "condition": {
+            "type": "custom",
+            "expression": "isEdit == true && isHead == true"
+          }
+        },
+        {
+          "actions": [
+            {
+              "actionType": "UPDATE_EVENT",
+              "properties": {
+                "entity": "IndividualModel, ProjectBeneficiaryModel, HouseholdMemberModel"
               }
             }
           ],
