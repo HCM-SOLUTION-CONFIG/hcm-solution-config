@@ -626,76 +626,6 @@
                                   "data": [
                                     {
                                       "key": "entities",
-                                      "value": "{{contextData.0.household}}"
-                                    },
-                                    {
-                                      "key": "entities",
-                                      "value": "{{item.individual}}"
-                                    },
-                                    {
-                                      "key": "entities",
-                                      "value": "{{contextData.0.projectBeneficiary}}"
-                                    }
-                                  ],
-                                  "configName": "beneficiaryRegistration",
-                                  "excludeFormFields": [
-                                    "nameOfIndividual",
-                                    "familyname"
-                                  ],
-                                  "entityTypes": [
-                                    "HouseholdModel",
-                                    "IndividualModel",
-                                    "ProjectBeneficiaryModel"
-                                  ]
-                                }
-                              },
-                              {
-                                "actionType": "NAVIGATION",
-                                "properties": {
-                                  "data": [
-                                    {
-                                      "key": "HouseholdClientReferenceId",
-                                      "value": "{{item.member.0.householdClientReferenceId}}"
-                                    },
-                                    {
-                                      "key": "isEdit",
-                                      "value": "true"
-                                    },
-                                    {
-                                      "key": "startPage",
-                                      "value": "householdDetails"
-                                    },
-                                    {
-                                      "key": "firstName",
-                                      "value": "{{item.individual.0.name.givenName}}"
-                                    },
-                                    {
-                                      "key": "lastName",
-                                      "value": "{{item.individual.0.name.familyName}}"
-                                    },
-                                    {
-                                      "key": "registeredChildCount",
-                                      "value": "{{fn:registeredChildCount(contextData.0.members)}}"
-                                    }
-                                  ],
-                                  "name": "HOUSEHOLD",
-                                  "type": "FORM"
-                                }
-                              }
-                            ],
-                            "condition": {
-                              "type": "custom",
-                              "expression": "{{fn:isHead(item.member)}} == true && {{fn:hasBeneficiaryId(item.individual.0.identifiers.0)}} == true"
-                            }
-                          },
-                          {
-                            "actions": [
-                              {
-                                "actionType": "REVERSE_TRANSFORM",
-                                "properties": {
-                                  "data": [
-                                    {
-                                      "key": "entities",
                                       "value": "{{item.individual}}"
                                     },
                                     {
@@ -968,6 +898,10 @@
                                   {
                                     "key": "UNIQUE_BENEFICIARY_ID",
                                     "value": "{{latestBeneficiaryId}}"
+                                  },
+                                  {
+                                    "key": "isHead",
+                                    "value": "false"
                                   }
                                 ],
                                 "name": "ADD_MEMBER",
@@ -5721,6 +5655,13 @@
               "value": "",
               "format": "dob",
               "hidden": false,
+              "visibilityCondition": {
+                "expression": [
+                  {
+                    "condition": "navigation.isHead!=true"
+                  }
+                ]
+              },
               "isMdms": false,
               "tooltip": "APPONE_REGISTRATION_BENEFICIARYDETAILS_label_dobPicker_tooltip_addmember",
               "ageRange": {
