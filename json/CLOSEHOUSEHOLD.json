@@ -274,38 +274,87 @@
       ],
       "overView": "CLOSEHOUSEHOLD_SUMMARY_HEADING",
       "summary": false,
+      "reopenAsEdit": true,
       "onAction": [
         {
-          "actionType": "FETCH_TRANSFORMER_CONFIG",
-          "properties": {
-            "configName": "closeHouseholdRegistration",
-            "data": [
-              {
-                "key": "latestBeneficiaryId",
-                "value": "{{navigation.UNIQUE_BENEFICIARY_ID}}"
+          "actions": [
+            {
+              "actionType": "FETCH_TRANSFORMER_CONFIG",
+              "properties": {
+                "configName": "closeHouseholdEdit",
+                "stopOnError": true,
+                "onError": [
+                  {
+                    "actionType": "SHOW_TOAST",
+                    "properties": {
+                      "message": "Failed to fetch config."
+                    }
+                  }
+                ]
               }
-            ],
-            "onError": [
-              {
-                "actionType": "SHOW_TOAST",
-                "properties": {
-                  "message": "Failed to fetch config."
-                }
+            },
+            {
+              "actionType": "UPDATE_EVENT",
+              "properties": {
+                "entity": "IndividualModel, HouseholdModel, TaskModel",
+                "stopOnError": true,
+                "onError": [
+                  {
+                    "actionType": "SHOW_TOAST",
+                    "properties": {
+                      "message": "Failed to update household."
+                    }
+                  }
+                ]
               }
-            ]
+            }
+          ],
+          "condition": {
+            "type": "custom",
+            "expression": "isEdit==true"
           }
         },
         {
-          "actionType": "CREATE_EVENT",
-          "properties": {
-            "onError": [
-              {
-                "actionType": "SHOW_TOAST",
-                "properties": {
-                  "message": "Failed to create stock."
-                }
+          "actions": [
+            {
+              "actionType": "FETCH_TRANSFORMER_CONFIG",
+              "properties": {
+                "configName": "closeHouseholdRegistration",
+                "stopOnError": true,
+                "data": [
+                  {
+                    "key": "latestBeneficiaryId",
+                    "value": "{{navigation.UNIQUE_BENEFICIARY_ID}}"
+                  }
+                ],
+                "onError": [
+                  {
+                    "actionType": "SHOW_TOAST",
+                    "properties": {
+                      "message": "Failed to fetch config."
+                    }
+                  }
+                ]
               }
-            ]
+            },
+            {
+              "actionType": "CREATE_EVENT",
+              "properties": {
+                "awaitPersistence": true,
+                "stopOnError": true,
+                "onError": [
+                  {
+                    "actionType": "SHOW_TOAST",
+                    "properties": {
+                      "message": "Failed to create stock."
+                    }
+                  }
+                ]
+              }
+            }
+          ],
+          "condition": {
+            "expression": "DEFAULT"
           }
         },
         {
